@@ -1,4 +1,5 @@
 class Api::V2::UsuariosController < ApplicationController
+  skip_before_action :authenticate_request, only: [ :create, :index ]
   before_action :set_usuario, only: %i[ show update destroy ]
 
   # GET /usuarios
@@ -65,6 +66,6 @@ class Api::V2::UsuariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def usuario_params
-      params.expect(usuario: [ :nome, :senha, :email, :user_git, :excluido ])
+      params.expect(usuario: [ :nome, :password, :email, :user_git, :excluido ])
     end
 end
