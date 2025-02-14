@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_04_154642) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_13_190304) do
   create_table "equipe_projetos", force: :cascade do |t|
     t.integer "equipe_id", null: false
     t.integer "projeto_id", null: false
@@ -58,11 +58,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_04_154642) do
   create_table "usuarios", force: :cascade do |t|
     t.string "user_git"
     t.string "email"
-    t.string "senha"
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "excluido", default: false, null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "equipe_projetos", "equipes"

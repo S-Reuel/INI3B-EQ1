@@ -57,4 +57,8 @@ group :development, :test do
   gem "rdoc", "~> 6.11.0"
 
   gem "rack-cors"
+
+  gem "jwt"
+
+  gem "bcrypt"
 end
