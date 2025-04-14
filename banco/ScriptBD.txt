@@ -18,6 +18,7 @@ CREATE TABLE usuarios (
 CREATE TABLE equipes (
 	id_equipe SERIAL PRIMARY KEY,
 	nome_equipe VARCHAR(100) NOT NULL
+	descricao VARCHAR() NOT NULL
 );
 
 		* --- TASK --- *
