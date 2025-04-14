@@ -53,7 +53,7 @@ Equipes{
 *retornos_tasks* >>> retorno dos dados que estão no BD
 
 !!!Pensar em Segurança!!!{
-	Criptografia da senha ???
+	Criptografia da senha -> OK
 }
 
 !!!Novas Implementações!!!{
