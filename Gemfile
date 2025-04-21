@@ -61,4 +61,6 @@ group :development, :test do
   gem "jwt"
 
   gem "bcrypt"
+
+  gem "dotenv-rails"
 end
