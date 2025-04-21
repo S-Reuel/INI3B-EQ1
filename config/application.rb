@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module ApiRails
   class Application < Rails::Application
+    # Configura o local
+    config.time_zone = "America/Sao_Paulo"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 

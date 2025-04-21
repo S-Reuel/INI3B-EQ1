@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       resources :equipes, :sprints
       resources :dashboard
       get "dashboard/dados/:id", to: "dashboard#dados"
+      post "esqueci", to: "password#esqueci"
+      post "redefinir", to: "password#redefinir"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
