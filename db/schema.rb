@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_13_190304) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_15_190140) do
   create_table "equipe_projetos", force: :cascade do |t|
     t.integer "equipe_id", null: false
     t.integer "projeto_id", null: false
@@ -63,6 +63,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_190304) do
     t.datetime "updated_at", null: false
     t.boolean "excluido", default: false, null: false
     t.string "password_digest"
+    t.string "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_foreign_key "equipe_projetos", "equipes"
