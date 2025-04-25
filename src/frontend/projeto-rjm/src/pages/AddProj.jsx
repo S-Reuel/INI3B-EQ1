@@ -15,9 +15,7 @@ export default function AddProj() {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        try {
-            postAPIProj({nome, descricao, data_criacao})
-        } catch (error){ }
+        postAPIProj({nome, descricao, data_criacao})
     }
 
     return (

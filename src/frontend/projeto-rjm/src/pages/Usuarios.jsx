@@ -18,7 +18,6 @@ export default function Usuarios() {
                     <td>ID</td>
                     <td>Nome</td>
                     <td>E-mail</td>
-                    <td>Senha</td>
                     <td>User Git</td>
                 </tr>
                 {(user).map((i) => {
@@ -27,7 +26,6 @@ export default function Usuarios() {
                                 <td>{i.id}</td>
                                 <td>{i.nome}</td>
                                 <td>{i.email}</td>
-                                <td>{i.senha}</td>
                                 <td>{i.user_git}</td>
                         </tr>
                 )})}

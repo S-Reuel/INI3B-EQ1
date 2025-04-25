@@ -1,21 +1,20 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
 import React, { useState } from "react";
-import { getAPIUser_Name } from "../data/services/API.jsx";
 
 export default function RecSenha() {
     const [name, setName] = useState('')
 
     const onSave = async (e) => {
         e.preventDefault()
-        try {
-            const res = await getAPIUser_Name(name)
-            setName('')
-            if (res != '') { 
-                window.location.href="../login"
-            } else { 
-                alert("ERROR: Nome não identificado! Por favor tente novamente!")
-            }
-        } catch (err) { }
+        // try {
+        //     const res = await getAPIUser_Name(name)
+        //     setName('')
+        //     if (res != '') { 
+        //         window.location.href="../login"
+        //     } else { 
+        //         alert("ERROR: Nome não identificado! Por favor tente novamente!")
+        //     }
+        // } catch (err) { }
     } 
 
     return(
