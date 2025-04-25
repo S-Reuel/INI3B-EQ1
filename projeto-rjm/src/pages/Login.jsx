@@ -1,29 +1,14 @@
 // import '../ui/components/Login/Login.css'
 import React, { useState } from "react";
-import { getAPIUser_Name } from "../data/services/API.jsx";
-import { onSession } from "../data/services/Session.jsx";
+import { postAPILogin } from "../data/services/API.jsx";
 
 export default function Login() {
-    const [name, setName] = useState()
+    const [email, setEmail] = useState()
     const [password, setPassword] = useState() 
 
     const onSave = async (e) => {
         e.preventDefault()
-        try {
-            const res = await getAPIUser_Name(name)
-            if (res != '') { 
-                if(password == res.senha){
-                    // onSession() 
-                    location.href='principal'
-                }
-                else 
-                    alert("Credenciais invalidas! Por favor tente novamente!")    
-            } else { 
-                alert("Credenciais invalidas! Por favor tente novamente!")
-            }
-            setName('') 
-            setPassword('') 
-        } catch (err) { }
+        const res = await postAPILogin({email, password})
     } 
 
     return (
@@ -32,12 +17,12 @@ export default function Login() {
                 <h1>Faça seu Login!</h1>
                 <form onSubmit={onSave}>
                         <label>
-                            Nome:<br/>
+                            E-mail:<br/>
                             <input 
-                                type="text" name="nome"
-                                placeholder="Digite seu nome completo" required
-                                value={name} autoComplete='off'
-                                onChange={(e)=> setName(e.target.value)}    
+                                type="email" name="email"
+                                placeholder="Digite seu e-mail" required
+                                value={email} autoComplete='off'
+                                onChange={(e)=> setEmail(e.target.value)}    
                             />
                         </label>
                         <br/>
