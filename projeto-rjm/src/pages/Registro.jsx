@@ -11,7 +11,13 @@ export default function Registro() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        postAPIUser({nome, email, password, user_git, excluido})
+        let r = postAPIUser({nome, email, password, user_git, excluido})
+        if(r.error == ""){
+            location.href = '/login'
+        } else {
+            console.log(`ERRO: ${r.error}`)
+        }
+        
     }
 
     return (
