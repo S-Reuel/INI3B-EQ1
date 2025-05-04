@@ -1,6 +1,6 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
-import { postAPIUser } from '../data/services/API.jsx'
+import { postUser } from '../data/services/API.jsx'
 
 export default function Registro() {
     const [nome, setNome] = useState('')
@@ -11,8 +11,8 @@ export default function Registro() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let r = postAPIUser({nome, email, password, user_git, excluido})
-        if(r.error == ""){
+        let res = postUser({nome, email, password, user_git, excluido})
+        if(res.error == ""){
             location.href = '/login'
         } else {
             console.log(`ERRO: ${r.error}`)

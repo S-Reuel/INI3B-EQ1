@@ -1,6 +1,6 @@
 // import '../ui/components/Login/Login.css'
 import React, { useState } from "react";
-import { postAPILogin } from "../data/services/API.jsx";
+import { postLogin } from "../data/services/API.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,7 +8,10 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        const res = await postAPILogin({email, password})
+        let res = await postLogin({email, password})
+        res = JSON.stringify(res)
+        onSession('authToken', res)
+        location.href = '/usuarios'
     } 
 
     return (

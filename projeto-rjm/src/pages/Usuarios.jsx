@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { getAPIUser } from "../data/services/API.jsx";
+import { deleteUser, getUser } from "../data/services/API.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            let res = await getAPIUser();
+            let res = await getUser()
             setUsers(res)
         }
-        fetch();
-    }, []);
+        fetch()
+    }, [])
+
+    async function onDelete(id){
+        let conf = confirm('Tem certeza que deseja apagá-lo?')
+        let res
+        if (conf)
+            res = await deleteUser(id)
+    }
 
     function apr() {
         return users.map((i) =>
@@ -19,6 +26,7 @@ export default function Usuarios() {
                 <td>{i.nome}</td>
                 <td>{i.email}</td>
                 <td>{i.user_git}</td>
+                <td><button title="Delete" onClick={onDelete(i.id)}></button></td>
             </tr>
         )
     }
