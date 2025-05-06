@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { deleteUser, getUser } from "../data/services/API.jsx";
+import { offSession } from "../data/services/Session.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
 
-    useEffect(() => {
+    useEffect((e) => {
+        // e.preventDefault()
         async function fetch() {
             let res = await getUser()
             setUsers(res)
@@ -14,9 +16,13 @@ export default function Usuarios() {
 
     async function onDelete(id){
         let conf = confirm('Tem certeza que deseja apagá-lo?')
-        let res
         if (conf)
-            res = await deleteUser(id)
+            await deleteUser(id)
+    }
+
+    function action(){
+        offSession('authToken')
+        location.href='/'
     }
 
     function apr() {
@@ -26,14 +32,14 @@ export default function Usuarios() {
                 <td>{i.nome}</td>
                 <td>{i.email}</td>
                 <td>{i.user_git}</td>
-                <td><button title="Delete" onClick={onDelete(i.id)}></button></td>
+                <td><button onClick={onDelete}>Excluir</button></td>
             </tr>
         )
     }
 
     return (
-        <>
-            <h1>Usuários</h1>
+        <center>
+            <h1>Usuários<br/><button onClick={action}>logout</button></h1>
             <table>
                 <thead>
                     <tr>
@@ -41,12 +47,13 @@ export default function Usuarios() {
                         <td>Nome</td>
                         <td>E-mail</td>
                         <td>User Git</td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     {apr()}
                 </tbody>
             </table>
-        </>
+        </center>
     );
 }

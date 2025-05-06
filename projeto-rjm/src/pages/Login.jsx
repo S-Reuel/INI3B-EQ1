@@ -8,10 +8,7 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let res = await postLogin({email, password})
-        res = JSON.stringify(res)
-        onSession('authToken', res)
-        location.href = '/usuarios'
+        await postLogin({email, password})
     } 
 
     return (

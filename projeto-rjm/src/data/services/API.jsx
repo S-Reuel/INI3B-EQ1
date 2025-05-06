@@ -1,73 +1,80 @@
 import axios from "axios";
+import { onSession } from "./Session";
 
 const Ngrok =  { headers: { "ngrok-skip-browser-warning": true } }
 const URL = axios.create({
     /* Local */
-    baseURL: 'http://localhost:3000/api/v2/' 
+    // baseURL: 'http://localhost:3000/api/v2/' 
     /* Ngrok */
-    // baseURL: '/api/v2/'
+    baseURL: 'https://463f-186-217-114-210.ngrok-free.app/api/v2/'
 })
 
 // CRUD's Users
 export async function postUser(param) {
-    let res = await URL.post('usuarios', { usuario: param })
-    return res.data
+    await URL.post('usuarios', { usuario: param }, Ngrok).then(
+        () => {location.href = '/login'}
+    )
+    .catch(
+        (e) => {console.log(`ERRO: ${e.data}`)}
+    )
 };
 
 export async function getUser() {
-    let res = await URL.get("usuarios")
+    let res = await URL.get("usuarios", Ngrok)
     return res.data
 }
 
 export async function postLogin(param) {
-    let res = await URL.post('auth/login', param)
-    return res.data
-    // .then((res) => {
-    //     let r = JSON.stringify(res.data)
-    //     onSession('authToken', r)
-    //     location.href = '/usuarios'
-    // })
-    // .catch((e) => { console.log(e) })
+    await URL.post('auth/login', param).then((res) => {
+        let r = JSON.stringify(res.data)
+        onSession('authToken', r)
+        location.href = '/usuarios'
+    }).catch(
+        (e) => { console.log(e) }
+    )
 }
 
 export async function updateUser(id) {
-    let res = await URL.put(`usuarios/${id}`)
-    return res.data
-    // .then((res) => res.data);
+    await URL.put(`usuarios/${id}`)
+    .then((res) => res.data);
 }
 
 export async function deleteUser(id) {
-    let res = await URL.delete(`usuarios/${id}`)
-    return res.data
-    // .then((res) => res.data);
+    await URL.delete(`usuarios/${id}`, {
+        headers: {
+          Authorization: localStorage.getItem('authToken')
+        }}, Ngrok)
+    .then((res) => res.data);
 }
 
 // CRUD's Projetos
 export async function postProj(param) {
-    let res = await URL.post('projetos', param)
-    return res.data
-    // .then((res) => {
-    //     res.data
-    //     let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-    //     if (bool)
-    //         location.href = '../principal'
-    // });
+    await URL.post('projetos', param)
+    .then((res) => {
+        res.data
+        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+        if (bool)
+            location.href = '../principal'
+    });
 }
 
 export async function getProj() {
-    let res = await URL.get("projetos")
-    return res.data
-    // .then((res) => res.data);
+    await URL.get("projetos")
+    .then((res) => res.data);
 }
 
 export async function updateProj(id) {
-    let res = await URL.put(`projetos/${id}`)
-    return res.data
-    // .then((res) => res.data);
+    await URL.put(`projetos/${id}`)
+    .then((res) => res.data);
 }
 
 export async function deleteProj(id) {
-    let res = await URL.delete(`projetos/${id}`)
-    return res.data
-    // .then((res) => res.data);
+    await URL.delete(`projetos/${id}`)
+    .then((res) => res.data);
+}
+
+export async function redefinirSenha(email) {
+    await URL.post(`esqueci/`, email).then(
+        (res) => {console.log(res);}
+    );
 }

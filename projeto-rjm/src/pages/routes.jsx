@@ -14,7 +14,7 @@ export default function Routers() {
             <Routes>
                 <Route path="/" element={<App/>}/>
                 <Route path="/login" element={<Login/>}/>
-                <Route path="/registro" element={<Registro/>}/>
+                <Route path="/add/usuario" element={<Registro/>}/>
                 <Route path="login/recSenha" element={<RecSenha/>}/>
                 <Route path="/principal" element={<Principal/>}/>
                 <Route path="/usuarios" element={<Usuarios/>}/>

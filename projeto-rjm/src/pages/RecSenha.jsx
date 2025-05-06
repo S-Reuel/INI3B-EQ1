@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 export default function RecSenha() {
-    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
 
     const onSave = async (e) => {
         e.preventDefault()
@@ -25,10 +25,10 @@ export default function RecSenha() {
                 <form onSubmit={onSave}>
                     <label>
                         <input 
-                            type="name" name="nome" 
-                            placeholder="Digite seu nome" required
-                            value={name} autoComplete='off'
-                            onChange={(e) => setName(e.target.value)}
+                            type="email" name="email" 
+                            placeholder="Digite seu e-mail" required
+                            value={email} autoComplete='off'
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
                     <button type="submit">Enviar</button>

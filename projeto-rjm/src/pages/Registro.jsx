@@ -13,9 +13,9 @@ export default function Registro() {
         e.preventDefault()
         let res = postUser({nome, email, password, user_git, excluido})
         if(res.error == ""){
-            location.href = '/login'
+            
         } else {
-            console.log(`ERRO: ${r.error}`)
+            
         }
         
     }
