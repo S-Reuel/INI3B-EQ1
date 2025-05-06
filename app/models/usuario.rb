@@ -4,7 +4,7 @@ class Usuario < ApplicationRecord
 
   has_secure_password
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
   validates :nome, presence: true, uniqueness: true
 
   has_many :usuario_equipes
