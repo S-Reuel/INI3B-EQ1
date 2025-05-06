@@ -47,6 +47,7 @@ class Api::V2::UsuariosController < ApplicationController
     end
   end
 
+  # Exclusão física
   # DELETE /usuarios/1
   def destroy
     @usuario = Usuario.find(params[:id])
@@ -55,6 +56,18 @@ class Api::V2::UsuariosController < ApplicationController
       render json: @usuario, status: :no_content
     else
       render json: @usuario.errors, status: :not_found
+    end
+  end
+
+  # Exclusão lógica
+  # PATCH /usuarios/excluir/1
+  def excluir
+    @usuario = Usuario.find(params[:id])
+
+    if @usuario.update(excluido: true)
+      render json: { alert: "Usuário excluído com sucesso!" }
+    else
+      render json: { error: @usuario.errors, status: :not_found }
     end
   end
 
