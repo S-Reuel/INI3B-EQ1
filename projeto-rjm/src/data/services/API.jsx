@@ -6,7 +6,7 @@ const URL = axios.create({
     /* Local */
     // baseURL: 'http://localhost:3000/api/v2/' 
     /* Ngrok */
-    baseURL: 'https://463f-186-217-114-210.ngrok-free.app/api/v2/'
+    baseURL: 'https://8b20-186-217-113-95.ngrok-free.app/api/v2/'
 })
 
 // CRUD's Users
@@ -26,7 +26,7 @@ export async function getUser() {
 
 export async function postLogin(param) {
     await URL.post('auth/login', param).then((res) => {
-        let r = JSON.stringify(res.data)
+        let r = JSON.stringify(res.data.token)
         onSession('authToken', r)
         location.href = '/usuarios'
     }).catch(
@@ -73,8 +73,12 @@ export async function deleteProj(id) {
     .then((res) => res.data);
 }
 
-export async function redefinirSenha(email) {
-    await URL.post(`esqueci/`, email).then(
-        (res) => {console.log(res);}
-    );
+export async function esqueciSenha(param) {
+    let r = await URL.post(`esqueci/`, {email: param}, Ngrok)
+    return r
+}
+
+export async function redefinirSenha(t, e, p) {
+    let r = await URL.post(`redefinir/`, {token: t,email: e, password: p}, Ngrok)
+    return r
 }

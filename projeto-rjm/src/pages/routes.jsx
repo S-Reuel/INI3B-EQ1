@@ -3,10 +3,11 @@ import React from "react";
 import App from './App';
 import Login from "./Login";
 import Principal from "./Principal";
-import RecSenha from "./RecSenha";
+import RedefinirSenha from "./RedefinirSenha";
 import Registro from "./Registro";
 import Usuarios from "./Usuarios";
 import AddProj from "./AddProj";
+import EsqueciSenha from "./EsqueciSenha";
 
 export default function Routers() {
     return(
@@ -15,7 +16,8 @@ export default function Routers() {
                 <Route path="/" element={<App/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/add/usuario" element={<Registro/>}/>
-                <Route path="login/recSenha" element={<RecSenha/>}/>
+                <Route path="login/esqueciSenha" element={<EsqueciSenha/>}/>
+                <Route path="login/redefinirSenha" element={<RedefinirSenha/>}/>
                 <Route path="/principal" element={<Principal/>}/>
                 <Route path="/usuarios" element={<Usuarios/>}/>
                 <Route path="/add/project" element={<AddProj/>}/>

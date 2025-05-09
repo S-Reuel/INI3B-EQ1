@@ -35,7 +35,7 @@ export default function Login() {
                                 onChange={(e)=> setPassword(e.target.value)}
                             />
                             <br/>
-                            <a href="login/recSenha">Esqueci minha senha</a>
+                            <a href="login/esqueciSenha">Esqueci minha senha</a>
                             <br/>
                         </label>
                     <button type="submit">Entrar</button>

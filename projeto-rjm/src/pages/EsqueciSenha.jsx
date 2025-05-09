@@ -1,27 +1,27 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
 import React, { useState } from "react";
+import { esqueciSenha } from "../data/services/API";
 
-export default function RecSenha() {
+export default function EsqueciSenha() {
     const [email, setEmail] = useState('')
 
     const onSave = async (e) => {
         e.preventDefault()
-        // try {
-        //     const res = await getAPIUser_Name(name)
-        //     setName('')
-        //     if (res != '') { 
-        //         window.location.href="../login"
-        //     } else { 
-        //         alert("ERROR: Nome não identificado! Por favor tente novamente!")
-        //     }
-        // } catch (err) { }
+        let r = await esqueciSenha(email)
+        let mensagem = r.data.alert
+        if(mensagem == 'Um email de redefinição foi enviado'){
+            location.href = '/login/redefinirSenha'
+        } else {
+            document.getElementById("response").innerHTML = JSON.stringify(mensagem)
+        }
     } 
 
     return(
         <div>
             <center>
                 <h1>Esqueceu sua Senha?</h1>
-                <h5>Um código de recuperação será enviado</h5>
+                <h3 id="response"></h3>
+                <h4>Um código de recuperação será enviado</h4>
                 <form onSubmit={onSave}>
                     <label>
                         <input 
