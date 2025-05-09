@@ -3,14 +3,12 @@ class Api::V2::PasswordController < ApplicationController
   def esqueci
     usuario = Usuario.find_by_email(params[:email])
     if usuario
+      render json: {
+        alert: "Um email de redefinição foi enviado"
+      }
       UserMailer.redef_senha(usuario).deliver_now
-      render json: {
-        alert: "Se este usuário existe, um email de redefinição foi enviado"
-      }
     else
-      render json: {
-        alert: "Se este usuário existe, um email de redefinição foi enviado"
-      }
+      render json: { alert: "Email não encontrado" }
     end
   end
 
