@@ -21,7 +21,7 @@ export default function AddProj() {
     return (
         <div>
             <center>
-                <h1>Faça seu Cadastro!</h1>
+                <h1>Novo Projeto!</h1>
                 <form onSubmit={onSave}>
                     <label>
                         Título:<br/>
@@ -44,7 +44,7 @@ export default function AddProj() {
                     <br/>
                     <button type="submit">Enviar</button>
                 </form>
-                <a href="/principal"><button>Voltar</button></a>
+                <a href="/Projetos"><button>Voltar</button></a>
             </center>
         </div>
     )
