@@ -8,7 +8,7 @@ export default function App() {
   }
   const B = (e)=>{
     e.preventDefault()
-    location.href='/registro'
+    location.href='/add/usuario'
   }
   return (
     <div className="app">    

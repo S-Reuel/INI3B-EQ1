@@ -1,6 +1,6 @@
 // import '../ui/components/Login/Login.css'
 import React, { useState } from "react";
-import { postAPILogin } from "../data/services/API.jsx";
+import { postLogin } from "../data/services/API.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,7 +8,7 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        const res = await postAPILogin({email, password})
+        await postLogin({email, password})
     } 
 
     return (
@@ -35,7 +35,7 @@ export default function Login() {
                                 onChange={(e)=> setPassword(e.target.value)}
                             />
                             <br/>
-                            <a href="login/recSenha">Esqueci minha senha</a>
+                            <a href="login/esqueciSenha">Esqueci minha senha</a>
                             <br/>
                         </label>
                     <button type="submit">Entrar</button>
