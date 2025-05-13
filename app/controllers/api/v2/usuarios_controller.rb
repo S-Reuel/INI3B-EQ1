@@ -1,5 +1,5 @@
 class Api::V2::UsuariosController < ApplicationController
-  skip_before_action :authenticate_request, only: [ :create, :index ]
+  skip_before_action :authenticate_request, only: [ :create ]
   before_action :set_usuario, only: %i[ show update destroy ]
 
   # GET /usuarios
