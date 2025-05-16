@@ -1,5 +1,5 @@
-// import styles from '../ui/components/Registro/Registro.module.css'
-import { useState } from 'react'
+import '../ui/components/Registro/Registro.css'
+import React, { useState } from 'react'
 import { postAPIUser } from '../data/services/API.jsx'
 
 export default function Registro() {
@@ -16,50 +16,52 @@ export default function Registro() {
 
     return (
         <div className='registro'>
-            <center>
-                <h1>Faça seu Cadastro!</h1>
-                <form>
-                    <label>
-                        Nome:<br/>
-                        <input 
-                            type="text" nome="nome" 
-                            placeholder="Digite seu nome" required 
-                            onChange={(e) => setNome(e.target.value)}
-                        />
-                    </label>
-                    <br/>
-                    <label >
-                        Senha:
+            <div className='quadrado'>
+                <center>
+                    <h1>Faça seu Cadastro!</h1>
+                    <form>
+                        <label>
+                            Nome:<br/>
+                            <input 
+                                type="text" nome="nome" 
+                                placeholder="Digite seu nome" required 
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+                        </label>
                         <br/>
+                        <label >
+                            Senha:
+                            <br/>
+                            <input 
+                                type="password" nome="senha" 
+                                placeholder="Digite sua senha" required 
+                                onChange={(e) => setSenha(e.target.value)}   
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                            E-mail:<br/>
+                            <input 
+                                type="mail" nome="email" 
+                                placeholder="Digite seu e-mail" required
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </label>
+                        <br/>
+                        <label>
+                        Nome no Github:<br/>
                         <input 
-                            type="password" nome="senha" 
-                            placeholder="Digite sua senha" required 
-                            onChange={(e) => setSenha(e.target.value)}   
+                            type="text" nome="ng" 
+                            placeholder="Digite seu nome no github" required
+                            onChange={(e) => setNg(e.target.value)}
                         />
-                    </label>
-                    <br/>
-                    <label>
-                        E-mail:<br/>
-                        <input 
-                            type="mail" nome="email" 
-                            placeholder="Digite seu e-mail" required
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </label>
-                    <br/>
-                    <label>
-                    Nome no Github:<br/>
-                    <input 
-                        type="text" nome="ng" 
-                        placeholder="Digite seu nome no github" required
-                        onChange={(e) => setNg(e.target.value)}
-                    />
-                    </label>
-                    <br/>
-                    <button type="submit" onClick={onSave}>Enviar</button>
-                </form>
-                <a href="/login"><button>Voltar</button></a>
-            </center>
+                        </label>
+                        <br/>
+                        <button type="submit" onClick={onSave}>Enviar</button>
+                    </form>
+                    <a href="/login"><button>Voltar</button></a>
+                </center>
+            </div>
         </div>
     )
 }
