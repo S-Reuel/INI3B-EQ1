@@ -4,13 +4,11 @@ import { offSession } from "../data/services/Session.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
+    const [errors, setErrors] = useState()
 
-    useEffect(() => {
-        async function fetch() {
-            let res = await getUser()
-            setUsers(res)
-        }
-        fetch()
+    useEffect(async() => {
+            res = await getUser()
+            (res == 500)? setErrors(res) : setUsers(res) && setErrors('')
     }, [])
 
     async function onDelete(id){
@@ -41,9 +39,11 @@ export default function Usuarios() {
         )
     }
 
+    if(errors){
     return (
         <center>
-            <h1>Usuários<br/><button onClick={logout}>logout</button></h1>
+            <h1>Usuários</h1>
+            <button onClick={logout}>logout</button>
             <table>
                 <thead>
                     <tr>
@@ -63,4 +63,11 @@ export default function Usuarios() {
             <button onClick={proj}>Projetos</button>
         </center>
     );
+    } else {
+        return(
+            <center>
+                <h1>Acesso restrito</h1>
+            </center>
+        )
+    }
 }
