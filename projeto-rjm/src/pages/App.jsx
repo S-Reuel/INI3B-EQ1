@@ -31,12 +31,13 @@ export default function App() {
                 Conecte seu aprendizado ao GitHub de forma intuitiva. Nossa plataforma integra código, organização e
                 colaboração para que seus projetos acadêmicos sejam mais eficientes e menos estressantes.
               </p>
-            </div>
-            <img
-              src="/hero-image.jpg"
+              <img
+              src="/hero-image.jpg" 
               alt="Pessoa programando"
               className="hero-image"
             />
+            </div>
+            
           </header>
           {/* Funcionalidades */}
           <section className="features">
@@ -67,8 +68,8 @@ export default function App() {
                 <li>✅ Todos os envolvidos têm uma visão clara das tarefas e entregas.</li>
                 <li>✅ Facilidade para visualizar progresso e pendências.</li>
               </ul>
-              <img
-                src="/octocat.png"
+              <img 
+                src="/octocat.png" 
                 alt="Mascote do GitHub"
                 className="benefits-image"
               />
