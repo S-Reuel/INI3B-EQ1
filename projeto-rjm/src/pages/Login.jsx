@@ -1,6 +1,6 @@
-// import '../ui/components/Login/Login.css'
 import React, { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
+import { onSession } from "../data/services/Session.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,13 +8,21 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        await postLogin({email, password})
+        let r = await postLogin({email, password}) 
+        if(!(r.data.error == "unauthorized")){
+            let t = r.data.token
+            onSession('authToken', t)
+            location.href = '/usuarios'
+        } else {
+            document.getElementById("response").innerHTML = JSON.stringify(mensagem)
+        }
     } 
 
     return (
         <div className='login'>
             <center>
                 <h1>Faça seu Login!</h1>
+                <h3 id="response"></h3>
                 <form onSubmit={onSave}>
                         <label>
                             E-mail:<br/>
@@ -40,7 +48,7 @@ export default function Login() {
                         </label>
                     <button type="submit">Entrar</button>
                 </form>
-                <a href="/registro"><button>Cadastre-se</button></a>
+                <a href="/add/usuario"><button>Cadastre-se</button></a>
                 <a href="/"><button>Voltar</button></a>
             </center>
         </div>

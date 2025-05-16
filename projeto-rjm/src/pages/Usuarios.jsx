@@ -5,8 +5,7 @@ import { offSession } from "../data/services/Session.jsx";
 export default function Usuarios() {
     const [users, setUsers] = useState([])
 
-    useEffect((e) => {
-        // e.preventDefault()
+    useEffect(() => {
         async function fetch() {
             let res = await getUser()
             setUsers(res)
@@ -20,9 +19,13 @@ export default function Usuarios() {
             await deleteUser(id)
     }
 
-    function action(){
+    function logout(){
         offSession('authToken')
         location.href='/'
+    }
+
+    function proj(){
+        location.href='/projetos'
     }
 
     function apr() {
@@ -32,14 +35,15 @@ export default function Usuarios() {
                 <td>{i.nome}</td>
                 <td>{i.email}</td>
                 <td>{i.user_git}</td>
-                <td><button onClick={onDelete}>Excluir</button></td>
+                <td>{i.excluido}</td>
+                <td><button onClick={()=>onDelete(i.id)}>Excluir</button></td>
             </tr>
         )
     }
 
     return (
         <center>
-            <h1>Usuários<br/><button onClick={action}>logout</button></h1>
+            <h1>Usuários<br/><button onClick={logout}>logout</button></h1>
             <table>
                 <thead>
                     <tr>
@@ -47,6 +51,7 @@ export default function Usuarios() {
                         <td>Nome</td>
                         <td>E-mail</td>
                         <td>User Git</td>
+                        <td>Excluido</td>
                         <td></td>
                     </tr>
                 </thead>
@@ -54,6 +59,8 @@ export default function Usuarios() {
                     {apr()}
                 </tbody>
             </table>
+            <br/>
+            <button onClick={proj}>Projetos</button>
         </center>
     );
 }
