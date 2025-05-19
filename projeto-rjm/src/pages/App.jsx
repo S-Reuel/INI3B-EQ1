@@ -1,5 +1,5 @@
 import React from "react";
-import '../ui/components/App/App.css'
+import  '../ui/components/App/App.css'
 
 export default function App() {
   const A = (e)=>{
@@ -93,13 +93,17 @@ export default function App() {
           </section>
         </article>
         {/* Footer */}
-        <footer className="footer">
+        <footer className="footer"> 
           <p>© 2025 GitClass. Todos os direitos reservados.</p>
           <div className="footer-links">
-            <a href="#">Sobre nós</a>
-            <a href="#">Suporte</a>
+            <a href="#"  className="footer-links" >Sobre nós</a>
+            <br/>
+            <a href="#"  className="footer-links">Suporte</a>
+            <br/>
             <a href="#">Perguntas frequentes</a>
+            <br/>
             <a href="#">Política de Privacidade</a>
+            <br/>
             <a href="#">Termos de Uso</a>
           </div>
           <div className="footer-contact">📧 gitclass@gmail.com</div>
