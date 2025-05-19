@@ -1,0 +1,83 @@
+
+body{
+    margin: 0px;
+    background-color: #181e50;
+    display:grid;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-rows: 10vh 5vh 70vh 5vh 10vh;
+
+
+}
+.cabecalho{
+    display: flex;
+    flex-wrap: nowrap;
+    
+}
+
+.logo{
+    flex: 10;
+    color:#4eb969;
+}
+.login-btn{
+    flex: 1; 
+}
+.signup-btn{
+    flex: 1;
+}
+.navbar{
+    background-color: white;
+    display:grid;
+    grid-row:1/span 1;
+
+}
+article { /*nao funcionou quando era uma classe especifica, nao me pergunte por que*/
+    background-color:#d9d9d9;
+    border-radius: 25px;
+
+    
+}
+.container
+{
+    grid-column: 2/span 1;
+    grid-row: 3/span 1;
+}
+.welcome-text{
+    color:#4eb969;
+    
+}
+
+.section-title{
+    color: #4eb969;
+    text-align:center;
+    font-size:50px;
+}
+.cta{
+    background-color:#4eb969;
+    text-align:center;
+    color:white;
+}
+.feature-content{
+    background-color:white;
+    border-radius: 25px;
+}
+.feature-cards{
+    display:flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+.feature-card{
+    background-color:white;
+    border-radius: 25px;
+}
+.benefits-content{
+    background-color:white;
+    border-radius: 25px;
+    display:flex;
+    flex-direction: row;
+}
+.footer{
+    color:white;
+    display:flex;
+    justify-content:space-evenly;
+}
