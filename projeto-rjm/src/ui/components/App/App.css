@@ -1,5 +1,5 @@
 
-body{
+body {
     margin: 0px;
     background-color: #181e50;
     display:grid;
@@ -30,7 +30,7 @@ body{
 
 
 }
-article { /*nao funcionou quando era uma classe especifica, nao me pergunte por que*/
+article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que*/
     background-color:#d9d9d9;
     border-radius: 25px;
     grid-row:2/ span 1;
@@ -78,7 +78,7 @@ article { /*nao funcionou quando era uma classe especifica, nao me pergunte por 
     display:flex;
     flex-direction: row;
 }
-.footer{
+.footer * {
     color:white;
     display:flex;
     justify-content:space-evenly;

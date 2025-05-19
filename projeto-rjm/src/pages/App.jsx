@@ -96,9 +96,9 @@ export default function App() {
         <footer className="footer"> 
           <p>© 2025 GitClass. Todos os direitos reservados.</p>
           <div className="footer-links">
-            <a href="#"  className="footer-links" >Sobre nós</a>
+            <a href="#">Sobre nós</a>
             <br/>
-            <a href="#"  className="footer-links">Suporte</a>
+            <a href="#" >Suporte</a>
             <br/>
             <a href="#">Perguntas frequentes</a>
             <br/>
