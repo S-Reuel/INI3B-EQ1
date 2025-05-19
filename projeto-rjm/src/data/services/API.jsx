@@ -1,4 +1,5 @@
 import axios from "axios";
+import { onSession } from "./Session";
 
 const auth = {
     headers: {
@@ -8,7 +9,7 @@ const auth = {
 const Ngrok = { headers: { "ngrok-skip-browser-warning": true } }
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://84a9-186-217-119-218.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://4e87-186-217-115-164.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -22,8 +23,12 @@ export async function postUser(param) {
 };
 
 export async function getUser() {
-    let res = await URL.get("usuarios", auth)
-    return res.data
+    try{
+        let r = await URL.get("usuarios", auth)
+        return r.data        
+    } catch (error) {
+        return (error.status);
+    }
 }
 
 
@@ -41,8 +46,14 @@ export async function deleteUser(id) {
 }
 
 export async function postLogin(param) {
-    let r = await URL.post('auth/login', param, Ngrok)
-    return r
+    const r = await URL.post('auth/login', param, Ngrok)
+    if(r.alert){
+        return (r.alert)
+    } else {
+        const t = r.data.token;
+        onSession('authToken', t)
+        location.href = '/usuarios'
+    }
 }
 
 /*  CRUD's Projetos */

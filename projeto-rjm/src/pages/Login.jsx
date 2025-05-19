@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
-import { onSession } from "../data/services/Session.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,14 +7,8 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let r = await postLogin({email, password}) 
-        if(!(r.data.error == "unauthorized")){
-            let t = r.data.token
-            onSession('authToken', t)
-            location.href = '/usuarios'
-        } else {
-            document.getElementById("response").innerHTML = JSON.stringify(mensagem)
-        }
+        let mensagem = await postLogin({email, password})
+        document.getElementById("response").innerHTML = mensagem
     } 
 
     return (
