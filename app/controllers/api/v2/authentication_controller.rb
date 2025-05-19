@@ -7,7 +7,7 @@ class Api::V2::AuthenticationController < ApplicationController
       token = jwt_encode(id: @usuario.id)
       render json: { token: token }, status: :ok
     else
-      render json: { error: "unauthorized" }, status: :unauthorized
+      render json: { alert: "Credenciais inválidas!", error: "unauthorized" }, status: :unauthorized
     end
   end
 end
