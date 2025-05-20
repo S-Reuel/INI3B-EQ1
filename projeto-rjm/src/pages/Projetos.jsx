@@ -3,18 +3,19 @@ import { getProj } from "../data/services/API.jsx";
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         async function fetch() {
             let res = await getProj()
-            setProj(res)
+            res == 500? setErrors(res) : setProj(res) 
         }
         fetch()
     }, []);
 
     const A = (e) => {
         e.preventDefault()
-        location.href = '/add/project'
+        location.href = '/add/projetos'
     }
 
     function apr() {
@@ -39,27 +40,36 @@ export default function Projetos() {
             </tr>
         })
     }
-
-    return (
-        <center>
-            <h1>Projetos</h1>
-            <br />
-            <button onClick={A}>Adicionar Projeto</button>
-            <br /><br /><br />
-            <table>
-                <thead>
-                    <tr>
-                        <td>Nome</td>
-                        <td>Descrição</td>
-                        <td>Data de Criação</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {apr()}
-                </tbody>
-            </table>
-            <br />
-            <a href="/"><button>Voltar</button></a>
-        </center>
-    );
+    if(errors.length==0){
+        return (
+            <center>
+                <h1>Projetos</h1>
+                <br />
+                <button onClick={A}>Adicionar Projeto</button>
+                <br /><br /><br />
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>Descrição</td>
+                            <td>Data de Criação</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {apr()}
+                    </tbody>
+                </table>
+                <br />
+                <a href="/"><button>Voltar</button></a>
+            </center>
+        )
+    } else {
+        return(
+            <center>
+                <h1>Acesso restrito</h1>
+                <br />
+                <a href="/login"><button>Login</button></a>
+            </center>
+        )
+    }
 }
