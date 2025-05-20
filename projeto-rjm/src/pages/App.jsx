@@ -43,7 +43,7 @@ export default function App() {
                 colaboração para que seus projetos acadêmicos sejam mais eficientes e menos estressantes.
               </p>
               <img
-              src="/hero-image.jpg" 
+              src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Traffic_Sign_GR_-_Temporary_-_K-20.svg" ///hero-image.jpg
               alt="Pessoa programando"
               className="hero-image"
             />
@@ -80,9 +80,10 @@ export default function App() {
                 <li>✅ Facilidade para visualizar progresso e pendências.</li>
               </ul>
               <img 
-                src="/octocat.png" 
+                src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Traffic_Sign_GR_-_Temporary_-_K-20.svg" //"/octocat.png" 
                 alt="Mascote do GitHub"
                 className="benefits-image"
+                
               />
             </div>
           </section>
