@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :git_hubs
   namespace :api do
     namespace :v2 do
       resources :equipe_projetos
