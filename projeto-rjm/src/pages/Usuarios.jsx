@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { deleteUser, getUser, updateUser } from "../data/services/API.jsx";
+import { useState, useEffect } from "react";
+import { deleteUser, getUser} from "../data/services/API.jsx";
 import { offSession } from "../data/services/Session.jsx";
-import UpdateUser from "./Update_User.jsx";
+import { forms } from "./util/_forms.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
@@ -15,14 +15,15 @@ export default function Usuarios() {
         fetch()
     }, [])
 
-    async function onDelete(id){
-        let conf = confirm('Tem certeza que deseja apagá-lo?')
-        if (conf)
-            await deleteUser(id)
-    }
-
-    async function onUpdate(id){
-            await updateUser(id)
+    async function onEvent(id, tipo){
+        if(tipo=='delete'){
+            let conf = confirm('Tem certeza que deseja apagá-lo?')
+            if (conf)
+                await deleteUser(id)
+        } else if(tipo=='update'){
+            let a = forms()
+            console.log(a);
+        }
     }
 
     function redirecionar(caminho){
@@ -30,7 +31,7 @@ export default function Usuarios() {
             offSession('authToken')
             location.href='/'
         } else if( caminho == 'projetos'){
-            location.href='/projetos'
+            
         }
     }
     // Método para a apresentação dos dados da API
@@ -42,8 +43,8 @@ export default function Usuarios() {
                 <td>{i.email}</td>
                 <td>{i.user_git}</td>
                 <td>{i.excluido?'Sim':'Não'}</td>
-                <td><button onClick={()=>onDelete(i.id)}>Excluir</button></td>
-                <td><button onClick={()=><UpdateUser prop={(i.id)}/>}>Editar</button></td>
+                <td><button onClick={()=>onEvent(i.id, 'delete')}>Excluir</button></td>
+                <td><button onClick={()=>onEvent(i.id, 'update')}>Editar</button></td>
             </tr>
         )
     }

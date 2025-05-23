@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://bcb7-186-217-112-108.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://6197-186-217-113-246.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -28,8 +28,8 @@ export async function getUser() {
 }
 
 
-export async function updateUser(id,) {
-    await URL.patch(`usuarios/${id}`)
+export async function updateUser(id, param) {
+    await URL.patch(`usuarios/${id}`, param)
         .then((res) => res.data);
 }
 
