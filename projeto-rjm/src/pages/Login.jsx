@@ -1,6 +1,6 @@
 import '../ui/components/Login/Login.css'
 import React, { useState } from "react";
-import { postAPILogin } from "../data/services/API.jsx";
+import { postLogin } from "../data/services/API.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,7 +8,8 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        const res = await postAPILogin({email, password})
+        let mensagem = await postLogin({email, password})
+        document.getElementById("response").innerHTML = mensagem
     } 
 
     return (
@@ -43,7 +44,6 @@ export default function Login() {
                     </form>
                     <a href="/registro"><button>Cadastre-se</button></a>
                     <a href="/"><button>Voltar</button></a>
-                
             </div>
         </div>
     );

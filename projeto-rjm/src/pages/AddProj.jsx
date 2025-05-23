@@ -1,6 +1,6 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
-import {postAPIProj} from "../data/services/API"
+import {postProj} from "../data/services/API"
 
 export default function AddProj() {
     const [nome, setNome] = useState('')
@@ -15,13 +15,13 @@ export default function AddProj() {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postAPIProj({nome, descricao, data_criacao})
+        postProj({nome, descricao, data_criacao})
     }
 
     return (
         <div>
             <center>
-                <h1>Faça seu Cadastro!</h1>
+                <h1>Novo Projeto!</h1>
                 <form onSubmit={onSave}>
                     <label>
                         Título:<br/>
@@ -44,7 +44,7 @@ export default function AddProj() {
                     <br/>
                     <button type="submit">Enviar</button>
                 </form>
-                <a href="/principal"><button>Voltar</button></a>
+                <a href="/Projetos"><button>Voltar</button></a>
             </center>
         </div>
     )

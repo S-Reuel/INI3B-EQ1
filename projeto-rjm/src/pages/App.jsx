@@ -8,7 +8,15 @@ export default function App() {
   }
   const B = (e)=>{
     e.preventDefault()
-    location.href='/registro'
+    location.href='/add/usuario'
+  }
+  const C = (e)=>{
+    e.preventDefault()
+    location.href='/usuarios'
+  }
+  const D = (e)=>{
+    e.preventDefault()
+    location.href='/projetos'
   }
   return (
     <div className="app">    
@@ -19,6 +27,9 @@ export default function App() {
             <h1 className="logo">CODRA</h1>
             <button onClick={A} className="login-btn">Fazer Login</button>
             <button onClick={B} className="signup-btn">Cadastre-se</button>
+            {/* Devem ser retirados posteriormente */}
+            <button onClick={C} className="signup-btn">Usuários</button>
+            <button onClick={D} className="signup-btn">Projetos</button>
           </div>
         </nav>
         {/* Hero Section */}
@@ -31,12 +42,13 @@ export default function App() {
                 Conecte seu aprendizado ao GitHub de forma intuitiva. Nossa plataforma integra código, organização e
                 colaboração para que seus projetos acadêmicos sejam mais eficientes e menos estressantes.
               </p>
-            </div>
-            <img
-              src="/hero-image.jpg"
+              <img
+              src="/hero-image.jpg" 
               alt="Pessoa programando"
               className="hero-image"
             />
+            </div>
+            
           </header>
           {/* Funcionalidades */}
           <section className="features">
@@ -67,8 +79,8 @@ export default function App() {
                 <li>✅ Todos os envolvidos têm uma visão clara das tarefas e entregas.</li>
                 <li>✅ Facilidade para visualizar progresso e pendências.</li>
               </ul>
-              <img
-                src="/octocat.png"
+              <img 
+                src="/octocat.png" 
                 alt="Mascote do GitHub"
                 className="benefits-image"
               />
