@@ -1,9 +1,12 @@
 
-body {
+body{
     margin: 0px;
     /* background-color: #181e50; */
     display:grid;
-    grid-template-rows: 10vh 70vh 10vh;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-rows: 10vh 5vh 70vh 5vh 10vh;
+
+
 }
 .cabecalho{
     display: flex;
@@ -12,7 +15,6 @@ body {
 }
 
 .logo{
-    margin-left:5%;
     flex: 10;
     color:#4eb969;
 }
@@ -26,48 +28,18 @@ body {
     background-color: white;
     display:grid;
     grid-row:1/span 1;
-    margin-bottom:2%;
-    margin-top:2%;
-    height:70px;
-    position:fixed;
-    top: 0;
-    width: 100%;
-    margin-top:0;
+
 }
-article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
-    
-    --article-margin:60px; /*em vez de ter que editar o padding de todas as imagens que tem uma borda no article, edita apenas este valor*/
-    --margin-between-sections:calc(10vh - 70px);
-    margin-top: 5%;
+article { /*nao funcionou quando era uma classe especifica, nao me pergunte por que*/
     background-color:#d9d9d9;
     border-radius: 25px;
-    grid-row:2/ span 1;
-    margin-left:20px;
-    margin-right:20px;
-    padding:calc(var(--article-margin)); /*var(--article-margin);*/
-    display:grid;
+
+    
 }
-.hero *{
-    display:grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 50% 50%;
-    height:calc(100vh-70px);
-    margin-bottom: var(--margin-between-sections);
-}
-.hero-text{
-    grid-row: 1/ span 3;
-    grid-column: 1/ span 1;
-    font-size:200%;
-}
-.hero-image{
-    width:auto;
-    height:75%;
-    margin-left: auto;
-    border-radius: 0px 25px 0px 0;    
-    grid-column: 2;
-    grid-row: 1/ span 3;
-    margin-right:calc(var(--article-margin)*-1);
-    margin-top: calc(var(--article-margin)*-1);/*-60px;/*calc(var(--article-margin)*-1);*/
+.container
+{
+    grid-column: 2/span 1;
+    grid-row: 3/span 1;
 }
 .welcome-text{
     color:#4eb969;
@@ -79,9 +51,10 @@ article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por q
     text-align:center;
     font-size:50px;
 }
-
-.features{
-    height:calc(100vh-70px);
+.cta{
+    background-color:#4eb969;
+    text-align:center;
+    color:white;
 }
 .feature-content{
     background-color:white;
@@ -90,22 +63,12 @@ article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por q
 .feature-cards{
     display:flex;
     flex-direction: row;
-    justify-content: center;
+    align-items: stretch;
 
 }
 .feature-card{
     background-color:white;
     border-radius: 25px;
-    padding: 20px;
-    margin-right:20px;
-    width: 30%;
-
-}
-
-
-.benefits{
-    margin-bottom: 70px;
-    
 }
 .benefits-content{
     background-color:white;
@@ -113,34 +76,8 @@ article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por q
     display:flex;
     flex-direction: row;
 }
-.benefits-image{
-    width:200px;
-    height:auto;
-    margin-left: auto;
-    border-radius: 0px 25px 25px 0;
-    object-fit : cover;
-}
-
-
-.cta{
-    background-color:#4eb969;
-    text-align:center;
-    color:white;
-    border-radius: 0 0 25px 25px;
-    margin-bottom: calc(var(--article-margin)*-1); /*TO DO:usar a shorthand margin*/
-    margin-right: calc(var(--article-margin)*-1);
-    margin-left: calc(var(--article-margin)*-1);
-
-    
-}
-
-
-.footer * {
+.footer{
     color:white;
     display:flex;
     justify-content:space-evenly;
-    grid-row:3/ span 1;
-}
-.footer-links{
-    color:white;
 }
