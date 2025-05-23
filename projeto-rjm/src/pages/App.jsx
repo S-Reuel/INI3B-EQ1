@@ -1,5 +1,5 @@
 import React from "react";
-import  '../ui/components/App/App.css'
+import '../ui/components/App/App.css'
 
 export default function App() {
   const A = (e)=>{
@@ -33,7 +33,7 @@ export default function App() {
                 colaboração para que seus projetos acadêmicos sejam mais eficientes e menos estressantes.
               </p>
               <img
-              src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Traffic_Sign_GR_-_Temporary_-_K-20.svg" ///hero-image.jpg
+              src="/hero-image.jpg" 
               alt="Pessoa programando"
               className="hero-image"
             />
@@ -70,10 +70,9 @@ export default function App() {
                 <li>✅ Facilidade para visualizar progresso e pendências.</li>
               </ul>
               <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Traffic_Sign_GR_-_Temporary_-_K-20.svg" //"/octocat.png" 
+                src="/octocat.png" 
                 alt="Mascote do GitHub"
                 className="benefits-image"
-                
               />
             </div>
           </section>
@@ -84,17 +83,13 @@ export default function App() {
           </section>
         </article>
         {/* Footer */}
-        <footer className="footer"> 
+        <footer className="footer">
           <p>© 2025 GitClass. Todos os direitos reservados.</p>
           <div className="footer-links">
             <a href="#">Sobre nós</a>
-            <br/>
-            <a href="#" >Suporte</a>
-            <br/>
+            <a href="#">Suporte</a>
             <a href="#">Perguntas frequentes</a>
-            <br/>
             <a href="#">Política de Privacidade</a>
-            <br/>
             <a href="#">Termos de Uso</a>
           </div>
           <div className="footer-contact">📧 gitclass@gmail.com</div>
