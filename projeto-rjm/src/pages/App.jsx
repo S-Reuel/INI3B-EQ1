@@ -10,14 +10,7 @@ export default function App() {
     e.preventDefault()
     location.href='/add/usuario'
   }
-  const C = (e)=>{
-    e.preventDefault()
-    location.href='/usuarios'
-  }
-  const D = (e)=>{
-    e.preventDefault()
-    location.href='/projetos'
-  }
+  
   return (
     <div className="app">    
       <div className="container">
@@ -27,9 +20,6 @@ export default function App() {
             <h1 className="logo">CODRA</h1>
             <button onClick={A} className="login-btn">Fazer Login</button>
             <button onClick={B} className="signup-btn">Cadastre-se</button>
-            {/* Devem ser retirados posteriormente */}
-            <button onClick={C} className="signup-btn">Usuários</button>
-            <button onClick={D} className="signup-btn">Projetos</button>
           </div>
         </nav>
         {/* Hero Section */}
