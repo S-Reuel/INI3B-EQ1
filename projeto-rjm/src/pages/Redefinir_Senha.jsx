@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { redefinirSenha } from "../data/services/API";
 
 export default function RedefinirSenha() {

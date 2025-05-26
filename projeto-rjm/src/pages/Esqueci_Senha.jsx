@@ -1,5 +1,5 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
-import React, { useState } from "react";
+import { useState } from "react";
 import { esqueciSenha } from "../data/services/API";
 
 export default function EsqueciSenha() {

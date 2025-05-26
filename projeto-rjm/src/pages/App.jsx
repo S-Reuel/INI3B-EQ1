@@ -1,5 +1,5 @@
 import React from "react";
-import  '../ui/components/App/App.css'
+import  '../ui/styles/App/App.css'
 
 export default function App() {
   const A = (e)=>{

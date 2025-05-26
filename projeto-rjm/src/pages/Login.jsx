@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
 
 export default function Login() {

@@ -1,0 +1,66 @@
+import { useState } from "react"
+
+
+export function forms() {
+    const [infos, setInfos] = useState({})
+    const [nome, setNome] = useState('')
+    const [password, setSenha] = useState('')
+    const [email, setEmail] = useState('')
+    const [user_git, setNg] = useState('')
+    const excluido = false
+
+    const onSave = async (e) => {
+        e.preventDefault()
+        setInfos({nome, password, email, user_git, excluido})
+        return infos
+    }
+
+    return (
+        <div className='registro'>
+            <center>
+                <h1>Faça seu Cadastro!</h1>
+                <form>
+                    <label>
+                        Nome:<br/>
+                        <input 
+                            type="text" nome="nome" 
+                            placeholder="Digite seu nome" required 
+                            onChange={(e) => setNome(e.target.value)}
+                        />
+                    </label>
+                    <br/>
+                    <label >
+                        Senha:
+                        <br/>
+                        <input 
+                            type="password" nome="senha" 
+                            placeholder="Digite sua senha" required 
+                            onChange={(e) => setSenha(e.target.value)}   
+                        />
+                    </label>
+                    <br/>
+                    <label>
+                        E-mail:<br/>
+                        <input 
+                            type="mail" nome="email" 
+                            placeholder="Digite seu e-mail" required
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <br/>
+                    <label>
+                    Nome no Github:<br/>
+                    <input 
+                        type="text" nome="ng" 
+                        placeholder="Digite seu nome no github" required
+                        onChange={(e) => setNg(e.target.value)}
+                    />
+                    </label>
+                    <br/>
+                    <button type="submit" onClick={onSave}>Enviar</button>
+                </form>
+                <a href="/login"><button>Voltar</button></a>
+            </center>
+        </div>
+    )
+}

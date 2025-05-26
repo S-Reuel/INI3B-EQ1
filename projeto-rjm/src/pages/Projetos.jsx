@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
 
 export default function Projetos() {
