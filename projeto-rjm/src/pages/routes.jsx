@@ -12,6 +12,7 @@ import AddEqui from "./Add_Equipes";
 import Sprints from "./Sprints";
 import AddSprints from "./Add_Sprints";
 import UpdateUser from "./Update_User";
+import EditarProjetos from "./Editar_Projetos";
 
 export default function Routers() {
     return(
@@ -25,6 +26,7 @@ export default function Routers() {
                 <Route path="login/esqueciSenha" element={<EsqueciSenha/>}/>
                 <Route path="login/redefinirSenha" element={<RedefinirSenha/>}/>
                 <Route path="/projetos" element={<Projetos/>}/>
+                <Route path="edit/projetos" element={<EditarProjetos/>}/>
                 <Route path="/add/projetos" element={<AddProj/>}/>
                 <Route path="/projetos/sprints" element={<Sprints/>}/>
                 <Route path="/projetos/add/sprints" element={<AddSprints/>}/>

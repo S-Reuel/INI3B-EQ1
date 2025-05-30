@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
+import '../ui/styles/Projetos/Projetos.css'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
@@ -8,14 +9,27 @@ export default function Projetos() {
     useEffect(() => {
         async function fetch() {
             let res = await getProj()
-            res == 500? setErrors(res) : setProj(res) 
+            res == 500 ? setErrors(res) : setProj(res)
         }
         fetch()
     }, []);
 
     const A = (e) => {
         e.preventDefault()
+
         location.href = '/add/projetos'
+    }
+
+    const entrarProj = (e) => {
+        e.preventDefault()
+        e.stopPropagation();
+        location.href = '/add/projetos/sprints'
+    }
+
+    const editarProj = (e) => {
+        e.preventDefault()
+        e.stopPropagation();
+        location.href = '/add/projetos/editar'
     }
 
     function apr() {
@@ -33,38 +47,37 @@ export default function Projetos() {
             let ano = data.getFullYear()
             let dia = data.getDate() + 1
             let format = `${dia} de ${mesFormat[mes]} de ${ano}`;
-            return <tr key={i.id}>
-                <td>{i.nome}</td>
-                <td>{i.descricao}</td>
-                <td>{format}</td>
-            </tr>
+            return <div className="projeto" onClick={entrarProj}>
+                <div className="tituloProj">
+                    {i.nome}
+                </div>
+                <div className="descricaoProj">
+                    {i.descricao}
+                </div>
+                <div className="dataProj">
+                    {format}
+                </div>
+                <button className="bttEditarProj" onClick={editarProj}>
+                    ...
+                </button>
+                <br />
+            </div>
         })
     }
-    if(errors.length==0){
+    if (errors.length == 0) {
         return (
-            <center>
-                <h1>Projetos</h1>
+            <center className="bodyProjs">
                 <br />
-                <button onClick={A}>Adicionar Projeto</button>
+                <div className="tituloPag">Projetos Inscritos</div>
+                <br />
+                <button className="bttAdicionarProj" onClick={A}>Adicionar Projeto</button>
                 <br /><br /><br />
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Nome</td>
-                            <td>Descrição</td>
-                            <td>Data de Criação</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {apr()}
-                    </tbody>
-                </table>
+                { apr() }
                 <br />
-                <a href="/"><button>Voltar</button></a>
             </center>
         )
     } else {
-        return(
+        return (
             <center>
                 <h1>Acesso restrito</h1>
                 <br />
