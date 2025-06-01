@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
+import CabProj from '../cabProjeto.jsx';
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
@@ -42,7 +43,7 @@ export default function Projetos() {
     }
     if(errors.length==0){
         return (
-            <center>
+            <><CabProj /><center>
                 <h1>Projetos</h1>
                 <br />
                 <button onClick={A}>Adicionar Projeto</button>
@@ -61,7 +62,7 @@ export default function Projetos() {
                 </table>
                 <br />
                 <a href="/"><button>Voltar</button></a>
-            </center>
+            </center></>
         )
     } else {
         return(
