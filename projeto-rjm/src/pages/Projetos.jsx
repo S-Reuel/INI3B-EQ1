@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
+import CabProj from '../cabProjeto.jsx';
 import '../ui/styles/Projetos/Projetos.css'
 
 export default function Projetos() {
@@ -66,15 +67,18 @@ export default function Projetos() {
     }
     if (errors.length == 0) {
         return (
-            <center className="bodyProjs">
-                <br />
-                <div className="tituloPag">Projetos Inscritos</div>
-                <br />
-                <button className="bttAdicionarProj" onClick={A}>Adicionar Projeto</button>
-                <br /><br /><br />
-                { apr() }
-                <br />
-            </center>
+            <>
+              <CabProj />
+              <center className="bodyProjs">
+                  <br />
+                  <div className="tituloPag">Projetos Inscritos</div>
+                  <br />
+                  <button className="bttAdicionarProj" onClick={A}>Adicionar Projeto</button>
+                  <br /><br /><br />
+                  { apr() }
+                  <br />
+              </center>
+            </>
         )
     } else {
         return (
