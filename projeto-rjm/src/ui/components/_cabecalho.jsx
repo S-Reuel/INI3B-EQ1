@@ -1,17 +1,17 @@
-import React from 'react';
-import './ui/styles/cabProjeto.css';
-import iconeMenu from './icons/menu.png';
-import iconeMais from './icons/mais.png';
-import iconeSino from './icons/sino.png';
-import iconeUsuario from './icons/usuario.png';
-import iconeCodra from './icons/codra.png';
-import iconeVoltar from './icons/Voltar.png';
+import '../styles/cabProjeto.css'
+import iconeCodra from "../icons/Codra.png"
+import iconeMais from "../icons/mais.png"
+import iconeMenu from "../icons/menu.png"
+import iconeSino from "../icons/sino.png"
+import iconeUser from "../icons/user.png"
+import iconeVoltar from "../icons/voltar.png"
+import { voltar } from '../../pages/util/functions'
 
-function CabProj() {
+export default function CabProj() {
   return (
     <header className="cabecalho-proj">
       <div className="cabecalhoEsquerda">
-        <a href="javascript:history.back()">
+        <a href={voltar}>
           <img src={iconeVoltar} alt="Voltar" className="voltar" />
         </a>
         <img src={iconeMenu} alt="Menu" className="menu" />
@@ -24,10 +24,7 @@ function CabProj() {
           <img src={iconeMais} alt="Adicionar Projeto" className="cabecalhoIcone" />
         </a>
         <img src={iconeSino} alt="Notificações" className="cabecalhoIcone" />
-        <img src={iconeUsuario} alt="Perfil do Usuário" className="usuario" />
+        <img src={iconeUser} alt="Perfil do Usuário" className="usuario" />
       </div>
     </header>
-  );
-}
-
-export default CabProj;
+)}

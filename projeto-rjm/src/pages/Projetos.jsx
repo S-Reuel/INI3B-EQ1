@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
-import CabProj from '../cabProjeto.jsx';
+import CabProj from '../ui/components/_cabecalho.jsx';
+import { isFormat } from "./util/functions.jsx";
 import '../ui/styles/Projetos/Projetos.css'
 
 export default function Projetos() {
@@ -17,7 +18,6 @@ export default function Projetos() {
 
     const A = (e) => {
         e.preventDefault()
-
         location.href = '/add/projetos'
     }
 
@@ -34,36 +34,29 @@ export default function Projetos() {
     }
 
     function apr() {
-        let mesFormat = {
-            0: "Janeiro", 1: "Fevereiro",
-            2: "Março", 3: "Abril",
-            4: "Maio", 5: "Junho",
-            6: "Julho", 7: "Agosto",
-            8: "Setembro", 9: "Outubro",
-            10: "Novembro", 11: "Dezembro"
-        }
         return proj.map(function (i) {
-            let data = new Date(i.data_criacao)
-            let mes = data.getMonth()
-            let ano = data.getFullYear()
-            let dia = data.getDate() + 1
-            let format = `${dia} de ${mesFormat[mes]} de ${ano}`;
-            return <div className="projeto" onClick={entrarProj}>
-                <div className="tituloProj">
-                    {i.nome}
-                </div>
-                <div className="descricaoProj">
-                    {i.descricao}
-                </div>
-                <div className="dataProj">
-                    {format}
-                </div>
-                <button className="bttEditarProj" onClick={editarProj}>
-                    ...
-                </button>
-                <br />
-            </div>
-        })
+            // let dataUp = isFormat(new Date(i.updated_at))
+            let dataCr = isFormat(new Date(i.data_criacao))
+            return (
+                <>
+                    <div className="projeto" onClick={entrarProj}>
+                        <div className="tituloProj">
+                            {i.nome}
+                        </div>
+                        <div className="descricaoProj">
+                            {i.descricao}
+                        </div>
+                        <div className="dataProj">
+                            {dataCr}
+                        </div>
+                        <button className="bttEditarProj" onClick={editarProj}>
+                            ...
+                        </button>
+                        <br />
+                    </div>
+                    <br />
+            </>
+        )})
     }
     if (errors.length == 0) {
         return (
@@ -72,8 +65,6 @@ export default function Projetos() {
               <center className="bodyProjs">
                   <br />
                   <div className="tituloPag">Projetos Inscritos</div>
-                  <br />
-                  <button className="bttAdicionarProj" onClick={A}>Adicionar Projeto</button>
                   <br /><br /><br />
                   { apr() }
                   <br />

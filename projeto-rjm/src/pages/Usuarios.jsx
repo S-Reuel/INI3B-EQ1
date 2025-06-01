@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { deleteUser, getUser} from "../data/services/API.jsx";
-import { offSession } from "../data/services/Session.jsx";
-import { forms } from "./util/_forms.jsx";
+import { redirecionar } from "./util/functions.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
@@ -21,17 +20,7 @@ export default function Usuarios() {
             if (conf)
                 await deleteUser(id)
         } else if(tipo=='update'){
-            let a = forms()
-            console.log(a);
-        }
-    }
-
-    function redirecionar(caminho){
-        if( caminho == 'logout'){
-            offSession('authToken')
-            location.href='/'
-        } else if( caminho == 'projetos'){
-            
+            alert("Não tem essa função");
         }
     }
     // Método para a apresentação dos dados da API
