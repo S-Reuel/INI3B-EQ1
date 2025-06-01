@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://6197-186-217-113-246.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://9e25-2804-58-c0df-f000-38af-42ff-6558-50ea.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -71,12 +71,41 @@ export async function getProj() {
 }
 
 export async function updateProj(id) {
-    await URL.put(`projetos/${id}`)
+    await URL.pacth(`projetos/${id}`)
         .then((res) => res.data);
 }
 
 export async function deleteProj(id) {
     await URL.delete(`projetos/${id}`)
+        .then((res) => res.data);
+}
+/* CRUD's Equipes */
+export async function postEq(param) {
+    await URL.post('equipes', param)
+        .then((res) => {
+            res.data
+            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+            if (bool)
+                location.href = '../Projetos'
+        });
+}
+
+export async function getEq() {
+    try{
+        let r = await URL.get("equipes")
+        return r.data        
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function updateEq(id) {
+    await URL.patch(`equipes/${id}`)
+        .then((res) => res.data);
+}
+
+export async function deleteEq(id) {
+    await URL.delete(`equipes/${id}`)
         .then((res) => res.data);
 }
 // Alteração de senha
