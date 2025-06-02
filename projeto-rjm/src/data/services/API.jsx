@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://9e25-2804-58-c0df-f000-38af-42ff-6558-50ea.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://d64b-200-145-42-214.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -46,7 +46,7 @@ export async function postLogin(param) {
     } else {
         const t = r.data.token;
         onSession('authToken', t)
-        location.href = '/usuarios'
+        location.href = '/projetos'
     }
 }
 

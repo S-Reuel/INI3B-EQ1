@@ -2,16 +2,14 @@ import '../styles/cabProjeto.css'
 import iconeCodra from "../icons/Codra.png"
 import iconeMais from "../icons/mais.png"
 import iconeMenu from "../icons/menu.png"
-import iconeSino from "../icons/sino.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
-import { voltar } from '../../pages/util/functions'
 
 export default function CabProj() {
   return (
     <header className="cabecalho-proj">
       <div className="cabecalhoEsquerda">
-        <a href={voltar}>
+        <a href={'/usuarios'}>
           <img src={iconeVoltar} alt="Voltar" className="voltar" />
         </a>
         <img src={iconeMenu} alt="Menu" className="menu" />
@@ -23,8 +21,9 @@ export default function CabProj() {
         <a href="/add/projetos">
           <img src={iconeMais} alt="Adicionar Projeto" className="cabecalhoIcone" />
         </a>
-        <img src={iconeSino} alt="Notificações" className="cabecalhoIcone" />
-        <img src={iconeUser} alt="Perfil do Usuário" className="usuario" />
+        <a href='/usuarios'>
+          <img src={iconeUser} alt="Perfil do Usuário" className="usuario" />
+        </a>
       </div>
     </header>
 )}
