@@ -30,7 +30,7 @@ export default function Projetos() {
     const editarProj = (e) => {
         e.preventDefault()
         e.stopPropagation();
-        location.href = '/add/projetos/editar'
+        location.href = '/edit/projetos/'
     }
 
     function apr() {
