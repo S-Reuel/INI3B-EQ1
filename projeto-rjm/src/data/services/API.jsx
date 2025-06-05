@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://d64b-200-145-42-214.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://9fe7-186-217-115-207.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
