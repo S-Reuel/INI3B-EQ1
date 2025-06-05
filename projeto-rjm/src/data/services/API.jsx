@@ -12,8 +12,7 @@ const URL = axios.create({
 export async function postUser(param) {
     await URL.post('usuarios', { usuario: param }).then(
         () => { location.href = '/login' }
-    )
-        .catch(
+    ).catch(
             (e) => { console.log(`ERRO: ${e.data}`) }
         )
 };

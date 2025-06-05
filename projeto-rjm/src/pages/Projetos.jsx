@@ -3,6 +3,8 @@ import { getProj } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
 import '../ui/styles/Projetos/Projetos.css'
+import iconCalendario from '../ui/icons/calendario.svg'
+import imgEditarProj from '../ui/icons/editar-projeto.svg'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
@@ -47,10 +49,10 @@ export default function Projetos() {
                             {i.descricao}
                         </div>
                         <div className="dataProj">
-                            {dataCr}
+                            <img src={iconCalendario} className="calendarioIMG"></img>  {dataCr}
                         </div>
                         <button className="bttEditarProj" onClick={editarProj}>
-                            ...
+                            <img src={imgEditarProj} alt="" className="imgEditarProj"/>
                         </button>
                         <br />
                     </div>
