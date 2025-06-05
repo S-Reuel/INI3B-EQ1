@@ -1,0 +1,20 @@
+<svg width="834" height="650" viewBox="0 0 834 650" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Vertical gradient from dark (top) to orange (bottom) -->
+    <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A0D14"/>
+      <stop offset="30%" stop-color="#000080"/>
+      <stop offset="60%" stop-color="#C154D0"/>
+      <stop offset="100%" stop-color="#FFB84C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="834" height="650" fill="#0A0D14" />
+  <!-- Gradient Columns -->
+  <rect x="0" width="167" height="650" fill="url(#grad1)" />
+  <rect x="167" width="167" height="650" fill="url(#grad1)" />
+  <rect x="334" width="167" height="650" fill="url(#grad1)" />
+  <rect x="501" width="167" height="650" fill="url(#grad1)" />
+  <rect x="668" width="167" height="650" fill="url(#grad1)" />
+</svg>
