@@ -70,8 +70,8 @@ export async function getProj() {
     }
 }
 
-export async function updateProj(id) {
-    await URL.pacth(`projetos/${id}`)
+export async function updateProj(id, param) {
+    await URL.pacth(`projetos/${id}`, param)
         .then((res) => res.data);
 }
 

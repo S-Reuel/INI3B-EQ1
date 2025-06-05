@@ -20,7 +20,7 @@ export default function Usuarios() {
             if (conf)
                 await deleteUser(id)
         } else if(tipo=='update'){
-            alert("Não tem essa função");
+            location.href = `/edit/usuarios/${id}`
         }
     }
     // Método para a apresentação dos dados da API
@@ -59,16 +59,10 @@ export default function Usuarios() {
                     </tbody>
                 </table>
                 <br/>
-                <button onClick={()=>redirecionar('projetos')}>Projetos</button>
+                <button onClick={()=>redirecionar('proj')}>Projetos</button>
             </center>
         )
     } else {
-        return(
-            <center>
-                <h1>Acesso restrito</h1>
-                <br />
-                <a href="/login"><button>Login</button></a>
-            </center>
-        )
+        return(location.href="/login")
     }
 }

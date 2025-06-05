@@ -14,32 +14,25 @@ export default function Projetos() {
             res == 500 ? setErrors(res) : setProj(res)
         }
         fetch()
-    }, []);
+    }, [])
 
-    const A = (e) => {
-        e.preventDefault()
-        location.href = '/add/projetos'
-    }
-
-    const entrarProj = (e) => {
-        e.preventDefault()
-        e.stopPropagation();
-        location.href = '/add/projetos/sprints'
-    }
-
-    const editarProj = (e) => {
-        e.preventDefault()
-        e.stopPropagation();
-        location.href = '/edit/projetos/'
+    const caminho = (id, tipo) => {
+        if(tipo == 'spr'){
+            location.href = `/projetos/sprints/${id}`
+        } else if (tipo == 'ed'){
+            location.href = `/edit/projetos/${id}`
+        }
     }
 
     function apr() {
         return proj.map(function (i) {
-            // let dataUp = isFormat(new Date(i.updated_at))
             let dataCr = isFormat(new Date(i.data_criacao))
             return (
                 <>
-                    <div className="projeto" onClick={entrarProj}>
+                    <div className="projeto" onClick={(e)=>{
+                            e.stopPropagation()
+                            caminho(i.id, 'spr')
+                        }}>
                         <div className="tituloProj">
                             {i.nome}
                         </div>
@@ -49,7 +42,10 @@ export default function Projetos() {
                         <div className="dataProj">
                             {dataCr}
                         </div>
-                        <button className="bttEditarProj" onClick={editarProj}>
+                        <button className="bttEditarProj" onClick={(e)=>{
+                            e.stopPropagation()
+                            caminho(i.id, 'ed')
+                        }}>
                             ...
                         </button>
                         <br />
@@ -72,12 +68,6 @@ export default function Projetos() {
             </>
         )
     } else {
-        return (
-            <center>
-                <h1>Acesso restrito</h1>
-                <br />
-                <a href="/login"><button>Login</button></a>
-            </center>
-        )
+        return (location.href="/login")
     }
 }
