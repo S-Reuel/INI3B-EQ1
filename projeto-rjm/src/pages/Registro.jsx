@@ -1,6 +1,7 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import { postUser } from '../data/services/API.jsx'
+import { voltar } from "./util/functions"
 
 export default function Registro() {
     const [nome, setNome] = useState('')
@@ -64,7 +65,7 @@ export default function Registro() {
                     <br/>
                     <button type="submit" onClick={onSave}>Enviar</button>
                 </form>
-                <a href="/login"><button>Voltar</button></a>
+                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )

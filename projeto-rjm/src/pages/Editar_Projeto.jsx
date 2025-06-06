@@ -1,24 +1,33 @@
 import { useParams } from "react-router-dom";
-import { updateProj } from "../data/services/API";
+import { getProjId, updateProj } from "../data/services/API";
+import { useEffect, useState } from "react";
+import { voltar } from "./util/functions";
 
-export default function EditarProjetos() {
+export default function Editar_Projeto() {
     const { id } = useParams()
-
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
+
+    useEffect(async()=>{
+        const req = await getProjId(id)
+        setNome(req.nome)
+        setDesc(req.descricao)
+    }, [])
+
     const onSave = async (e) => {
         e.preventDefault()
-        updateProj(id, {nome, descricao})
+        // updateProj(id, {nome, descricao})
     }
+
     return (
         <div>
             <center>
-                <h1>Nova Equipe!</h1>
+                <h1>Editar projeto</h1>
                 <form>
                     <label>
                         Nome:<br />
                         <input
-                            type="text" nome="nome"
+                            type="text" nome="nome" value={nome}
                             placeholder="Digite seu nome" required
                             onChange={(e) => setNome(e.target.value)}
                         />
@@ -28,7 +37,7 @@ export default function EditarProjetos() {
                         Descrição:
                         <br />
                         <input
-                            type="text" name="descricao"
+                            type="text" name="descricao" value={descricao}
                             placeholder="Digite a descrição" required
                             onChange={(e) => setDesc(e.target.value)}
                         />
@@ -36,7 +45,7 @@ export default function EditarProjetos() {
                     <br /><br />
                     <button type="submit" onClick={onSave}>Enviar</button>
                 </form>
-                <a href="/login"><button>Voltar</button></a>
+                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )
