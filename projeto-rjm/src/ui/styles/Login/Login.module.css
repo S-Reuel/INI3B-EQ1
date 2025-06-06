@@ -5,7 +5,7 @@
     src: url(src/ui/fonts/SpaceGrotesk-VariableFont_wght.ttf);
   }
 body{
-   background-color:#161b23;
+   background-color:tomato;
    --form-height-input: 6.25vh;
 
 }

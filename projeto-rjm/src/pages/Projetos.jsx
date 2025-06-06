@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
-import projetosStyle from '../ui/styles/Projetos/Projetos.css'
+import projetosStyle from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
