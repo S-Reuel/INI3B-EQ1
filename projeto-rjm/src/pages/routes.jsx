@@ -14,6 +14,7 @@ import AddSprints from "./Add_Sprints";
 import UpdateUser from "./Update_User";
 import EditarProjetos from "./Editar_Projeto";
 import EditUser from "./Editar_Usuario";
+import Perfil from "./Perfil";
 
 export default function Routers() {
     return (
@@ -25,6 +26,7 @@ export default function Routers() {
                 <Route path="/edit/usuarios/:id" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />
                 <Route path="/update/usuario" element={<UpdateUser />} />
+                <Route path="/perfil/:id" element={<Perfil />} />
                 {/*  Login */}
                 <Route path="/login" element={<Login />} />
                 <Route path="login/esqueciSenha" element={<EsqueciSenha />} />

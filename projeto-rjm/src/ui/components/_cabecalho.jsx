@@ -21,7 +21,7 @@ export default function CabProj() {
         <a href="/add/projetos">
           <img src={iconeMais} alt="Adicionar Projeto" className="cabecalhoIcone" />
         </a>
-        <a href='/usuarios'>
+        <a href='/perfil'>
           <img src={iconeUser} alt="Perfil do Usuário" className="usuario" />
         </a>
       </div>
