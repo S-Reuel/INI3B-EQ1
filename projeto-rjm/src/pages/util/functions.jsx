@@ -54,4 +54,4 @@ export function redirecionar(caminho) {
     }
 }
 
-export function voltar() { history.back() }
+export function voltar() { location.href = document.referrer }

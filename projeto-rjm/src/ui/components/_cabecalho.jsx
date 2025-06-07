@@ -4,12 +4,13 @@ import iconeMais from "../icons/mais.png"
 import iconeMenu from "../icons/menu.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
+import { voltar } from '../../pages/util/functions'
 
 export default function CabProj() {
   return (
     <header className="cabecalho-proj">
       <div className="cabecalhoEsquerda">
-        <a href={'/usuarios'}>
+        <a onClick={voltar}>
           <img src={iconeVoltar} alt="Voltar" className="voltar" />
         </a>
         <img src={iconeMenu} alt="Menu" className="menu" />

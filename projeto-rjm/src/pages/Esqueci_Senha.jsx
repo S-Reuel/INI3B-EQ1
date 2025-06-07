@@ -1,6 +1,7 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
-import { useState } from "react";
-import { esqueciSenha } from "../data/services/API";
+import { useState } from "react"
+import { esqueciSenha } from "../data/services/API"
+import { voltar } from "./util/functions"
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('')
@@ -33,7 +34,7 @@ export default function EsqueciSenha() {
                     </label>
                     <button type="submit">Enviar</button>
                 </form>
-                <a href="/login"><button>Voltar</button></a>
+                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )
