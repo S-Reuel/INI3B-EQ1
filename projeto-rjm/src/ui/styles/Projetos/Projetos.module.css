@@ -8,11 +8,13 @@
     padding: 10px;
     border: 10px;
     color: white;
-
+    
+    
 }
 
 .projeto:hover {
     background-color: rgb(57, 66, 70);
+    cursor:pointer;
 }
 
 .tituloProj {
@@ -41,6 +43,9 @@
     bottom: 10px;
     left: 10px;
     font-size: 15px;
+    display: flex;
+    vertical-align: center;
+    
 }
 
 .bttEditarProj {
@@ -54,6 +59,7 @@
     border-radius: 5px;
     font-size: 25px;
     align-content: center;
+    text-align: center;
 
 }
 
@@ -90,4 +96,16 @@
     border-radius: 5px;
     border: 0;
     height: 30PX;
+}
+
+.calendarioIMG{
+    width: 15px;
+    height: auto;
+    margin-bottom: 3px;
+    margin-right: 5px;
+}
+.imgEditarProj{
+    text-align: center;
+    width: 20px;
+    padding-right: 10px;
 }

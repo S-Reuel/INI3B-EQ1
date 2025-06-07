@@ -49,7 +49,6 @@ export default function EsqueciSenha() {
                         Lembrou a sua senha?   <a href="/login" className={esqueciStyle.link}>Login</a>
                     </p>
                 </div>
-                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )

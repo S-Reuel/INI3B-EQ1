@@ -77,12 +77,11 @@ export default function Registro() {
                     <br/>
                     <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>
                 </form>
-                    <div className={registroStyle.SignUpForgot}>
-                        <p>
-                            Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
-                        </p>
-                    </div>            
-                <button onClick={voltar}>Voltar</button>
+                <div className={registroStyle.SignUpForgot}>
+                    <p>
+                        Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
+                    </p>
+                </div>
             </center>
         </div>
     )

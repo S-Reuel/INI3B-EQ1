@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
+import iconCalendario from '../ui/icons/calendario.svg'
+import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import projetosStyle from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
@@ -40,13 +42,13 @@ export default function Projetos() {
                             {i.descricao}
                         </div>
                         <div className={projetosStyle.dataProj}>
-                            {dataCr}
+                            <img src={iconCalendario} className="calendarioIMG"></img>  {dataCr}
                         </div>
                         <button className={projetosStyle.bttEditarProj} onClick={(e)=>{
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
-                            ...
+                            <img src={imgEditarProj} alt="" className="imgEditarProj"/>
                         </button>
                         <br />
                     </div>
