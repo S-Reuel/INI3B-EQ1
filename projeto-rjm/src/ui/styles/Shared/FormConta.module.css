@@ -1,0 +1,137 @@
+
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url(/src/ui/fonts/SpaceGrotesk-VariableFont_wght.ttf);
+  }
+body{
+   --form-height-input: 150%;/*TO DO:fazer mais parecido com o design no figma;*/
+
+}
+@media (prefers-color-scheme: dark) { /*TO DO:adicionar botao que muda a cor de fundo do site*/
+    body{
+        background-color:#151B23;
+        
+    }
+    .login{
+        color:white;
+    }
+    .logo{
+        background-Image:url("/src/ui/icons/codra-background-dark.svg");
+    }
+    .link{
+        color:#d39745;
+    }
+    .input{
+        border-color: "#bebebe";
+        border-style: none;
+
+    }
+  }
+@media (prefers-color-scheme: light) {
+    body{
+        background-color:#E8E8F6;
+    }
+    .login{
+        color:#151B23;
+    }
+    .logo{
+        background-Image:url("/src/ui/icons/codra-background-dark.svg");
+    }
+    .link{
+        color:#6666C2;
+        
+    }
+    .input{
+        border-color: #BEBEBE;
+    }
+}
+
+a:hover, button:hover{
+    cursor:pointer;
+
+}
+html{
+    height: 100vh;
+
+}
+.login  {
+    display:grid;
+    grid-template-columns: 53vw 47vw;
+    grid-template-rows: 20vh 60vh 20vh;
+    /*padding: 50%;*/
+    font-size:100%;
+}
+.logo{
+    grid-column: 1;
+    grid-row: 1/span 3;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    height:100vh;
+}
+
+.logoImage{
+    grid-row: 2/ span 1;
+    width:50vw;
+    grid-column: 1/ span 1;
+}
+
+.login * {
+    font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url abaixo.*/
+    font-weight: 400;
+    font-size: 2vh;
+}
+.center{
+    grid-column: 2;
+    grid-row: 2/ span 1;
+    text-align: left;
+    padding-left: 10%;
+}
+.loginText{
+    font-weight: 700;
+    font-size: 5vh;
+}
+.form > label {
+    display:grid;
+    margin-bottom: 3.33vh;
+    line-height: 200%;
+}
+.input{
+    padding-left:5%;
+    height:var(--form-height-input);     
+    border-radius: 15px;
+    color:#B6B8BB;
+    background-color: #FFFFFF;
+    width:85%;
+}
+.formButton{
+    background-color: #AD56C7;
+    border-style: none;
+    border-radius: 15px;
+    width:90%;
+    height:var(--form-height-input);     
+    text-align: center;
+    color:white;
+   
+}
+.SignUpForgot{
+    text-align: center;
+}
+.link{
+    text-decoration: none;
+}
+@media screen and (max-width:600px) {
+    .logo {
+      display: none;
+    }
+    .center{
+        grid-column: 1/span 2;
+    }
+
+}
+
+
+
+

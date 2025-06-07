@@ -13,11 +13,10 @@ export default function Login() {
     } 
 
     return (
-        
         <div className={loginStyle.login}>
             <div className={loginStyle.logo}>
                 <img 
-                    src="src/ui/icons/codra-icon-dark.svg" 
+                    src="/src/ui/icons/codra-icon-dark.svg" //adicionar opcao para alterar dependendo do modo escuro ou nao
                     alt="codra icone"
                     className={loginStyle.logoImage}
                 />
@@ -29,18 +28,17 @@ export default function Login() {
                         <label>
                             E-mail<br/>
                             <input 
-                                className={loginStyle.inputEmail}
+                                className={loginStyle.input}
                                 type="email" name="email"
                                 placeholder="Digite seu e-mail" required
                                 value={email} autoComplete='off'
                                 onChange={(e)=> setEmail(e.target.value)}    
                             />
                         </label>
-                        <br/>
                         <label>
                             Senha<br/>
                             <input 
-                                className={loginStyle.inputPassword}
+                                className={loginStyle.input}
                                 type="password" name="senha"
                                 placeholder="Digite sua senha" required
                                 value={password}
@@ -54,8 +52,8 @@ export default function Login() {
                 <div className={loginStyle.SignUpForgot}>
                     
                     <p>
-                       Não tem uma conta?   <a href="/add/usuario" className={loginStyle.linkSignUp}>Cadastre-se</a><br/>
-                       Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.linkForgotPassword}>Redefinir</a>
+                       Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.link}>Redefinir</a><br/>
+                       Não tem uma conta?   <a href="/add/usuario" className={loginStyle.link}>Cadastre-se</a>
                     </p>
                     <br/>
                 </div>

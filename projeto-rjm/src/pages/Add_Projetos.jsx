@@ -1,6 +1,7 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import {postProj} from "../data/services/API"
+import { voltar } from "./util/functions"
 
 export default function AddProj() {
     const [nome, setNome] = useState('')
@@ -44,7 +45,7 @@ export default function AddProj() {
                     <br/>
                     <button type="submit">Enviar</button>
                 </form>
-                <a href="/Projetos"><button>Voltar</button></a>
+                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )

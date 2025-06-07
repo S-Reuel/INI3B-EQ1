@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { getProj } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
-import '../ui/styles/Projetos/Projetos.css'
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
+import projetosStyle from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
@@ -31,20 +31,20 @@ export default function Projetos() {
             let dataCr = isFormat(new Date(i.data_criacao))
             return (
                 <>
-                    <div className="projeto" onClick={(e)=>{
+                    <div className={projetosStyle.projeto} onClick={(e)=>{
                             e.stopPropagation()
                             caminho(i.id, 'spr')
                         }}>
-                        <div className="tituloProj">
+                        <div className={projetosStyle.tituloProj}>
                             {i.nome}
                         </div>
-                        <div className="descricaoProj">
+                        <div className={projetosStyle.descricaoProj}>
                             {i.descricao}
                         </div>
-                        <div className="dataProj">
+                        <div className={projetosStyle.dataProj}>
                             <img src={iconCalendario} className="calendarioIMG"></img>  {dataCr}
                         </div>
-                        <button className="bttEditarProj" onClick={(e)=>{
+                        <button className={projetosStyle.bttEditarProj} onClick={(e)=>{
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
@@ -60,9 +60,9 @@ export default function Projetos() {
         return (
             <>
               <CabProj />
-              <center className="bodyProjs">
+              <center className={projetosStyle.bodyProjs}>
                   <br />
-                  <div className="tituloPag">Projetos Inscritos</div>
+                  <div className={projetosStyle.tituloPag}>Projetos Inscritos</div>
                   <br /><br /><br />
                   { apr() }
                   <br />

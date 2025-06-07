@@ -5,7 +5,7 @@ body {
   color: #FFFFFF;
 }
 
-.cabecalho-proj {
+.cabecalho_proj {
   display: flex;
   justify-content: space-between;
   align-items: center;
