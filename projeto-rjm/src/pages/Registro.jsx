@@ -1,6 +1,7 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import { postUser } from '../data/services/API.jsx'
+import registroStyle from '../ui/styles/Registro/Registro.module.css'
 import { voltar } from "./util/functions"
 
 export default function Registro() {
@@ -22,13 +23,21 @@ export default function Registro() {
     }
 
     return (
-        <div className='registro'>
-            <center>
-                <h1>Faça seu Cadastro!</h1>
-                <form>
+        <div className={registroStyle.login}>
+            <div className={registroStyle.logo}>
+                <img 
+                    src="/src/ui/icons/codra-icon-dark.svg" 
+                    alt="codra icone"
+                    className={registroStyle.logoImage}
+                />
+            </div>
+            <center className={registroStyle.center}>
+                <h1 className={registroStyle.loginText}>Faça seu Cadastro!</h1>
+                <form className={registroStyle.form}>
                     <label>
                         Nome:<br/>
                         <input 
+                            className={registroStyle.input}
                             type="text" nome="nome" 
                             placeholder="Digite seu nome" required 
                             onChange={(e) => setNome(e.target.value)}
@@ -39,6 +48,7 @@ export default function Registro() {
                         Senha:
                         <br/>
                         <input 
+                            className={registroStyle.input}
                             type="password" nome="senha" 
                             placeholder="Digite sua senha" required 
                             onChange={(e) => setSenha(e.target.value)}   
@@ -47,7 +57,8 @@ export default function Registro() {
                     <br/>
                     <label>
                         E-mail:<br/>
-                        <input 
+                        <input               
+                            className={registroStyle.input}
                             type="mail" nome="email" 
                             placeholder="Digite seu e-mail" required
                             onChange={(e) => setEmail(e.target.value)}
@@ -57,14 +68,20 @@ export default function Registro() {
                     <label>
                     Nome no Github:<br/>
                     <input 
+                        className={registroStyle.input}
                         type="text" nome="ng" 
                         placeholder="Digite seu nome no github" required
                         onChange={(e) => setNg(e.target.value)}
                     />
                     </label>
                     <br/>
-                    <button type="submit" onClick={onSave}>Enviar</button>
+                    <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>
                 </form>
+                    <div className={registroStyle.SignUpForgot}>
+                        <p>
+                            Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
+                        </p>
+                    </div>            
                 <button onClick={voltar}>Voltar</button>
             </center>
         </div>
