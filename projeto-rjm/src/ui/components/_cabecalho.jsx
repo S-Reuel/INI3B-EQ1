@@ -8,7 +8,7 @@ import { voltar } from '../../pages/util/functions'
 
 export default function CabProj() {
   return (
-    <header className={cabProjetoStyle.cabecalho-proj}>
+    <header className={cabProjetoStyle.cabecalho_proj}>
       <div className={cabProjetoStyle.cabecalhoEsquerda}>
         <a onClick={voltar}>
           <img src={iconeVoltar} alt="Voltar" className={cabProjetoStyle.voltar} />
