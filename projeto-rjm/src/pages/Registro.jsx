@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { postUser } from '../data/services/API.jsx'
 import registroStyle from '../ui/styles/Registro/Registro.module.css'
-import { voltar } from "./util/functions"
 
 export default function Registro() {
     const [nome, setNome] = useState('')
@@ -23,16 +22,16 @@ export default function Registro() {
     }
 
     return (
-        <div className={registroStyle.login}>
+        <div className={registroStyle.page}>
             <div className={registroStyle.logo}>
                 <img 
-                    src="/src/ui/icons/codra-icon-dark.svg" 
+                    /*a imagem é carregada em  projeto-rjm\src\ui\styles\Shared\FormConta.module.css*/
                     alt="codra icone"
                     className={registroStyle.logoImage}
                 />
             </div>
             <center className={registroStyle.center}>
-                <h1 className={registroStyle.loginText}>Faça seu Cadastro!</h1>
+                <h1 className={registroStyle.pageText}>Faça seu Cadastro!</h1>
                 <form className={registroStyle.form}>
                     <label>
                         Nome:<br/>
@@ -77,12 +76,12 @@ export default function Registro() {
                     <br/>
                     <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>
                 </form>
-                <div className={registroStyle.SignUpForgot}>
-                    <p>
-                        Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
-                    </p>
-                </div>
-            </center>
+                    <div className={registroStyle.SignUpForgot}>
+                        <p>
+                            Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
+                        </p>
+                    </div>            
+                </center>
         </div>
     )
 }

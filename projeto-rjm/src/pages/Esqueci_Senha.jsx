@@ -1,8 +1,7 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
+import { useState } from "react";
+import { esqueciSenha } from "../data/services/API";
 import esqueciStyle from '../ui/styles/EsqueciSenha/EsqueciSenha.module.css'
-import { useState } from "react"
-import { esqueciSenha } from "../data/services/API"
-import { voltar } from "./util/functions"
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('')
@@ -19,16 +18,16 @@ export default function EsqueciSenha() {
     } 
 
     return(
-        <div className={esqueciStyle.login}>
+        <div className={esqueciStyle.page}>
             <div className={esqueciStyle.logo}>
                 <img 
-                    src="/src/ui/icons/codra-icon-dark.svg" 
+                    /*a imagem é carregada em  \projeto-rjm\src\ui\styles\Shared\FormConta.module.css*/
                     alt="codra ícone"
                     className={esqueciStyle.logoImage}
                 />
             </div>
             <center className={esqueciStyle.center}>
-                <h1 className={esqueciStyle.loginText}>Esqueceu sua Senha?</h1>
+                <h1 className={esqueciStyle.pageText}>Esqueceu sua Senha?</h1>
                 <h3 id="response"></h3>
                 <h4>Um código de recuperação será enviado</h4>
                 <form onSubmit={onSave} className={esqueciStyle.form}>
@@ -49,6 +48,8 @@ export default function EsqueciSenha() {
                         Lembrou a sua senha?   <a href="/login" className={esqueciStyle.link}>Login</a>
                     </p>
                 </div>
+                
+
             </center>
         </div>
     )

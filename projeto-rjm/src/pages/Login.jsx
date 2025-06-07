@@ -13,16 +13,16 @@ export default function Login() {
     } 
 
     return (
-        <div className={loginStyle.login}>
+        <div className={loginStyle.page}>
             <div className={loginStyle.logo}>
                 <img 
-                    src="/src/ui/icons/codra-icon-dark.svg" //adicionar opcao para alterar dependendo do modo escuro ou nao
+                    /*a imagem é carregada em  projeto-rjm\src\ui\styles\Shared\FormConta.module.css*/
                     alt="codra icone"
                     className={loginStyle.logoImage}
                 />
             </div>
             <center className={loginStyle.center}>
-                <h1 className={loginStyle.loginText}>Login</h1>
+                <h1 className={loginStyle.pageText}>Login</h1>
                 <h3 id="response"></h3>
                 <form onSubmit={onSave} className={loginStyle.form}>
                         <label>
