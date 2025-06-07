@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://9fe7-186-217-115-207.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://f5f1-186-217-115-238.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -38,12 +38,13 @@ export async function deleteUser(id) {
         if(r.status == 200) { location.reload() }
     })
 }
-
+/* Login */
 export async function postLogin(param) {
     const r = await URL.post('auth/login', param)
     if(r.alert){
         return (r.alert)
     } else {
+        // const a = await URL.get('', param.email)
         const t = r.data.token;
         onSession('authToken', t)
         location.href = '/projetos'
@@ -64,6 +65,15 @@ export async function postProj(param) {
 export async function getProj() {
     try{
         let r = await URL.get("projetos")
+        return r.data        
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function getProjId(id) {
+    try{
+        let r = await URL.get(`projetos/${id}`)
         return r.data        
     } catch (error) {
         return (error.status);

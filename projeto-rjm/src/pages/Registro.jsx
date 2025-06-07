@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { postUser } from '../data/services/API.jsx'
 import registroStyle from '../ui/styles/Registro/Registro.module.css'
+import { voltar } from "./util/functions"
 
 export default function Registro() {
     const [nome, setNome] = useState('')
@@ -81,7 +82,8 @@ export default function Registro() {
                             Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
                         </p>
                     </div>            
-                </center>
+                <button onClick={voltar}>Voltar</button>
+            </center>
         </div>
     )
 }
