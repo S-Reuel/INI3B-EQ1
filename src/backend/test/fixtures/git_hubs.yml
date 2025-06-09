@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome_repo: MyString
+  usuario_gh: MyString
+  evento_gh: MyString
+  id_gh: 1
+  data: 2025-05-19
+  mensagem: MyText
+
+two:
+  nome_repo: MyString
+  usuario_gh: MyString
+  evento_gh: MyString
+  id_gh: 1
+  data: 2025-05-19
+  mensagem: MyText

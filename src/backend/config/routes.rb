@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
+  resources :git_hubs
   namespace :api do
     namespace :v2 do
       resources :equipe_projetos
       resources :projetos
       get "projetos/ps/:id", to: "projetos#show_projeto_sprint_by_id" # Rota para buscar projeto  pelo 'id' e retorná-lo com suas sprints
       resources :usuario_equipes
-      post "auth/login", to: "authentication#login"
+      post "auth/login", to: "authentication#login" # Rota para fazer login
       resources :usuarios
+      patch "usuarios/excluir/:id", to: "usuarios#excluir" # Rota para excluir um usuário logicamente
       get "usuarios/nome/:nome", to: "usuarios#show_by_name" # Rota para buscar usuário pelo nome
       resources :equipes, :sprints
       resources :dashboard
