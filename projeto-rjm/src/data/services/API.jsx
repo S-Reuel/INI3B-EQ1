@@ -80,8 +80,13 @@ export async function getProjId(id) {
 }
 
 export async function updateProj(id, param) {
-    await URL.pacth(`projetos/${id}`, param)
-        .then((res) => res.data);
+    await URL.pacth(`projetos/${id}`, param).then((res) => {
+        res.data
+        let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
+        if (bool){
+            voltar
+        }
+    });
 }
 
 export async function deleteProj(id) {

@@ -1,16 +1,11 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import {postProj} from "../data/services/API"
-import { voltar } from "./util/functions"
+import { dateFormatter, voltar } from "./util/functions"
 
 export default function AddProj() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
-    const dateFormatter = (date)=>{
-        return new Intl.DateTimeFormat('pt-BR', {
-            dateStyle: 'short'
-        }).format(date)
-    }
 
     const onSave = async (e) => {
         e.preventDefault()

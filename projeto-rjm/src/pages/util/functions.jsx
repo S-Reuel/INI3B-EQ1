@@ -15,6 +15,12 @@ export function isFormat(data) {
     return `${dia} de ${mesFormat[mes+1]} de ${ano}`;
 }
 
+export function dateFormatter(date){
+    return new Intl.DateTimeFormat('pt-BR', {
+        dateStyle: 'short'
+    }).format(date)
+}
+
 export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':

@@ -1,22 +1,26 @@
 import { useParams } from "react-router-dom";
 import { getProjId, updateProj } from "../data/services/API";
 import { useEffect, useState } from "react";
-import { voltar } from "./util/functions";
+import { dateFormatter, voltar } from "./util/functions";
 
 export default function Editar_Projeto() {
     const { id } = useParams()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
 
-    useEffect(async()=>{
+    useEffect(()=>{
+        async function fetch() {
         const req = await getProjId(id)
         setNome(req.nome)
-        setDesc(req.descricao)
+        setDesc(req.descricao)}
+        fetch()
     }, [])
 
     const onSave = async (e) => {
         e.preventDefault()
-        // updateProj(id, {nome, descricao})
+        // let data = new Date()
+        // let data_update = dateFormatter(data)
+        updateProj(id, {nome, descricao})
     }
 
     return (
