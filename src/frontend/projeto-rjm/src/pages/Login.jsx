@@ -1,6 +1,6 @@
-// import '../ui/components/Login/Login.css'
-import React, { useState } from "react";
-import { postAPILogin } from "../data/services/API.jsx";
+import { useState } from "react";
+import { postLogin } from "../data/services/API.jsx";
+import loginStyle from '../ui/styles/Login/Login.module.css'
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -8,40 +8,55 @@ export default function Login() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        const res = await postAPILogin({email, password})
+        let mensagem = await postLogin({email, password})
+        document.getElementById("response").innerHTML = mensagem
     } 
 
     return (
-        <div className='login'>
-            <center>
-                <h1>Faça seu Login!</h1>
-                <form onSubmit={onSave}>
+        <div className={loginStyle.page}>
+            <div className={loginStyle.logo}>
+                <img 
+                    /*a imagem é carregada em  projeto-rjm\src\ui\styles\Shared\FormConta.module.css*/
+                    alt="codra icone"
+                    className={loginStyle.logoImage}
+                />
+            </div>
+            <center className={loginStyle.center}>
+                <h1 className={loginStyle.pageText}>Login</h1>
+                <h3 id="response"></h3>
+                <form onSubmit={onSave} className={loginStyle.form}>
                         <label>
-                            E-mail:<br/>
+                            E-mail<br/>
                             <input 
+                                className={loginStyle.input}
                                 type="email" name="email"
                                 placeholder="Digite seu e-mail" required
                                 value={email} autoComplete='off'
                                 onChange={(e)=> setEmail(e.target.value)}    
                             />
                         </label>
-                        <br/>
-                        <label >
-                            Senha:<br/>
+                        <label>
+                            Senha<br/>
                             <input 
+                                className={loginStyle.input}
                                 type="password" name="senha"
                                 placeholder="Digite sua senha" required
                                 value={password}
                                 onChange={(e)=> setPassword(e.target.value)}
                             />
                             <br/>
-                            <a href="login/recSenha">Esqueci minha senha</a>
                             <br/>
                         </label>
-                    <button type="submit">Entrar</button>
+                    <button type="submit" className={loginStyle.formButton}>Continuar</button>
                 </form>
-                <a href="/registro"><button>Cadastre-se</button></a>
-                <a href="/"><button>Voltar</button></a>
+                <div className={loginStyle.SignUpForgot}>
+                    
+                    <p>
+                       Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.link}>Redefinir</a><br/>
+                       Não tem uma conta?   <a href="/add/usuario" className={loginStyle.link}>Cadastre-se</a>
+                    </p>
+                    <br/>
+                </div>
             </center>
         </div>
     );

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getAPIProj } from "../data/services/API.jsx";
-import { offSession } from "../data/services/Session.jsx";
+import { useEffect, useState } from "react";
+import { getProj } from "../data/services/API.jsx";
 // import styles from '../ui/components/Registro/Registro.module.css'
 
 export default function Princ() {
@@ -8,7 +7,7 @@ export default function Princ() {
 
     useEffect(() => {
         let mounted = true;
-        getAPIProj().then((items) => { setProj(items) });
+        getProj().then((items) => { setProj(items) });
         return () => (mounted = false);
     }, []);
 

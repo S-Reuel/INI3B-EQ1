@@ -1,27 +1,23 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
-import {postAPIProj} from "../data/services/API"
+import {postProj} from "../data/services/API"
+import { dateFormatter, voltar } from "./util/functions"
 
 export default function AddProj() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
-    const dateFormatter = (date)=>{
-        return new Intl.DateTimeFormat('pt-BR', {
-            dateStyle: 'short'
-        }).format(date)
-    }
 
     const onSave = async (e) => {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postAPIProj({nome, descricao, data_criacao})
+        postProj({nome, descricao, data_criacao})
     }
 
     return (
         <div>
             <center>
-                <h1>Faça seu Cadastro!</h1>
+                <h1>Novo Projeto!</h1>
                 <form onSubmit={onSave}>
                     <label>
                         Título:<br/>
@@ -44,7 +40,7 @@ export default function AddProj() {
                     <br/>
                     <button type="submit">Enviar</button>
                 </form>
-                <a href="/principal"><button>Voltar</button></a>
+                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )
