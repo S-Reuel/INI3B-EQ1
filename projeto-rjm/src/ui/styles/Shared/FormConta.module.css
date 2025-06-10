@@ -1,140 +1,129 @@
-
-
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url(/src/ui/fonts/SpaceGrotesk-VariableFont_wght.ttf);
-  }
-body{
-   --form-height-input: 200%;/*TO DO:fazer mais parecido com o design no figma;*/
-   --center-padding-left:10%;
-}
-
-
-a:hover, button:hover{
+ .page  {
+    --form-height-input: 200%;/*TO DO:fazer mais parecido com o design no figma;*/
+    --center-padding-left:10%;
+     display:grid;
+     grid-template-columns: 53vw 47vw;
+     grid-template-rows: 20vh 60vh 20vh;
+     font-size:100%;
+ }
+ .page * {
+     font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
+     font-weight: 400;
+     font-size: 2vh;
+ }
+ a:hover, button:hover{
     cursor:pointer;/*por algum motivo o meu mouse nao estava mudando para o formato de clicar quando estivesse sobre um link. se isso não ocorrer novamente, pode tirar essa parte */
-}
-html{
-    height: 100vh;
-}
-.page  {
-    display:grid;
-    grid-template-columns: 53vw 47vw;
-    grid-template-rows: 20vh 60vh 20vh;
-    font-size:100%;
-}
-.page * {
-    font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
-    font-weight: 400;
-    font-size: 2vh;
-}
-.logo{
-    grid-column: 1;
-    grid-row: 1/span 3;
-    background-size: cover; /*para que o svg de fundo cubra todo o espaco na esquerda*/
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    height:100vh;
-}
-.logoImage{
-    grid-row: 2/ span 1;
-    width:50vw;
-    grid-column: 1/ span 1;
-}
-.center{
-    grid-column: 2;
-    grid-row: 2;
-    text-align: left;
-    padding-left: var(--center-padding-left);
-}
-.pageText{
-    font-weight: 700;
-    font-size: 5vh;
-}
-.form > label {
-    display:grid;
-    margin-bottom: 6.66vh;
-}
-
-.input{ 
-    padding-left:5%;
-    border-radius: 15px;
-    color:#B6B8BB;
-    background-color: #FFFFFF;
-    width:85%;
-    height: var(--form-height-input);
-}
-.formButton{ /*TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
-    background-color: #AD56C7;
-    border-style: none;
-    border-radius: 15px;
-    width:90%;
-    text-align: center;
-    color:white;
-}
-.link{
-    text-decoration: none;
-}
-@media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
-    .logo {
-        visibility:hidden
-        }
-    .logoImage{
-        visibility:visible;
-        position: absolute;
-        top:0;
-        padding-left:var(--center-padding-left); /*junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
-        height:20%;
-    }
-    .center{
-        grid-column: 1/span 2;
-    }
-
-}
-@media (prefers-color-scheme: dark) { /*usado para mudar para tema claro ou escuro || TO DO:adicionar botao que muda a cor de fundo do site*/
-    body{
-        background-color:#151B23;
-        
-    }
-    .page{
-        color:white;
-    }
-    .logo{
-        background-Image:url("/src/ui/icons/codra-background-dark.svg");
-    }
-    .logoImage{
-        content:url("/src/ui/icons/codra-icon-dark.svg");
-    }
-    .link{
-        color:#d39745;
-    }
-    .input{
-        border-color: "#bebebe";
-        border-style: none;
-
-    }
-  }
-@media (prefers-color-scheme: light) {
-    body{
-        background-color:#E8E8F6;
-    }
-    .page{
-        color:#151B23;
-    }
-    .logo{
-        background-Image:url("/src/ui/icons/codra-background-dark.svg");
-    }
-    .logoImage{
-        content:url("/src/ui/icons/codra-icon-light.svg"); /*TO DO:o icone atual esta desatualizado. colocar o icone novo*/
-    }
-    .link{
-        color:#6666C2;
-        
-    }
-    .input{
-        border-color: #BEBEBE;
-    }
-}
-
-
-
+ }
+ .logo{
+     grid-column: 1;
+     grid-row: 1/span 3;
+     background-size: cover; /*para que o svg de fundo cubra todo o espaco na esquerda*/
+     display: flex;
+     justify-content: center;
+     align-items: center;    
+     height:100vh;
+ }
+ .logoImage{
+     grid-row: 2/ span 1;
+     width:50vw;
+     grid-column: 1/ span 1;
+ }
+ .center{
+     grid-column: 2;
+     grid-row: 2;
+     text-align: left;
+     padding-left: var(--center-padding-left);
+ }
+ .pageText{
+     font-weight: 700;
+     font-size: 5vh;
+ }
+ .form > label {
+     display:grid;
+     margin-bottom: 6.66vh;
+ }
+ 
+ .input{ 
+     padding-left:5%;
+     border-radius: 15px;
+     color:#B6B8BB;
+     background-color: #FFFFFF;
+     width:85%;
+     height: var(--form-height-input);
+ }
+ .formButton{ /*TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
+     background-color: #AD56C7;
+     border-style: none;
+     border-radius: 15px;
+     width:90%;
+     padding: 1.5%;
+     text-align: center;
+     color:white;
+ }
+ .link{
+     text-decoration: none;
+ }
+ @media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
+     .logo {
+         visibility:hidden
+         }
+     .logoImage{
+         visibility:visible;
+         position: absolute;/*TO DO:HACK:para que a imagem possa sair do container e se mover. melhorar depois*/
+         top:0;
+         margin-left:var(--center-padding-left); /*junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
+         height: 20%;
+     }
+     .center{
+         grid-column: 1/span 2;
+     }
+ 
+ }
+ @media (prefers-color-scheme: dark) { /*usado para mudar para tema claro ou escuro || TO DO:adicionar botao que muda a cor de fundo do site*/
+     body{
+         background-color:#151B23;
+         
+     }
+     .page{
+         color:white;
+     }
+     .logo{
+         background-Image:url("/src/ui/icons/codra-background-dark.svg");
+     }
+     .logoImage{
+         content:url("/src/ui/icons/codra-icon-dark.svg");
+     }
+     .link{
+         color:#d39745;
+     }
+     .input{
+         border-color: "#bebebe";
+         border-style: none;
+ 
+     }
+   }
+ @media (prefers-color-scheme: light) {
+     body{
+         background-color:#E8E8F6;
+     }
+     .page{
+         color:#151B23;
+     }
+     .logo{
+         background-Image:url("/src/ui/icons/codra-background-light.svg");
+     }
+     .logoImage{
+         content:url("/src/ui/icons/codra-icon-light.svg"); /*TO DO:o icone atual esta desatualizado. colocar o icone novo*/
+     }
+     .link{
+         color:#6666C2;
+         
+     }
+     .input{
+         border-color: #BEBEBE;
+     }
+ }
+ 
+ 
+ 
+ 

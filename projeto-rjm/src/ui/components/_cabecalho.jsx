@@ -4,7 +4,7 @@ import iconeMais from "../icons/mais.png"
 import iconeMenu from "../icons/menu.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
-import { voltar } from '../../pages/util/functions'
+import { voltar } from '../../pages/util/functions' 
 
 export default function CabProj() {
   return (

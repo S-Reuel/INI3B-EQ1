@@ -1,16 +1,16 @@
 
-body {
+/*body {
     margin: 0px;
-    /* background-color: #181e50; */
     display:grid;
     grid-template-rows: 10vh 70vh 10vh;
     
-}
+}*/
 .cabecalho{
     display: flex;
     flex-wrap: nowrap;
     
 }
+
 
 .logo{
     margin-left:5%;
@@ -35,7 +35,7 @@ body {
     width: 100%;
     margin-top:0;
 }
-article{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
+.big-gray-round-block{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
     
     --article-margin:60px; /*em vez de ter que editar o padding de todas as imagens que tem uma borda no article, edita apenas este valor*/
     --margin-between-sections:calc(10vh - 70px);
