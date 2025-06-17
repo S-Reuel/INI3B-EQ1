@@ -110,7 +110,8 @@
          color:#151B23;
      }
      .logo{
-         background-Image:url("/src/ui/icons/codra-background-light.svg");
+        
+         background-Image:url("/src/ui/icons/codra-background-dark.svg");
      }
      .logoImage{
          content:url("/src/ui/icons/codra-icon-light.svg"); /*TO DO:o icone atual esta desatualizado. colocar o icone novo*/
