@@ -3,7 +3,14 @@
 
 
 
+.addProj{
+   --form-left-margin:3%;
+   --input-font-size:1vw;
 
+}
+.addProj * {
+   color:#FFFFFF;
+}
 .center * {
    font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
    font-weight: 700;
@@ -13,42 +20,63 @@
   margin-left: 5%;
   margin-right: 20%;
 }
+
 .tituloNovoProjeto{
    color:#BE5FDB;
    text-align: left;
-  
+   font-size: 3vw;
 }
 .form{
-   display: grid;
    background-color: #212A36;
 
-   padding-left: 3%;
-   padding-right: 3%;
+   padding: 6%;
+   margin-right: 20%;
+   margin-bottom: 3%;
+
+   text-align: left;
+   font-size: 2.5vw;
 
    border:1px;
    border-radius: 16px;
-   justify-content: flex-start;
+   border-color: #4D555E;
+   border-style: solid;
+
 }
 
 .input{
-   font-weight: 400;
+
    background-color: #151B23;
    color:#B6B8BB;
-   border-style: none;
-   border-radius: 16px;
-   padding:10%;
-   width: 100%;
+
+   width: 50vw;
+
    margin-bottom: 6.66vh;
+   padding:var(--form-left-margin);
+
+   font-weight: 400;
+   font-size: var(--input-font-size);
+   
+   border:1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
 
 }
 .formButton{
    background-color:#4848B6;
-   border-color: #4848B6;
-   border-radius:15px;
-   border-style: none;
-   border-radius: 15px;
-   width:90%;
+
+   width:52vw;
+
    padding: 1.5%;
+   margin-bottom: -3%;
+
+   font-size: var(--input-font-size);
+
+   border-color: #4848B6;
+   border-style: none;
+   border-radius:15px;
+
+
 }
 
 

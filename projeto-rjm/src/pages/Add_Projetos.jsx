@@ -28,7 +28,7 @@ export default function AddProj() {
                <h1 className={addProjStyle.tituloNovoProjeto}>Criar novo projeto</h1>
                <form onSubmit={onSave} className={addProjStyle.form}>
                    <label>
-                       Nome do Projeto<br/>
+                       <label className={addProjStyle.lblProj}>Nome do Projeto</label><br/>
                        <input
                            className={addProjStyle.input}
                            type="text" name="nome"
@@ -38,8 +38,8 @@ export default function AddProj() {
                    </label>
                    <br/>
                    <label >
-                    
-                       Descrição (opcional)
+                        
+                       <label className={addProjStyle.lblDesc}>Descrição (opcional)</label>
                        <br/>
                        <input
                            type="text" name="descricao"
