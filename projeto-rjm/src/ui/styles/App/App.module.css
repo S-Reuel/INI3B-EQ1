@@ -35,7 +35,7 @@
     width: 100%;
     margin-top:0;
 }
-.big-gray-round-block{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
+.big_gray_round_block{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
     
     --article-margin:60px; /*em vez de ter que editar o padding de todas as imagens que tem uma borda no article, edita apenas este valor*/
     --margin-between-sections:calc(10vh - 70px);
