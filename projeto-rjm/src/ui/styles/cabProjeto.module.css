@@ -1,9 +1,9 @@
-body {
+/*header {
   margin: 0;
   font-family: sans-serif;
   background-color: #0F101A;
   color: #FFFFFF;
-}
+} --Diego: temporariamente desativado pois nao parece mudar nada. Caso ativado, afeta todas as paginas que tenham um header*/
 
 .cabecalho_proj {
   display: flex;

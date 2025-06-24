@@ -1,7 +1,7 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import { postUser } from '../data/services/API.jsx'
-import registroStyle from '../ui/styles/Registro/Registro.module.css'
+import registroStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Registro() {
     const [nome, setNome] = useState('')

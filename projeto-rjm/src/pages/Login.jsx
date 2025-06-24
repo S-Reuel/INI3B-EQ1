@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
-import loginStyle from '../ui/styles/Login/Login.module.css'
+import loginStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -13,6 +13,7 @@ export default function Login() {
     } 
 
     return (
+        
         <div className={loginStyle.page}>
             <div className={loginStyle.logo}>
                 <img 
