@@ -5,7 +5,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://e719-186-217-114-233.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://5f17-200-145-42-58.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /*  CRUD's Users */
@@ -13,19 +13,27 @@ export async function postUser(param) {
     await URL.post('usuarios', { usuario: param }).then(
         () => { location.href = '/login' }
     ).catch(
-            (e) => { console.log(`ERRO: ${e.data}`) }
-        )
+        (e) => { console.log(`ERRO: ${e.data}`) }
+    )
 };
 
 export async function getUser() {
-    try{
-        let r = await URL.get("usuarios")        
-        return r.data        
+    try {
+        let r = await URL.get("usuarios")
+        return r.data
     } catch (error) {
         return (error.status);
     }
 }
 
+export async function getUserByEmail() {
+    try {
+        let r = await URL.get(`usuarios/email/${localStorage.getItem('authEmail')}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
+}
 
 export async function updateUser(id, param) {
     await URL.patch(`usuarios/${id}`, param)
@@ -33,20 +41,23 @@ export async function updateUser(id, param) {
 }
 
 export async function deleteUser(id) {
-    await URL.patch(`usuarios/excluir/${id}`).then((r)=>{
-        if(r.status == 200) { location.reload() }
+    await URL.patch(`usuarios/excluir/${id}`).then((r) => {
+        if (r.status == 200) { location.reload() }
     })
 }
+
 /* Login */
 export async function postLogin(param) {
     const r = await URL.post('auth/login', param)
-    if(r.alert){
+    if (r.alert) {
         return (r.alert)
     } else {
         // const a = await URL.get('', param.email)
         const t = r.data.token;
-        onSession('authToken', t)
-        location.href = '/projetos'
+        if (t != '') {
+            onSession('authToken', t, param.email)
+            location.href = '/projetos'
+        }
     }
 }
 
@@ -62,18 +73,18 @@ export async function postProj(param) {
 }
 
 export async function getProj() {
-    try{
+    try {
         let r = await URL.get("projetos")
-        return r.data        
+        return r.data
     } catch (error) {
         return (error.status);
     }
 }
 
 export async function getProjId(id) {
-    try{
+    try {
         let r = await URL.get(`projetos/${id}`)
-        return r.data        
+        return r.data
     } catch (error) {
         return (error.status);
     }
@@ -83,7 +94,7 @@ export async function updateProj(id, param) {
     await URL.pacth(`projetos/${id}`, param).then((res) => {
         res.data
         let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool){
+        if (bool) {
             voltar
         }
     });
@@ -105,9 +116,9 @@ export async function postEq(param) {
 }
 
 export async function getEq() {
-    try{
+    try {
         let r = await URL.get("equipes")
-        return r.data        
+        return r.data
     } catch (error) {
         return (error.status);
     }

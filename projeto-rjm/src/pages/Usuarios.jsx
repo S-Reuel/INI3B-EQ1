@@ -4,12 +4,11 @@ import { redirecionar } from "./util/functions.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
-    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getUser()                    
-            res == 500? setErrors(res) : setUsers(res) 
+            const res = await getUser() 
+            setUsers(res) 
         }
         fetch()
     }, [])
@@ -38,11 +37,10 @@ export default function Usuarios() {
         )
     }
 
-    if(errors.length==0){
+    if(localStorage.getItem('authToken')){
         return (
             <center>
                 <h1>Usuários</h1>
-                <button onClick={()=>redirecionar('logout')}>logout</button>
                 <table>
                     <thead>
                         <tr>
