@@ -1,7 +1,7 @@
 // import styles from '../ui/components/Rec/Rec.module.css'
 import { useState } from "react";
 import { esqueciSenha } from "../data/services/API";
-import esqueciStyle from '../ui/styles/EsqueciSenha/EsqueciSenha.module.css'
+import esqueciStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('')

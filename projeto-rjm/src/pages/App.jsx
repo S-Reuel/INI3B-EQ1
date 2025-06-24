@@ -1,5 +1,5 @@
 import React from "react";
-import  '../ui/styles/App/App.css'
+import appStyle from '../ui/styles/App/App.module.css'
 
 export default function App() {
   const A = (e)=>{
@@ -23,7 +23,7 @@ export default function App() {
           </div>
         </nav>
         {/* Hero Section */}
-        <article classname="big-gray-round-block">
+        <article classname={appStyle.big_gray_round_block}>
           <header className="hero">
             <div className="hero-text">
               <p className="welcome-text">Seja bem-vindo!</p>
