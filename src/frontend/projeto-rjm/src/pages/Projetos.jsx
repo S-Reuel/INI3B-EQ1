@@ -8,12 +8,11 @@ import projetosStyle from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
-    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         async function fetch() {
             let res = await getProj()
-            res == 500 ? setErrors(res) : setProj(res)
+            setProj(res)
         }
         fetch()
     }, [])
@@ -28,7 +27,7 @@ export default function Projetos() {
 
     function apr() {
         return proj.map(function (i) {
-            let dataCr = isFormat(new Date(i.data_criacao))
+            let dataUp = isFormat(new Date(i.updated_at))
             return (
                 <>
                     <div className={projetosStyle.projeto} onClick={(e)=>{
@@ -42,7 +41,8 @@ export default function Projetos() {
                             {i.descricao}
                         </div>
                         <div className={projetosStyle.dataProj}>
-                            <img src={iconCalendario} className="calendarioIMG"></img>  {dataCr}
+                            Data de atualização:
+                            <img src={iconCalendario} className="calendarioIMG"></img>{dataUp}
                         </div>
                         <button className={projetosStyle.bttEditarProj} onClick={(e)=>{
                             e.stopPropagation()
@@ -56,7 +56,7 @@ export default function Projetos() {
             </>
         )})
     }
-    if (errors.length == 0) {
+    if (localStorage.getItem('authToken')) {
         return (
             <>
               <CabProj />
