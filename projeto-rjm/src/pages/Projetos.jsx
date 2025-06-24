@@ -4,7 +4,7 @@ import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
-import projetosStyle from '../ui/styles/Projetos/Projetos.module.css'
+import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
@@ -30,21 +30,21 @@ export default function Projetos() {
             let dataUp = isFormat(new Date(i.updated_at))
             return (
                 <>
-                    <div className={projetosStyle.projeto} onClick={(e)=>{
+                    <div className={StyleProj.projeto} onClick={(e)=>{
                             e.stopPropagation()
                             caminho(i.id, 'spr')
                         }}>
-                        <div className={projetosStyle.tituloProj}>
+                        <div className={StyleProj.tituloProj}>
                             {i.nome}
                         </div>
-                        <div className={projetosStyle.descricaoProj}>
+                        <div className={StyleProj.descricaoProj}>
                             {i.descricao}
                         </div>
-                        <div className={projetosStyle.dataProj}>
+                        <div className={StyleProj.dataProj}>
                             Data de atualização:
-                            <img src={iconCalendario} className="calendarioIMG"></img>{dataUp}
+                            <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
                         </div>
-                        <button className={projetosStyle.bttEditarProj} onClick={(e)=>{
+                        <button className={StyleProj.bttEditarProj} onClick={(e)=>{
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
@@ -60,9 +60,9 @@ export default function Projetos() {
         return (
             <>
               <CabProj />
-              <center className={projetosStyle.bodyProjs}>
+              <center className={StyleProj.bodyProjs}>
                   <br />
-                  <div className={projetosStyle.tituloPag}>Projetos Inscritos</div>
+                  <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
                   <br /><br /><br />
                   { apr() }
                   <br />
