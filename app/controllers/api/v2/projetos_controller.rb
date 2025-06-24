@@ -10,7 +10,7 @@ class Api::V2::ProjetosController < ApplicationController
 
   # GET /projetos/1
   def show
-    @projeto = Usuario.find(params[:id])
+    @projeto = Projeto.find(params[:id])
     if @projeto
       render json: @projeto
     else
