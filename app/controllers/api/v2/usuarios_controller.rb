@@ -4,6 +4,12 @@ class Api::V2::UsuariosController < ApplicationController
 
   # GET /usuarios
   def index
+    @usuarios = Usuario.where("excluido == ?", false)
+
+    render json: @usuarios
+  end
+
+  def tudo
     @usuarios = Usuario.all
 
     render json: @usuarios
@@ -20,8 +26,16 @@ class Api::V2::UsuariosController < ApplicationController
   end
 
   # GET /usuarios/nome/nome
-  def show_by_name
+  def show_by_nome
     @usuario = Usuario.find_by(nome: params[:nome])
+    if @usuario
+      render json: @usuario
+    end
+  end
+
+  # GET /usuarios/email/email
+  def show_by_email
+    @usuario = Usuario.find_by(email: params[:email])
     if @usuario
       render json: @usuario
     end

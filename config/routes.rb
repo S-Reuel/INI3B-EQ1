@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       post "auth/login", to: "authentication#login" # Rota para fazer login
       resources :usuarios
       patch "usuarios/excluir/:id", to: "usuarios#excluir" # Rota para excluir um usuário logicamente
-      get "usuarios/nome/:nome", to: "usuarios#show_by_name" # Rota para buscar usuário pelo nome
+      get "usuarios/mostra/tudo", to: "usuarios#tudo" # Rota para listar usuários incluindo excluídos
+      get "usuarios/nome/:nome", to: "usuarios#show_by_nome" # Rota para buscar usuário pelo nome
+      get "usuarios/email/:email", to: "usuarios#show_by_email", constraints: { email: /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}/ } # Rota para buscar usuário pelo email
       resources :equipes, :sprints
       resources :dashboard
       get "dashboard/dados/:id", to: "dashboard#dados"
