@@ -15,6 +15,7 @@ import UpdateUser from "./Update_User";
 import EditUser from "./Editar_Usuario";
 import Perfil from "./Perfil";
 import Editar_Projeto from "./Editar_Projeto";
+import Sobre from "./Quem_Somos";
 
 export default function Routers() {
     return (
@@ -41,6 +42,7 @@ export default function Routers() {
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
                 <Route path="/add/equipes" element={<AddEqui />} />
+                <Route path="/sobre" element={<Sobre />} />
             </Routes>
         </Router>
     )

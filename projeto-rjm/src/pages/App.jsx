@@ -23,7 +23,7 @@ export default function App() {
           </div>
         </nav>
         {/* Hero Section */}
-        <article classname={appStyle.big-gray-round-block}>
+        <article classname={appStyle.big_gray_round_block}>
           <header className="hero">
             <div className="hero-text">
               <p className="welcome-text">Seja bem-vindo!</p>

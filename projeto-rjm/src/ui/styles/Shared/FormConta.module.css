@@ -80,11 +80,8 @@
  
  }
  @media (prefers-color-scheme: dark) { /*usado para mudar para tema claro ou escuro || TO DO:adicionar botao que muda a cor de fundo do site*/
-     body{
+      .page{
          background-color:#151B23;
-         
-     }
-     .page{
          color:white;
      }
      .logo{
@@ -103,10 +100,9 @@
      }
    }
  @media (prefers-color-scheme: light) {
-     body{
-         background-color:#E8E8F6;
-     }
      .page{
+         background-color:#E8E8F6;
+
          color:#151B23;
      }
      .logo{

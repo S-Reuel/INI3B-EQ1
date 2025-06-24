@@ -1,0 +1,27 @@
+
+.fotos_integrantes{
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+.quemSomosTitulo{
+    padding-top: 2%;
+    color:blueviolet;
+    font-size: 50px;
+}
+.quemSomosFLEX{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.integrante{
+    background-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+.quemsomosbody{
+    background-color: #151B23;
+    
+
+}
