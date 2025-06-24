@@ -4,5 +4,5 @@ export function onSession(key, dd, email){
 }
 
 export function offSession(key){
-    localStorage.removeItem(key)
+    localStorage.clear()
 }

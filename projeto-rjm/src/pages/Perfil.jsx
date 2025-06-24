@@ -16,7 +16,7 @@ export default function Perfil() {
     function apr() {
         return (
             <>
-                <img src={iconeUser} alt="Perfil do Usuário"/>
+                <img src={iconeUser} alt="Perfil do Usuário" />
                 <div>
                     Nome: {perfil.nome}
                 </div>
@@ -27,20 +27,24 @@ export default function Perfil() {
                     User git: {perfil.user_git}
                 </div>
                 <br />
-                        
+
             </>
         )
     }
-    return (
-        <>
-            <center>
-                <br />
-                <br />
-                <button onClick={()=>redirecionar('logout')}>logout</button>
-                <div>
-                    {apr()}
-                </div>
-            </center>
-        </>
-    )
+    if (localStorage.getItem('authToken')) {
+        return (
+            <>
+                <center>
+                    <br />
+                    <br />
+                    <button onClick={() => redirecionar('logout')}>logout</button>
+                    <div>
+                        {apr()}
+                    </div>
+                </center>
+            </>
+        )
+    } else {
+        return(redirecionar('login'))
+    }
 }

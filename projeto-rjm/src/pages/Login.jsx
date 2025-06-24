@@ -9,7 +9,9 @@ export default function Login() {
     const onSave = async (e) => {
         e.preventDefault()
         let mensagem = await postLogin({email, password})
-        document.getElementById("response").innerHTML = mensagem
+        if(mensagem!=undefined){
+            document.getElementById("response").innerHTML = mensagem
+        }
     } 
 
     return (
