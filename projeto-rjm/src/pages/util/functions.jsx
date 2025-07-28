@@ -24,7 +24,7 @@ export function dateFormatter(date){
 export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':
-            offSession('authToken')
+            offSession()
             location.href = '/'
             break
         case 'user':

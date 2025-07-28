@@ -32,7 +32,6 @@ export default function Usuarios() {
                 <td>{i.user_git}</td>
                 <td>{i.excluido?'Sim':'Não'}</td>
                 <td><button onClick={()=>onEvent(i.id, 'delete')}>Excluir</button></td>
-                <td><button onClick={()=>onEvent(i.id, 'update')}>Editar</button></td>
             </tr>
         )
     }
@@ -61,6 +60,6 @@ export default function Usuarios() {
             </center>
         )
     } else {
-        return(location.href="/login")
+        return(redirecionar("login"))
     }
 }
