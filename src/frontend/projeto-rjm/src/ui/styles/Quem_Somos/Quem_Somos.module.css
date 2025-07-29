@@ -1,0 +1,32 @@
+body{
+    background-color: #151B23;
+}
+.fotos_integrantes{
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+}
+.quemSomosTitulo{
+    padding-top: 2%;
+    padding-bottom: 7%;
+    color:#BE5FDB;
+    font-size: 50px;
+}
+.quemSomosFLEX{
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 0.7%;
+}
+.integrante{
+    background-color:#151B23;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+.quemsomosbody{
+    
+    
+
+}
