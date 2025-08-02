@@ -6,7 +6,7 @@ import { useState } from 'react'
 import {postProj} from "../data/services/API"
 import { dateFormatter, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
-import addProjStyle from "../ui/styles/AddProjetos/AddProjetos.module.css"
+import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 export default function AddProj() {
    const [nome, setNome] = useState('')
@@ -22,13 +22,14 @@ export default function AddProj() {
 
 
    return (
-       <div className={addProjStyle.addProj}>
+       <div className={addProjStyle.paginaBody}>
            <CabProj/>
            <center className={addProjStyle.center}>
-               <h1 className={addProjStyle.tituloNovoProjeto}>Criar novo projeto</h1>
+               <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
                <form onSubmit={onSave} className={addProjStyle.form}>
                    <label>
-                       <label className={addProjStyle.lblProj}>Nome do Projeto</label><br/>
+                       <label className={addProjStyle.lbl}>Nome do Projeto</label>
+                       <br/>
                        <input
                            className={addProjStyle.input}
                            type="text" name="nome"
@@ -37,9 +38,9 @@ export default function AddProj() {
                        />
                    </label>
                    <br/>
-                   <label >
+                   <label>
                         
-                       <label className={addProjStyle.lblDesc}>Descrição (opcional)</label>
+                       <label className={addProjStyle.lbl}>Descrição (opcional)</label>
                        <br/>
                        <input
                            type="text" name="descricao"

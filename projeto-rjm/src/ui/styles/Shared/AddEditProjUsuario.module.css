@@ -1,0 +1,103 @@
+/*usado quando o usuário quer editar editar seu perfil(Editar_Usuario.jsx) ou criar um novo projeto(Add_Projetos.jsx)*/
+
+
+
+
+.paginaBody{
+   --form-left-margin:3%;
+   --center-left-margin:3%;
+
+   --input-font-size:1vw;
+   --input-margin-bottom:6.66vh;
+}
+.paginaBody * {
+   color:#FFFFFF;
+}
+.center * {
+   font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
+   font-weight: 700;
+}
+.center{
+  margin-left:var(--center-left-margin,0);
+}
+
+.tituloPagina{
+   color:#BE5FDB;
+   text-align: left;
+   font-size: 3vw;
+}
+.form{
+   background-color: #212A36;
+
+   border:1px;
+   border-radius: 16px;
+   border-color: #4D555E;
+   border-style: solid;
+
+   font-size: 2.5vw;
+
+   padding: 6%;
+   margin-right: 20%;
+   margin-bottom: 3%;
+
+   text-align: left;
+
+}
+.input{
+
+   background-color: var(--cor-do-fundo-da-pagina);
+   border:1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
+
+   color:#B6B8BB;
+
+   font-weight: 400;
+   font-size: var(--input-font-size);
+   
+   margin-bottom: var(--input-margin-bottom);
+   padding:var(--form-left-margin);
+
+   width: auto;
+}
+.imgUsuario{
+   grid-column: 2;
+
+   height:70px;
+
+   width:70px;
+
+}
+.formButton{
+   background-color:#4848B6;
+
+   border-color: #4848B6;
+   border-style: none;
+   border-radius:15px;
+
+   font-size: var(--input-font-size);
+
+   margin-bottom: -3%;
+
+   padding: 1.5%;
+
+   width:100%;
+}
+@media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
+   .paginaBody{
+      --center-left-margin:0%;
+      --input-margin-bottom:10%;
+   }
+   .tituloPagina{
+      text-align: center;
+   }
+   .form{
+      margin-left: 0;
+      margin-right: 0;
+   }
+}
+
+/*#4D555E*/
+
+
