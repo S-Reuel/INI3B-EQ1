@@ -1,7 +1,8 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
-import { postUser } from '../data/services/API.jsx'
+import { obterValor, postUser } from '../data/services/API.jsx'
 import registroStyle from '../ui/styles/Shared/FormConta.module.css'
+import { redirecionar } from './util/functions.jsx'
 
 export default function Registro() {
     const [nome, setNome] = useState('')
@@ -13,12 +14,11 @@ export default function Registro() {
     const onSave = async (e) => {
         e.preventDefault()
         let res = postUser({nome, email, password, user_git, excluido})
-        if(res.error == ""){
-            
+        if(await obterValor(res) == true){
+            redirecionar('login')
         } else {
-            
+            alert('Credenciais inválidas')
         }
-        
     }
 
     return (
@@ -43,17 +43,6 @@ export default function Registro() {
                         />
                     </label>
                     <br/>
-                    <label >
-                        Senha:
-                        <br/>
-                        <input 
-                            className={registroStyle.input}
-                            type="password" nome="senha" 
-                            placeholder="Digite sua senha" required 
-                            onChange={(e) => setSenha(e.target.value)}   
-                        />
-                    </label>
-                    <br/>
                     <label>
                         E-mail:<br/>
                         <input               
@@ -72,6 +61,17 @@ export default function Registro() {
                         placeholder="Digite seu nome no github" required
                         onChange={(e) => setNg(e.target.value)}
                     />
+                    </label>
+                    <br/>
+                    <label >
+                        Senha:
+                        <br/>
+                        <input 
+                            className={registroStyle.input}
+                            type="password" nome="senha" 
+                            placeholder="Digite sua senha" required 
+                            onChange={(e) => setSenha(e.target.value)}   
+                        />
                     </label>
                     <br/>
                     <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>

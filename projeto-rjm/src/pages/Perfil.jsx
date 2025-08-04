@@ -41,10 +41,11 @@ export default function Perfil() {
                     <div>
                         {apr()}
                     </div>
+                    <button onClick={() => redirecionar('edUser')}>Editar</button>
                 </center>
             </>
         )
     } else {
-        return(redirecionar('login'))
+        return (redirecionar('login'))
     }
 }

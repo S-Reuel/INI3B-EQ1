@@ -1,4 +1,3 @@
-import React from "react";
 import appStyle from '../ui/styles/App/App.module.css'
 
 export default function App() {
@@ -87,7 +86,7 @@ export default function App() {
         <footer className="footer"> 
           <p>© 2025 GitClass. Todos os direitos reservados.</p>
           <div className="footer-links">
-            <a href="#">Sobre nós</a>
+            <a href="/sobre">Sobre nós</a>
             <br/>
             <a href="#" >Suporte</a>
             <br/>

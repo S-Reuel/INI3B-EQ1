@@ -10,12 +10,11 @@ export default function Login() {
         e.preventDefault()
         let mensagem = await postLogin({email, password})
         if(mensagem!=undefined){
-            document.getElementById("response").innerHTML = mensagem
+            document.getElementById("response").innerHTML = "Credenciais inválidas"
         }
     } 
 
     return (
-        
         <div className={loginStyle.page}>
             <div className={loginStyle.logo}>
                 <img 
@@ -26,7 +25,7 @@ export default function Login() {
             </div>
             <center className={loginStyle.center}>
                 <h1 className={loginStyle.pageText}>Login</h1>
-                <h3 id="response"></h3>
+                <h3 className={loginStyle.response} id="response"></h3>
                 <form onSubmit={onSave} className={loginStyle.form}>
                         <label>
                             E-mail<br/>

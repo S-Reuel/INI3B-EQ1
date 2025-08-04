@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getProjId, updateProj } from "../data/services/API";
 import { useEffect, useState } from "react";
-import { dateFormatter, voltar } from "./util/functions";
+import { voltar } from "./util/functions";
 
 export default function Editar_Projeto() {
     const { id } = useParams()
@@ -10,16 +10,15 @@ export default function Editar_Projeto() {
 
     useEffect(()=>{
         async function fetch() {
-        const req = await getProjId(id)
-        setNome(req.nome)
-        setDesc(req.descricao)}
+            const req = await getProjId(id)
+            setNome(req.nome)
+            setDesc(req.descricao)
+        }
         fetch()
     }, [])
 
     const onSave = async (e) => {
         e.preventDefault()
-        // let data = new Date()
-        // let data_update = dateFormatter(data)
         updateProj(id, {nome, descricao})
     }
 
@@ -54,3 +53,7 @@ export default function Editar_Projeto() {
         </div>
     )
 }
+
+/*
+    Concertar os campos de input
+*/

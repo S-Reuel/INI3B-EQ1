@@ -16,6 +16,7 @@ import EditUser from "./Editar_Usuario";
 import Perfil from "./Perfil";
 import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
+import Editar_Equipe from "./Editar_Equipe";
 
 export default function Routers() {
     return (
@@ -24,7 +25,7 @@ export default function Routers() {
                 {/* Usuário  */}
                 <Route path="/" element={<App />} />
                 <Route path="/usuarios" element={<Usuarios />} />
-                <Route path="/edit/usuarios/:id" element={<EditUser />} />
+                <Route path="/edit/usuarios/" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />
                 <Route path="/update/usuario" element={<UpdateUser />} />
                 <Route path="/perfil" element={<Perfil />} />
@@ -32,17 +33,18 @@ export default function Routers() {
                 <Route path="/login" element={<Login />} />
                 <Route path="login/esqueciSenha" element={<EsqueciSenha />} />
                 <Route path="login/redefinirSenha" element={<RedefinirSenha />} />
-                {/* Projetos  */}
-                <Route path="/projetos" element={<Projetos />} />
-                <Route path="edit/projetos/:id" element={<Editar_Projeto />} />
-                <Route path="/add/projetos" element={<AddProj />} />
-                {/*  Sprints */}
-                <Route path="/projetos/sprints/:id" element={<Sprints />} />
-                <Route path="/projetos/add/sprints" element={<AddSprints />} />
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
+                <Route path="edit/equipe/:id" element={<Editar_Equipe />} />
                 <Route path="/add/equipes" element={<AddEqui />} />
                 <Route path="/sobre" element={<Sobre />} />
+                {/* Projetos  */}
+                <Route path="/projeto/:id" element={<Projetos />} />
+                <Route path="edit/projeto/:id" element={<Editar_Projeto />} />
+                <Route path="/add/projeto" element={<AddProj />} />
+                {/*  Sprints */}
+                <Route path="/projeto/sprints/:id" element={<Sprints />} />
+                <Route path="/projetos/add/sprints" element={<AddSprints />} />
             </Routes>
         </Router>
     )

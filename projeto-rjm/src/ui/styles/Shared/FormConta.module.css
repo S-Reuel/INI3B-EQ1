@@ -63,6 +63,9 @@
  .link{
      text-decoration: none;
  }
+ .response{
+    color: red;
+ }
  @media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
      .logo {
          visibility:hidden
