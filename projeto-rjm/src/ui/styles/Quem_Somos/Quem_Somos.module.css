@@ -1,5 +1,5 @@
 body{
-    background-color: #151B23;
+    background-color: var(--cor-do-fundo-da-pagina);;
 }
 .fotos_integrantes{
     height: 150px;
