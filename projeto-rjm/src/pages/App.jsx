@@ -15,13 +15,8 @@ export default function App() {
   return (
     <div className={appStyle.app}>    
       {/* Navbar */}
-      <nav className={appStyle.navbar}>
-          <img className={appStyle.navlogo} />
-          <div className={appStyle.navButton}>
-            <button onClick={A} className={appStyle.login}>Fazer Login</button>
-            <button onClick={B} className={appStyle.signup}>Cadastre-se</button>
-          </div>
-      </nav>        
+                      <CabProj/>
+
         <article className={appStyle.a} >
           <p className={appStyle.welcomeText}>
             Seja bem Vindo!
@@ -38,6 +33,7 @@ export default function App() {
                 <button className={appStyle.butCadastro}>Cadastre-se</button>
           </div>
         </article>
+        
     </div>
   )
 }

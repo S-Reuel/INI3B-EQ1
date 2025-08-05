@@ -9,8 +9,6 @@
      font-size:100%;
  }
  .page * {
-
-     font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
      font-weight: 400;
      font-size: 2vh;
  }

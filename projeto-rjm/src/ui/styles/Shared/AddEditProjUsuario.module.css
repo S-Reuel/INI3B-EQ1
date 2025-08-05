@@ -11,7 +11,6 @@
    color:#FFFFFF;
 }
 .center * {
-   font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
    font-weight: 700;
 }
 .center{
@@ -41,7 +40,7 @@
 
 }
 .input{
-   background-color: var(--cor-do-fundo-da-pagina);
+   background-color: #151B23;
    border:1px;
    border-color: #4D555E;
    border-style: solid;
