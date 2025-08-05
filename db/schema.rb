@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_01_185726) do
   create_table "equipe_projetos", force: :cascade do |t|
     t.integer "equipe_id", null: false
     t.integer "projeto_id", null: false
@@ -38,6 +38,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "projeto_sprints", force: :cascade do |t|
+    t.integer "projeto_id", null: false
+    t.integer "sprint_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projeto_id"], name: "index_projeto_sprints_on_projeto_id"
+    t.index ["sprint_id"], name: "index_projeto_sprints_on_sprint_id"
+  end
+
   create_table "projetos", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
@@ -54,6 +63,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
     t.datetime "updated_at", null: false
     t.integer "projeto_id"
     t.index ["projeto_id"], name: "index_sprints_on_projeto_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descricao"
+    t.datetime "data_criacao"
+    t.datetime "data_alteracao"
+    t.integer "status", default: 0
+    t.string "arquivos"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "usuario_equipes", force: :cascade do |t|
@@ -80,6 +100,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
 
   add_foreign_key "equipe_projetos", "equipes"
   add_foreign_key "equipe_projetos", "projetos"
+  add_foreign_key "projeto_sprints", "projetos"
+  add_foreign_key "projeto_sprints", "sprints"
   add_foreign_key "sprints", "projetos"
   add_foreign_key "usuario_equipes", "equipes"
   add_foreign_key "usuario_equipes", "usuarios"
