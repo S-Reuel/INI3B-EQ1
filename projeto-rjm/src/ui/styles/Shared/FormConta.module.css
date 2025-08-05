@@ -1,12 +1,15 @@
  .page  {
     --form-height-input: 200%;/*TO DO:fazer mais parecido com o design no figma;*/
     --center-padding-left:10%;
+     background-color:#151B23;
+     color:white;
      display:grid;
      grid-template-columns: 53vw 47vw;
      grid-template-rows: 20vh 60vh 20vh;
      font-size:100%;
  }
  .page * {
+
      font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
      font-weight: 400;
      font-size: 2vh;
@@ -15,6 +18,8 @@
     cursor:pointer;/*por algum motivo o meu mouse nao estava mudando para o formato de clicar quando estivesse sobre um link. se isso não ocorrer novamente, pode tirar essa parte */
  }
  .logo{
+    background-Image:url("/src/ui/icons/codra-background-dark.svg");
+
      grid-column: 1;
      grid-row: 1/span 3;
      background-size: cover; /*para que o svg de fundo cubra todo o espaco na esquerda*/
@@ -24,6 +29,8 @@
      height:100vh;
  }
  .logoImage{
+     content:url("/src/ui/icons/codra-icon-dark.svg");
+
      grid-row: 2/ span 1;
      width:50vw;
      grid-column: 1/ span 1;
@@ -44,6 +51,8 @@
  }
  
  .input{ 
+     border-color: "#bebebe";
+     border-style: none;
      padding-left:5%;
      border-radius: 15px;
      color:#B6B8BB;
@@ -61,6 +70,8 @@
      color:white;
  }
  .link{
+     color:#d39745;
+
      text-decoration: none;
  }
  .response{
@@ -82,48 +93,7 @@
      }
  
  }
- @media (prefers-color-scheme: dark) { /*usado para mudar para tema claro ou escuro || TO DO:adicionar botao que muda a cor de fundo do site*/
-      .page{
-         background-color:#151B23;
-         color:white;
-     }
-     .logo{
-         background-Image:url("/src/ui/icons/codra-background-dark.svg");
-     }
-     .logoImage{
-         content:url("/src/ui/icons/codra-icon-dark.svg");
-     }
-     .link{
-         color:#d39745;
-     }
-     .input{
-         border-color: "#bebebe";
-         border-style: none;
- 
-     }
-   }
- @media (prefers-color-scheme: light) {
-     .page{
-         background-color:#E8E8F6;
 
-         color:#151B23;
-     }
-     .logo{
-        
-         background-Image:url("/src/ui/icons/codra-background-dark.svg");
-     }
-     .logoImage{
-         content:url("/src/ui/icons/codra-icon-light.svg"); /*TO DO:o icone atual esta desatualizado. colocar o icone novo*/
-     }
-     .link{
-         color:#6666C2;
-         
-     }
-     .input{
-         border-color: #BEBEBE;
-     }
- }
- 
  
  
  
