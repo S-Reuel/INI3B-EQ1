@@ -24,43 +24,6 @@ export default function AddProj() {
         )
     }
 
-   return (
-       <div className={addProjStyle.paginaBody}>
-           <CabProj/>
-           <center className={addProjStyle.center}>
-               <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
-               <form onSubmit={onSave} className={addProjStyle.form}>
-                   <label>
-                       <label className={addProjStyle.lbl}>Nome do Projeto</label>
-                       <br/>
-                       <input
-                           className={addProjStyle.input}
-                           type="text" name="nome"
-                           placeholder="Digite aqui o nome do projeto" required
-                           onChange={(e) => setNome(e.target.value)}
-                       />
-                   </label>
-                   <br/>
-                   <label>
-                        
-                       <label className={addProjStyle.lbl}>Descrição (opcional)</label>
-                       <br/>
-                       <input
-                           type="text" name="descricao"
-                           className={addProjStyle.input}
-                           placeholder="Digite aqui descrição do projeto" required
-                           onChange={(e) => setDesc(e.target.value)}  
-                       />
-                   </label>
-                   <br/>
-                   <button type="submit" className={addProjStyle.formButton}>Criar Projeto</button>
-               </form>
-               <button onClick={voltar}>Voltar</button>
-           </center>
-       </div>
-   )
-}
-
     if (localStorage.getItem('authToken')) {
         return (
             <div className={addProjStyle.addProj}>
