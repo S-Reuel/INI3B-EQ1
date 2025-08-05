@@ -13,6 +13,41 @@ class Api::V2::UsuarioEquipesController < ApplicationController
     render json: @usuario_equipe
   end
 
+  # GET /equipe_de_user/1
+  def show_by_user_id
+    @usuario = Usuario.find(params[:usuario_id])
+
+    @equipe_usuario = @usuario.usuario_equipes
+
+    @equipes = @usuario.equipes
+
+    @equipes_com_papel = @equipes.map do |equipe|
+    papel = @equipe_usuario.find { |p| p.equipe_id == equipe.id }
+
+    {
+      id: equipe.id,
+      nome: equipe.nome,
+      descricao: equipe.descricao,
+      papel: papel&.papel,
+      created_at: equipe.created_at,
+      updated_at: equipe.updated_at
+    }
+  end
+
+  render json: {
+    equipes: @equipes_com_papel
+  }
+  end
+
+  # GET /membros/1
+  def show_members
+    @equipe = Equipe.find(params[:equipe_id])
+
+    @membros = @equipe.usuarios
+
+    render json: @membros
+  end
+
   # POST /usuario_equipes
   def create
     @usuario_equipe = UsuarioEquipe.new(usuario_equipe_params)
