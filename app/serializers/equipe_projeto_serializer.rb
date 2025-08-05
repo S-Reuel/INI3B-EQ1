@@ -1,5 +1,5 @@
 class EquipeProjetoSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :equipe
-  has_one :projeto
+  belongs_to :equipe
+  belongs_to :projeto
 end
