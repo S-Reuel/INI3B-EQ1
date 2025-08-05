@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import { getProj } from "../data/services/API.jsx";
+import { getProjetosByEquipe } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
+import { useParams } from "react-router-dom";
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
-
+    let {id} = useParams();
     useEffect(() => {
         async function fetch() {
-            let res = await getProj()
+            let res = await getProjetosByEquipe(id)
             setProj(res)
         }
         fetch()
@@ -19,13 +20,13 @@ export default function Projetos() {
 
     const caminho = (id, tipo) => {
         if(tipo == 'spr'){
-            location.href = `/projetos/sprints/${id}`
+            location.href = `/projeto/sprints/${id}`
         } else if (tipo == 'ed'){
-            location.href = `/edit/projetos/${id}`
+            location.href = `/edit/projeto/${id}`
         }
     }
 
-    function apr() {
+    function apr() {        
         return proj.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
             return (
@@ -57,18 +58,31 @@ export default function Projetos() {
         )})
     }
     if (localStorage.getItem('authToken')) {
-        return (
-            <>
-              <CabProj />
-              <center className={StyleProj.bodyProjs}>
-                  <br />
-                  <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                  <br /><br /><br />
-                  { apr() }
-                  <br />
-              </center>
-            </>
-        )
+        // if(proj) {
+            return (
+                <>
+                  <CabProj />
+                  <center className={StyleProj.bodyProjs}>
+                      <br />
+                      <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                      <br /><br /><br />
+                      {apr ()}
+                      <br />
+                  </center>
+                </>
+            )
+        // } else {
+        //     return (<>
+        //           <CabProj />
+        //           <center className={StyleProj.bodyProjs}>
+        //               <br />
+        //               <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+        //               <br /><br /><br />
+        //               <h4>Sem projetos! Crie projetos!</h4>
+        //               <br />
+        //           </center>
+        //         </>)
+        // }
     } else {
         return (location.href="/login")
     }
