@@ -8,7 +8,7 @@ const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
     baseURL: 'https://a2a488ab3913.ngrok-free.app/api/v2/'  /* Ngrok */
 })
-/* Função para trar Promise */
+/* Função para tratar Promise */
 export async function obterValor(valor) {
     let resultado = await valor
     return resultado
@@ -60,18 +60,48 @@ export async function deleteUser(id) {
     }
 }
 
-/* Login */
-export async function postLogin(param) {
+/* CRUD's Equipes */
+export async function postEq(param) {
+    await URL.post('equipes', param)
+        .then((res) => {
+            res.data
+            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+            if (bool)
+                location.href = '../equipes'
+        });
+}
+
+export async function getEquipeById(id) {
     try {
-        let r = await URL.post('auth/login', param)
-        const t = r.data.token;
-        if (t != '') {
-            onSession('authToken', t, param.email)
-            location.href = '/equipes'
-        }
+        let r = await URL.get(`equipes/${id}`)
+        return r.data
     } catch (error) {
-        return (error);
+        return (error.status);
     }
+}
+
+export async function getEquipeByUser() {
+    try {
+        let req = getUserByEmail()
+        let a = await obterValor(req)
+        let r = await URL.get(`equipe/equipe_de_user/${a.id}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function updateEq(id, param) {
+    try {
+        let r = await URL.patch(`equipes/${id}`, param).then(() => redirecionar('eq'))
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function deleteEq(id) {
+    await URL.delete(`equipes/${id}`)
+        .then((res) => res.data);
 }
 
 /*  CRUD's Projetos */
@@ -83,15 +113,6 @@ export async function postProj(param) {
             if (bool)
                 location.href = '../Projetos'
         });
-}
-
-export async function getProj() {
-    try {
-        let r = await URL.get("projetos")
-        return r.data
-    } catch (error) {
-        return (error.status);
-    }
 }
 
 export async function getProjetosByEquipe(id) {
@@ -127,47 +148,64 @@ export async function deleteProj(id) {
         .then((res) => res.data);
 }
 
-/* CRUD's Equipes */
-export async function postEq(param) {
-    await URL.post('equipes', param)
+/*  CRUD's Sprints */
+export async function postSprint(param) {
+    await URL.post('sprints', param)
         .then((res) => {
             res.data
             let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
             if (bool)
-                location.href = '../equipes'
+                location.href = '../Projetos'
         });
 }
 
-export async function getEq() {
+export async function getProjetosByEquipe(id) {
     try {
-        let r = await URL.get("equipes")
+        let res = await URL.get(`projeto/projeto_de_equipe/${id}`)
+        let tratado = res.data.projetos
+        return tratado
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function getProjId(id) {
+    try {
+        let r = await URL.get(`projetos/${id}`)
         return r.data
     } catch (error) {
         return (error.status);
     }
 }
 
-export async function getEquipeById(id) {
-    try {
-        let r = await URL.get(`equipes/${id}`)
-        return r.data
-    } catch (error) {
-        return (error.status);
+export async function updateProj(id, param) {
+    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
+    if (bool) {
+        await URL.patch(`projetos/${id}`, param).then(() => { voltar() })
+    } else {
+        location.reload()
     }
 }
 
-export async function updateEq(id, param) {
-     try {
-        let r = await URL.patch(`equipes/${id}`, param).then(()=> redirecionar('eq'))
-    } catch (error) {
-        return (error.status);
-    }
-}
-
-export async function deleteEq(id) {
-    await URL.delete(`equipes/${id}`)
+export async function deleteProj(id) {
+    await URL.delete(`projetos/${id}`)
         .then((res) => res.data);
 }
+
+/* Login */
+export async function postLogin(param) {
+    try {
+        let r = await URL.post('auth/login', param)
+        const t = r.data.token;
+        if (t != '') {
+            onSession('authToken', t, param.email)
+            location.href = '/equipes'
+        }
+    } catch (error) {
+        return (error);
+    }
+}
+
 /*  Alteração de senha   */
 export async function esqueciSenha(param) {
     let r = await URL.post(`esqueci/`, { email: param })
@@ -178,9 +216,3 @@ export async function redefinirSenha(t, e, p) {
     let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
     return r
 }
-
-/*
-    Deve ser filtrado os projetos por usuários 
-    --> Deve ser pego o id_usuario (l.29) e jogar o id_usuario no filtro de equipe-usuario (l.144)
-    --> Pegar o id_equipe (l.144) e jogar o id_equipe para um filtro de projetos-equipes (l.89)
-*/

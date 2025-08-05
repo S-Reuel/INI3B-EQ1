@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { getEq, postProj } from "../data/services/API"
+import { useEffect, useState } from 'react'
+import { getEquipeByUser, postProj } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
@@ -10,9 +10,16 @@ export default function AddProj() {
     const [descricao, setDesc] = useState('')
     const [equipes, setEquipes] = useState([])
 
+    useEffect(() => {
+        async function fetch() {
+            const req = await getEquipeByUser()
+            setEquipes(req.equipes)
+        }
+        fetch()
+    }, [])
+
     const onSave = async (e) => {
         e.preventDefault()
-        setEquipes(await getEq())
         let data = new Date()
         let data_criacao = dateFormatter(data)
         postProj({ nome, descricao, data_criacao })
@@ -20,7 +27,7 @@ export default function AddProj() {
 
     function listaEquipe() {
         return equipes.map((i) =>
-            <option value="">{i.nome}</option>
+            <option>{i.nome}</option>
         )
     }
 
@@ -51,15 +58,19 @@ export default function AddProj() {
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
+                        <br />
                         <label >
                             <label className={addProjStyle.lblDesc}>Equipe</label>
                             <br />
-                            <select name="">
+                            <select>
+                                <option>Selecione</option>
                                 {listaEquipe()}
                             </select>
                         </label>
                         <br />
                         <button type="submit" className={addProjStyle.formButton}>Criar Projeto</button>
+                        <br /><br />
+                        <a onClick={() => redirecionar('addEq')}>Nova Equipe</a>
                     </form>
                     <button onClick={voltar}>Voltar</button>
                 </center>
