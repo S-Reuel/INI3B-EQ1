@@ -4,12 +4,11 @@ import { redirecionar } from "./util/functions"
 
 export default function Equipes(){
     const [eqs, setEqs] = useState([])
-    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getEq() // Filtrar equipes pelo usuário                    
-            res == 500? setErrors(res) : setEqs(res) 
+            const res = await getEq() // Filtrar equipes pelo usuário
+            setEqs(res) 
         }
         fetch()
     }, [])

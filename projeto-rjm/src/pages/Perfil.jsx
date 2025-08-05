@@ -5,6 +5,7 @@ import { redirecionar } from "./util/functions"
 
 export default function Perfil() {
     const [perfil, setPerfil] = useState([])
+
     useEffect(() => {
         async function fetch() {
             let res = await getUserByEmail()
@@ -14,13 +15,13 @@ export default function Perfil() {
     }, [])
 
     function apr() {
-        return (
+        return perfil.map(i =>
             <>
-
-
+                <tr>{i.nome}</tr>
+                <tr>{i.email}</tr>    
+                <tr>{i.user_git}</tr>
             </>
-        )
-    }
+    )}
     if (localStorage.getItem('authToken')) {
         return (
             <>

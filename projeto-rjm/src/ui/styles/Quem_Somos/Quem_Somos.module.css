@@ -20,13 +20,10 @@ body{
     gap: 0.7%;
 }
 .integrante{
-    background-color:#151B23;
     border-radius: 5px;
     padding: 5px;
     color: white;
 }
-.quemsomosbody{
-    
-    
+@media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
 
 }

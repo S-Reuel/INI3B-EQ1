@@ -57,8 +57,9 @@ export default function Projetos() {
             </>
         )})
     }
+    
     if (localStorage.getItem('authToken')) {
-        // if(proj) {
+        if(proj.length != 0) {
             return (
                 <>
                   <CabProj />
@@ -71,18 +72,19 @@ export default function Projetos() {
                   </center>
                 </>
             )
-        // } else {
-        //     return (<>
-        //           <CabProj />
-        //           <center className={StyleProj.bodyProjs}>
-        //               <br />
-        //               <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-        //               <br /><br /><br />
-        //               <h4>Sem projetos! Crie projetos!</h4>
-        //               <br />
-        //           </center>
-        //         </>)
-        // }
+        } else {
+            return (
+                <>
+                  <CabProj />
+                  <center className={StyleProj.bodyProjs}>
+                      <br />
+                      <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                      <br /><br /><br />
+                      <h4>Sem projetos! Crie projetos!</h4>
+                      <br />
+                  </center>
+                </>)
+        }
     } else {
         return (location.href="/login")
     }
