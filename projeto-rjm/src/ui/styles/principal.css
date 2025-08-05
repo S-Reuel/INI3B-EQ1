@@ -8,9 +8,16 @@ body{
    padding: 0; /*conserta o espaco que afeta todas as paginas, visivel principalmente na pagina de cadastro. TO DO:descobrir o que está causando isso*/
 }
 
-/* na teoria, da pra colocar aqui um tema escuro e claro que afeta todo o site
+/* na teoria, da pra colocar aqui um tema escuro e claro que afeta todo o site*/
+
 @media (prefers-color-scheme: dark) {
-  
+  body{
+    --cor-do-fundo-da-pagina:#151B23;
+  }
 }
-@media (prefers-color-scheme: light) {}
-*/
+@media (prefers-color-scheme: light) {
+  body{
+    --cor-do-fundo-da-pagina:#E8E8F6;
+    
+  }
+}

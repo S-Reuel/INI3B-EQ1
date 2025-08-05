@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { getEq, postProj } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
-import addProjStyle from "../ui/styles/AddProjetos/AddProjetos.module.css"
+import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 
 export default function AddProj() {
@@ -23,6 +23,43 @@ export default function AddProj() {
             <option value="">{i.nome}</option>
         )
     }
+
+   return (
+       <div className={addProjStyle.paginaBody}>
+           <CabProj/>
+           <center className={addProjStyle.center}>
+               <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
+               <form onSubmit={onSave} className={addProjStyle.form}>
+                   <label>
+                       <label className={addProjStyle.lbl}>Nome do Projeto</label>
+                       <br/>
+                       <input
+                           className={addProjStyle.input}
+                           type="text" name="nome"
+                           placeholder="Digite aqui o nome do projeto" required
+                           onChange={(e) => setNome(e.target.value)}
+                       />
+                   </label>
+                   <br/>
+                   <label>
+                        
+                       <label className={addProjStyle.lbl}>Descrição (opcional)</label>
+                       <br/>
+                       <input
+                           type="text" name="descricao"
+                           className={addProjStyle.input}
+                           placeholder="Digite aqui descrição do projeto" required
+                           onChange={(e) => setDesc(e.target.value)}  
+                       />
+                   </label>
+                   <br/>
+                   <button type="submit" className={addProjStyle.formButton}>Criar Projeto</button>
+               </form>
+               <button onClick={voltar}>Voltar</button>
+           </center>
+       </div>
+   )
+}
 
     if (localStorage.getItem('authToken')) {
         return (
