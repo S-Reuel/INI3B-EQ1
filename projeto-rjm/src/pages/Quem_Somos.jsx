@@ -46,10 +46,7 @@ export default function Sobre() {
                         <img src={Roberto} className={QuemSomosStyle.fotos_integrantes}/>
                         <center>Roberto Enrico <br/> FrontEnd</center>
                     </div>
-
                </div>
-
-               
            </center>
        </div>
    )

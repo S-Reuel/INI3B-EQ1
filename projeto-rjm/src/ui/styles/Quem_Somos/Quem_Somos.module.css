@@ -1,10 +1,5 @@
-.quemsomosbody{
-    position: absolute;
-    width:100vw;
-    min-height: 100%;
-    background-image:  url("/src/ui/icons/fundoAppQuemSomos.svg");
-    background-size: cover;
-
+body{
+    background-color: #151B23;
 }
 .fotos_integrantes{
     height: 150px;
