@@ -10,14 +10,4 @@ body{
 
 /* na teoria, da pra colocar aqui um tema escuro e claro que afeta todo o site*/
 
-@media (prefers-color-scheme: dark) {
-  body{
-    --cor-do-fundo-da-pagina:#151B23;
-  }
-}
-@media (prefers-color-scheme: light) {
-  body{
-    --cor-do-fundo-da-pagina:#E8E8F6;
-    
-  }
-}
+

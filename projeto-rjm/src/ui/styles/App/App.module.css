@@ -1,41 +1,34 @@
-
 .app{
-    display:grid;
-    grid-template-rows: 10vh 90vh;
-    background-image: url("/src/ui/icons/fundoAppQuemSomos.svg");
-    font-family: "Space Grotesk";
-}
-.navbar{
-    grid-row:1/span 1;
-    position:fixed;
-    width: 100%;
-    display: flex;
-}
-.navlogo{
-    grid-column: 1/span 1;
-    content:url("/src/ui/icons/codra-icon-dark.svg");
-    width:10vw;
-}
-.navButton{
-    display:flex;
-    justify-content: flex-end;    
-    position: absolute;
-    right: 0;
+    /* Usa a altura mínima para que o fundo cubra toda a tela, mesmo com pouco conteúdo */
+    min-height: 100vh;
+    background-color: #151B23;
+    background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
+    background-size: cover;
+    background-position: bottom center;
+    background-attachment: fixed; /* Adiciona o fixed para o fundo não rolar */
 }
 .login{
-    border-radius: 15px;
-    border-color: #F9EFFB;
+    height: 40px;
+    width: 120px;
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px; /* Adiciona uma borda para o botão */
+    background-color: #FFB44D; /* Torna o botão transparente para combinar com a navbar */
+    color: white;
 }
 .signup{
-    border-radius: 15px;
+    height: 40px;
+    width: 120px;
+    border: 0px;
+    border-radius: 12px;
+    font-size: 17px;
     background-color: #AD56C7;
-    border-color: #F9EFFB;
+    color: white;
 }
 .a{
-    grid-row:2/span 1;
-    grid-column:2/span 1;
-    margin-top: 10vh;
-    margin-left:25vw;
+    /* Adiciona um padding-top para o artigo para que ele não fique debaixo da navbar */
+    padding-top: 100px; /* Ajuste o valor conforme a altura da sua navbar */
+    margin-left:25%;
     margin-right:25vw;
 }
 .welcomeText{
@@ -44,6 +37,8 @@
 .a > h1{
     color:#F9EFFB;
     font-weight: 700;
+    font-size: 50px;
+    margin: 0px;
 }
 .textoArticle
 {
@@ -59,13 +54,17 @@
     padding: 16px;
     width: 49vw;
     font-weight: 400;
+    display: flex; /* Adiciona display: flex para alinhar os elementos internos */
+    align-items: center;
+    justify-content: space-between;
 }
 .butCadastro{
     background-color: white;
     color:#BE5FDB;
-    width: 49vw;
+    width: 200px; /* Ajuste o tamanho do botão para não ocupar 100% da div */
     border-radius: 8px;
     border-style: none;
     font-family: inherit;
-
+    font-size: 16px;
+    height: 40px;
 }
