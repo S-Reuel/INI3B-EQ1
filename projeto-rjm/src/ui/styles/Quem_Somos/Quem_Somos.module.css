@@ -1,5 +1,10 @@
-body{
-    background-color: var(--cor-do-fundo-da-pagina);;
+.quemsomosbody{
+    position: absolute;
+    width:100vw;
+    min-height: 100%;
+    background-image:  url("/src/ui/icons/fundoAppQuemSomos.svg");
+    background-size: cover;
+
 }
 .fotos_integrantes{
     height: 150px;
@@ -20,13 +25,10 @@ body{
     gap: 0.7%;
 }
 .integrante{
-    background-color:#151B23;
     border-radius: 5px;
     padding: 5px;
     color: white;
 }
-.quemsomosbody{
-    
-    
+@media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
 
 }

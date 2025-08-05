@@ -44,7 +44,7 @@ export default function Sobre() {
                     </div>
                     <div className={QuemSomosStyle.integrante}>
                         <img src={Roberto} className={QuemSomosStyle.fotos_integrantes}/>
-                        <center>Roberto Enrico <br/> faz nada</center>
+                        <center>Roberto Enrico <br/> FrontEnd</center>
                     </div>
 
                </div>
