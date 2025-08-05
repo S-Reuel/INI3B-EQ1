@@ -54,6 +54,7 @@
     padding: 16px;
     width: 49vw;
     font-weight: 400;
+    font-size: 20px;
     display: flex; /* Adiciona display: flex para alinhar os elementos internos */
     align-items: center;
     justify-content: space-between;
