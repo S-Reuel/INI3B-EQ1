@@ -61,6 +61,6 @@ class Api::V2::ProjetosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def projeto_params
-      params.expect(projeto: [ :nome, :descricao, :data_criacao ])
+      params.expect(projeto: [ :nome, :descricao ])
     end
 end
