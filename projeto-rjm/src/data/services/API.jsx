@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://c1f066adc6ce.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://a2a488ab3913.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 /* Função para trar Promise */
 export async function obterValor(valor) {
@@ -43,12 +43,15 @@ export async function getUserByEmail() {
 }
 
 export async function updateUser(id, param) {
-    await URL.patch(`usuarios/${id}`, param)
-        .then((res) => res.data);
+    try {
+        await URL.patch(`usuarios/${id}`, param).then(() => redirecionar('perfil'));
+    } catch (error) {
+        alert(error.status)
+    }
 }
 
 export async function deleteUser(id) {
-    try{
+    try {
         await URL.patch(`usuarios/excluir/${id}`).then((r) => {
             redirecionar('perfil')
         })
@@ -113,7 +116,7 @@ export async function getProjId(id) {
 export async function updateProj(id, param) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
-        await URL.patch(`projetos/${id}`, param).then(() => {voltar()})
+        await URL.patch(`projetos/${id}`, param).then(() => { voltar() })
     } else {
         location.reload()
     }
@@ -144,18 +147,21 @@ export async function getEq() {
     }
 }
 
-export async function getEquipeByUser(id) {
+export async function getEquipeById(id) {
     try {
-        let r = await URL.get(`equipe/equipe_de_user/${id}`)
-        return r.data.id
+        let r = await URL.get(`equipes/${id}`)
+        return r.data
     } catch (error) {
         return (error.status);
     }
 }
 
-export async function updateEq(id) {
-    await URL.patch(`equipes/${id}`)
-        .then((res) => res.data);
+export async function updateEq(id, param) {
+     try {
+        let r = await URL.patch(`equipes/${id}`, param).then(()=> redirecionar('eq'))
+    } catch (error) {
+        return (error.status);
+    }
 }
 
 export async function deleteEq(id) {

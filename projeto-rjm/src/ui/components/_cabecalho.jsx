@@ -19,7 +19,7 @@ export default function CabProj() {
         </a>
       </div>
       <div className={cabProjetoStyle.cabecalhoDireita}>
-        <a href="/add/projetos">
+        <a href="/add/projeto">
           <img src={iconeMais} alt="Adicionar Projeto" className={cabProjetoStyle.cabecalhoIcone} />
         </a>
         <a href='/perfil'>

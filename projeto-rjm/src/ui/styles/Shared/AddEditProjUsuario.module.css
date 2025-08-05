@@ -1,8 +1,5 @@
 /*usado quando o usuário quer editar editar seu perfil(Editar_Usuario.jsx) ou criar um novo projeto(Add_Projetos.jsx)*/
 
-
-
-
 .paginaBody{
    --form-left-margin:3%;
    --center-left-margin:3%;
@@ -44,7 +41,6 @@
 
 }
 .input{
-
    background-color: var(--cor-do-fundo-da-pagina);
    border:1px;
    border-color: #4D555E;
@@ -99,5 +95,3 @@
 }
 
 /*#4D555E*/
-
-
