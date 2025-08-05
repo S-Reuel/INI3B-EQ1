@@ -30,7 +30,7 @@ export default function Editar_Projeto() {
                     <label>
                         Nome:<br />
                         <input
-                            type="text" nome="nome" value={nome}
+                            type="text" name="nome" defaultValue={nome}
                             placeholder="Digite seu nome" required
                             onChange={(e) => setNome(e.target.value)}
                         />
@@ -40,7 +40,7 @@ export default function Editar_Projeto() {
                         Descrição:
                         <br />
                         <input
-                            type="text" name="descricao" value={descricao}
+                            type="text" name="descricao" defaultValue={descricao}
                             placeholder="Digite a descrição" required
                             onChange={(e) => setDesc(e.target.value)}
                         />
