@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { getEq, postProj } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
-import addProjStyle from "../ui/styles/AddProjetos/AddProjetos.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 export default function AddSprints() {
     const [nome, setNome] = useState('')
@@ -25,15 +24,15 @@ export default function AddSprints() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div className={addProjStyle.addProj}>
+            <div >
                 <CabProj />
-                <center className={addProjStyle.center}>
-                    <h1 className={addProjStyle.tituloNovoProjeto}>Criar nova Sprint</h1>
-                    <form onSubmit={onSave} className={addProjStyle.form}>
+                <center>
+                    <h1>Criar nova Sprint</h1>
+                    <form onSubmit={onSave}>
                         <label>
-                            <label className={addProjStyle.lblProj}>Nome da Sprint</label><br />
+                            <label>Nome da Sprint</label><br />
                             <input
-                                className={addProjStyle.input}
+                            
                                 type="text" name="nome"
                                 placeholder="Digite aqui o nome da Sprint" required
                                 onChange={(e) => setNome(e.target.value)}
@@ -41,24 +40,23 @@ export default function AddSprints() {
                         </label>
                         <br />
                         <label >
-                            <label className={addProjStyle.lblDesc}>Descrição</label>
+                            <label>Descrição</label>
                             <br />
                             <input
                                 type="text" name="descricao"
-                                className={addProjStyle.input}
                                 placeholder="Digite aqui descrição da Sprint" required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
                         <label >
-                            <label className={addProjStyle.lblDesc}>Equipe</label>
+                            <label>Equipe</label>
                             <br />
                             <select name="">
                                 {listaEquipe()}
                             </select>
                         </label>
                         <br />
-                        <button type="submit" className={addProjStyle.formButton}>Criar Sprint</button>
+                        <button type="submit">Criar Sprint</button>
                     </form>
                     <button onClick={voltar}>Voltar</button>
                 </center>
