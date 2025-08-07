@@ -50,6 +50,7 @@
 
 .bttEditarProj {
     height: 30px;
+    line-height: 30px;
     width: 30px;
     position: absolute;
     right: 10px;
@@ -110,4 +111,19 @@
     text-align: center;
     width: 20px;
     padding-right: 10px;
+}
+
+.botaoNewProjeto{
+    position: absolute;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+}
+
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
 }

@@ -4,6 +4,7 @@ import CabProj from '../ui/components/_cabecalho.jsx';
 import { isFormat } from "./util/functions.jsx";
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
+import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom";
 
@@ -49,7 +50,7 @@ export default function Projetos() {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
-                            <img src={imgEditarProj} alt="" className="imgEditarProj"/>
+                            <img src={imgEditarProj} className={StyleProj.imgEditarProj}/>
                         </button>
                         <br />
                     </div>
@@ -69,7 +70,9 @@ export default function Projetos() {
                       <br /><br /><br />
                       {apr ()}
                       <br />
+                      
                   </center>
+                  <a href="/add/projeto"><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>
             )
         } else {
