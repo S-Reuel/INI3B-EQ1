@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { getEq, postProj } from "../data/services/API"
+import { useEffect, useState } from 'react'
+import { postProjeto } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
@@ -8,12 +8,19 @@ export default function AddSprints() {
     const [descricao, setDesc] = useState('')
     const [equipes, setEquipes] = useState([])
 
+    useEffect(() => {
+        async function fetch() {
+            const res = await getEquipeByUser() // Filtrar equipes pelo usuário
+            setEqs(res.equipes)
+        }
+        fetch()
+    }, [])
+
     const onSave = async (e) => {
         e.preventDefault()
-        setEquipes(await getEq())
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postProj({ nome, descricao, data_criacao })
+        postProjeto({ nome, data_criacao, data_fim, projetos_id })
     }
 
     function listaEquipe() {
@@ -32,7 +39,7 @@ export default function AddSprints() {
                         <label>
                             <label>Nome da Sprint</label><br />
                             <input
-                            
+
                                 type="text" name="nome"
                                 placeholder="Digite aqui o nome da Sprint" required
                                 onChange={(e) => setNome(e.target.value)}
@@ -66,3 +73,9 @@ export default function AddSprints() {
         return (redirecionar('login'))
     }
 }
+
+/*
+    Campos necessarios: nome da sprint, data de inicio, data de termino e id do projeto que ela está incerida;
+    mudar o forms
+    Criar Rotas na API
+*/

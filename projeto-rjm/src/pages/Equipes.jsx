@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
-import { getEq } from "../data/services/API";
-import { redirecionar } from "./util/functions";
+import { useEffect, useState } from "react"
+import { getEquipeByUser } from "../data/services/API"
+import { redirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx';
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css';
-
 
 export default function Equipes() {
     const [eqs, setEqs] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getEq() // Filtrar equipes pelo usuário
-            setEqs(res)
+            const res = await getEquipeByUser() // Filtrar equipes pelo usuário
+            setEqs(res.equipes)
         }
         fetch()
     }, [])

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { postEq } from "../data/services/API"
+import { postEquipe } from "../data/services/API"
 import { redirecionar, voltar } from "./util/functions"
 
 export default function AddEqui() {
@@ -7,7 +7,7 @@ export default function AddEqui() {
     const [descricao, setDesc] = useState('')
     const onSave = async (e) => {
         e.preventDefault()
-        postEq({ nome, descricao })
+        postEquipe({ nome, descricao })
     }
     if (localStorage.getItem('authToken')) {
         return (

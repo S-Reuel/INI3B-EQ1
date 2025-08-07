@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProjId, updateProj } from "../data/services/API";
+import { updateProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import { voltar } from "./util/functions";
 
@@ -8,9 +8,9 @@ export default function Editar_Projeto() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
 
-    useEffect(()=>{
+    useEffect(() => {
         async function fetch() {
-            const req = await getProjId(id)
+            const req = await updateProjetoId(id)
             setNome(req.nome)
             setDesc(req.descricao)
         }
@@ -19,39 +19,42 @@ export default function Editar_Projeto() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateProj(id, {nome, descricao})
+        updateProjeto(id, { nome, descricao })
     }
-
-    return (
-        <div>
-            <center>
-                <h1>Editar projeto</h1>
-                <form>
-                    <label>
-                        Nome:<br />
-                        <input
-                            type="text" name="nome" defaultValue={nome}
-                            placeholder="Digite seu nome" required
-                            onChange={(e) => setNome(e.target.value)}
-                        />
-                    </label>
-                    <br />
-                    <label >
-                        Descrição:
+    if (localStorage.getItem('authToken')) {
+        return (
+            <div>
+                <center>
+                    <h1>Editar projeto</h1>
+                    <form>
+                        <label>
+                            Nome:<br />
+                            <input
+                                type="text" name="nome" defaultValue={nome}
+                                placeholder="Digite seu nome" required
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+                        </label>
                         <br />
-                        <input
-                            type="text" name="descricao" defaultValue={descricao}
-                            placeholder="Digite a descrição" required
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                    </label>
-                    <br /><br />
-                    <button type="submit" onClick={onSave}>Enviar</button>
-                </form>
-                <button onClick={voltar}>Voltar</button>
-            </center>
-        </div>
-    )
+                        <label >
+                            Descrição:
+                            <br />
+                            <input
+                                type="text" name="descricao" defaultValue={descricao}
+                                placeholder="Digite a descrição" required
+                                onChange={(e) => setDesc(e.target.value)}
+                            />
+                        </label>
+                        <br /><br />
+                        <button type="submit" onClick={onSave}>Enviar</button>
+                    </form>
+                    <button onClick={voltar}>Voltar</button>
+                </center>
+            </div>
+        )
+    } else {
+        return (redirecionar('login'))
+    }
 }
 
 /*

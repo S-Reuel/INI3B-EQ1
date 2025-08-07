@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getEquipeById, updateEq } from "../data/services/API";
+import { getEquipeById, updateEquipe } from "../data/services/API";
 import { useEffect, useState } from "react";
 import { voltar } from "./util/functions";
 
@@ -19,7 +19,7 @@ export default function Editar_Equipe() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateEq(id, {nome, descricao})
+        updateEquipe(id, {nome, descricao})
     }
 
     return (
