@@ -62,13 +62,21 @@ export async function deleteUser(id) {
 
 /* CRUD's Equipes */
 export async function postEquipe(param) {
-    await URL.post('equipes', param)
-        .then((res) => {
-            res.data
-            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+    const usuario = await getUserByEmail()
+    await URL.post('equipes', param).then((res) => {
+        let usuario_id = usuario.id
+        let equipe_id = res.data.id
+        let papel = "dev"
+        addUserEquipe({usuario_id, equipe_id, papel}) 
+    });
+}
+
+async function addUserEquipe(param) {    
+    await URL.post('usuario_equipes', param).then(() => {
+        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
             if (bool)
                 location.href = '../equipes'
-        });
+    })
 }
 
 export async function getEquipeById(id) {
