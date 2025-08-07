@@ -1,26 +1,24 @@
  .page  {
-    --form-height-input: 200%;/*TO DO:fazer mais parecido com o design no figma;*/
+    --form-height-input: 6.6vh;/*TO DO:fazer mais parecido com o design no figma;*/
     --center-padding-left:10%;
      background-color:#151B23;
      color:white;
      display:grid;
      grid-template-columns: 53vw 47vw;
-     grid-template-rows: 20vh 60vh 20vh;
      font-size:100%;
  }
  .page * {
      font-weight: 400;
      font-size: 2vh;
  }
- a:hover, button:hover{
-    cursor:pointer;/*por algum motivo o meu mouse nao estava mudando para o formato de clicar quando estivesse sobre um link. se isso não ocorrer novamente, pode tirar essa parte */
+ button:hover{
+    cursor:pointer;/*--DIEGO:para que o mouse mude o seu icone, como se fosse um link, quando estiver em cima de um botao*/
  }
  .logo{
     background-Image:url("/src/ui/icons/codra-background-dark.svg");
 
      grid-column: 1;
-     grid-row: 1/span 3;
-     background-size: cover; /*para que o svg de fundo cubra todo o espaco na esquerda*/
+     background-size: cover; /*--DIEGO:para que o svg de fundo cubra todo o espaco na esquerda*/
      display: flex;
      justify-content: center;
      align-items: center;    
@@ -28,16 +26,17 @@
  }
  .logoImage{
      content:url("/src/ui/icons/codra-icon-dark.svg");
-
-     grid-row: 2/ span 1;
      width:50vw;
      grid-column: 1/ span 1;
  }
  .center{
      grid-column: 2;
-     grid-row: 2;
      text-align: left;
      padding-left: var(--center-padding-left);
+     display: flex;
+     flex-direction: column;
+     align-content:center;
+     justify-content:center;
  }
  .pageText{
      font-weight: 700;
@@ -45,7 +44,7 @@
  }
  .form > label {
      display:grid;
-     margin-bottom: 6.66vh;
+     margin-bottom: 3%;
  }
  
  .input{ 
@@ -57,8 +56,8 @@
      background-color: #FFFFFF;
      width:85%;
      height: var(--form-height-input);
- }
- .formButton{ /*TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
+}
+ .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
      background-color: #AD56C7;
      border-style: none;
      border-radius: 15px;
@@ -76,14 +75,20 @@
     color: red;
  }
  @media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
-     .logo {
+    .page{
+        grid-template-rows: 10vh 90vh;
+    }
+    .center{
+        grid-row: 2/span 1;
+    }
+    .logo {
          visibility:hidden
          }
      .logoImage{
          visibility:visible;
-         position: absolute;/*TO DO:HACK:para que a imagem possa sair do container e se mover. melhorar depois*/
+         position: absolute;/*TO DO:HACK:para que a imagem sempre apareca, mesmo que o resto da coluna nao apareca. melhorar depois*/
          top:0;
-         margin-left:var(--center-padding-left); /*junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
+         margin-left:var(--center-padding-left); /*--DIEGO:junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
          height: 20%;
      }
      .center{
