@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getEquipeByUser, postProj } from "../data/services/API"
+import { getEquipeByUser, postProjeto } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
@@ -22,7 +22,7 @@ export default function AddProj() {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postProj({ nome, descricao, data_criacao })
+        postProjeto({ nome, descricao, data_criacao })
     }
 
     function listaEquipe() {

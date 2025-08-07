@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProjId, updateProj } from "../data/services/API";
+import { updateProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import { voltar } from "./util/functions";
 
@@ -10,7 +10,7 @@ export default function Editar_Projeto() {
 
     useEffect(() => {
         async function fetch() {
-            const req = await getProjId(id)
+            const req = await updateProjetoId(id)
             setNome(req.nome)
             setDesc(req.descricao)
         }
@@ -19,7 +19,7 @@ export default function Editar_Projeto() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateProj(id, { nome, descricao })
+        updateProjeto(id, { nome, descricao })
     }
     if (localStorage.getItem('authToken')) {
         return (

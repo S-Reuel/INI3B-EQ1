@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { postProj } from "../data/services/API"
+import { postProjeto } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
@@ -20,7 +20,7 @@ export default function AddSprints() {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postProj({ nome, data_criacao, data_fim, projetos_id })
+        postProjeto({ nome, data_criacao, data_fim, projetos_id })
     }
 
     function listaEquipe() {

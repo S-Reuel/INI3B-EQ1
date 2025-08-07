@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://a2a488ab3913.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://b1aaabfe7c09.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 /* Função para tratar Promise */
 export async function obterValor(valor) {
@@ -61,7 +61,7 @@ export async function deleteUser(id) {
 }
 
 /* CRUD's Equipes */
-export async function postEq(param) {
+export async function postEquipe(param) {
     await URL.post('equipes', param)
         .then((res) => {
             res.data
@@ -91,7 +91,7 @@ export async function getEquipeByUser() {
     }
 }
 
-export async function updateEq(id, param) {
+export async function updateEquipe(id, param) {
     try {
         let r = await URL.patch(`equipes/${id}`, param).then(() => redirecionar('eq'))
     } catch (error) {
@@ -99,13 +99,13 @@ export async function updateEq(id, param) {
     }
 }
 
-export async function deleteEq(id) {
+export async function deleteEquipe(id) {
     await URL.delete(`equipes/${id}`)
         .then((res) => res.data);
 }
 
 /*  CRUD's Projetos */
-export async function postProj(param) {
+export async function postProjeto(param) {
     await URL.post('projetos', param)
         .then((res) => {
             res.data
@@ -125,7 +125,7 @@ export async function getProjetosByEquipe(id) {
     }
 }
 
-export async function getProjId(id) {
+export async function updateProjetoId(id) {
     try {
         let r = await URL.get(`projetos/${id}`)
         return r.data
@@ -134,7 +134,7 @@ export async function getProjId(id) {
     }
 }
 
-export async function updateProj(id, param) {
+export async function updateProjeto(id, param) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
         await URL.patch(`projetos/${id}`, param).then(() => { voltar() })
@@ -143,7 +143,7 @@ export async function updateProj(id, param) {
     }
 }
 
-export async function deleteProj(id) {
+export async function deleteProjeto(id) {
     await URL.delete(`projetos/${id}`)
         .then((res) => res.data);
 }
@@ -155,13 +155,13 @@ export async function postSprint(param) {
             res.data
             let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
             if (bool)
-                location.href = '../Projetos'
+                location.href = ''
         });
 }
 
-export async function getProjetosByEquipe(id) {
+export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.get(`projeto/projeto_de_equipe/${id}`)
+        let res = await URL.get(``)
         let tratado = res.data.projetos
         return tratado
     } catch (error) {
@@ -169,26 +169,26 @@ export async function getProjetosByEquipe(id) {
     }
 }
 
-export async function getProjId(id) {
+export async function getSprintsId(id) {
     try {
-        let r = await URL.get(`projetos/${id}`)
+        let r = await URL.get(``)
         return r.data
     } catch (error) {
         return (error.status);
     }
 }
 
-export async function updateProj(id, param) {
+export async function updateSprint(id, param) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
-        await URL.patch(`projetos/${id}`, param).then(() => { voltar() })
+        await URL.patch(`/${id}`, param).then(() => { voltar() })
     } else {
         location.reload()
     }
 }
 
-export async function deleteProj(id) {
-    await URL.delete(`projetos/${id}`)
+export async function deleteSprint(id) {
+    await URL.delete(`/${id}`)
         .then((res) => res.data);
 }
 
