@@ -1,0 +1,41 @@
+.equipeDiv{
+    background-color: wheat ;
+    width: 350px;
+    height: 300px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    transition: 0.5s;
+}
+
+.equipeDiv:hover{
+    cursor: pointer;
+    background-color: antiquewhite;
+
+}
+
+.equipeFlex{
+    display: flex;
+    width: 100vw;
+    height: max-content;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.botaoEditarEquipe{
+    position: absolute;
+    top: 86%;
+    left: 5%;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    background-color: lightblue;
+    transition: 0.5s;
+}
+
+.botaoEditarEquipe:hover{
+    background-color: aqua;
+}
