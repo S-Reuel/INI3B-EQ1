@@ -17,6 +17,7 @@ import Perfil from "./Perfil";
 import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
 import Editar_Equipe from "./Editar_Equipe";
+import Editar_Sprint from "./Editar_Sprint.jsx";
 
 export default function Routers() {
     return (
@@ -44,7 +45,8 @@ export default function Routers() {
                 <Route path="/add/projeto" element={<AddProj />} />
                 {/*  Sprints */}
                 <Route path="/projeto/sprints/:id" element={<Sprints />} />
-                <Route path="/projetos/add/sprints" element={<AddSprints />} />
+                <Route path="/projeto/add/sprint" element={<AddSprints />} />
+                <Route path="/projeto/edit/sprint/:id" element={<Editar_Sprint />} />
             </Routes>
         </Router>
     )

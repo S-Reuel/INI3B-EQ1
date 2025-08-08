@@ -14,7 +14,8 @@ export default function Equipes() {
         }
         fetch()
     }, [])
-
+    
+    // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'pr') {
             location.href = `/projeto/${id}`
