@@ -33,13 +33,13 @@ export default function AddProj() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div className={addProjStyle.addProj}>
+            <div className={addProjStyle.paginaBody}>
                 <CabProj />
                 <center className={addProjStyle.center}>
-                    <h1 className={addProjStyle.tituloNovoProjeto}>Criar novo projeto</h1>
+                    <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
                         <label>
-                            <label className={addProjStyle.lblProj}>Nome do Projeto</label><br />
+                            <label className={addProjStyle.lbl}>Nome do Projeto</label><br />
                             <input
                                 className={addProjStyle.input}
                                 type="text" name="nome"
@@ -49,7 +49,7 @@ export default function AddProj() {
                         </label>
                         <br />
                         <label >
-                            <label className={addProjStyle.lblDesc}>Descrição</label>
+                            <label className={addProjStyle.lbl}>Descrição</label>
                             <br />
                             <input
                                 type="text" name="descricao"
@@ -60,9 +60,9 @@ export default function AddProj() {
                         </label>
                         <br />
                         <label >
-                            <label className={addProjStyle.lblDesc}>Equipe</label>
+                            <label className={addProjStyle.lbl}>Equipe</label>
                             <br />
-                            <select>
+                            <select >
                                 <option>Selecione</option>
                                 {listaEquipe()}
                             </select>
