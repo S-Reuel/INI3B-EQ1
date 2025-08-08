@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { postEquipe } from "../data/services/API"
 import { redirecionar, voltar } from "./util/functions"
+import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+
+import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function AddEqui() {
     const [nome, setNome] = useState('')
@@ -11,30 +14,33 @@ export default function AddEqui() {
     }
     if (localStorage.getItem('authToken')) {
         return (
-            <div>
-                <center>
-                    <h1>Nova Equipe!</h1>
-                    <form>
+            <div className={addEquipeStyle.paginaBody}>
+                <CabProj />
+                <center className={addEquipeStyle.center}>
+                    <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe!</h1>
+                    <form className={addEquipeStyle.form}>
                         <label>
-                            Nome:<br />
+                            <label className={addEquipeStyle.lbl}>Nome:</label><br />
                             <input
                                 type="text" nome="nome"
                                 placeholder="Digite seu nome" required
                                 onChange={(e) => setNome(e.target.value)}
+                                className={addEquipeStyle.input}
                             />
                         </label>
                         <br />
                         <label >
-                            Descrição:
+                            <label className={addEquipeStyle.lbl}>Descrição:</label>
                             <br />
                             <input
                                 type="text" name="descricao"
                                 placeholder="Digite a descrição" required
                                 onChange={(e) => setDesc(e.target.value)}
+                                className={addEquipeStyle.input}
                             />
                         </label>
                         <br /><br />
-                        <button type="submit" onClick={onSave}>Enviar</button>
+                        <button type="submit" onClick={onSave}  className={addEquipeStyle.formButton}>Enviar</button>
                     </form>
                     <br/>
                     <a onClick={voltar}><button>Voltar</button></a>

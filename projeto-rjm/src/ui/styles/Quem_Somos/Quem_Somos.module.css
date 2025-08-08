@@ -1,5 +1,11 @@
-body{
+.quemsomosbody{
     background-color: #151B23;
+    background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
+    background-size: cover;
+    background-position: bottom center;
+    background-attachment: fixed; /* Adiciona o fixed para o fundo não rolar */
+
+    min-height: 100vh;
 }
 .fotos_integrantes{
     height: 150px;
