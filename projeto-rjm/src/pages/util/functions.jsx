@@ -49,10 +49,10 @@ export function redirecionar(caminho) {
             location.href = '/projetos'
             break
         case 'addProj':
-            location.href = '/add/projetos'
+            location.href = '/add/projeto'
             break
         case 'addSpr':
-            location.href = '/projetos/add/sprints'
+            location.href = '/projetos/add/sprint'
             break
         case 'eq':
             location.href = '/equipes'
@@ -66,4 +66,9 @@ export function redirecionar(caminho) {
     }
 }
 
-export function voltar() { location.href = document.referrer }
+export function voltar() { 
+    location.href = document.referrer 
+    /*
+        Pesquisar um método melhor para voltar de página
+    */
+}
