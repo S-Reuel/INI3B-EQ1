@@ -89,3 +89,18 @@
   border: solid 1px #FFFFFF;
   text-decoration: none;
 }
+
+.IrEquipes{
+  height: 27px;
+  line-height: 27px;
+  width: 110px;
+  text-align: center;
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: 10px;
+  
+}
+
+.IrEquipes:hover{
+  cursor: pointer;
+}
