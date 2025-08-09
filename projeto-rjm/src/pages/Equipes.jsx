@@ -3,6 +3,7 @@ import { getEquipeByUser } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx';
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css';
+import axios from "axios";
 
 export default function Equipes() {
     const [eqs, setEqs] = useState([])
@@ -14,11 +15,20 @@ export default function Equipes() {
         }
         fetch()
     }, [])
-    
+
+    async function teste(id) {
+        try{
+            await axios.post("/projeto", { id })
+        } catch (e){
+            alert(e)
+        }
+    }
+
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'pr') {
-            location.href = `/projeto/${id}`
+            teste(id)
+            // location.href = `/projeto/${id}`
         } else if (tipo == 'ed') {
             location.href = `/edit/equipe/${id}`
         }
@@ -27,18 +37,18 @@ export default function Equipes() {
     function apr() {
         return eqs.map((i) =>
             <>
-                
+
                 <div className={equipeStyle.equipeDiv} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'pr')
                 }}>
-                    
+
                     <td>{i.nome}</td><br />
                     <td>{i.descricao}</td>
-                
-                <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
-                    e.stopPropagation()
-                    caminho(i.id, 'ed') 
+
+                    <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'ed')
                     }}>Editar</div>
                 </div>
             </>
@@ -47,14 +57,14 @@ export default function Equipes() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            
+
             <center>
                 <CabProj />
                 <h1>Equipes</h1>
                 <button onClick={() => redirecionar('addEq')}>+ Equipes</button>
                 <div className={equipeStyle.equipeFlex}>
-                        {apr()}
-                </div>    
+                    {apr()}
+                </div>
                 <br />
             </center>
         )

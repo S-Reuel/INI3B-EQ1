@@ -8,9 +8,8 @@ import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom";
 
-export default function Projetos() {
+export default function Projetos(id) {
     const [proj, setProj] = useState([])
-    let { id } = useParams();
     
     useEffect(() => {
         async function fetch() {
@@ -23,7 +22,7 @@ export default function Projetos() {
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'spr') {
-            location.href = `/projeto/sprints/${id}`
+            location.href = `/projeto/sprints`
         } else if (tipo == 'ed') {
             location.href = `/edit/projeto/${id}`
         }
