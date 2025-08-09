@@ -9,8 +9,7 @@ body{
    margin:0;
    padding: 0; /*conserta o espaco que afeta todas as paginas, visivel principalmente na pagina de cadastro. TO DO:descobrir o que está causando isso*/
    font-family: "Space Grotesk";
-   --cor-do-fundo-da-pagina:#151B23;
-}
+   background-color: #151B23;
 
-/* na teoria, da pra colocar aqui um tema escuro e claro que afeta todo o site*/
+}
 

@@ -86,6 +86,7 @@ export default function Projetos() {
                       <h4>Sem projetos! Crie projetos!</h4>
                       <br />
                   </center>
+                  <a href="/add/projeto"><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>)
         }
     } else {
