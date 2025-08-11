@@ -67,7 +67,7 @@ export function redirecionar(caminho) {
 }
 
 export function voltar() { 
-    location.href = document.referrer 
+    history.back();   
     /*
         Pesquisar um método melhor para voltar de página
     */
