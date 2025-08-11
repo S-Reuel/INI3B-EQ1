@@ -1,7 +1,6 @@
  .page  {
     --form-height-input: 6.6vh;/*TO DO:fazer mais parecido com o design no figma;*/
     --center-padding-left:10%;
-     background-color:#151B23;
      color:white;
      display:grid;
      grid-template-columns: 53vw 47vw;

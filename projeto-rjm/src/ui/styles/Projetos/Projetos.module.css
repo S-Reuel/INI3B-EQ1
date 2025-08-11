@@ -87,10 +87,6 @@
     font-size: 50px;
 }
 
-.bodyProjs {
-    background-color: #151B23;
-}
-
 .bttAdicionarProj {
     background-color: #2c3036;
     color: #8792a0;
@@ -114,7 +110,7 @@
 }
 
 .botaoNewProjeto{
-    position: absolute;
+    position: fixed;
     border-radius: 25px;
     background-color: purple;
     height: 100px;
