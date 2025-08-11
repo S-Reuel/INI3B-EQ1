@@ -80,15 +80,15 @@ export default function Projetos() {
         } else {
             return (
                 <>
-                  <CabProj />
-                  <center className={StyleProj.bodyProjs}>
-                      <br />
-                      <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                      <br /><br /><br />
-                      <h4>Sem projetos! Crie projetos!</h4>
-                      <br />
-                  </center>
-                  <a href="/add/projeto"><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <CabProj />
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                        <br /><br /><br />
+                        <h4>Sem projetos! Crie projetos!</h4>
+                        <br />
+                    </center>
+                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>)
         }
     } else {
