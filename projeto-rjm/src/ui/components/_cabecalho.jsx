@@ -3,6 +3,7 @@ import iconeCodra from "../icons/Codra.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
 import { voltar } from '../../pages/util/functions'
+import { redirecionar } from "../../pages/util/functions.jsx";
 
 export default function CabProj() {
   if (localStorage.getItem('authToken')) {
@@ -19,7 +20,7 @@ export default function CabProj() {
         </div>
         <div className={cabProjetoStyle.cabecalhoDireita}>
 
-
+        <div className={cabProjetoStyle.IrEquipes} onClick={()=>redirecionar('eq')}>Ver Equipes</div>
           <a href='/perfil'>
             <img src={iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} />
           </a>
