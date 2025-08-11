@@ -138,7 +138,7 @@ export async function getProjetosByEquipe(id) {
     }
 }
 
-export async function updateProjetoId(id) {
+export async function getProjetoId(id) {
     try {
         let r = await URL.get(`projetos/${id}`)
         return r.data

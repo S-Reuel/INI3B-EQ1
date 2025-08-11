@@ -40,11 +40,11 @@ export default function Routers() {
                 <Route path="/add/equipes" element={<AddEqui />} />
                 <Route path="/sobre" element={<Sobre />} />
                 {/* Projetos  */}
-                <Route path="/projeto/:id" element={<Projetos props={id}/>} />
+                <Route path="/projeto/:id" element={<Projetos />} />
                 <Route path="edit/projeto/:id" element={<Editar_Projeto />} />
                 <Route path="/add/projeto" element={<AddProj />} />
                 {/*  Sprints */}
-                <Route path="/projeto/sprints/" element={<Sprints />} />
+                <Route path="/projeto/sprints/:id" element={<Sprints />} />
                 <Route path="/projeto/add/sprint" element={<AddSprints />} />
                 <Route path="/projeto/edit/sprint/:id" element={<Editar_Sprint />} />
             </Routes>

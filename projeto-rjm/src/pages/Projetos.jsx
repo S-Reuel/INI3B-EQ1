@@ -8,9 +8,10 @@ import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom";
 
-export default function Projetos(id) {
+export default function Projetos() {
     const [proj, setProj] = useState([])
-    
+    const { id } = useParams()
+
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(id)
@@ -22,7 +23,7 @@ export default function Projetos(id) {
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'spr') {
-            location.href = `/projeto/sprints`
+            location.href = `/projeto/sprints/${id}`
         } else if (tipo == 'ed') {
             location.href = `/edit/projeto/${id}`
         }
@@ -73,7 +74,7 @@ export default function Projetos(id) {
                         {apr()}
                         <br />
                     </center>
-                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>
             )
         } else {
@@ -87,7 +88,7 @@ export default function Projetos(id) {
                         <h4>Sem projetos! Crie projetos!</h4>
                         <br />
                     </center>
-                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>)
         }
     } else {

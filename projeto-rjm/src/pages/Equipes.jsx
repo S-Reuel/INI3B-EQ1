@@ -16,19 +16,10 @@ export default function Equipes() {
         fetch()
     }, [])
 
-    async function teste(id) {
-        try{
-            await axios.post("/projeto", { id })
-        } catch (e){
-            alert(e)
-        }
-    }
-
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'pr') {
-            teste(id)
-            // location.href = `/projeto/${id}`
+            location.href = `/projeto/${id}`
         } else if (tipo == 'ed') {
             location.href = `/edit/equipe/${id}`
         }

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { updateProjetoId, updateProjeto } from "../data/services/API";
+import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import { voltar } from "./util/functions";
 
@@ -10,7 +10,7 @@ export default function Editar_Projeto() {
 
     useEffect(() => {
         async function fetch() {
-            const req = await updateProjetoId(id)
+            const req = await getProjetoId(id)
             setNome(req.nome)
             setDesc(req.descricao)
         }
