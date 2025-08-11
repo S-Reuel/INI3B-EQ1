@@ -73,7 +73,7 @@
  .response{
     color: red;
  }
- @media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
+ @media screen and (orientation: portrait){ /*design temporario*/
     .page{
         grid-template-rows: 10vh 90vh;
     }
