@@ -1,7 +1,5 @@
 import cabProjetoStyle from '../styles/cabProjeto.module.css'
 import iconeCodra from "../icons/Codra.png"
-import iconeMais from "../icons/mais.png"
-import iconeMenu from "../icons/menu.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
 import { voltar } from '../../pages/util/functions'

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProjetosByEquipe } from "../data/services/API.jsx";
 import CabProj from '../ui/components/_cabecalho.jsx';
-import { isFormat } from "./util/functions.jsx";
+import { isFormat, redirecionar } from "./util/functions.jsx";
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import imgMaisProjeto from '../ui/icons/mais.png'
@@ -10,7 +10,8 @@ import { useParams } from "react-router-dom";
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
-    let {id} = useParams();
+    let { id } = useParams();
+    
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(id)
@@ -19,23 +20,24 @@ export default function Projetos() {
         fetch()
     }, [])
 
+    // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
-        if(tipo == 'spr'){
+        if (tipo == 'spr') {
             location.href = `/projeto/sprints/${id}`
-        } else if (tipo == 'ed'){
+        } else if (tipo == 'ed') {
             location.href = `/edit/projeto/${id}`
         }
     }
 
-    function apr() {        
+    function apr() {
         return proj.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
             return (
                 <>
-                    <div className={StyleProj.projeto} onClick={(e)=>{
-                            e.stopPropagation()
-                            caminho(i.id, 'spr')
-                        }}>
+                    <div className={StyleProj.projeto} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'spr')
+                    }}>
                         <div className={StyleProj.tituloProj}>
                             {i.nome}
                         </div>
@@ -46,33 +48,33 @@ export default function Projetos() {
                             Data de atualização:
                             <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
                         </div>
-                        <button className={StyleProj.bttEditarProj} onClick={(e)=>{
+                        <button className={StyleProj.bttEditarProj} onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
-                            <img src={imgEditarProj} className={StyleProj.imgEditarProj}/>
+                            <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
                         </button>
                         <br />
                     </div>
                     <br />
-            </>
-        )})
+                </>
+            )
+        })
     }
-    
+
     if (localStorage.getItem('authToken')) {
-        if(proj.length != 0) {
+        if (proj.length != 0) {
             return (
                 <>
-                  <CabProj />
-                  <center className={StyleProj.bodyProjs}>
-                      <br />
-                      <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                      <br /><br /><br />
-                      {apr ()}
-                      <br />
-                      
-                  </center>
-                  <a href="/add/projeto"><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <CabProj />
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                        <br /><br /><br />
+                        {apr()}
+                        <br />
+                    </center>
+                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>
             )
         } else {
@@ -90,6 +92,6 @@ export default function Projetos() {
                 </>)
         }
     } else {
-        return (location.href="/login")
+        return (location.href = "/login")
     }
 }

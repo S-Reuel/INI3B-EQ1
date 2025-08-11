@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { postProjeto } from "../data/services/API"
+import { postSprint } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
@@ -10,8 +10,7 @@ export default function AddSprints() {
 
     useEffect(() => {
         async function fetch() {
-            const res = await getEquipeByUser() // Filtrar equipes pelo usuário
-            setEqs(res.equipes)
+
         }
         fetch()
     }, [])
@@ -20,7 +19,7 @@ export default function AddSprints() {
         e.preventDefault()
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postProjeto({ nome, data_criacao, data_fim, projetos_id })
+        postSprint({ nome, data_criacao, data_fim, projetos_id })
     }
 
     function listaEquipe() {
@@ -55,17 +54,21 @@ export default function AddSprints() {
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
+                        <br />
                         <label >
-                            <label>Equipe</label>
+                            <label>Data de Inicio</label>
                             <br />
-                            <select name="">
-                                {listaEquipe()}
-                            </select>
+                            <input type="date" />
                         </label>
                         <br />
+                        <label >
+                            <label>Data de Termino</label>
+                            <br />
+                            <input type="date" />
+                        </label>
+                        <br /><br />
                         <button type="submit">Criar Sprint</button>
                     </form>
-                    <button onClick={voltar}>Voltar</button>
                 </center>
             </div>
         )

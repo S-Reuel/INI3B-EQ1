@@ -6,8 +6,9 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://b1aaabfe7c09.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://7157fe3decd7.ngrok-free.app/api/v2/'  /* Ngrok */
 })
+
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     let resultado = await valor
@@ -44,7 +45,11 @@ export async function getUserByEmail() {
 
 export async function updateUser(id, param) {
     try {
-        await URL.patch(`usuarios/${id}`, param).then(() => redirecionar('perfil'));
+        await URL.patch(`usuarios/${id}`, param).then(() => {
+            let bool = confirm("Perfil atualizado com sucesso!\nAperte OK para restornar à página anterior.")
+            if (bool)
+                redirecionar('perfil')
+        });
     } catch (error) {
         alert(error.status)
     }
@@ -67,15 +72,15 @@ export async function postEquipe(param) {
         let usuario_id = usuario.id
         let equipe_id = res.data.id
         let papel = "dev"
-        addUserEquipe({usuario_id, equipe_id, papel}) 
+        addUserEquipe({ usuario_id, equipe_id, papel })
     });
 }
 
-async function addUserEquipe(param) {    
+async function addUserEquipe(param) {
     await URL.post('usuario_equipes', param).then(() => {
         let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-            if (bool)
-                location.href = '../equipes'
+        if (bool)
+            location.href = '../equipes'
     })
 }
 
@@ -169,11 +174,11 @@ export async function postSprint(param) {
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.get(``)
-        let tratado = res.data.projetos
+        let res = await URL.get(`projetos/ps/${id}`)
+        let tratado = res.data.sprints
         return tratado
     } catch (error) {
-        return (error.status);
+        alert(error.status);
     }
 }
 
