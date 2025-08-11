@@ -138,7 +138,7 @@ export async function getProjetosByEquipe(id) {
     }
 }
 
-export async function updateProjetoId(id) {
+export async function getProjetoId(id) {
     try {
         let r = await URL.get(`projetos/${id}`)
         return r.data
@@ -174,7 +174,7 @@ export async function postSprint(param) {
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.get(`projetos/ps/${id}`)
+        let res = await URL.post(`projetos/ps/`, {id})
         let tratado = res.data.sprints
         return tratado
     } catch (error) {

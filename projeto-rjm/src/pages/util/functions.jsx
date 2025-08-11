@@ -25,6 +25,9 @@ export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':
             offSession()
+            redirecionar('prin')
+            break
+        case 'prin':
             location.href = '/'
             break
         case 'user':
@@ -67,7 +70,7 @@ export function redirecionar(caminho) {
 }
 
 export function voltar() { 
-    history.back();   
+    history.back(); 
     /*
         Pesquisar um método melhor para voltar de página
     */

@@ -24,7 +24,7 @@ export default function Routers() {
         <Router>
             <Routes>
                 {/* Usuário  */}
-                <Route path="/" element={<App />} />
+                <Route exact path="/" element={<App />}/>
                 <Route path="/usuarios" element={<Usuarios />} />
                 <Route path="/edit/usuarios/" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />

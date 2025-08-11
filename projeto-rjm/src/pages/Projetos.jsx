@@ -10,8 +10,8 @@ import { useParams } from "react-router-dom";
 
 export default function Projetos() {
     const [proj, setProj] = useState([])
-    let { id } = useParams();
-    
+    const { id } = useParams()
+
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(id)
@@ -74,7 +74,7 @@ export default function Projetos() {
                         {apr()}
                         <br />
                     </center>
-                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>
             )
         } else {
@@ -88,7 +88,7 @@ export default function Projetos() {
                         <h4>Sem projetos! Crie projetos!</h4>
                         <br />
                     </center>
-                    <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </>)
         }
     } else {
