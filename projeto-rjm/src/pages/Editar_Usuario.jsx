@@ -27,22 +27,24 @@ export default function EditUser() {
 
     if (localStorage.getItem('authToken')) {
         return (
-                <center>
+                <center className={perfilStyle.paginaBody}>
                     <div>
-                        <div className={perfilStyle.paginaBody}>
+                        <div >
                             <CabProj />
                             <center className={perfilStyle.center}>
                                 <h1 className={perfilStyle.tituloPagina}>Editar Perfil</h1>
                                 <form className={perfilStyle.form}>
                                     <label>
                                         <label className={perfilStyle.lbl}>Foto de perfil</label>
-                                        <br />
+                                        <br/>
                                         <img src="https://lh3.googleusercontent.com/a/ACg8ocKSnCW-1AHtuv5kmDvZOFWA5WAnl9IQ2jeVx9vHbSHxfkEipg=s315-c-no" className={perfilStyle.imgUsuario}></img>
+                                        <br/>
                                         <input
                                             type="file" name="foto"
                                             required
                                         />
                                     </label>
+                                    <br />
                                     <br />
                                     <label>
                                         <label className={perfilStyle.lbl}>Nome</label>

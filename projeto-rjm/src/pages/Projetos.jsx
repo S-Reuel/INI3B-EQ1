@@ -89,7 +89,6 @@ export default function Projetos() {
                         <br />
                     </center>
                     <a onClick={() => {redirecionar('addProj')}}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-
                 </>)
         }
     } else {
