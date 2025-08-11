@@ -3,7 +3,7 @@ import { postSprint } from "../data/services/API"
 import { dateFormatter, redirecionar, voltar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
-export default function AddSprints() {
+export default function Add_Sprint() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [equipes, setEquipes] = useState([])

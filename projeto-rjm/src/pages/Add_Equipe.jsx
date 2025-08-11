@@ -5,7 +5,7 @@ import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
-export default function AddEqui() {
+export default function Add_Equipe() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const onSave = async (e) => {
@@ -42,8 +42,6 @@ export default function AddEqui() {
                         <br /><br />
                         <button type="submit" onClick={onSave}  className={addEquipeStyle.formButton}>Enviar</button>
                     </form>
-                    <br/>
-                    <a onClick={voltar}><button>Voltar</button></a>
                 </center>
             </div>
         )
