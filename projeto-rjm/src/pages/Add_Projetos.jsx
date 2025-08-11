@@ -61,15 +61,14 @@ export default function AddProj() {
                         <br />
                         <label >
                             <label className={addProjStyle.lbl}>Equipe</label>
-                            <br />
-                            <select >
+                            <select className={addProjStyle.input}>
                                 <option>Selecione</option>
                                 {listaEquipe()}
                             </select>
                         </label>
-                        <br />
                         <button type="submit" className={addProjStyle.formButton}>Criar Projeto</button>
-                        <br /><br />
+                        <br />
+                        <br />
                         <a onClick={() => redirecionar('addEq')}>Nova Equipe</a>
                     </form>
                     <button onClick={voltar}>Voltar</button>

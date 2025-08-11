@@ -1,7 +1,6 @@
 .app{
     /* Usa a altura mínima para que o fundo cubra toda a tela, mesmo com pouco conteúdo */
     min-height: 100vh;
-    background-color: #151B23;
     background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
     background-size: cover;
     background-position: bottom center;
