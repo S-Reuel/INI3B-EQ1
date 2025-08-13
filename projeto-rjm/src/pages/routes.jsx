@@ -16,7 +16,7 @@ import Editar_Equipe from "./Editar_Equipe";
 import Editar_Sprint from "./Editar_Sprint.jsx";
 import Task from "./Task.jsx";
 import Add_Task from "./Add_Task.jsx";
-import Editar_Task from "./Editar_task.jsx";
+import Editar_Task from "./Editar_Task.jsx";
 import Add_Equipe from "./Add_Equipe.jsx";
 import Add_Projeto from "./Add_Projeto.jsx";
 import Add_Sprint from "./Add_Sprint.jsx";

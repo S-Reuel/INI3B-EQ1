@@ -40,7 +40,7 @@ export default function Add_Equipe() {
                             />
                         </label>
                         <br /><br />
-                        <button type="submit" onClick={onSave}  className={addEquipeStyle.formButton}>Enviar</button>
+                        <button type="submit" onClick={onSave}  className={addEquipeStyle.formButton}>Criar</button>
                     </form>
                 </center>
             </div>

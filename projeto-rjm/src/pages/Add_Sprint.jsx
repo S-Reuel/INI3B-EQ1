@@ -67,7 +67,7 @@ export default function Add_Sprint() {
                             <input type="date" />
                         </label>
                         <br /><br />
-                        <button type="submit">Criar Sprint</button>
+                        <button type="submit">Criar</button>
                     </form>
                 </center>
             </div>
