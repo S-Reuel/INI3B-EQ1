@@ -1,14 +1,8 @@
-import { useParams } from "react-router-dom";
-import CabProj from "../ui/components/_cabecalho";
 import { useEffect, useState } from "react";
-import { getSprintsByProjeto } from "../data/services/API";
-import imgMaisProjeto from '../ui/icons/mais.png'
-import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-import { isFormat, redirecionar } from "./util/functions";
+import { redirecionar } from "./util/functions";
 
-export default function Sprints() {
-    const { id } = useParams()
-    const [sprints, setSprints] = useState([])
+export default function Task() {
+    const [] = useState([])
 
     useEffect(() => {
         async function fetch() {
@@ -16,16 +10,7 @@ export default function Sprints() {
             setSprints(res)
         }
         fetch()
-    }, [])
-
-    // Função utilizada para otimizar o envio do ID pela URL
-    const caminho = (id, tipo) => {
-        if (tipo == 'task') {
-            location.href = `/projeto/sprint/task/${id}`
-        } else if (tipo == 'ed') {
-            location.href = `/projeto/edit/sprint/${id}`
-        }
-    }
+    }, []);
 
     function apr() {
         return sprints.map(function (i) {
@@ -42,7 +27,7 @@ export default function Sprints() {
                         <td>{dataInicio}</td>
                         <td>{dataFim}</td>
                         <td>{i.projeto_id}</td>
-                        <button  onClick={(e) => {
+                        <button onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>Editar</button>

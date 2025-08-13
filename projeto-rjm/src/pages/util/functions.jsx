@@ -15,6 +15,14 @@ export function isFormat(data) {
     return `${dia} de ${mesFormat[mes + 1]} de ${ano}`;
 }
 
+export function isFormatDate(data){
+    let m = data.getMonth()
+    let mes = (m < 10)? `0${m}` : m
+    let ano = data.getFullYear()
+    let dia = data.getDate()
+    return `${ano}-${mes}-${dia}`
+}
+
 export function dateFormatter(date) {
     return new Intl.DateTimeFormat('pt-BR', {
         dateStyle: 'short'
@@ -55,7 +63,7 @@ export function redirecionar(caminho) {
             location.href = '/add/projeto'
             break
         case 'addSpr':
-            location.href = '/projetos/add/sprint'
+            location.href = '/projeto/add/sprint'
             break
         case 'eq':
             location.href = '/equipes'
