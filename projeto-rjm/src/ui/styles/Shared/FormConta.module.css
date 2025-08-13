@@ -56,6 +56,11 @@
      width:85%;
      height: var(--form-height-input);
 }
+.passwordEye{    
+    position: relative;
+    top: 1vh;
+    right:3vw;
+}
  .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
      background-color: #AD56C7;
      border-style: none;
@@ -80,6 +85,7 @@
     .center{
         grid-row: 2/span 1;
     }
+
     .logo {
          visibility:hidden
          }

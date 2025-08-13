@@ -1,17 +1,35 @@
 import { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
-import loginStyle from '../ui/styles/Shared/FormConta.module.css'
 import { redirecionar } from "./util/functions.jsx";
+
+import eyeOFF from "../ui/icons/eyeOFF.svg";
+import eyeON from "../ui/icons/eyeON.svg";
+
+import loginStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-
+    const [showPassword, setShowPassword] = useState('password')
+    const [eye, setEye] = useState(eyeON)
     const onSave = async (e) => {
         e.preventDefault()
         let mensagem = await postLogin({ email, password })
         if (mensagem != undefined) {
             document.getElementById("response").innerHTML = "Credenciais inválidas"
+        }
+    }
+
+    const toggleShowPassword = () => {
+        if(showPassword === 'password')
+        {
+            setShowPassword("text") 
+            setEye(eyeOFF)
+        }
+        else
+        {
+            setShowPassword("password")
+            setEye(eyeON)
         }
     }
 
@@ -41,13 +59,16 @@ export default function Login() {
                         </label>
                         <label>
                             Senha<br />
-                            <input
-                                className={loginStyle.input}
-                                type="password" name="senha"
-                                placeholder="Digite sua senha" required
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                            <div className={loginStyle.ab}> 
+                                <input
+                                    className={loginStyle.input}
+                                    type={showPassword} name="senha"
+                                    placeholder="Digite sua senha" required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <img className={loginStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                            </div>
                             <br />
                             <br />
                         </label>

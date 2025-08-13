@@ -1,14 +1,21 @@
 // import styles from '../ui/components/Registro/Registro.module.css'
 import { useState } from 'react'
 import { obterValor, postUser } from '../data/services/API.jsx'
-import registroStyle from '../ui/styles/Shared/FormConta.module.css'
 import { redirecionar } from './util/functions.jsx'
+
+import eyeOFF from "../ui/icons/eyeOFF.svg";
+import eyeON from "../ui/icons/eyeON.svg";
+
+import registroStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Registro() {
     const [nome, setNome] = useState('')
     const [password, setSenha] = useState('')
     const [email, setEmail] = useState('')
     const [user_git, setNg] = useState('')
+
+    const [eye, setEye] = useState(eyeON)
+
     const excluido = false
 
     const onSave = async (e) => {
@@ -18,6 +25,19 @@ export default function Registro() {
             redirecionar('login')
         } else {
             alert('Credenciais inválidas')
+        }
+    }
+
+    const toggleShowPassword = () => {
+        if(showPassword === 'password')
+        {
+            setShowPassword("text") 
+            setEye(eyeOFF)
+        }
+        else
+        {
+            setShowPassword("password")
+            setEye(eyeON)
         }
     }
 
@@ -64,16 +84,19 @@ export default function Registro() {
                             />
                         </label>
                         <br />
-                        <label >
-                            Senha:
-                            <br />
-                            <input
-                                className={registroStyle.input}
-                                type="password" nome="senha"
-                                placeholder="Digite sua senha" required
-                                onChange={(e) => setSenha(e.target.value)}
-                            />
-                        </label>
+                        <div className={registroStyle.ab}> 
+                            <label >
+                                Senha:
+                                <br />
+                                <input
+                                    className={registroStyle.input}
+                                    type="password" nome="senha"
+                                    placeholder="Digite sua senha" required
+                                    onChange={(e) => setSenha(e.target.value)}
+                                />
+                            </label>
+                            <img className={registroStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                        </div>
                         <br />
                         <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>
                     </form>
