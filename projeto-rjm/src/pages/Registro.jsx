@@ -84,7 +84,6 @@ export default function Registro() {
                             />
                         </label>
                         <br />
-                        <div className={registroStyle.ab}> 
                             <label >
                                 Senha:
                                 <br />
@@ -95,6 +94,7 @@ export default function Registro() {
                                     onChange={(e) => setSenha(e.target.value)}
                                 />
                             </label>
+                        <div className={registroStyle.ab}>
                             <img className={registroStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
                         </div>
                         <br />

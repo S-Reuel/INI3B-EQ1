@@ -59,15 +59,17 @@ export default function Login() {
                         </label>
                         <label>
                             Senha<br />
-                            <div className={loginStyle.ab}> 
-                                <input
-                                    className={loginStyle.input}
-                                    type={showPassword} name="senha"
-                                    placeholder="Digite sua senha" required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                                <img className={loginStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                            <div>
+                                    <input
+                                        className={loginStyle.input}
+                                        type={showPassword} name="senha"
+                                        placeholder="Digite sua senha" required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                    />
+                                <div className={loginStyle.ab}>
+                                    <img className={loginStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                                </div>
                             </div>
                             <br />
                             <br />
