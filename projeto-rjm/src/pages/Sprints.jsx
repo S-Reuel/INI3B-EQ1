@@ -9,14 +9,11 @@ import { isFormat, redirecionar } from "./util/functions";
 export default function Sprints() {
     const { id } = useParams()
     const [sprints, setSprints] = useState([])
-    let x = document.cookie;
-    console.log(x);
-    
 
     useEffect(() => {
         async function fetch() {
             const res = await getSprintsByProjeto(id)
-            setSprints(res)
+            setSprints(res.sprints)
         }
         fetch()
     }, [])
@@ -45,7 +42,7 @@ export default function Sprints() {
                         <td>{dataInicio}</td>
                         <td>{dataFim}</td>
                         <td>{i.projeto_id}</td>
-                        <button  onClick={(e) => {
+                        <button onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>Editar</button>
@@ -56,31 +53,46 @@ export default function Sprints() {
     }
 
     if (localStorage.getItem('authToken')) {
-        return (
-            <>
-                <CabProj />
-                <center>
-                    <h1>Sprints</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Nome</td>
-                                <td>Data inicio</td>
-                                <td>Data termino</td>
-                                <td>Id projeto</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {apr()}
-                        </tbody>
-                    </table>
-                    <br />
-                    <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </center>
-            </>
-        )
+        if (sprints.length != 0) {
+            return (
+                <>
+                    <CabProj />
+                    <center>
+                        <h1>Sprints</h1>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Nome</td>
+                                    <td>Data inicio</td>
+                                    <td>Data termino</td>
+                                    <td>Id projeto</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {apr()}
+                            </tbody>
+                        </table>
+                        <br />
+                        <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    </center>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <CabProj />
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                        <br /><br /><br />
+                        <h4>Sem projetos! Crie projetos!</h4>
+                        <br />
+                    </center>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                </>)
+        }
     } else {
         return (redirecionar('login'))
     }

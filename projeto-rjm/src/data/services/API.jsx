@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://62bfa174b3ac.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://7578e7054b1b.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -131,8 +131,7 @@ export async function postProjeto(param) {
 export async function getProjetosByEquipe(id) {
     try {
         let res = await URL.get(`projeto/projeto_de_equipe/${id}`)
-        let tratado = res.data.projetos
-        return tratado
+        return res.data
     } catch (error) {
         return (error.status);
     }
@@ -175,8 +174,7 @@ export async function postSprint(param) {
 export async function getSprintsByProjeto(id) {
     try {
         let res = await URL.post(`projetos/ps/`, {id})
-        let tratado = res.data.sprints
-        return tratado
+        return res.data
     } catch (error) {
         alert(error.status);
     }
@@ -194,7 +192,7 @@ export async function getSprintsId(id) {
 export async function updateSprint(id, param) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
-        await URL.patch(`/${id}`, param).then(() => { voltar() })
+        await URL.patch(`sprints/${id}`, param).then(() => { voltar() })
     } else {
         location.reload()
     }
@@ -218,17 +216,16 @@ export async function postTask(param) {
 
 export async function getTaskBySprint(id) {
     try {
-        let res = await URL.post(``, {id})
-        let tratado = res.data.sprints
-        return tratado
+        let res = await URL.get(`sprint/task/${id}`)
+        return res.data
     } catch (error) {
-        alert(error.status);
+        // alert(error.status);
     }
 }
 
 export async function getTaskId(id) {
     try {
-        let r = await URL.get(`/${id}`)
+        let r = await URL.get(`tasks/${id}`)
         return r.data
     } catch (error) {
         return (error.status);

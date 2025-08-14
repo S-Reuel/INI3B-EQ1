@@ -15,7 +15,7 @@ export default function Projetos() {
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(id)
-            setProj(res)
+            setProj(res.projetos)
         }
         fetch()
     }, [])
