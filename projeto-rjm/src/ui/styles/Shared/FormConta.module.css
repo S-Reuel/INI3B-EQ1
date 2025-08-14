@@ -62,8 +62,10 @@
 }
 .passwordEye{    
     position: absolute;
-    transform: translate(35vw,-3vh);
-    width: 2%;
+    flex-direction: row-reverse;
+    transform: translate(33vw,-3vh);
+    width: 5vw;
+    max-width: 10px;
     height: auto;
 }
  .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
@@ -106,9 +108,10 @@
      }
 
      .passwordEye{
-        transform: translate(75vw,-3vh);
-        width: 5vw;
+        transform: translate(70vw,-3vh);
+        width: 10vw;
 
+        
      }
  
  }

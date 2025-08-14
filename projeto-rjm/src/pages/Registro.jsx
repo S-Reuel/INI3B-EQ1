@@ -15,6 +15,7 @@ export default function Registro() {
     const [user_git, setNg] = useState('')
 
     const [eye, setEye] = useState(eyeON)
+    const [showPassword, setShowPassword] = useState('password')
 
     const excluido = false
 
@@ -84,18 +85,20 @@ export default function Registro() {
                             />
                         </label>
                         <br />
+                        <div > 
                             <label >
                                 Senha:
                                 <br />
                                 <input
                                     className={registroStyle.input}
-                                    type="password" nome="senha"
+                                     type={showPassword}  nome="senha"
                                     placeholder="Digite sua senha" required
                                     onChange={(e) => setSenha(e.target.value)}
                                 />
                             </label>
-                        <div className={registroStyle.ab}>
-                            <img className={registroStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                            <div className={registroStyle.ab}>
+                                <img className={registroStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                            </div>
                         </div>
                         <br />
                         <button type="submit" onClick={onSave} className={registroStyle.formButton}>Enviar</button>
