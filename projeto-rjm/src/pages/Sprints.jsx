@@ -9,6 +9,9 @@ import { isFormat, redirecionar } from "./util/functions";
 export default function Sprints() {
     const { id } = useParams()
     const [sprints, setSprints] = useState([])
+    let x = document.cookie;
+    console.log(x);
+    
 
     useEffect(() => {
         async function fetch() {

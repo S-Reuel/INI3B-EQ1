@@ -4,7 +4,7 @@ import Login from "./Login";
 import Projetos from "./Projetos";
 import RedefinirSenha from "./Redefinir_Senha";
 import Registro from "./Registro";
-import Usuarios from "./Usuarios";
+import Usuarios from "./Usuarios.jsx";
 import EsqueciSenha from "./Esqueci_Senha";
 import Equipes from "./Equipes";
 import Sprints from "./Sprints";
