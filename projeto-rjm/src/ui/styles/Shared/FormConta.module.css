@@ -56,6 +56,18 @@
      width:85%;
      height: var(--form-height-input);
 }
+.ab{
+    display: flex;
+    align-items: center;
+}
+.passwordEye{    
+    position: absolute;
+    flex-direction: row-reverse;
+    transform: translate(33vw,-3vh);
+    width: 5vw;
+    max-width: 10px;
+    height: auto;
+}
  .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
      background-color: #AD56C7;
      border-style: none;
@@ -80,6 +92,7 @@
     .center{
         grid-row: 2/span 1;
     }
+
     .logo {
          visibility:hidden
          }
@@ -92,6 +105,13 @@
      }
      .center{
          grid-column: 1/span 2;
+     }
+
+     .passwordEye{
+        transform: translate(70vw,-3vh);
+        width: 10vw;
+
+        
      }
  
  }
