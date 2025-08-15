@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import { getEquipeByUser } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-import CabProj from '../ui/components/_cabecalho.jsx';
-import equipeStyle from '../ui/styles/Equipes/Equipes.module.css';
-import axios from "axios";
+import CabProj from '../ui/components/_cabecalho.jsx'
+import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 
 export default function Equipes() {
     const [eqs, setEqs] = useState([])
@@ -48,14 +47,21 @@ export default function Equipes() {
 
     if (localStorage.getItem('authToken')) {
         return (
-
             <center>
                 <CabProj />
                 <h1>Equipes</h1>
                 <button onClick={() => redirecionar('addEq')}>+ Equipes</button>
-                <div className={equipeStyle.equipeFlex}>
-                    {apr()}
-                </div>
+                {(eqs.length != 0) ? (
+                    <div className={equipeStyle.equipeFlex}>
+                        {apr()}
+                    </div>
+                ) : (
+                    <>
+                        <br /><br /><br />
+                        <h4>Sem Equipes! Crie uma equipe!</h4>
+                        <br />
+                    </>
+                )}
                 <br />
             </center>
         )

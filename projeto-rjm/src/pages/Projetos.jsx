@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
-import { getProjetosByEquipe } from "../data/services/API.jsx";
-import CabProj from '../ui/components/_cabecalho.jsx';
-import { isFormat, redirecionar } from "./util/functions.jsx";
+import { useEffect, useState } from "react"
+import { getProjetosByEquipe } from "../data/services/API.jsx"
+import CabProj from '../ui/components/_cabecalho.jsx'
+import { isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
-import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
 
 export default function Projetos() {
-    const [proj, setProj] = useState([])
+    const [projetos, setProj] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(id)
-            setProj(res)
+            setProj(res.projetos)
         }
         fetch()
     }, [])
@@ -30,7 +29,7 @@ export default function Projetos() {
     }
 
     function apr() {
-        return proj.map(function (i) {
+        return projetos.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
             return (
                 <>
@@ -63,34 +62,28 @@ export default function Projetos() {
     }
 
     if (localStorage.getItem('authToken')) {
-        if (proj.length != 0) {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                        <br /><br /><br />
-                        {apr()}
-                        <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                        <br /><br /><br />
-                        <h4>Sem projetos! Crie projetos!</h4>
-                        <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>)
-        }
+        return (
+            <>
+                <CabProj />
+                <center className={StyleProj.bodyProjs}>
+                    <br />
+                    <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                    {(projetos.length != 0) ? (
+                        <>
+                            <br /><br /><br />
+                            {apr()}
+                            <br />
+                        </>
+                    ) : (
+                        <>
+                            <br /><br /><br />
+                            <h4>Sem projetos! Crie um projeto!</h4>
+                            <br />
+                        </>
+                    )}
+                </center>
+            </>
+        )
     } else {
         return (location.href = "/login")
     }

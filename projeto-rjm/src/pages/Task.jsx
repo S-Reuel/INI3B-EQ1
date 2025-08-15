@@ -1,37 +1,46 @@
 import { useEffect, useState } from "react";
-import { redirecionar } from "./util/functions";
+import { isFormat, redirecionar } from "./util/functions"
+import { getTaskBySprint } from "../data/services/API"
+import { useParams } from "react-router-dom"
+import CabProj from "../ui/components/_cabecalho"
 
 export default function Task() {
-    const [] = useState([])
+    const { id } = useParams()
+    const [tasks, setTasks] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getSprintsByProjeto(id)
-            setSprints(res)
+            const res = await getTaskBySprint(id)
+            setTasks(res.tasks)
         }
         fetch()
     }, []);
 
+    // Função utilizada para otimizar o envio do ID pela URL
+    const caminho = (id, tipo) => {
+        if (tipo == 'task') {
+            alert("Ainda não funciona!!!")
+        } else if (tipo == 'ed') {
+            location.href = `/sprint/edit/task/${id}`
+        }
+    }
+
     function apr() {
-        return sprints.map(function (i) {
-            let dataInicio = isFormat(new Date(i.data_inicio))
-            let dataFim = isFormat(new Date(i.data_fim))
+        return tasks.map(function (i) {
+            let dataCriacao = isFormat(new Date(i.created_at))
+            let dataAtualizacao = isFormat(new Date(i.updated_at))
             return (
                 <div onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-                    <tr key={i.id}>
-                        <td>{i.id}</td>
-                        <td>{i.nome}</td>
-                        <td>{dataInicio}</td>
-                        <td>{dataFim}</td>
-                        <td>{i.projeto_id}</td>
+                    <p>
+                        {i.id}   {i.titulo}  {i.descricao}   {i.status}  {dataCriacao} {dataAtualizacao}
                         <button onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>Editar</button>
-                    </tr>
+                    </p>
                 </div>
             )
         })
@@ -42,24 +51,20 @@ export default function Task() {
             <>
                 <CabProj />
                 <center>
-                    <h1>Sprints</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Nome</td>
-                                <td>Data inicio</td>
-                                <td>Data termino</td>
-                                <td>Id projeto</td>
-                                <td></td>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <h1>Tasks</h1>
+                    {(tasks.length != "") ? (
+                        <div>
+                            <p>ID  Título  descrição   Status   data de criação     data de atualização</p>
                             {apr()}
-                        </tbody>
-                    </table>
+                        </div>
+                    ) : (
+                        <>
+                            <br /><br /><br />
+                            <h4>Sem Task! Crie uma task!</h4>
+                            <br />
+                        </>
+                    )}
                     <br />
-                    <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </center>
             </>
         )
