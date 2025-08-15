@@ -29,7 +29,6 @@ export default function Routers() {
                 <Route path="/usuarios" element={<Usuarios />} />
                 <Route path="/edit/usuarios/" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />
-                <Route path="/update/usuario" element={<UpdateUser />} />
                 {/*  Login */}
                 <Route path="/login" element={<Login />} />
                 <Route path="login/esqueciSenha" element={<EsqueciSenha />} />
