@@ -1,7 +1,8 @@
 /*usadoo por
 (Editar_Usuario.jsx)
 (Add_Projetos.jsx)
-Add_Equipes.jsx
+(Add_Equipes.jsx)
+
 */
 
 .paginaBody{
@@ -78,7 +79,7 @@ Add_Equipes.jsx
 
    width:auto;
 }
-@media screen and (max-width:600px), screen and (max-height:600px) { /*design temporario*/
+@media screen and (orientation: portrait){ /*design temporario*/
    .paginaBody{
       --center-left-margin:0%;
       --input-margin-bottom:10%;
@@ -89,6 +90,9 @@ Add_Equipes.jsx
    .form{
       margin-left: 0;
       margin-right: 0;
+   }
+   .center{
+      margin-left:0%;
    }
 }
 

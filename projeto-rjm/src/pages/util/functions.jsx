@@ -9,10 +9,26 @@ export function isFormat(data) {
         9: "Setembro", 10: "Outubro",
         11: "Novembro", 12: "Dezembro"
     }
-    let mes = data.getMonth()
+    let mes = data.getMonth() + 1
     let ano = data.getFullYear()
     let dia = data.getDate()
-    return `${dia} de ${mesFormat[mes + 1]} de ${ano}`;
+    return `${dia} de ${mesFormat[mes]} de ${ano}`;
+}
+
+export function isFormatDate(data, tipo) {
+    let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
+    let ano = data.getFullYear()
+    /*
+        Update é para quando é alterada a data pelo usuário em editar sprints
+        get é num primeiro instante no qual deve ser apresentada na tela a data vinda do Back-end
+    */
+    if (tipo == "update") {
+        let dia = (data.getDate() + 1 < 10) ? `0${data.getDate() + 1}` : data.getDate() + 1
+        return `${ano}-${mes}-${dia}`
+    } else if (tipo == "get") {
+        let dia = (data.getDate() < 10) ? `0${data.getDate()}` : data.getDate()
+        return `${ano}-${mes}-${dia}`
+    }
 }
 
 export function dateFormatter(date) {
@@ -55,7 +71,7 @@ export function redirecionar(caminho) {
             location.href = '/add/projeto'
             break
         case 'addSpr':
-            location.href = '/projetos/add/sprint'
+            location.href = '/projeto/add/sprint'
             break
         case 'eq':
             location.href = '/equipes'
@@ -63,15 +79,15 @@ export function redirecionar(caminho) {
         case 'addEq':
             location.href = '/add/equipes'
             break
+        case 'addTask':
+            location.href = '/sprint/add/task'
+            break
         case 'perfil':
             location.href = '/perfil'
             break
     }
 }
 
-export function voltar() { 
-    history.back(); 
-    /*
-        Pesquisar um método melhor para voltar de página
-    */
+export function voltar() {
+    history.back();
 }

@@ -5,7 +5,7 @@ import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 
-export default function AddProj() {
+export default function Add_Projeto() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [equipes, setEquipes] = useState([])
@@ -20,14 +20,17 @@ export default function AddProj() {
 
     const onSave = async (e) => {
         e.preventDefault()
+        var element = document.getElementById("selectEquipes");
+        var valorSel = element.options[element.selectedIndex].value;
+        console.log(valorSel)
         let data = new Date()
         let data_criacao = dateFormatter(data)
-        postProjeto({ nome, descricao, data_criacao })
+        // postProjeto({ nome, descricao, data_criacao })
     }
 
     function listaEquipe() {
         return equipes.map((i) =>
-            <option>{i.nome}</option>
+            <option value={i.id}>{i.nome}</option>
         )
     }
 
@@ -61,17 +64,16 @@ export default function AddProj() {
                         <br />
                         <label >
                             <label className={addProjStyle.lbl}>Equipe</label>
-                            <select className={addProjStyle.input}>
-                                <option>Selecione</option>
+                            <select className={addProjStyle.input} id='selectEquipes'>
+                                <option value={0}>Selecione</option>
                                 {listaEquipe()}
                             </select>
                         </label>
-                        <button type="submit" className={addProjStyle.formButton}>Criar Projeto</button>
+                        <button type="submit" className={addProjStyle.formButton}>Criar</button>
                         <br />
                         <br />
                         <a onClick={() => redirecionar('addEq')}>Nova Equipe</a>
                     </form>
-                    <button onClick={voltar}>Voltar</button>
                 </center>
             </div>
         )

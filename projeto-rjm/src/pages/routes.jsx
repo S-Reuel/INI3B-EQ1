@@ -4,19 +4,21 @@ import Login from "./Login";
 import Projetos from "./Projetos";
 import RedefinirSenha from "./Redefinir_Senha";
 import Registro from "./Registro";
-import Usuarios from "./Usuarios";
-import AddProj from "./Add_Projetos";
+import Usuarios from "./Usuarios.jsx";
 import EsqueciSenha from "./Esqueci_Senha";
 import Equipes from "./Equipes";
-import AddEqui from "./Add_Equipes";
 import Sprints from "./Sprints";
-import AddSprints from "./Add_Sprints";
-import UpdateUser from "./Update_User";
 import EditUser from "./Editar_Usuario";
 import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
 import Editar_Equipe from "./Editar_Equipe";
 import Editar_Sprint from "./Editar_Sprint.jsx";
+import Task from "./Task.jsx";
+import Add_Task from "./Add_Task.jsx";
+import Editar_Task from "./Editar_Task.jsx";
+import Add_Equipe from "./Add_Equipe.jsx";
+import Add_Projeto from "./Add_Projeto.jsx";
+import Add_Sprint from "./Add_Sprint.jsx";
 
 export default function Routers() {
     return (
@@ -35,16 +37,20 @@ export default function Routers() {
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
                 <Route path="edit/equipe/:id" element={<Editar_Equipe />} />
-                <Route path="/add/equipes" element={<AddEqui />} />
-                <Route path="/sobre" element={<Sobre />} />
+                <Route path="/add/equipes" element={<Add_Equipe />} />
                 {/* Projetos  */}
                 <Route path="/projeto/:id" element={<Projetos />} />
                 <Route path="edit/projeto/:id" element={<Editar_Projeto />} />
-                <Route path="/add/projeto" element={<AddProj />} />
+                <Route path="/add/projeto" element={<Add_Projeto />} />
                 {/*  Sprints */}
                 <Route path="/projeto/sprints/:id" element={<Sprints />} />
-                <Route path="/projeto/add/sprint" element={<AddSprints />} />
+                <Route path="/projeto/add/sprint" element={<Add_Sprint />} />
                 <Route path="/projeto/edit/sprint/:id" element={<Editar_Sprint />} />
+                {/*  Task */}
+                <Route path="/projeto/sprint/task/:id" element={<Task />} />
+                <Route path="/sprint/add/task" element={<Add_Task />} />
+                <Route path="/sprint/edit/task/:id" element={<Editar_Task />} />
+                <Route path="/sobre" element={<Sobre />} />
             </Routes>
         </Router>
     )
