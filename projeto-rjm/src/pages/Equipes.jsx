@@ -51,7 +51,7 @@ export default function Equipes() {
 
             <center>
                 <CabProj />
-                <h1>Equipes</h1>
+                <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
                 <button onClick={() => redirecionar('addEq')}>+ Equipes</button>
                 <div className={equipeStyle.equipeFlex}>
                     {apr()}

@@ -63,34 +63,19 @@ export default function Projetos() {
     }
 
     if (localStorage.getItem('authToken')) {
-        if (proj.length != 0) {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                        <br /><br /><br />
-                        {apr()}
-                        <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                        <br /><br /><br />
-                        <h4>Sem projetos! Crie projetos!</h4>
-                        <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>)
-        }
+        return (
+            <>
+                <CabProj />
+                <center className={StyleProj.bodyProjs}>
+                    <br />
+                    <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                    <br /><br /><br />
+                    {proj.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                    <br />
+                </center>
+                <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+            </>
+        )     
     } else {
         return (location.href = "/login")
     }

@@ -4,7 +4,6 @@
     background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
     background-size: cover;
     background-position: bottom center;
-    background-attachment: fixed; /* Adiciona o fixed para o fundo não rolar */
 }
 .login{
     height: 40px;
@@ -61,7 +60,6 @@
 .butCadastro{
     background-color: white;
     color:#BE5FDB;
-    width: 200px; /* Ajuste o tamanho do botão para não ocupar 100% da div */
     border-radius: 8px;
     border-style: none;
     font-family: inherit;
