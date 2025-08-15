@@ -13,7 +13,6 @@ import Sprints from "./Sprints";
 import AddSprints from "./Add_Sprints";
 import UpdateUser from "./Update_User";
 import EditUser from "./Editar_Usuario";
-import Perfil from "./Perfil";
 import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
 import Editar_Equipe from "./Editar_Equipe";
@@ -29,7 +28,6 @@ export default function Routers() {
                 <Route path="/edit/usuarios/" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />
                 <Route path="/update/usuario" element={<UpdateUser />} />
-                <Route path="/perfil" element={<Perfil />} />
                 {/*  Login */}
                 <Route path="/login" element={<Login />} />
                 <Route path="login/esqueciSenha" element={<EsqueciSenha />} />

@@ -37,11 +37,12 @@ export default function Perfil() {
                 <center>
                     <br />
                     <br />
-                    <button onClick={() => redirecionar('logout')}>logout</button>
                     <div>
                         {apr()}
                     </div>
                     <button onClick={() => location.href='/edit/usuarios/'}>Editar</button>
+                    <br /> <br />
+                    <button onClick={() => redirecionar('logout')}>logout</button>
                 </center>
             </>
         )
