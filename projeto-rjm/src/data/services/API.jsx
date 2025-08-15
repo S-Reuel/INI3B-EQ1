@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://7578e7054b1b.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://6f332ad6e86d.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -184,7 +184,7 @@ export async function getSprintsByProjeto(id) {
 
 export async function getSprintsId(id) {
     try {
-        let r = await URL.get(``)
+        let r = await URL.get(`sprints/${id}`)
         return r.data
     } catch (error) {
         return (error.status);
@@ -201,6 +201,50 @@ export async function updateSprint(id, param) {
 }
 
 export async function deleteSprint(id) {
+    await URL.delete(`/${id}`)
+        .then((res) => res.data);
+}
+
+/*  CRUD's Task */
+export async function postTask(param) {
+    await URL.post('task', param)
+        .then((res) => {
+            res.data
+            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+            if (bool)
+                location.href = ''
+        });
+}
+
+export async function getTaskBySprint(id) {
+    try {
+        let res = await URL.post(``, {id})
+        let tratado = res.data.sprints
+        return tratado
+    } catch (error) {
+        alert(error.status);
+    }
+}
+
+export async function getTaskId(id) {
+    try {
+        let r = await URL.get(`/${id}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function updateTask(id, param) {
+    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
+    if (bool) {
+        await URL.patch(`/${id}`, param).then(() => { voltar() })
+    } else {
+        location.reload()
+    }
+}
+
+export async function deleteTask(id) {
     await URL.delete(`/${id}`)
         .then((res) => res.data);
 }
