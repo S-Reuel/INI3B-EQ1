@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import CabProj from "../ui/components/_cabecalho";
-import { useEffect, useState } from "react";
-import { getSprintsByProjeto } from "../data/services/API";
+import { useParams } from "react-router-dom"
+import CabProj from "../ui/components/_cabecalho"
+import { useEffect, useState } from "react"
+import { getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-import { isFormat, redirecionar } from "./util/functions";
+import { isFormat, redirecionar } from "./util/functions"
 
 export default function Sprints() {
     const { id } = useParams()
@@ -53,46 +53,39 @@ export default function Sprints() {
     }
 
     if (localStorage.getItem('authToken')) {
-        if (sprints.length != 0) {
-            return (
-                <>
-                    <CabProj />
-                    <center>
-                        <h1>Sprints</h1>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>Nome</td>
-                                    <td>Data inicio</td>
-                                    <td>Data termino</td>
-                                    <td>Id projeto</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
+        return (
+            <>
+                <CabProj />
+                <center>
+                    <h1>Sprints</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Nome</td>
+                                <td>Data inicio</td>
+                                <td>Data termino</td>
+                                <td>Id projeto</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        {(sprints.length == 0) ? (
+                            <>
+                                <br /><br /><br />
+                                <h4>Sem Sprints! Crie uma sprint!</h4>
+                                <br />
+                            </>
+                        ) : (
                             <tbody>
                                 {apr()}
                             </tbody>
-                        </table>
-                        <br />
-                        <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                    </center>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                        <br /><br /><br />
-                        <h4>Sem projetos! Crie projetos!</h4>
-                        <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>)
-        }
+                        )}
+                    </table>
+                    <br />
+                    <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                </center>
+            </>
+        )
     } else {
         return (redirecionar('login'))
     }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { getEquipeByUser } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-import CabProj from '../ui/components/_cabecalho.jsx';
-import equipeStyle from '../ui/styles/Equipes/Equipes.module.css';
+import CabProj from '../ui/components/_cabecalho.jsx'
+import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 
 export default function Equipes() {
     const [eqs, setEqs] = useState([])
@@ -46,33 +46,25 @@ export default function Equipes() {
     }
 
     if (localStorage.getItem('authToken')) {
-        if (eqs.length != 0) {
-            return (
-
-                <center>
-                    <CabProj />
-                    <h1>Equipes</h1>
-                    <button onClick={() => redirecionar('addEq')}>+ Equipes</button>
+        return (
+            <center>
+                <CabProj />
+                <h1>Equipes</h1>
+                <button onClick={() => redirecionar('addEq')}>+ Equipes</button>
+                {(eqs.length != 0) ? (
                     <div className={equipeStyle.equipeFlex}>
                         {apr()}
                     </div>
-                    <br />
-                </center>
-            )
-        } else {
-            return (
-                <>
-                    <CabProj />
-                    <center className={StyleProj.bodyProjs}>
-                        <br />
-                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                ) : (
+                    <>
                         <br /><br /><br />
-                        <h4>Sem projetos! Crie projetos!</h4>
+                        <h4>Sem Equipes! Crie uma equipe!</h4>
                         <br />
-                    </center>
-                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </>)
-        }
+                    </>
+                )}
+                <br />
+            </center>
+        )
     } else {
         return (redirecionar('login'))
     }
