@@ -4,16 +4,17 @@ import CabProj from '../ui/components/_cabecalho.jsx'
 import { isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
-import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom"
+import imgMaisProjeto from '../ui/icons/mais.png'
+import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 
 export default function Projetos() {
     const [projetos, setProj] = useState([])
-    const { id } = useParams()
+    const { equipe_id } = useParams()
 
     useEffect(() => {
         async function fetch() {
-            let res = await getProjetosByEquipe(id)
+            let res = await getProjetosByEquipe(equipe_id)
             setProj(res.projetos)
         }
         fetch()
@@ -82,6 +83,7 @@ export default function Projetos() {
                         </>
                     )}
                 </center>
+                <a href={`../add/projeto/${equipe_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
             </>
         )
     } else {
