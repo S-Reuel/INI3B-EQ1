@@ -59,13 +59,15 @@
 .ab{
     display: flex;
     align-items: center;
+    
 }
 .passwordEye{    
     position: absolute;
     flex-direction: row-reverse;
-    transform: translate(33vw,-3vh);
+    transform: translate(35vw,-3vh);
     width: 5vw;
-    max-width: 10px;
+    max-width: 30px;
+    min-width: 25px;
     height: auto;
 }
  .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
@@ -116,6 +118,5 @@
  
  }
 
- 
  
  
