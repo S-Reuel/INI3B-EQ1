@@ -1,32 +1,78 @@
+import React from 'react';
 import cabProjetoStyle from '../styles/cabProjeto.module.css'
 import iconeCodra from "../icons/Codra.png"
 import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
 import { voltar } from '../../pages/util/functions'
-import { redirecionar } from "../../pages/util/functions.jsx";
+import { redirecionar } from "../../pages/util/functions.jsx"
+import Modal from 'react-modal';
+import Perfil from '../../pages/Perfil.jsx';
+
+Modal.setAppElement('#root');
+
 
 export default function CabProj() {
+
   if (localStorage.getItem('authToken')) {
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    // Função que abre a modal
+    function abrirModal() {
+      setIsOpen(true);
+    }
+
+    // Função que fecha a modal
+    function fecharModal() {
+      setIsOpen(false);
+    }
+
     return (
-      <header className={cabProjetoStyle.cabecalho_proj}>
-        <div className={cabProjetoStyle.cabecalhoEsquerda}>
-          <a onClick={voltar}>
-            <img src={iconeVoltar} alt="Voltar" className={cabProjetoStyle.voltar} />
-          </a>
+      <>
+        <script src="./src"></script>
+        <div><header className={cabProjetoStyle.cabecalho_proj}>
+          <div className={cabProjetoStyle.cabecalhoEsquerda}>
+            <a onClick={voltar}>
+              <img src={iconeVoltar} alt="Voltar" className={cabProjetoStyle.voltar} />
+            </a>
 
-          <a href="/">
-            <img src={iconeCodra} alt="Codra" className={cabProjetoStyle.codra} />
-          </a>
-        </div>
-        <div className={cabProjetoStyle.cabecalhoDireita}>
+            <a href="/">
+              <img src={iconeCodra} alt="Codra" className={cabProjetoStyle.codra} />
+            </a>
+          </div>
+          <div className={cabProjetoStyle.cabecalhoDireita}>
 
-        <div className={cabProjetoStyle.IrEquipes} onClick={()=>redirecionar('eq')}>Ver Equipes</div>
-          <a href='/perfil'>
-            <img src={iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} />
-          </a>
+            <div className={cabProjetoStyle.IrEquipes} onClick={() => redirecionar('eq')}>Ver Equipes</div>
+
+            <img src={iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} id='btnModal' onClick={abrirModal} />
+
+          </div>
+
+        </header>
+
+
+          <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
+            style={{
+              overlay: {
+                backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+              },
+              content: {
+                border: '1px solid black',
+                background: '#151B23',
+
+              }
+            }}
+          >
+            <button className={cabProjetoStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+            <Perfil />
+          </Modal>
+
         </div>
-      </header>
+
+      </>
+
     )
+
   }
   else {
     return (
@@ -48,8 +94,12 @@ export default function CabProj() {
           <a href='/login' className={cabProjetoStyle.botaoLogin}>
             <div >Entrar</div>
           </a>
+
         </div>
       </header>
     )
   }
 }
+
+
+

@@ -14,7 +14,7 @@
     cursor:pointer;/*--DIEGO:para que o mouse mude o seu icone, como se fosse um link, quando estiver em cima de um botao*/
  }
  .logo{
-    background-Image:url("/src/ui/icons/codra-background-dark.svg");
+    background-Image:url("/src/ui/icons/codra-background-dark.png");
 
      grid-column: 1;
      background-size: cover; /*--DIEGO:para que o svg de fundo cubra todo o espaco na esquerda*/
@@ -50,38 +50,48 @@
      border-color: "#bebebe";
      border-style: none;
      padding-left:5%;
-     border-radius: 15px;
+     border-radius: 16px;
      color:#B6B8BB;
      background-color: #FFFFFF;
      width:85%;
      height: var(--form-height-input);
+     margin-top: 2%;
+     border: 2px solid #BEBEBE;
 }
 .ab{
     display: flex;
     align-items: center;
+    
 }
 .passwordEye{    
     position: absolute;
     flex-direction: row-reverse;
-    transform: translate(33vw,-3vh);
+    transform: translate(35vw,-3vh);
     width: 5vw;
-    max-width: 10px;
+    max-width: 30px;
+    min-width: 25px;
     height: auto;
 }
  .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
      background-color: #AD56C7;
      border-style: none;
-     border-radius: 15px;
+     border-radius: 16px;
      width:90%;
      padding: 1.5%;
      text-align: center;
      color:white;
+     height: var(--form-height-input);
  }
  .link{
      color:#d39745;
 
      text-decoration: none;
  }
+
+ .redirectMessage{/*MAJU*/
+    margin-top: 4%;
+ }
+
  .response{
     color: red;
  }
@@ -116,6 +126,5 @@
  
  }
 
- 
  
  

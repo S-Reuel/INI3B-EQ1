@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import CabProj from "../ui/components/_cabecalho";
-import { useEffect, useState } from "react";
-import { getSprintsByProjeto } from "../data/services/API";
+import { useParams } from "react-router-dom"
+import CabProj from "../ui/components/_cabecalho"
+import { useEffect, useState } from "react"
+import { getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-import { isFormat, redirecionar } from "./util/functions";
+import { isFormat, redirecionar } from "./util/functions"
 
 export default function Sprints() {
     const { id } = useParams()
@@ -13,7 +13,7 @@ export default function Sprints() {
     useEffect(() => {
         async function fetch() {
             const res = await getSprintsByProjeto(id)
-            setSprints(res)
+            setSprints(res.sprints)
         }
         fetch()
     }, [])
@@ -42,7 +42,7 @@ export default function Sprints() {
                         <td>{dataInicio}</td>
                         <td>{dataFim}</td>
                         <td>{i.projeto_id}</td>
-                        <button  onClick={(e) => {
+                        <button onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>Editar</button>
@@ -69,9 +69,17 @@ export default function Sprints() {
                                 <td></td>
                             </tr>
                         </thead>
-                        <tbody>
-                            {apr()}
-                        </tbody>
+                        {(sprints.length == 0) ? (
+                            <>
+                                <br /><br /><br />
+                                <h4>Sem Sprints! Crie uma sprint!</h4>
+                                <br />
+                            </>
+                        ) : (
+                            <tbody>
+                                {apr()}
+                            </tbody>
+                        )}
                     </table>
                     <br />
                     <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>

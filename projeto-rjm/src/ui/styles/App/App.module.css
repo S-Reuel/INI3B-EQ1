@@ -45,6 +45,7 @@
 }
 
 .divCadastro{
+    overflow: hidden;
     background-color: #BE5FDB;
     color: white;
     border-radius: 8px;
