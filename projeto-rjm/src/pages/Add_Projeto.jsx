@@ -37,7 +37,6 @@ export default function Add_Projeto() {
     if (localStorage.getItem('authToken')) {
         return (
             <div className={addProjStyle.paginaBody}>
-                <CabProj />
                 <center className={addProjStyle.center}>
                     <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
@@ -73,6 +72,7 @@ export default function Add_Projeto() {
                         <br />
                         <br />
                         <a onClick={() => redirecionar('addEq')}>Nova Equipe</a>
+                        
                     </form>
                 </center>
             </div>
