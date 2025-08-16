@@ -39,7 +39,7 @@ export default function Add_Equipe() {
                                 className={addEquipeStyle.input}
                             />
                         </label>
-                        <br /><br />
+                        <br />
                         <button type="submit" onClick={onSave}  className={addEquipeStyle.formButton}>Criar</button>
                     </form>
                 </center>

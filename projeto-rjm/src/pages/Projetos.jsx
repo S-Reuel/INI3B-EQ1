@@ -6,6 +6,7 @@ import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom"
+import imgMaisProjeto from '../ui/icons/mais.png'
 
 export default function Projetos() {
     const [projetos, setProj] = useState([])
@@ -62,28 +63,19 @@ export default function Projetos() {
     }
 
     if (localStorage.getItem('authToken')) {
-        return (
-            <>
-                <CabProj />
-                <center className={StyleProj.bodyProjs}>
-                    <br />
-                    <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                    {(projetos.length != 0) ? (
-                        <>
-                            <br /><br /><br />
-                            {apr()}
-                            <br />
-                        </>
-                    ) : (
-                        <>
-                            <br /><br /><br />
-                            <h4>Sem projetos! Crie um projeto!</h4>
-                            <br />
-                        </>
-                    )}
-                </center>
-            </>
-        )
+            return (
+                <>
+                    <CabProj />
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
+                        <br /><br /><br />
+                        {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                        <br />
+                    </center>
+                    <a onClick={() => { redirecionar('addProj') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                </>
+            )
     } else {
         return (location.href = "/login")
     }
