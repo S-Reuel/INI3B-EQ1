@@ -1,13 +1,17 @@
+import React from 'react';
 import { useEffect, useState } from "react"
+import Modal from 'react-modal';
 import { getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
+import { redirecionar} from "./util/functions"
 import { isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
-import { useParams } from "react-router-dom"
-import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-
+import { useParams } from "react-router-dom"
+import Add_Projeto from './Add_Projeto.jsx';
+import imgMaisProjeto from '../ui/icons/mais.png'
+Modal.setAppElement('#root');
 export default function Projetos() {
     const [projetos, setProj] = useState([])
     const { equipe_id } = useParams()
@@ -28,6 +32,19 @@ export default function Projetos() {
             location.href = `/edit/projeto/${id}`
         }
     }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    // Função que abre a modal
+    function abrirModal() {
+      setIsOpen(true);
+    }
+
+    // Função que fecha a modal
+    function fecharModal() {
+      setIsOpen(false);
+    }
+
 
     function apr() {
         return projetos.map(function (i) {
@@ -69,21 +86,26 @@ export default function Projetos() {
                 <center className={StyleProj.bodyProjs}>
                     <br />
                     <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                    {(projetos.length != 0) ? (
-                        <>
-                            <br /><br /><br />
-                            {apr()}
-                            <br />
-                        </>
-                    ) : (
-                        <>
-                            <br /><br /><br />
-                            <h4>Sem projetos! Crie um projeto!</h4>
-                            <br />
-                        </>
-                    )}
+                    {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                     <a href={`../add/projeto/${equipe_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </center>
-                <a href={`../add/projeto/${equipe_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <div className={StyleProj.botaoNewProjeto}  onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <Modal isOpen={modalIsOpen} onRequestClose={fecharModal}  className={StyleProj.modalConteudo}
+                                style={{
+                                  overlay: {
+                                    overflowY:"scroll",
+                                    backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                                  },
+                                  content: {
+                                    border: '1px solid black',
+                                    background: '#151B23',
+                    
+                                  }
+                                }}
+                              >
+                                <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                                <Add_Projeto />
+                    </Modal>
             </>
         )
     } else {

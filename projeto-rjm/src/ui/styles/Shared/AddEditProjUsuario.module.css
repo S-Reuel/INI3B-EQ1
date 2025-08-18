@@ -8,9 +8,8 @@
 .paginaBody{
    --form-left-margin:3%;
    --center-left-margin:3%;
-   --input-margin-bottom:6.66vh;
+   --input-margin-bottom:3.33vh;
    background-color: var(--cor-do-fundo-da-pagina);
-   height: 100vh;
 }
 .paginaBody * {
    color:#FFFFFF;
@@ -24,7 +23,6 @@
 .tituloPagina{
    color:#BE5FDB;
    text-align: left;
-   font-size: 3vw;
 }
 .form{
    background-color: #212A36;
@@ -34,7 +32,7 @@
    border-color: #4D555E;
    border-style: solid;
 
-   font-size: 100%;
+   font-size: 3vw;
    padding: 6%;
    margin-right: 20%;
    margin-bottom: 3%;
@@ -52,7 +50,7 @@
    color:#B6B8BB;
 
    font-weight: 400;
-   
+
    margin-bottom: var(--input-margin-bottom);
    padding:var(--form-left-margin);
 

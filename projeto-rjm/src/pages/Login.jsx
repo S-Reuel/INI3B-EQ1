@@ -78,8 +78,10 @@ export default function Login() {
                     </form>
                     <div className={loginStyle.SignUpForgot}>
 
-                        <p>
-                            Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.link}>Redefinir</a><br />
+                         <p className={loginStyle.redirectMessage}>
+                            Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.link}>Redefinir</a>
+                        </p>
+                        <p className={loginStyle.redirectMessage}>
                             Não tem uma conta?   <a href="/add/usuario" className={loginStyle.link}>Cadastre-se</a>
                         </p>
                         <br />
