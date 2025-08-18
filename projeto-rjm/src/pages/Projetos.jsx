@@ -62,7 +62,7 @@ export default function Projetos() {
                             {i.descricao}
                         </div>
                         <div className={StyleProj.dataProj}>
-                            Data de atualização:
+                            Atualizado em:
                             <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
                         </div>
                         <button className={StyleProj.bttEditarProj} onClick={(e) => {
