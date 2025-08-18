@@ -9,8 +9,7 @@ export default function EsqueciSenha() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let r = await esqueciSenha(email)
-        let mensagem = r.data.alert
+        let mensagem = await esqueciSenha(email)
         if (mensagem == 'Um email de redefinição foi enviado') {
             location.href = '/login/redefinirSenha'
         } else {
