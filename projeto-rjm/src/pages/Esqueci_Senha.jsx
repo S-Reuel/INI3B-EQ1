@@ -8,10 +8,8 @@ export default function EsqueciSenha() {
     const [email, setEmail] = useState('')
 
     const onSave = async (e) => {
-        emailEnviado = email /*para que o usuario nao spamme o botao e acabe sobrecarregando o servidor*/
-        setEmail("")
         e.preventDefault()
-        let mensagem = await esqueciSenha(emailEnviado)
+        let mensagem = await esqueciSenha(email)
         if (mensagem == 'Um email de redefinição foi enviado') {
             location.href = '/login/redefinirSenha'
         } else {
