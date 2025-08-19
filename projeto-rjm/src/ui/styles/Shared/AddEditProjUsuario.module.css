@@ -77,6 +77,18 @@
 
    width:auto;
 }
+.botaoNovaEquipe{
+   background-color: #4848B6;
+
+   border-color: #4848B6;
+   border-style: none;
+   border-radius:15px;
+
+   padding: 1.5%;
+}
+.botaoNovaEquipe:hover{
+   cursor: pointer;
+}
 @media screen and (orientation: portrait){ /*design temporario*/
    .paginaBody{
       --center-left-margin:0%;

@@ -71,7 +71,7 @@ export default function Add_Projeto() {
                         <button type="submit" className={addProjStyle.formButton}>Criar</button>
                         <br />
                         <br />
-                        <a onClick={() => redirecionar('addEq')}>Nova Equipe</a>
+                        <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('addEq')}>Nova Equipe</a>
                         
                     </form>
                 </center>
