@@ -7,12 +7,12 @@ import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { isFormat, redirecionar } from "./util/functions"
 
 export default function Sprints() {
-    const { id } = useParams()
+    const { projeto_id } = useParams()
     const [sprints, setSprints] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getSprintsByProjeto(id)
+            const res = await getSprintsByProjeto(projeto_id)
             setSprints(res.sprints)
         }
         fetch()
@@ -24,7 +24,7 @@ export default function Sprints() {
             location.href = `/projeto/sprint/task/${id}`
         } else if (tipo == 'ed') {
             location.href = `/projeto/edit/sprint/${id}`
-        }
+        } 
     }
 
     function apr() {
@@ -59,16 +59,6 @@ export default function Sprints() {
                 <center>
                     <h1>Sprints</h1>
                     <table>
-                        <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Nome</td>
-                                <td>Data inicio</td>
-                                <td>Data termino</td>
-                                <td>Id projeto</td>
-                                <td></td>
-                            </tr>
-                        </thead>
                         {(sprints.length == 0) ? (
                             <>
                                 <br /><br /><br />
@@ -76,13 +66,25 @@ export default function Sprints() {
                                 <br />
                             </>
                         ) : (
-                            <tbody>
-                                {apr()}
-                            </tbody>
+                            <>
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>Nome</td>
+                                        <td>Data inicio</td>
+                                        <td>Data termino</td>
+                                        <td>Id projeto</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {apr()}
+                                </tbody>
+                            </>
                         )}
                     </table>
                     <br />
-                    <a onClick={() => { redirecionar('addSpr') }}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
+                    <a href={`/projeto/add/sprint/${projeto_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </center>
             </>
         )

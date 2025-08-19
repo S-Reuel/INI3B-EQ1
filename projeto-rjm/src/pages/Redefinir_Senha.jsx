@@ -11,12 +11,11 @@ export default function RedefinirSenha() {
     const onSave = async (e) => {
         e.preventDefault()
         if (password1 == password2) {
-            let r = await redefinirSenha(token, email, password1)
-            let mensagem = r.data.alert
+            let mensagem = await redefinirSenha(token, email, password1)
             if (mensagem == 'Senha redefinida com sucesso!') {
                 location.href = '../login'
             } else {
-                document.getElementById("response").innerHTML = JSON.stringify(mensagem)
+                document.getElementById("response").innerHTML = mensagem
             }
         }
     }

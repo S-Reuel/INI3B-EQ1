@@ -1,31 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { postSprint } from "../data/services/API"
-import { dateFormatter, redirecionar, voltar } from "./util/functions"
+import { redirecionar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import { useParams } from 'react-router-dom'
+
 export default function Add_Sprint() {
+    const {projeto_id} = useParams()
     const [nome, setNome] = useState('')
-    const [descricao, setDesc] = useState('')
-    const [equipes, setEquipes] = useState([])
-
-    useEffect(() => {
-        async function fetch() {
-
-        }
-        fetch()
-    }, [])
+    const [dataI, setDI] = useState()
+    const [dataF, setDF] = useState()
 
     const onSave = async (e) => {
         e.preventDefault()
-        let data = new Date()
-        let data_criacao = dateFormatter(data)
-        postSprint({ nome, data_criacao, data_fim, projetos_id })
-    }
-
-    function listaEquipe() {
-        return equipes.map((i) =>
-            <option value="">{i.nome}</option>
-        )
+        let horario = `${new Date().toISOString().split('T')[1]}`
+        let data_inicio = `${dataI}T${horario}`
+        let data_fim = `${dataF}T${horario}`
+        postSprint({ nome, data_inicio, data_fim, projeto_id})
     }
 
     if (localStorage.getItem('authToken')) {
@@ -46,25 +37,15 @@ export default function Add_Sprint() {
                         </label>
                         <br />
                         <label >
-                            <label>Descrição</label>
-                            <br />
-                            <input
-                                type="text" name="descricao"
-                                placeholder="Digite aqui descrição da Sprint" required
-                                onChange={(e) => setDesc(e.target.value)}
-                            />
-                        </label>
-                        <br />
-                        <label >
                             <label>Data de Inicio</label>
                             <br />
-                            <input type="date" />
+                            <input type="date" onChange={(e) => setDI(e.target.value)}/>
                         </label>
                         <br />
                         <label >
                             <label>Data de Termino</label>
                             <br />
-                            <input type="date" />
+                            <input type="date" onChange={(e) => setDF(e.target.value)} />
                         </label>
                         <br /><br />
                         <button type="submit">Criar</button>

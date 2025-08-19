@@ -16,9 +16,8 @@ export default function Editar_Sprint() {
             const res = await getSprintsId(id)
             setId(res.projeto_id)
             setNome(res.nome)
-            // Explicação para o segundo parametro da função isFormatDate está no arquivo functions
-            setDI(isFormatDate(new Date(res.data_inicio), "get"))
-            setDF(isFormatDate(new Date(res.data_fim), "get"))
+            setDI(isFormatDate(new Date(res.data_inicio)))
+            setDF(isFormatDate(new Date(res.data_fim)))
         }
         fetch()
     }, [])
@@ -26,8 +25,8 @@ export default function Editar_Sprint() {
     const onSave = async (e) => {
         e.preventDefault() 
         let horario = `${new Date().toISOString().split('T')[1]}`
-        let data_inicio = `${isFormatDate(new Date(dataI), "update")}T${horario}`
-        let data_fim = `${isFormatDate(new Date(dataF), "update")}T${horario}`
+        let data_inicio = `${dataI}T${horario}`
+        let data_fim = `${dataF}T${horario}`
         updateSprint(id, { nome, data_inicio, data_fim, projeto_id})
     }
 

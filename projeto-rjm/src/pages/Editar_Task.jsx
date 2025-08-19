@@ -2,15 +2,13 @@ import { useEffect, useState } from "react"
 import { getTaskId, updateTask, } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isFormatDate } from "./util/functions"
 
 export default function Editar_Task() {
     const { id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
     const [status, setStatus] = useState()
-    const [data_criacao, setDC] = useState()
-    const [data_update, setDU] = useState()
+    const [arquivos, setArquivos] = useState()
 
     useEffect(() => {
         async function fetch() {
@@ -18,19 +16,14 @@ export default function Editar_Task() {
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
-            // Explicação para o segundo parametro da função isFormatDate está no arquivo functions
-            setDC(isFormatDate(new Date(res.created_at), "get"))
-            setDU(isFormatDate(new Date(res.updated_at), "get"))
+            setArquivos(res.arquivos)
         }
         fetch()
     }, [])
 
     const onSave = async (e) => {
-        e.preventDefault() 
-        let horario = `${new Date().toISOString().split('T')[1]}`
-        let data_inicio = `${isFormatDate(new Date(dataI), "update")}T${horario}`
-        let data_fim = `${isFormatDate(new Date(dataF), "update")}T${horario}`
-        updateTask(id, { nome, data_inicio, data_fim, projeto_id})
+        e.preventDefault()
+        updateTask(id, { titulo, descricao, status, arquivos })
     }
 
     if (localStorage.getItem('authToken')) {
@@ -38,8 +31,12 @@ export default function Editar_Task() {
             <div >
                 <CabProj />
                 <center>
-                    <h1>Criar nova Sprint</h1>
+                    <h1>Editar Task</h1>
                     <form onSubmit={onSave}>
+                        <br />
+                        <input type="file" name="arquivo" defaultValue={arquivos} />
+                        <br />
+                        <br />
                         <label>
                             <label>Título da Task</label><br />
                             <input
@@ -65,18 +62,6 @@ export default function Editar_Task() {
                                 type="text" name="nome" defaultValue={status} required
                                 onChange={(e) => setStatus(e.target.value)}
                             />
-                        </label>
-                        <br />
-                        <label >
-                            <label>Data de Criação</label>
-                            <br />
-                            <input type="date" defaultValue={data_criacao} onChange={(e) => setDC(e.target.value)}/>
-                        </label>
-                        <br />
-                        <label >
-                            <label>Data de Atualização</label>
-                            <br />
-                            <input type="date" defaultValue={data_update} onChange={(e) => setDU(e.target.value)}/>
                         </label>
                         <br /><br />
                         <button type="submit">Atualiza Sprint</button>
