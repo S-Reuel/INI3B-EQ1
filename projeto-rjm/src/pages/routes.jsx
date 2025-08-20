@@ -16,8 +16,6 @@ import Editar_Sprint from "./Editar_Sprint.jsx";
 import Task from "./Task.jsx";
 import Add_Task from "./Add_Task.jsx";
 import Editar_Task from "./Editar_Task.jsx";
-import Add_Equipe from "./Add_Equipe.jsx";
-import Add_Projeto from "./Add_Projeto.jsx";
 import Add_Sprint from "./Add_Sprint.jsx";
 
 export default function Routers() {
@@ -36,7 +34,6 @@ export default function Routers() {
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
                 <Route path="edit/equipe/:id" element={<Editar_Equipe />} />
-                <Route path="/add/equipes" element={<Add_Equipe />} />
                 {/* Projetos  */}
                 <Route path="/projeto/:equipe_id" element={<Projetos />} />
                 <Route path="edit/projeto/:id" element={<Editar_Projeto />} />
