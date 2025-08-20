@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getEquipeByUser, postProjeto } from "../data/services/API"
-import { dateFormatter, redirecionar, voltar } from "./util/functions"
+import { redirecionar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 
 export default function Add_Projeto() {
     const [nome, setNome] = useState('')
@@ -21,11 +20,8 @@ export default function Add_Projeto() {
     const onSave = async (e) => {
         e.preventDefault()
         var element = document.getElementById("selectEquipes");
-        var valorSel = element.options[element.selectedIndex].value;
-        console.log(valorSel)
-        let data = new Date()
-        let data_criacao = dateFormatter(data)
-        // postProjeto({ nome, descricao, data_criacao })
+        var equipe_id = element.options[element.selectedIndex].value;
+        postProjeto(equipe_id, { nome, descricao})
     }
 
     function listaEquipe() {

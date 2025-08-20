@@ -106,7 +106,7 @@ export async function getEquipeByUser() {
 
 export async function updateEquipe(id, param) {
     try {
-        let r = await URL.patch(`equipes/${id}`, param).then(() => redirecionar('eq'))
+        await URL.patch(`equipes/${id}`, param).then(() => redirecionar('eq'))
     } catch (error) {
         return (error.status);
     }
@@ -118,14 +118,26 @@ export async function deleteEquipe(id) {
 }
 
 /*  CRUD's Projetos */
-export async function postProjeto(param) {
-    await URL.post('projetos', param)
-        .then((res) => {
-            res.data
-            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-            if (bool)
-                location.href = '../Projetos'
-        });
+export async function postProjeto(equipe_id, params) {
+    try {
+        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+        if (bool) {
+            await URL.post('projetos', params).then((res) => {
+                let projeto_id = res.data.id
+                postProjetoByEquipe({ projeto_id, equipe_id })
+            })
+        }
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+async function postProjetoByEquipe(params) {
+    try {
+        await URL.post('equipe_projetos', params).then(() => { location.reload() })
+    } catch (error) {
+        return (error.status);
+    }
 }
 
 export async function getProjetosByEquipe(id) {
