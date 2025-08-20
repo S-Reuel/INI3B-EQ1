@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
+import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
 import { isFormat, redirecionar } from "./util/functions"
 
 export default function Sprints() {
@@ -32,21 +33,21 @@ export default function Sprints() {
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
             return (
-                <div onClick={(e) => {
+                <div className={StylesSprint.sprint} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-                    <tr key={i.id}>
-                        <td>{i.id}</td>
-                        <td>{i.nome}</td>
-                        <td>{dataInicio}</td>
-                        <td>{dataFim}</td>
-                        <td>{i.projeto_id}</td>
+                    
+                        <div>{i.id}</div>
+                        <div>{i.nome}</div>
+                        <div>{dataInicio}</div>
+                        <div>{dataFim}</div>
+                        <div>{i.projeto_id}</div>
                         <button onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>Editar</button>
-                    </tr>
+                    
                 </div>
             )
         })
@@ -56,9 +57,8 @@ export default function Sprints() {
         return (
             <>
                 <CabProj />
-                <center>
-                    <h1>Sprints</h1>
-                    <table>
+                <h1>Sprints</h1>
+                <div className={StylesSprint.telaSprint}>
                         {(sprints.length == 0) ? (
                             <>
                                 <br /><br /><br />
@@ -67,25 +67,13 @@ export default function Sprints() {
                             </>
                         ) : (
                             <>
-                                <thead>
-                                    <tr>
-                                        <td>ID</td>
-                                        <td>Nome</td>
-                                        <td>Data inicio</td>
-                                        <td>Data termino</td>
-                                        <td>Id projeto</td>
-                                        <td></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {apr()}
-                                </tbody>
+                                {apr()}
                             </>
                         )}
-                    </table>
+                    
                     <br />
                     <a href={`/projeto/add/sprint/${projeto_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
-                </center>
+                </div>
             </>
         )
     } else {
