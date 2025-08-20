@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://332bb32dba89.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://f7d9d2e7fa30.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -162,18 +162,22 @@ export async function deleteProjeto(id) {
 
 /*  CRUD's Sprints */
 export async function postSprint(param) {
-    await URL.post('sprints', param)
-        .then((res) => {
-            res.data
-            let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-            if (bool)
-                location.href = ''
-        });
+    try {
+        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
+        if (bool) {
+            // console.log(param)
+            await URL.post('sprints', param).then(() => { voltar() })
+        } else {
+            location.reload()
+        }
+    } catch (error) {
+        alert(error.status)
+    }
 }
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.post(`projetos/ps/`, {id})
+        let res = await URL.post(`projetos/ps/`, { id })
         return res.data
     } catch (error) {
         alert(error.status);
@@ -219,7 +223,7 @@ export async function getTaskBySprint(id) {
         let res = await URL.get(`sprint/task/${id}`)
         return res.data
     } catch (error) {
-        // alert(error.status);
+        alert(error.status);
     }
 }
 
@@ -235,7 +239,7 @@ export async function getTaskId(id) {
 export async function updateTask(id, param) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
-        await URL.patch(`/${id}`, param).then(() => { voltar() })
+        await URL.patch(`/tasks/${id}`, param).then(() => { voltar() })
     } else {
         location.reload()
     }
@@ -262,11 +266,19 @@ export async function postLogin(param) {
 
 /*  Alteração de senha   */
 export async function esqueciSenha(param) {
-    let r = await URL.post(`esqueci/`, { email: param })
-    return r
+    try {
+        let r = await URL.post(`esqueci/`, { email: param })
+        return r.data.alert
+    } catch (error) {
+        alert(error.status)
+    }
 }
 
 export async function redefinirSenha(t, e, p) {
-    let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
-    return r
+    try {
+        let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
+        return r.data.alert
+    } catch (error) {
+        alert(error.status)
+    }
 }

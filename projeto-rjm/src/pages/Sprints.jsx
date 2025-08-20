@@ -3,16 +3,17 @@ import CabProj from "../ui/components/_cabecalho"
 import { useEffect, useState } from "react"
 import { getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
+import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
 import { isFormat, redirecionar } from "./util/functions"
 
 export default function Sprints() {
-    const { id } = useParams()
+    const { projeto_id } = useParams()
     const [sprints, setSprints] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getSprintsByProjeto(id)
+            const res = await getSprintsByProjeto(projeto_id)
             setSprints(res.sprints)
         }
         fetch()
@@ -24,7 +25,7 @@ export default function Sprints() {
             location.href = `/projeto/sprint/task/${id}`
         } else if (tipo == 'ed') {
             location.href = `/projeto/edit/sprint/${id}`
-        }
+        } 
     }
 
     function apr() {
@@ -55,11 +56,9 @@ export default function Sprints() {
     if (localStorage.getItem('authToken')) {
         return (
             <>
-                <CabProj /><h1>Sprints</h1>
+                <CabProj />
+                <h1>Sprints</h1>
                 <div className={StylesSprint.telaSprint}>
-                    
-                    
-                        
                         {(sprints.length == 0) ? (
                             <>
                                 <br /><br /><br />
@@ -73,7 +72,7 @@ export default function Sprints() {
                         )}
                     
                     <br />
-                    <a onClick={() => { redirecionar('addSpr') }}><div className={StylesSprint.botaoNewProjeto}><img src={imgMaisProjeto} className={StylesSprint.imgEditarProj} /></div></a>
+                    <a href={`/projeto/add/sprint/${projeto_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </div>
             </>
         )

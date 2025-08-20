@@ -6,14 +6,18 @@ import { redirecionar } from "./util/functions";
 
 export default function EsqueciSenha() {
     const [email, setEmail] = useState('')
+    const [botaoDesativado, setBotaoDesativado] = useState('') /*--TO DO-diego:com Regex, daria pra ativar o botao assim que um email valido fosse enviado */
 
     const onSave = async (e) => {
+        let emailEnviado = email
+        setEmail("")
+        setBotaoDesativado("disabled")
         e.preventDefault()
-        let r = await esqueciSenha(email)
-        let mensagem = r.data.alert
+        let mensagem = await esqueciSenha(emailEnviado)
         if (mensagem == 'Um email de redefinição foi enviado') {
             location.href = '/login/redefinirSenha'
         } else {
+            setBotaoDesativado("")
             document.getElementById("response").innerHTML = JSON.stringify(mensagem)
         }
     }
@@ -44,7 +48,7 @@ export default function EsqueciSenha() {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </label>
-                        <button type="submit" className={esqueciStyle.formButton}>Enviar</button>
+                        <button type="submit" className={esqueciStyle.formButton} disabled={botaoDesativado} >Enviar</button>
                     </form>
                     <div className={esqueciStyle.SignUpForgot}>
                         <p>
