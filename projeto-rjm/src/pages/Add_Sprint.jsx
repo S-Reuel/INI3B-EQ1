@@ -39,13 +39,13 @@ export default function Add_Sprint() {
                         <label >
                             <label>Data de Inicio</label>
                             <br />
-                            <input type="date" onChange={(e) => setDI(e.target.value)}/>
+                            <input type="date" required onChange={(e) => setDI(e.target.value)}/>
                         </label>
                         <br />
                         <label >
                             <label>Data de Termino</label>
                             <br />
-                            <input type="date" onChange={(e) => setDF(e.target.value)} />
+                            <input type="date" required onChange={(e) => setDF(e.target.value)} />
                         </label>
                         <br /><br />
                         <button type="submit">Criar</button>
