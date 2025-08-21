@@ -1,0 +1,96 @@
+
+.paginaBody{
+    --form-left-margin:3%;
+    --center-left-margin:3%;
+    --input-margin-bottom:3.33vh;
+    background-color: var(--cor-do-fundo-da-pagina);
+ }
+ .paginaBody * {
+    color:#FFFFFF;
+    font-family: inherit;
+
+ }
+ .center * {
+    font-weight: 700;
+ }
+ .center{
+    margin-left: 5%;
+ }
+ .tituloPagina{
+    color:#BE5FDB;
+    text-align: center;
+ }
+ .form * {
+    font-weight: 400;
+ }
+ .inputTipo{
+    text-align: left;
+    margin-left:20%
+ }
+ .input{
+    background-color: #212A36;
+    border:1px;
+    border-color: #4D555E;
+    border-style: solid;
+    border-radius: 16px;
+ 
+    color:#B6B8BB;
+ 
+ 
+    margin-bottom: var(--input-margin-bottom);
+    padding:var(--form-left-margin);
+ 
+    width: 60%;
+ }
+ .divBotoes{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20%;
+    gap: 20px;
+ }
+ .formButton{
+    background-color:#4848B6;
+ 
+    border-color: #4848B6;
+    border-style: none;
+    border-radius:15px;
+ 
+    font-size: var(--input-font-size);
+ 
+    margin-bottom: -3%;
+ 
+    padding: 1.5%;
+ 
+    width:auto;
+ }
+ .buttonReturn{
+    background-color: transparent;
+    border-style: none;
+ 
+    font-size: var(--input-font-size);
+ 
+    margin-bottom: -3%;
+ 
+    padding: 1.5%;
+ 
+    width:auto;
+
+ }
+ @media screen and (orientation: portrait){ /*design temporario*/
+    .paginaBody{
+       --center-left-margin:0%;
+       --input-margin-bottom:10%;
+    }
+    .tituloPagina{
+       text-align: center;
+    }
+    .form{
+       margin-left: 0;
+       margin-right: 0;
+    }
+    .center{
+       margin-left:0%;
+    }
+ }
+ 
+ /*#4D555E*/
