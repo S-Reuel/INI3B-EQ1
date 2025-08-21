@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import Modal from 'react-modal';
 import { getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
-import { redirecionar} from "./util/functions"
 import { isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
@@ -37,12 +36,12 @@ export default function Projetos() {
 
     // Função que abre a modal
     function abrirModal() {
-      setIsOpen(true);
+        setIsOpen(true);
     }
 
     // Função que fecha a modal
     function fecharModal() {
-      setIsOpen(false);
+        setIsOpen(false);
     }
 
 
@@ -87,25 +86,24 @@ export default function Projetos() {
                     <br />
                     <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
                     {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
-                     <a href={`../add/projeto/${equipe_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </center>
-                    <div className={StyleProj.botaoNewProjeto}  onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
-                    <Modal isOpen={modalIsOpen} onRequestClose={fecharModal}  className={StyleProj.modalConteudo}
-                                style={{
-                                  overlay: {
-                                    overflowY:"scroll",
-                                    backgroundColor: 'rgba(0, 0 ,0, 0.8)'
-                                  },
-                                  content: {
-                                    border: '1px solid black',
-                                    background: '#151B23',
-                    
-                                  }
-                                }}
-                              >
-                                <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
-                                <Add_Projeto />
-                    </Modal>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
+                    style={{
+                        overlay: {
+                            overflowY: "scroll",
+                            backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                        },
+                        content: {
+                            border: '1px solid black',
+                            background: '#151B23',
+
+                        }
+                    }}
+                >
+                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    <Add_Projeto />
+                </Modal>
             </>
         )
     } else {
