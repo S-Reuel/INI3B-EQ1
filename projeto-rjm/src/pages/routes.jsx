@@ -13,10 +13,11 @@ import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
 import Editar_Equipe from "./Editar_Equipe";
 import Editar_Sprint from "./Editar_Sprint.jsx";
-import Task from "./Task.jsx";
-import Add_Task from "./Add_Task.jsx";
+import Tasks from "./Tasks.jsx";
 import Editar_Task from "./Editar_Task.jsx";
+import Add_Equipe from "./Add_Equipe.jsx";
 import Add_Sprint from "./Add_Sprint.jsx";
+import Task from "./Task.jsx";
 
 export default function Routers() {
     return (
@@ -35,16 +36,16 @@ export default function Routers() {
                 <Route path="/equipes" element={<Equipes />} />
                 <Route path="edit/equipe/:id" element={<Editar_Equipe />} />
                 {/* Projetos  */}
-                <Route path="/projeto/:equipe_id" element={<Projetos />} />
+                <Route path="/projetos/:equipe_id" element={<Projetos />} />
                 <Route path="edit/projeto/:id" element={<Editar_Projeto />} />
                 {/*  Sprints */}
                 <Route path="/projeto/sprints/:projeto_id" element={<Sprints />} />
                 <Route path="/projeto/add/sprint/:projeto_id" element={<Add_Sprint />} />
                 <Route path="/projeto/edit/sprint/:id" element={<Editar_Sprint />} />
                 {/*  Task */}
-                <Route path="/projeto/sprint/task/:id" element={<Task />} />
-                <Route path="/sprint/add/task" element={<Add_Task />} />
-                <Route path="/sprint/edit/task/:id" element={<Editar_Task />} />
+                <Route path="/projeto/sprint/tasks/:sprint_id" element={<Tasks />} />
+                <Route path="/sprint/edit/task/:task_id" element={<Editar_Task />} />
+                <Route path="/projeto/sprint/task/:task_id" element={<Task />} />
                 <Route path="/sobre" element={<Sobre />} />
             </Routes>
         </Router>
