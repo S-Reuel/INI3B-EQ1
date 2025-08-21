@@ -35,7 +35,6 @@ export default function Routers() {
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
                 <Route path="edit/equipe/:id" element={<Editar_Equipe />} />
-                <Route path="/add/equipes" element={<Add_Equipe />} />
                 {/* Projetos  */}
                 <Route path="/projetos/:equipe_id" element={<Projetos />} />
                 <Route path="edit/projeto/:id" element={<Editar_Projeto />} />

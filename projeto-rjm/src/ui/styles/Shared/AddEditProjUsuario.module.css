@@ -13,6 +13,8 @@
 }
 .paginaBody * {
    color:#FFFFFF;
+   font-family: inherit;
+
 }
 .center * {
    font-weight: 700;

@@ -3,6 +3,9 @@ import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import { voltar } from "./util/functions";
 
+import addProjStyle from "../ui/styles/editar_Projeto/editar_Projeto.module.css"
+
+
 export default function Editar_Projeto() {
     const { id } = useParams()
     const [nome, setNome] = useState('')
@@ -23,32 +26,36 @@ export default function Editar_Projeto() {
     }
     if (localStorage.getItem('authToken')) {
         return (
-            <div>
-                <center>
-                    <h1>Editar projeto</h1>
-                    <form>
-                        <label>
-                            Nome:<br />
+            <div className={addProjStyle.paginaBody}>
+                <center className={addProjStyle.center}>
+                    <h1 className={addProjStyle.tituloPagina}>Editar Projeto</h1>
+                    <form  className={addProjStyle.form}>
+                        <label >
+                            <p className={addProjStyle.inputTipo}>Nome do Projeto:</p>
                             <input
+                                className={addProjStyle.input}
                                 type="text" name="nome" defaultValue={nome}
-                                placeholder="Digite seu nome" required
+                                placeholder="Nome Antigo" required
                                 onChange={(e) => setNome(e.target.value)}
                             />
                         </label>
-                        <br />
                         <label >
-                            Descrição:
-                            <br />
+                            <p className={addProjStyle.inputTipo}>Descrição:</p>
                             <input
+                                className={addProjStyle.input}
                                 type="text" name="descricao" defaultValue={descricao}
-                                placeholder="Digite a descrição" required
+                                placeholder="Descrição Antiga" required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
                         <br /><br />
-                        <button type="submit" onClick={onSave}>Enviar</button>
+                        <div className={addProjStyle.divBotoes}>
+                            <button className={addProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
+                            <button className={addProjStyle.buttonReturn} onClick={voltar}>Cancelar</button>
+                        </div>
+
                     </form>
-                    <button onClick={voltar}>Voltar</button>
+                    <br/>
                 </center>
             </div>
         )
