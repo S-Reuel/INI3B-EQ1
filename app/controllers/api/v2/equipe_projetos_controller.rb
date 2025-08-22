@@ -18,9 +18,11 @@ class Api::V2::EquipeProjetosController < ApplicationController
     @equipes = Equipe.find(params[:equipe_id])
 
     @projetos = @equipes.projetos
-    render json: {
-      projetos: @projetos
-    }
+    render json: @equipes.as_json(include: {
+      projetos: {
+        only: [ :id, :nome, :descricao, :created_at, :updated_at ]
+      }
+    })
   end
 
   # POST /equipe_projetos
