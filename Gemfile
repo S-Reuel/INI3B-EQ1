@@ -63,4 +63,8 @@ group :development, :test do
   gem "bcrypt"
 
   gem "dotenv-rails"
+
+  gem "rspec-rails"
 end
+
+gem "rswag"
