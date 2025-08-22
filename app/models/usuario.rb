@@ -2,6 +2,9 @@ class Usuario < ApplicationRecord
   require "securerandom"
   require "jwt"
 
+
+  has_one_attached :avatar
+
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
@@ -19,5 +22,9 @@ class Usuario < ApplicationRecord
     save!
 
     JWT.encode(payload, Rails.application.secret_key_base, "HS256")
+  end
+
+  def avatar_url
+    avatar.attached? ? Rails.application.routes.url_helpers.url_for(avatar) : nil
   end
 end

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => "/api-docs"
+  mount Rswag::Api::Engine => "/api-docs"
   namespace :api do
     namespace :v2 do
+      resources :git_hub_tasks
+      resources :sprint_tasks
+      get "sprint/task/:sprint_id", to: "sprint_tasks#show_with_tasks_by_id"
       resources :equipe_projetos
       get "projeto/projeto_de_equipe/:equipe_id", to: "equipe_projetos#show_by_equipe"
       resources :git_hubs
+      post "/git_hubs/receive", to: "git_hubs#receive"
       resources :projetos
-      get "projetos/ps/:id", to: "projetos#show_projeto_sprint_by_id" # Rota para buscar projeto  pelo 'id' e retorná-lo com suas sprints
+      post "projetos/ps/", to: "projetos#show_projeto_sprint_by_id" # Rota para buscar projeto  pelo 'id' e retorná-lo com suas sprints
       resources :usuario_equipes
       get "equipe/equipe_de_user/:usuario_id", to: "usuario_equipes#show_by_user_id"
       get "equipe/membros/:equipe_id", to: "usuario_equipes#show_members"
@@ -24,6 +30,8 @@ Rails.application.routes.draw do
       resources :projeto_sprints
       get "projeto_sprints/sprints/:projeto_id", to: "projeto_sprints#show_sprint_by_projeto_id"
       resources :tasks
+      get "task/githubdata", to: "tasks#show_with_github_data"
+      get "task/githubdataid/:id", to: "tasks#show_with_github_data_by_id"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
