@@ -4,9 +4,10 @@ import Modal from 'react-modal';
 import { getEquipeByUser } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx'
+import Add_Equipe from "./Add_Equipe.jsx";
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
-import Add_Equipe from './Add_Equipe.jsx';
+import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 Modal.setAppElement('#root');
 
 export default function Equipes() {
@@ -23,12 +24,11 @@ export default function Equipes() {
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'pr') {
-            location.href = `/projeto/${id}`
+            location.href = `/projetos/${id}`
         } else if (tipo == 'ed') {
             location.href = `/edit/equipe/${id}`
         }
     }
-
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -45,7 +45,6 @@ export default function Equipes() {
     function apr() {
         return eqs.map((i) =>
             <>
-
                 <div className={equipeStyle.equipeDiv} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'pr')

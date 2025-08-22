@@ -4,7 +4,7 @@ import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 
 export default function Editar_Task() {
-    const { id } = useParams()
+    const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
     const [status, setStatus] = useState()
@@ -12,7 +12,7 @@ export default function Editar_Task() {
 
     useEffect(() => {
         async function fetch() {
-            const res = await getTaskId(id)
+            const res = await getTaskId(task_id)
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
@@ -23,7 +23,7 @@ export default function Editar_Task() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateTask(id, { titulo, descricao, status, arquivos })
+        updateTask(task_id, { titulo, descricao, status, arquivos })
     }
 
     if (localStorage.getItem('authToken')) {

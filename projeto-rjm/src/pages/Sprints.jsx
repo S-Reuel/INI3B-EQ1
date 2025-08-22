@@ -22,7 +22,7 @@ export default function Sprints() {
     // Função utilizada para otimizar o envio do ID pela URL
     const caminho = (id, tipo) => {
         if (tipo == 'task') {
-            location.href = `/projeto/sprint/task/${id}`
+            location.href = `/projeto/sprint/tasks/${id}`
         } else if (tipo == 'ed') {
             location.href = `/projeto/edit/sprint/${id}`
         } 
