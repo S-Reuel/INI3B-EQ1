@@ -14,6 +14,7 @@ export default function Add_Equipe() {
     if (localStorage.getItem('authToken')) {
         return (
             <div className={addEquipeStyle.paginaBody}>
+                <CabProj />
                 <center className={addEquipeStyle.center}>
                     <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe!</h1>
                     <form className={addEquipeStyle.form}>

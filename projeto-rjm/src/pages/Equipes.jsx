@@ -56,7 +56,7 @@ export default function Equipes() {
                     <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'ed')
-                    }}>Editar</div>
+                    }}>...</div>
                 </div>
             </>
         )
@@ -64,25 +64,9 @@ export default function Equipes() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <>
-                <center>
-                    <CabProj />
-                    <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
-                    {(eqs.length != 0) ? (
-                        <div className={equipeStyle.equipeFlex}>
-                            {apr()}
-                        </div>
-                    ) : (
-                        <>
-                            <br /><br /><br />
-                            <h4>Sem Equipes! Crie uma equipe!</h4>
-                            <br />
-                        </>
-                    )}
-                    <br />
-                </center>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
-                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
+            <div>
+                <CabProj />
+                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={equipeStyle.modalConteudo}
                     style={{
                         overlay: {
                             overflowY: "scroll",
@@ -95,10 +79,34 @@ export default function Equipes() {
                         }
                     }}
                 >
-                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    <button className={equipeStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
                     <Add_Equipe />
                 </Modal>
-            </>
+                <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
+                <div className={equipeStyle.paginaEquipes}>
+                    <div className={equipeStyle.navEquipes}></div>
+                    <div>
+                        <div className={equipeStyle.tituloFlex}>
+                            <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
+                            
+                        </div>
+                        <br />
+                        <hr className={equipeStyle.hr1} color="#4a4a4a" />
+                    </div>
+                    {(eqs.length != 0) ? (
+                        <div className={equipeStyle.equipeFlex}>
+                            {apr()}
+                        </div>
+                    ) : (
+                        <>
+                            <br /><br /><br />
+                            <h4>Sem Equipes! Crie uma equipe!</h4>
+                            <br />
+                        </>
+                    )}
+
+                </div>
+            </div>
         )
     } else {
         return (redirecionar('login'))
