@@ -1,11 +1,10 @@
 
 
 .projeto {
-    background-color: #212a36;
-    border-color: #4D555E;
-    border-style: solid;
-    border-radius: 15px;
+    background-color: #2b3847;
 
+    border-radius: 15px;
+    border: 1px solid #4D555E;
 
     width: 90vw;
     height: 15vh;
@@ -13,7 +12,7 @@
     position: relative;
     overflow: hidden;
     padding: 10px;
-    border: 10px;
+
     color: white;
     
     

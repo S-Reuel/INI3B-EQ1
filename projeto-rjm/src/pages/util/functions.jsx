@@ -1,5 +1,5 @@
 import { offSession } from "../../data/services/Session";
-
+// Formatação da data para ser apresentada na tela
 export function isFormat(data) {
     let mesFormat = {
         1: "Janeiro", 2: "Fevereiro",
@@ -14,7 +14,7 @@ export function isFormat(data) {
     let dia = data.getDate()
     return `${dia} de ${mesFormat[mes]} de ${ano}`;
 }
-
+// Formatação da data para ser consumida pela API
 export function isFormatDate(data) {
     let ano = data.getFullYear()
     let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
@@ -30,12 +30,6 @@ export function isFormatDate(data) {
         } else if (tipo == "get") {
         }
     */
-}
-
-export function dateFormatter(date) {
-    return new Intl.DateTimeFormat('pt-BR', {
-        dateStyle: 'short'
-    }).format(date)
 }
 
 export function redirecionar(caminho) {
@@ -76,7 +70,7 @@ export function redirecionar(caminho) {
             break
     }
 }
-
+// Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
 }
