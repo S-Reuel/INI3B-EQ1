@@ -91,6 +91,10 @@
     
     color:#cccccc
  }
+ 
+ .formButton:disabled{
+    background-color: gray;
+ }
  .link{
      color:#d39745;
 
