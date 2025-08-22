@@ -45,7 +45,6 @@
      display:grid;
      margin-bottom: 3%;
  }
- 
  .input{ 
      border-color: "#bebebe";
      border-style: none;
@@ -57,6 +56,9 @@
      height: var(--form-height-input);
      margin-top: 2%;
      border: 2px solid #BEBEBE;
+}
+.inputPaginaRedefinir{
+    margin-top: 0;
 }
 .ab{
     display: flex;
@@ -109,7 +111,10 @@
     .center{
         grid-row: 2/span 1;
     }
+    .pageText{
+        margin-top: 50%; /*--DIEGO:para que o texto "Redefinir Senha" em Redefinir_Senha.jsx não fique dentro do logo do Codra*/
 
+    }
     .logo {
          visibility:hidden
          }
