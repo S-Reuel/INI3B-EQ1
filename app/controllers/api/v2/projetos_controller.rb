@@ -20,9 +20,16 @@ class Api::V2::ProjetosController < ApplicationController
 
   # GET /projetos/ps/1
   def show_projeto_sprint_by_id # Consulta projeto pelo id e retorna o projeto com suas sprints
-    @projeto = Projeto.includes(:sprints).find(params[:id])
+    data = JSON.parse(request.body.read)
+
+    id = data["id"]
+    @projeto = Projeto.includes(:sprints).find(params[:id], id)
     if @projeto
-      render json: { projeto: @projeto, sprints: @projeto.sprints }
+      render json: @projeto.as_json(include: {
+        sprints: {
+          only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id ]
+        }
+      })
     else
       render json: @projeto.errors, status: :not_found
     end

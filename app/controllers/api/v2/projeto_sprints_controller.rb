@@ -19,7 +19,11 @@ class  Api::V2::ProjetoSprintsController < ApplicationController
 
     @sprints = @projeto.sprints
 
-    render json: { sprints: @sprints }
+    render json: @projeto.as_json(include: {
+      sprints: {
+        only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id ]
+      }
+    })
   end
 
   # POST /projeto_sprints

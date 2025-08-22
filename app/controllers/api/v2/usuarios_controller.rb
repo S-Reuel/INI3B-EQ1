@@ -55,6 +55,9 @@ class Api::V2::UsuariosController < ApplicationController
   # PATCH/PUT /usuarios/1
   def update
     if @usuario.update(usuario_params)
+      if params[:usuario][:avatar].present?
+        @usuario.avatar.attach(params[:usuario][:avatar])
+      end
       render json: @usuario
     else
       render json: @usuario.errors, status: :unprocessable_entity
@@ -93,6 +96,6 @@ class Api::V2::UsuariosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def usuario_params
-      params.expect(usuario: [ :nome, :password, :email, :user_git, :excluido ])
+      params.expect(usuario: [ :nome, :password, :email, :user_git, :excluido, :avatar ])
     end
 end
