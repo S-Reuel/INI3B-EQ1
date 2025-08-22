@@ -7,7 +7,6 @@ import CabProj from '../ui/components/_cabecalho.jsx'
 import Add_Equipe from "./Add_Equipe.jsx";
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
-import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 Modal.setAppElement('#root');
 
 export default function Equipes() {

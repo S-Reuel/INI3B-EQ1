@@ -6,6 +6,10 @@ import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
 import { isFormat, redirecionar } from "./util/functions"
+import React from 'react';
+import Modal from 'react-modal';
+import Add_Sprint from "./Add_Sprint"
+Modal.setAppElement('#root');
 
 export default function Sprints() {
     const { projeto_id } = useParams()
@@ -25,8 +29,21 @@ export default function Sprints() {
             location.href = `/projeto/sprint/tasks/${id}`
         } else if (tipo == 'ed') {
             location.href = `/projeto/edit/sprint/${id}`
-        } 
+        }
     }
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    // Função que abre a modal
+    function abrirModal() {
+        setIsOpen(true);
+    }
+
+    // Função que fecha a modal
+    function fecharModal() {
+        setIsOpen(false);
+    }
+
 
     function apr() {
         return sprints.map(function (i) {
@@ -37,17 +54,17 @@ export default function Sprints() {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-                    
-                        <div>{i.id}</div>
-                        <div>{i.nome}</div>
-                        <div>{dataInicio}</div>
-                        <div>{dataFim}</div>
-                        <div>{i.projeto_id}</div>
-                        <button onClick={(e) => {
-                            e.stopPropagation()
-                            caminho(i.id, 'ed')
-                        }}>Editar</button>
-                    
+
+                    <div>{i.id}</div>
+                    <div>{i.nome}</div>
+                    <div>{dataInicio}</div>
+                    <div>{dataFim}</div>
+                    <div>{i.projeto_id}</div>
+                    <button onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'ed')
+                    }}>Editar</button>
+
                 </div>
             )
         })
@@ -59,21 +76,26 @@ export default function Sprints() {
                 <CabProj />
                 <h1>Sprints</h1>
                 <div className={StylesSprint.telaSprint}>
-                        {(sprints.length == 0) ? (
-                            <>
-                                <br /><br /><br />
-                                <h4>Sem Sprints! Crie uma sprint!</h4>
-                                <br />
-                            </>
-                        ) : (
-                            <>
-                                {apr()}
-                            </>
-                        )}
-                    
+                    {(sprints.length == 0) ? (<h4>Sem Sprints! Crie uma sprint!</h4>) : (apr())}
                     <br />
-                    <a href={`/projeto/add/sprint/${projeto_id}`}><div className={StyleProj.botaoNewProjeto}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div></a>
                 </div>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
+                    style={{
+                        overlay: {
+                            overflowY: "scroll",
+                            backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                        },
+                        content: {
+                            border: '1px solid black',
+                            background: '#151B23',
+
+                        }
+                    }}
+                >
+                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    <Add_Sprint />
+                </Modal>
             </>
         )
     } else {

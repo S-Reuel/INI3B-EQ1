@@ -273,6 +273,15 @@ export async function getTaskId(id) {
     }
 }
 
+export async function getTaskByGitHub(id) {
+    try {
+        let r = await URL.get(`task/githubdataid/${id}`)
+        return r.data
+    } catch (error) {
+        return (error.status)
+    }
+}
+
 export async function updateTask(id, params) {
     let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
     if (bool) {
