@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "equipe_projetos", force: :cascade do |t|
     t.integer "equipe_id", null: false
     t.integer "projeto_id", null: false
@@ -38,12 +66,37 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "git_hubs_tasks", id: false, force: :cascade do |t|
+    t.integer "git_hub_id", null: false
+    t.integer "task_id", null: false
+    t.index ["git_hub_id", "task_id"], name: "index_git_hubs_tasks_on_git_hub_id_and_task_id"
+    t.index ["task_id", "git_hub_id"], name: "index_git_hubs_tasks_on_task_id_and_git_hub_id"
+  end
+
+  create_table "projeto_sprints", force: :cascade do |t|
+    t.integer "projeto_id", null: false
+    t.integer "sprint_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["projeto_id"], name: "index_projeto_sprints_on_projeto_id"
+    t.index ["sprint_id"], name: "index_projeto_sprints_on_sprint_id"
+  end
+
   create_table "projetos", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
     t.date "data_criacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sprint_tasks", force: :cascade do |t|
+    t.integer "sprint_id", null: false
+    t.integer "task_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sprint_id"], name: "index_sprint_tasks_on_sprint_id"
+    t.index ["task_id"], name: "index_sprint_tasks_on_task_id"
   end
 
   create_table "sprints", force: :cascade do |t|
@@ -54,6 +107,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
     t.datetime "updated_at", null: false
     t.integer "projeto_id"
     t.index ["projeto_id"], name: "index_sprints_on_projeto_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descricao"
+    t.datetime "data_criacao"
+    t.datetime "data_alteracao"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "usuario_equipes", force: :cascade do |t|
@@ -78,8 +141,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_175704) do
     t.datetime "password_reset_sent_at"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "equipe_projetos", "equipes"
   add_foreign_key "equipe_projetos", "projetos"
+  add_foreign_key "projeto_sprints", "projetos"
+  add_foreign_key "projeto_sprints", "sprints"
+  add_foreign_key "sprint_tasks", "sprints"
+  add_foreign_key "sprint_tasks", "tasks"
   add_foreign_key "sprints", "projetos"
   add_foreign_key "usuario_equipes", "equipes"
   add_foreign_key "usuario_equipes", "usuarios"

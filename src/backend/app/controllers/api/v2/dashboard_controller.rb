@@ -19,7 +19,15 @@ class Api::V2::DashboardController < ApplicationController
                 sprint_id: sprint.id,
                 nome: sprint.nome,
                 data_inicio: sprint.data_inicio,
-                data_fim: sprint.data_fim
+                data_fim: sprint.data_fim,
+                tasks: sprint.tasks.map do |task|
+                  {
+                    task_id: task.id,
+                    titulo: task.titulo,
+                    descricao: task.descricao,
+                    status: task.status
+                  }
+                end
               }
             end
           }

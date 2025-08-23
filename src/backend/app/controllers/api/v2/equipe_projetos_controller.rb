@@ -13,6 +13,18 @@ class Api::V2::EquipeProjetosController < ApplicationController
     render json: @equipe_projeto
   end
 
+  # GET projeto/projeto_de_equipe/1
+  def show_by_equipe
+    @equipes = Equipe.find(params[:equipe_id])
+
+    @projetos = @equipes.projetos
+    render json: @equipes.as_json(include: {
+      projetos: {
+        only: [ :id, :nome, :descricao, :created_at, :updated_at ]
+      }
+    })
+  end
+
   # POST /equipe_projetos
   def create
     @equipe_projeto = EquipeProjeto.new(equipe_projeto_params)

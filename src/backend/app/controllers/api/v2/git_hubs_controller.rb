@@ -1,4 +1,4 @@
-class GitHubsController < ApplicationController
+class Api::V2::GitHubsController < ApplicationController
   before_action :set_git_hub, only: %i[ show update destroy ]
 
   # GET /git_hubs
