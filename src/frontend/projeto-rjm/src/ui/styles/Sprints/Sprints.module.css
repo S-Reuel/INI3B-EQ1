@@ -1,0 +1,32 @@
+.botaoNewProjeto{
+    position: fixed;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+}
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
+}
+
+.sprint{
+    background-color: rgb(66, 41, 41);
+    height: 300px;
+    width: 700px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.telaSprint{
+    min-height: 90vh;
+    max-height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start ;
+}

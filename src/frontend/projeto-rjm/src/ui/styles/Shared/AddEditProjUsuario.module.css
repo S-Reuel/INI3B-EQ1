@@ -1,0 +1,111 @@
+/*usadoo por
+(Editar_Usuario.jsx)
+(Add_Projetos.jsx)
+(Add_Equipes.jsx)
+
+*/
+
+.paginaBody{
+   --form-left-margin:3%;
+   --center-left-margin:3%;
+   --input-margin-bottom:3.33vh;
+   background-color: var(--cor-do-fundo-da-pagina);
+}
+.paginaBody * {
+   color:#FFFFFF;
+   font-family: inherit;
+
+}
+.center * {
+   font-weight: 700;
+}
+.center{
+   margin-left: 5%;
+}
+.tituloPagina{
+   color:#BE5FDB;
+   text-align: left;
+}
+.form{
+   background-color: #212A36;
+
+   border:1px;
+   border-radius: 16px;
+   border-color: #4D555E;
+   border-style: solid;
+
+   font-size: 3vw;
+   padding: 6%;
+   margin-right: 20%;
+   margin-bottom: 3%;
+
+   text-align: left;
+
+}
+.input{
+   background-color: #151B23;
+   border:1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
+
+   color:#B6B8BB;
+
+   font-weight: 400;
+
+   margin-bottom: var(--input-margin-bottom);
+   padding:var(--form-left-margin);
+
+   width: 100%;
+}
+.imgUsuario{
+   grid-column: 2;
+   height:70px;
+   width:70px;
+
+}
+.formButton{
+   background-color:#4848B6;
+
+   border-color: #4848B6;
+   border-style: none;
+   border-radius:15px;
+
+   font-size: var(--input-font-size);
+
+   margin-bottom: -3%;
+
+   padding: 1.5%;
+
+   width:auto;
+}
+.botaoNovaEquipe{
+   background-color: #4848B6;
+
+   border-color: #4848B6;
+   border-style: none;
+   border-radius:15px;
+
+   padding: 1.5%;
+}
+.botaoNovaEquipe:hover{
+   cursor: pointer;
+}
+@media screen and (orientation: portrait){ /*design temporario*/
+   .paginaBody{
+      --center-left-margin:0%;
+      --input-margin-bottom:10%;
+   }
+   .tituloPagina{
+      text-align: center;
+   }
+   .form{
+      margin-left: 0;
+      margin-right: 0;
+   }
+   .center{
+      margin-left:0%;
+   }
+}
+
+/*#4D555E*/

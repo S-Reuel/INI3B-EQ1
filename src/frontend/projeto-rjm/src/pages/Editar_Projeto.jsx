@@ -1,56 +1,69 @@
 import { useParams } from "react-router-dom";
-import { getProjId, updateProj } from "../data/services/API";
+import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
-import { dateFormatter, voltar } from "./util/functions";
+import { voltar } from "./util/functions";
+
+import addProjStyle from "../ui/styles/editar_Projeto/editar_Projeto.module.css"
+
 
 export default function Editar_Projeto() {
     const { id } = useParams()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
 
-    useEffect(()=>{
+    useEffect(() => {
         async function fetch() {
-        const req = await getProjId(id)
-        setNome(req.nome)
-        setDesc(req.descricao)}
+            const req = await getProjetoId(id)
+            setNome(req.nome)
+            setDesc(req.descricao)
+        }
         fetch()
     }, [])
 
     const onSave = async (e) => {
         e.preventDefault()
-        // let data = new Date()
-        // let data_update = dateFormatter(data)
-        updateProj(id, {nome, descricao})
+        updateProjeto(id, { nome, descricao })
     }
+    if (localStorage.getItem('authToken')) {
+        return (
+            <div className={addProjStyle.paginaBody}>
+                <center className={addProjStyle.center}>
+                    <h1 className={addProjStyle.tituloPagina}>Editar Projeto</h1>
+                    <form  className={addProjStyle.form}>
+                        <label >
+                            <p className={addProjStyle.inputTipo}>Nome do Projeto:</p>
+                            <input
+                                className={addProjStyle.input}
+                                type="text" name="nome" defaultValue={nome}
+                                placeholder="Nome Antigo" required
+                                onChange={(e) => setNome(e.target.value)}
+                            />
+                        </label>
+                        <label >
+                            <p className={addProjStyle.inputTipo}>Descrição:</p>
+                            <input
+                                className={addProjStyle.input}
+                                type="text" name="descricao" defaultValue={descricao}
+                                placeholder="Descrição Antiga" required
+                                onChange={(e) => setDesc(e.target.value)}
+                            />
+                        </label>
+                        <br /><br />
+                        <div className={addProjStyle.divBotoes}>
+                            <button className={addProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
+                            <button className={addProjStyle.buttonReturn} onClick={voltar}>Cancelar</button>
+                        </div>
 
-    return (
-        <div>
-            <center>
-                <h1>Editar projeto</h1>
-                <form>
-                    <label>
-                        Nome:<br />
-                        <input
-                            type="text" nome="nome" value={nome}
-                            placeholder="Digite seu nome" required
-                            onChange={(e) => setNome(e.target.value)}
-                        />
-                    </label>
-                    <br />
-                    <label >
-                        Descrição:
-                        <br />
-                        <input
-                            type="text" name="descricao" value={descricao}
-                            placeholder="Digite a descrição" required
-                            onChange={(e) => setDesc(e.target.value)}
-                        />
-                    </label>
-                    <br /><br />
-                    <button type="submit" onClick={onSave}>Enviar</button>
-                </form>
-                <button onClick={voltar}>Voltar</button>
-            </center>
-        </div>
-    )
+                    </form>
+                    <br/>
+                </center>
+            </div>
+        )
+    } else {
+        return (redirecionar('login'))
+    }
 }
+
+/*
+    Concertar os campos de input
+*/

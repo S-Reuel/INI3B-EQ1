@@ -1,0 +1,114 @@
+.equipeDiv{
+    background-color: #212a36 ;
+    color: white;
+    width: 450px;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.25s;
+    border: 1px solid #4D555E;
+}
+
+.equipeDiv:hover{
+    cursor: pointer;
+    background-color: #283241;
+
+}
+
+.equipeFlex{
+    display: flex;
+    width: 80vw;
+    height: max-content;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: #151B23;
+}
+
+.botaoEditarEquipe{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+    transition: 0.25s;
+}
+
+.botaoEditarEquipe:hover{
+    background-color: #2f3b4d;
+}
+.tituloPagina{
+    color: #BE5FDB;
+}
+.navEquipes{
+    grid-row: span 2;
+    background-color: #151B23;
+    border-right: 1px solid rgba(255, 255, 255, 0.048);
+}
+.paginaEquipes{
+    display: grid;
+    min-height: 90vh;
+    grid-template-columns: 20vw 80vw;
+    grid-template-rows: 15vh calc(85vh - 60px);
+    
+
+    
+}
+
+.hr1{
+    width: 90%;
+    
+}
+
+.tituloFlex{
+    display:flex;
+    justify-content: center;
+}
+
+.bttCriarEquipe {
+    position: fixed;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+}
+
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
+}
+
+.modalConteudo{
+    top: calc(30% - 15px);
+    left: calc(35% - 15px);
+    position: relative;
+    background-color: #151B23;
+    min-width: 300px;
+    min-height: 300px;
+    width: 30%;
+    padding: 30px;
+    color: white;
+    border-radius: 20px;
+    
+}
+
+.btnFechaModal{
+    background-color: grey;
+    width: 25px;
+    height: 25px;
+    border: 0px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    line-height: 25px;
+    text-align: center;
+}

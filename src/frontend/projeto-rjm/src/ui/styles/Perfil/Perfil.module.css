@@ -1,0 +1,96 @@
+.tituloModal{
+    color: white;
+    font-size: 30px;
+}
+
+.fotoModal{
+
+padding-bottom: 15px;
+}
+
+.emailModal{
+    padding-top: 7px;
+color: gray;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.gitModal{
+    padding-top: 7px;
+color: gray;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.emailIcon{
+    
+    
+    width: 20px;
+    height: auto;
+    padding-right: 5px;
+}
+
+.githubIcon{
+    
+    
+    width: 20px;
+    height: auto;
+    padding-right: 5px;
+}
+
+.btnEditModal{
+    width: 100%;
+    height: 60px;
+    background-color: #151b23;
+    border: 0px;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.btnLogoutModal{
+    width: 100%;
+    height: 60px;
+    background-color: #151b23;
+    border: 0px;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+
+}
+
+.btnLogoutModal:hover{
+    background-color: #141a22;
+}
+
+.btnEditModal:hover{
+    background-color: #141a22;
+}
+
+
+.editIcon{
+    width: 30px;
+    height: 30px;
+    padding-right: 7px;
+}
+
+.logoutIcon{
+    width: 30px;
+    height: 30px;
+    padding-right: 7px;
+}
+
+.hr{
+    width: 90%;
+    
+}

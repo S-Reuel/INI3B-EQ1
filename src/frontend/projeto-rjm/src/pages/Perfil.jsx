@@ -2,6 +2,11 @@ import { useEffect, useState } from "react"
 import { getUserByEmail } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import iconeUser from "../ui/icons/user.png"
+import perfilStyle from '../ui/styles/Perfil/Perfil.module.css'
+import logoutIcon from '../ui/icons/logoutIcon.png'
+import editIcon from '../ui/icons/editIcon.png'
+import emailIcon from '../ui/icons/emailIcon.png'
+import githubIcon from '../ui/icons/githubIcon.png'
 
 export default function Perfil() {
     const [perfil, setPerfil] = useState([])
@@ -16,17 +21,22 @@ export default function Perfil() {
     function apr() {
         return (
             <>
-                <img src={iconeUser} alt="Perfil do Usuário" />
-                <div>
-                    Nome: {perfil.nome}
+            <br />
+                <img src={iconeUser} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
+                <div className={perfilStyle.tituloModal}>
+                     {perfil.nome}
                 </div>
-                <div>
-                    E-mail: {perfil.email}
+                <div className={perfilStyle.emailModal}>
+                    <img src={emailIcon} className={perfilStyle.emailIcon}/> {perfil.email}
                 </div>
-                <div>
-                    User git: {perfil.user_git}
+                <div className={perfilStyle.gitModal}>
+                    <img src={githubIcon} className={perfilStyle.githubIcon}/> {perfil.user_git}
                 </div>
-                <br />
+                <br /><br />
+                <hr className={perfilStyle.hr} color="#4a4a4a"/>
+                
+            
+                
 
             </>
         )
@@ -35,12 +45,18 @@ export default function Perfil() {
         return (
             <>
                 <center>
-                    <br />
-                    <br />
-                    <button onClick={() => redirecionar('logout')}>logout</button>
+                    
+                    
                     <div>
                         {apr()}
                     </div>
+                    <button className={perfilStyle.btnEditModal} onClick={() => location.href='/edit/usuarios/' }>
+                        <img src={editIcon} className={perfilStyle.editIcon} />
+                        Editar</button>
+                    <hr className={perfilStyle.hr} color="#4a4a4a"/> 
+                    <button className={perfilStyle.btnLogoutModal} onClick={() => redirecionar('logout')}>
+                        <img src={logoutIcon} className={perfilStyle.logoutIcon} />
+                        Logout</button>
                 </center>
             </>
         )

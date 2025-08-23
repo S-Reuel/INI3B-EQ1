@@ -2,15 +2,17 @@
 @font-face {
   font-family: 'Space Grotesk';
   src: url(/src/ui/fonts/SpaceGrotesk-VariableFont_wght.ttf);
+  font-family:'Space Grotesk', cursive; /*cursive é a fallback caso nao exista fonte na url anterior.*/
+
 }
 body{
    margin:0;
    padding: 0; /*conserta o espaco que afeta todas as paginas, visivel principalmente na pagina de cadastro. TO DO:descobrir o que está causando isso*/
-}
+   font-family: "Space Grotesk";
+   background-color: #151B23;
 
-/* na teoria, da pra colocar aqui um tema escuro e claro que afeta todo o site
-@media (prefers-color-scheme: dark) {
-  
 }
-@media (prefers-color-scheme: light) {}
-*/
+body * {
+  font-family: "Space Grotesk";
+} 
+

@@ -1,5 +1,5 @@
 import { offSession } from "../../data/services/Session";
-
+// Formatação da data para ser apresentada na tela
 export function isFormat(data) {
     let mesFormat = {
         1: "Janeiro", 2: "Fevereiro",
@@ -9,22 +9,36 @@ export function isFormat(data) {
         9: "Setembro", 10: "Outubro",
         11: "Novembro", 12: "Dezembro"
     }
-    let mes = data.getMonth()
+    let mes = data.getMonth() + 1
     let ano = data.getFullYear()
     let dia = data.getDate()
-    return `${dia} de ${mesFormat[mes+1]} de ${ano}`;
+    return `${dia} de ${mesFormat[mes]} de ${ano}`;
 }
-
-export function dateFormatter(date){
-    return new Intl.DateTimeFormat('pt-BR', {
-        dateStyle: 'short'
-    }).format(date)
+// Formatação da data para ser consumida pela API
+export function isFormatDate(data) {
+    let ano = data.getFullYear()
+    let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
+    let dia = (data.getDate() < 10) ? `0${data.getDate()}` : data.getDate()
+    return `${ano}-${mes}-${dia}`
+    /*
+        Update é para quando é alterada a data pelo usuário em editar sprints
+        get é num primeiro instante no qual deve ser apresentada na tela a data vinda do Back-end
+        
+        if (tipo == "update") {
+            let dia = (data.getDate() + 1 < 10) ? `0${data.getDate() + 1}` : data.getDate() + 1
+            return `${ano}-${mes}-${dia}`
+        } else if (tipo == "get") {
+        }
+    */
 }
 
 export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':
             offSession()
+            redirecionar('prin')
+            break
+        case 'prin':
             location.href = '/'
             break
         case 'user':
@@ -32,6 +46,9 @@ export function redirecionar(caminho) {
             break
         case 'addUser':
             location.href = '/add/usuario'
+            break
+        case 'edUser':
+            location.href = '/edit/usuarios/'
             break
         case 'login':
             location.href = '/login'
@@ -45,19 +62,15 @@ export function redirecionar(caminho) {
         case 'proj':
             location.href = '/projetos'
             break
-        case 'addProj':
-            location.href = '/add/projetos'
-            break
-        case 'addSpr':
-            location.href = '/projetos/add/sprints'
-            break
         case 'eq':
             location.href = '/equipes'
             break
-        case 'addEq':
-            location.href = '/add/equipes'
+        case 'perfil':
+            location.href = '/perfil'
             break
     }
 }
-
-export function voltar() { location.href = document.referrer }
+// Utilizado para voltar as páginas 
+export function voltar() {
+    history.back();
+}

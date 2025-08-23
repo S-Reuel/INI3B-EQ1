@@ -1,147 +1,69 @@
-
-/*body {
+.app{
+    /* Usa a altura mínima para que o fundo cubra toda a tela, mesmo com pouco conteúdo */
+    min-height: 100vh;
+    background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
+    background-size: cover;
+    background-position: bottom center;
+}
+.login{
+    height: 40px;
+    width: 120px;
+    border-radius: 12px;
+    font-size: 17px;
+    border: 0px; /* Adiciona uma borda para o botão */
+    background-color: #FFB44D; /* Torna o botão transparente para combinar com a navbar */
+    color: white;
+}
+.signup{
+    height: 40px;
+    width: 120px;
+    border: 0px;
+    border-radius: 12px;
+    font-size: 17px;
+    background-color: #AD56C7;
+    color: white;
+}
+.a{
+    /* Adiciona um padding-top para o artigo para que ele não fique debaixo da navbar */
+    padding-top: 100px; /* Ajuste o valor conforme a altura da sua navbar */
+    margin-left:25%;
+    margin-right:25vw;
+}
+.welcomeText{
+    color:#FFB44D;
+}
+.a > h1{
+    color:#F9EFFB;
+    font-weight: 700;
+    font-size: 50px;
     margin: 0px;
-    display:grid;
-    grid-template-rows: 10vh 70vh 10vh;
-    
-}*/
-.cabecalho{
-    display: flex;
-    flex-wrap: nowrap;
-    
+}
+.textoArticle
+{
+    color:#FFFFFFB2;
+    font-weight: 500;
 }
 
-
-.logo{
-    margin-left:5%;
-    flex: 10;
-    color:#4eb969;
+.divCadastro{
+    overflow: hidden;
+    background-color: #BE5FDB;
+    color: white;
+    border-radius: 8px;
+    gap:10px;
+    padding: 16px;
+    width: 49vw;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex; /* Adiciona display: flex para alinhar os elementos internos */
+    align-items: center;
+    justify-content: space-between;
 }
-.login-btn{
-    flex: 1; 
-}
-.signup-btn{
-    flex: 1;
-}
-.navbar{
+.butCadastro{
     background-color: white;
-    display:grid;
-    grid-row:1/span 1;
-    margin-bottom:2%;
-    margin-top:2%;
-    height:70px;
-    position:fixed;
-    top: 0;
-    width: 100%;
-    margin-top:0;
-}
-.big_gray_round_block{ /*nao funcionou quando era uma classe especifica, nao me pergunte por que (big-gray-round-block)*/
-    
-    --article-margin:60px; /*em vez de ter que editar o padding de todas as imagens que tem uma borda no article, edita apenas este valor*/
-    --margin-between-sections:calc(10vh - 70px);
-    margin-top: 5%;
-    background-color:#d9d9d9;
-    border-radius: 25px;
-    grid-row:2/ span 1;
-    margin-left:20px;
-    margin-right:20px;
-    padding:calc(var(--article-margin)); /*var(--article-margin);*/
-    display:grid;
-}
-.hero *{
-    display:grid;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: 50% 50%;
-    height:calc(100vh-70px);
-    margin-bottom: var(--margin-between-sections);
-}
-.hero-text{
-    grid-row: 1/ span 3;
-    grid-column: 1/ span 1;
-    font-size:200%;
-}
-.hero-image{
-    width:auto;
-    height:75%;
-    margin-left: auto;
-    border-radius: 0px 25px 0px 0;    
-    grid-column: 2;
-    grid-row: 1/ span 3;
-    margin-right:calc(var(--article-margin)*-1);
-    margin-top: calc(var(--article-margin)*-1);/*-60px;/*calc(var(--article-margin)*-1);*/
-}
-.welcome-text{
-    color:#4eb969;
-    
-}
-
-.section-title{
-    color: #4eb969;
-    text-align:center;
-    font-size:50px;
-}
-
-.features{
-    height:calc(100vh-70px);
-}
-.feature-content{
-    background-color:white;
-    border-radius: 25px;
-}
-.feature-cards{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-
-}
-.feature-card{
-    background-color:white;
-    border-radius: 25px;
-    padding: 20px;
-    margin-right:20px;
-    width: 30%;
-
-}
-
-
-.benefits{
-    margin-bottom: 70px;
-    
-}
-.benefits-content{
-    background-color:white;
-    border-radius: 25px;
-    display:flex;
-    flex-direction: row;
-}
-.benefits-image{
-    width:200px;
-    height:auto;
-    margin-left: auto;
-    border-radius: 0px 25px 25px 0;
-    object-fit : cover;
-}
-
-
-.cta{
-    background-color:#4eb969;
-    text-align:center;
-    color:white;
-    border-radius: 0 0 25px 25px;
-    margin-bottom: calc(var(--article-margin)*-1); /*TO DO:usar a shorthand margin*/
-    margin-right: calc(var(--article-margin)*-1);
-    margin-left: calc(var(--article-margin)*-1);
-
-    
-}
-
-
-.footer * {
-    color:white;
-    display:flex;
-    justify-content:space-evenly;
-    grid-row:3/ span 1;
-}
-.footer-links{
-    color:white;
+    color:#BE5FDB;
+    border-radius: 8px;
+    border-style: none;
+    font-family: inherit;
+    font-size: 16px;
+    height: 40px;
 }
