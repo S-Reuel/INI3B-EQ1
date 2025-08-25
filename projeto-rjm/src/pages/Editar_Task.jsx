@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getTaskId, updateTask, } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
+import taskStlye from "../ui/styles/task/task.module.css"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
@@ -28,10 +29,10 @@ export default function Editar_Task() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div >
+            <div className={taskStlye.aaa}>
                 <CabProj />
                 <center>
-                    <h1>Editar Task</h1>
+                    <h1 >Editar Task</h1>
                     <form onSubmit={onSave}>
                         <br />
                         <input type="file" name="arquivo" defaultValue={arquivos} />

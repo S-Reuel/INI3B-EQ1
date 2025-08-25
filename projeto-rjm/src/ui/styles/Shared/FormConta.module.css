@@ -102,20 +102,12 @@
      height: var(--form-height-input);
  }
 
- .formButton:active {
-     background-color: #752e8a;
-     box-shadow: 4px 4px 10px #752e8a;
-
-     color: #cccccc
- }
-
  .formButton:disabled {
      background-color: gray;
  }
-
+ 
  .link {
      color: #d39745;
-
      text-decoration: none;
  }
 

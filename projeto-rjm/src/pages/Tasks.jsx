@@ -24,7 +24,7 @@ export default function Tasks() {
     }, []);
 
     // Função utilizada para otimizar o envio do ID pela URL
-    const caminho = (id, tipo) => {
+    function caminho(id, tipo) {
         if (tipo == 'task') {
             location.href = `/projeto/sprint/task/${id}`
         } else if (tipo == 'ed') {
@@ -69,29 +69,32 @@ export default function Tasks() {
         return (
             <>
                 <CabProj />
-                <center>
-                    <h1>Tasks</h1>
-                    <div>
-                        {(tasks.length != "") ? (apr()) : (<h4>Sem Task! Crie uma task!</h4>)}
-                    </div>
-                </center>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
-                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
-                    style={{
-                        overlay: {
-                            overflowY: "scroll",
-                            backgroundColor: 'rgba(0, 0 ,0, 0.8)'
-                        },
-                        content: {
-                            border: '1px solid black',
-                            background: '#151B23',
+                <div  >
+                    <center className={StyleProj.conteudo}>
+                        <h1>Tasks</h1>
+                        <div>
+                            {(tasks.length != "") ? (apr()) : (<h4>Sem Task! Crie uma task!</h4>)}
+                        </div>
+                    </center>
+                    <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
+                        style={{
+                            overlay: {
+                                overflowY: "scroll",
+                                backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                            },
+                            content: {
+                                border: '1px solid black',
+                                background: '#151B23',
 
-                        }
-                    }}
-                >
-                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
-                    <Add_Task />
-                </Modal>
+                            }
+                        }}
+                    >
+                        <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                        <Add_Task />
+                    </Modal>
+                </div>
+
             </>
         )
     } else {

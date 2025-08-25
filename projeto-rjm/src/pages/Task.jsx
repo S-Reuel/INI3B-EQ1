@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getTaskByGitHub } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
 import { isFormat } from "./util/functions";
-
+import taskStlye from "../ui/styles/task/task.module.css"
 export default function Task() {
     const { task_id } = useParams()
     const [task, setTask] = useState([])
@@ -21,7 +21,7 @@ export default function Task() {
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         return (
-            <div>
+            <div >
                 <p>
                     Descrição: {task.descricao} <br />
                     Status: {task.status} <br />
@@ -62,8 +62,8 @@ export default function Task() {
         return (
             <>
                 <CabProj />
-                <center>
-                    <h1>Task {(task.length != "") ? `- ${task.titulo}` : ''}</h1>
+                <center className={taskStlye.corpo}>
+                    <h1 className={taskStlye.texto}>Task {(task.length != "") ? `- ${task.titulo}` : ''}</h1>
                     <div>
                         {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
                     </div>
