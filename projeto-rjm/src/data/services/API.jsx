@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://463705a469f8.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://7c9286191455.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -267,6 +267,15 @@ export async function getTaskBySprint(id) {
 export async function getTaskId(id) {
     try {
         let r = await URL.get(`tasks/${id}`)
+        return r.data
+    } catch (error) {
+        return (error.status)
+    }
+}
+
+export async function getTaskByGitHub(id) {
+    try {
+        let r = await URL.get(`task/githubdataid/${id}`)
         return r.data
     } catch (error) {
         return (error.status)

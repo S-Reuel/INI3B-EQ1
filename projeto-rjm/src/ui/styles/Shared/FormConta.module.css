@@ -1,146 +1,165 @@
- .page  {
-    --form-height-input: 6.6vh;/*TO DO:fazer mais parecido com o design no figma;*/
-    --center-padding-left:10%;
-     color:white;
-     display:grid;
+ .page {
+     --form-height-input: 6.6vh;
+     /*TO DO:fazer mais parecido com o design no figma;*/
+     --center-padding-left: 10%;
+     color: white;
+     display: grid;
      grid-template-columns: 53vw 47vw;
-     font-size:100%;
+     font-size: 100%;
  }
+
  .page * {
      font-weight: 400;
      font-size: 2vh;
  }
- button:hover{
-    cursor:pointer;/*--DIEGO:para que o mouse mude o seu icone, como se fosse um link, quando estiver em cima de um botao*/
+
+
+ button:hover {
+     cursor: pointer;
+     /*--DIEGO:para que o mouse mude o seu icone, como se fosse um link, quando estiver em cima de um botao*/
  }
- .logo{
-    background-Image:url("/src/ui/icons/codra-background-dark.png");
+
+ .logo {
+     background-Image: url("/src/ui/icons/codra-background-dark.png");
 
      grid-column: 1;
-     background-size: cover; /*--DIEGO:para que o svg de fundo cubra todo o espaco na esquerda*/
+     background-size: cover;
+     /*--DIEGO:para que o svg de fundo cubra todo o espaco na esquerda*/
      display: flex;
      justify-content: center;
-     align-items: center;    
-     height:100vh;
+     align-items: center;
+     height: 100vh;
  }
- .logoImage{
-     content:url("/src/ui/icons/codra-icon-dark.svg");
-     width:50vw;
+
+ .logoImage {
+     content: url("/src/ui/icons/codra-icon-dark.svg");
+     width: 50vw;
      grid-column: 1/ span 1;
  }
- .center{
+
+ .center {
      grid-column: 2;
      text-align: left;
      padding-left: var(--center-padding-left);
      display: flex;
      flex-direction: column;
-     align-content:center;
-     justify-content:center;
+     align-content: center;
+     justify-content: center;
  }
- .pageText{
+
+ .pageText {
      font-weight: 700;
      font-size: 5vh;
  }
- .form > label {
-     display:grid;
+
+ .form>label {
+     display: grid;
      margin-bottom: 3%;
  }
- .input{ 
+
+ .input {
      border-color: "#bebebe";
      border-style: none;
-     padding-left:5%;
+     padding-left: 5%;
      border-radius: 16px;
-     color:#B6B8BB;
+     color: #B6B8BB;
      background-color: #FFFFFF;
-     width:85%;
+     width: 85%;
      height: var(--form-height-input);
      margin-top: 2%;
      border: 2px solid #BEBEBE;
-}
-.inputPaginaRedefinir{
-    margin-top: 0;
-}
-.ab{
-    display: flex;
-    align-items: center;
-    
-}
-.passwordEye{    
-    position: absolute;
-    flex-direction: row-reverse;
-    transform: translate(35vw,-3vh);
-    width: 5vw;
-    max-width: 30px;
-    min-width: 25px;
-    height: auto;
-}
+ }
 
- .formButton{ /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
+ .inputPaginaRedefinir {
+     margin-top: 0;
+ }
+
+ .ab {
+     display: flex;
+     align-items: center;
+
+ }
+
+ .passwordEye {
+     position: absolute;
+     flex-direction: row-reverse;
+     transform: translate(35vw, -3vh);
+     width: 5vw;
+     max-width: 30px;
+     min-width: 25px;
+     height: auto;
+ }
+
+ .formButton {
+     /*--DIEGO:TO DO:o firefox e o chrome renderizam essa pagina(especialmente o espaco entre .input e .formButton) de forma diferente. ver a opinião dos professores sobre isso e fazer o que eles recomendarem.*/
      background-color: #AD56C7;
      border-style: none;
      border-radius: 16px;
-     width:90%;
+     width: 90%;
      padding: 1.5%;
      text-align: center;
-     color:white;
+     color: white;
      height: var(--form-height-input);
  }
- .formButton:active{
-    background-color: #752e8a;
-    box-shadow: 4px 4px 10px #752e8a;
-    
-    color:#cccccc
+
+ .formButton:disabled {
+     background-color: gray;
  }
  
- .formButton:disabled{
-    background-color: gray;
- }
- .link{
-     color:#d39745;
-
+ .link {
+     color: #d39745;
      text-decoration: none;
  }
 
- .redirectMessage{/*MAJU*/
-    margin-top: 4%;
+ .redirectMessage {
+     /*MAJU*/
+     margin-top: 4%;
  }
 
- .response{
-    color: red;
+ .response {
+     color: red;
  }
- @media screen and (orientation: portrait){ /*design temporario*/
-    .page{
-        grid-template-rows: 10vh 90vh;
-    }
-    .center{
-        grid-row: 2/span 1;
-    }
-    .pageText{
-        margin-top: 50%; /*--DIEGO:para que o texto "Redefinir Senha" em Redefinir_Senha.jsx não fique dentro do logo do Codra*/
 
-    }
-    .logo {
-         visibility:hidden
-         }
-     .logoImage{
-         visibility:visible;
-         position: absolute;/*TO DO:HACK:para que a imagem sempre apareca, mesmo que o resto da coluna nao apareca. melhorar depois*/
-         top:0;
-         margin-left:var(--center-padding-left); /*--DIEGO:junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
+ @media screen and (orientation: portrait) {
+
+     /*design temporario*/
+     .page {
+         grid-template-rows: 10vh 90vh;
+     }
+
+     .center {
+         grid-row: 2/span 1;
+     }
+
+     .pageText {
+         margin-top: 50%;
+         /*--DIEGO:para que o texto "Redefinir Senha" em Redefinir_Senha.jsx não fique dentro do logo do Codra*/
+
+     }
+
+     .logo {
+         visibility: hidden
+     }
+
+     .logoImage {
+         visibility: visible;
+         position: absolute;
+         /*TO DO:HACK:para que a imagem sempre apareca, mesmo que o resto da coluna nao apareca. melhorar depois*/
+         top: 0;
+         margin-left: var(--center-padding-left);
+         /*--DIEGO:junto com o "top:0", é usado para que a imagem fique no canto superior esquerdo*/
          height: 20%;
      }
-     .center{
+
+     .center {
          grid-column: 1/span 2;
      }
 
-     .passwordEye{
-        transform: translate(70vw,-3vh);
-        width: 10vw;
+     .passwordEye {
+         transform: translate(70vw, -3vh);
+         width: 10vw;
 
-        
+
      }
- 
- }
 
- 
- 
+ }

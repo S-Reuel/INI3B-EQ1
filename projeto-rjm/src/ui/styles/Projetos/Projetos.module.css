@@ -17,7 +17,9 @@
     
     
 }
-
+.conteudo > h1, .conteudo > div {
+    color: white;
+}
 .projeto:hover {
     background-color: rgb(57, 66, 70);
     cursor:pointer;
