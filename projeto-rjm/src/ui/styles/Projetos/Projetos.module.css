@@ -17,6 +17,10 @@
     
     
 }
+.conteudo > h1, .conteudo > div {
+    color: white;
+}
+
 .projeto:hover {
     background-color: #344253;
     cursor:pointer;
