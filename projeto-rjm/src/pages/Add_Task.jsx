@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { postTask } from "../data/services/API"
 import { isFormatDate } from "./util/functions"
+import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 
 export default function Add_Task() {
@@ -19,13 +20,14 @@ export default function Add_Task() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div >
-                <center>
-                    <h1>Criar nova Task</h1>
-                    <form onSubmit={onSave}>
+            <div className={addProjStyle.paginaBody}>
+                <center className={addProjStyle.center}>
+                    <h1 className={addProjStyle.tituloPagina}>Criar nova Task</h1>
+                    <form onSubmit={onSave} className={addProjStyle.form}>
                         <label>
                             <label>Título da Task</label><br />
                             <input
+                                className={addProjStyle.input}
                                 type="text" name="nome"
                                 placeholder="Digite aqui o Título da Task" required
                                 onChange={(e) => setTitulo(e.target.value)}
@@ -35,6 +37,7 @@ export default function Add_Task() {
                         <label >
                             <label>Descricao</label><br />
                             <input
+                                className={addProjStyle.input}
                                 type="text" name="nome"
                                 placeholder="Digite aqui o Título da Task" required
                                 onChange={(e) => setDes(e.target.value)}
@@ -43,7 +46,7 @@ export default function Add_Task() {
                         <br />
                         <label >
                             <label>Status</label><br />
-                            <select id='selectStatus'>
+                            <select id='selectStatus' className={addProjStyle.formButton}>
                                 <option value={0}>Selecione</option>
                                 <option value={'Pendente'}>Pendente</option>
                                 <option value={'Andamento'}>Andamento</option>
@@ -51,7 +54,7 @@ export default function Add_Task() {
                             </select>
                         </label>
                         <br /><br />
-                        <button type="submit">Criar</button>
+                        <button className={addProjStyle.formButton} type="submit">Criar</button>
                     </form>
                 </center>
             </div>
