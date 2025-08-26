@@ -42,9 +42,9 @@ export default function Routers() {
                 <Route path="/projeto/sprints/:projeto_id" element={<Sprints />} />
                 <Route path="/projeto/edit/sprint/:id" element={<Editar_Sprint />} />
                 {/*  Task */}
-                <Route path="/projeto/sprint/tasks/:sprint_id" element={<Tasks />} />
-                <Route path="/sprint/edit/task/:task_id" element={<Editar_Task />} />
                 <Route path="/projeto/sprint/task/:task_id" element={<Task />} />
+                <Route path="/sprint/edit/task/:task_id" element={<Editar_Task />} />
+                <Route path="/projeto/sprint/tasks/:sprint_id" element={<Tasks />} />
                 <Route path="/sobre" element={<Sobre />} />
             </Routes>
         </Router>

@@ -6,9 +6,9 @@ import taskStlye from "../ui/styles/task/task.module.css"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
-    const [titulo, setTitulo] = useState()
-    const [descricao, setDesc] = useState()
-    const [status, setStatus] = useState()
+    const [titulo, setTitulo] = useState('')
+    const [descricao, setDesc] = useState('')
+    const [status, setStatus] = useState('')
     const [arquivos, setArquivos] = useState()
 
     useEffect(() => {
@@ -35,7 +35,7 @@ export default function Editar_Task() {
                     <h1 >Editar Task</h1>
                     <form onSubmit={onSave}>
                         <br />
-                        <input type="file" name="arquivo" defaultValue={arquivos} />
+                        <input type="file" name="arquivo" />
                         <br />
                         <br />
                         <label>
