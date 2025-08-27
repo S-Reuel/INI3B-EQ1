@@ -46,7 +46,7 @@ export default function Add_Task() {
                         <br />
                         <label >
                             <label>Status</label><br />
-                            <select id='selectStatus' className={addProjStyle.formButton}>
+                            <select id='selectStatus' className={addProjStyle.selectBox}>
                                 <option value={0}>Selecione</option>
                                 <option value={'Pendente'}>Pendente</option>
                                 <option value={'Andamento'}>Andamento</option>

@@ -63,7 +63,7 @@ export default function Task() {
             <>
                 <CabProj />
                 <center className={taskStlye.corpo}>
-                    <h1 className={taskStlye.texto}>Task {(task.length != "") ? `- ${task.titulo}` : ''}</h1>
+                    <h1>Task {(task.length != "") ? `- ${task.titulo}` : ''}</h1>
                     <div>
                         {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
                     </div>

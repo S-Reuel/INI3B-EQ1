@@ -29,7 +29,7 @@ export default function Editar_Task() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div className={taskStlye.aaa}>
+            <div>
                 <CabProj />
                 <center>
                     <h1 >Editar Task</h1>
