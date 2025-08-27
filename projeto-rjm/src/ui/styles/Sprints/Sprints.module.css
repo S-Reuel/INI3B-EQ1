@@ -58,7 +58,7 @@
 
 .equipeFlex{
     display: flex;
-    width: 70vw;
+    width: 80vw;
     height: max-content;
     gap: 10px;
     justify-content: center;
