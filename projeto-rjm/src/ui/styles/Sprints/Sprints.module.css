@@ -13,11 +13,18 @@
 }
 
 .sprint{
-    background-color: rgb(66, 41, 41);
-    height: 300px;
-    width: 700px;
+    background-color: transparent;
+    height: 70px;
+    width: 100%;
     border-radius: 10px;
+    color: white;
     padding: 5px;
+    transition: 0.25s;   
+}
+
+.sprint:hover{
+    background-color: transparent;
+    background-color: #2b3849;
 }
 
 .telaSprint{
@@ -29,4 +36,177 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start ;
+}
+
+.equipeDiv{
+    background-color: #212a36 ;
+    color: white;
+    width: 450px;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.25s;
+    border: 1px solid #4D555E;
+}
+
+.equipeDiv:hover{
+    cursor: pointer;
+    background-color: #283241;
+
+}
+
+.equipeFlex{
+    display: flex;
+    width: 70vw;
+    height: max-content;
+    gap: 10px;
+    justify-content: center;
+    
+    align-content: center;
+    background-color: #151B23;
+}
+
+.botaoEditarEquipe{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+    transition: 0.25s;
+}
+
+.botaoEditarEquipe:hover{
+    background-color: #2f3b4d;
+}
+.tituloPagina{
+    color: #BE5FDB;
+}
+.navEquipes{
+    grid-row: span 2;
+    background-color: #151B23;
+    border-right: 1px solid rgba(255, 255, 255, 0.048);
+}
+.paginaEquipes{
+    display: grid;
+    min-height: 90vh;
+    grid-template-columns: 20vw 79vw;
+    grid-template-rows: 15vh calc(85vh - 60px);
+    
+
+    
+}
+
+.hr1{
+    width: 90%;
+    
+}
+
+.tituloFlex{
+    display:flex;
+    justify-content: center;
+}
+
+.bttCriarEquipe {
+    position: fixed;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+}
+
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
+}
+
+.modalConteudo{
+    top: calc(30% - 15px);
+    left: calc(35% - 15px);
+    position: relative;
+    background-color: #151B23;
+    min-width: 300px;
+    min-height: 300px;
+    width: 30%;
+    padding: 30px;
+    color: white;
+    border-radius: 20px;
+    
+}
+
+.btnFechaModal{
+    background-color: grey;
+    width: 25px;
+    height: 25px;
+    border: 0px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.sprintsDiv{
+    width: 80%;
+    height: max-content;
+    background-color: #1e2733;
+    border: solid 1px rgba(80, 80, 80, 0.712);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.tableSprints{
+    width: 100%;
+    color: #FFB44C;
+    border-spacing: 0px;
+    
+    
+}
+
+.tableTitulo{
+    border: 1px solid black;
+
+}
+
+.tbBorder{
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid rgba(80, 80, 80, 0.712);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botaoEditarTableTd{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.botaoEditarTable{
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 30px;
+    transition: 0.25s;
+    border-radius: 10px;
+}
+
+.botaoEditarTable:hover{
+    background-color: #2f3b4d;
+    cursor: pointer;
+
+}
+
+.sprintDatas{
+    text-align: center;
 }
