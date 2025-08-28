@@ -50,36 +50,31 @@ export default function Sprints() {
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
             return (
-                <div className={StylesSprint.sprint} onClick={(e) => {
+                <tr className={StylesSprint.sprint} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-
-                    <div>{i.id}</div>
-                    <div>{i.nome}</div>
-                    <div>{dataInicio}</div>
-                    <div>{dataFim}</div>
-                    <div>{i.projeto_id}</div>
-                    <button onClick={(e) => {
-                        e.stopPropagation()
-                        caminho(i.id, 'ed')
-                    }}>Editar</button>
-
-                </div>
+                
+                        <td>{i.nome}</td>
+                        <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
+                        <td className={StylesSprint.sprintDatas}>{dataFim}</td>
+                
+                        <td className={StylesSprint.botaoEditarTableTd} >
+                            <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
+                            e.stopPropagation()
+                            caminho(i.id, 'ed')
+                        }}>...</div>
+                        </td>
+                    
+                </tr>
             )
         })
     }
 
     if (localStorage.getItem('authToken')) {
         return (
-            <>
+            <div>
                 <CabProj />
-                <h1>Sprints</h1>
-                <div className={StylesSprint.telaSprint}>
-                    {(sprints.length == 0) ? (<h4>Sem Sprints! Crie uma sprint!</h4>) : (apr())}
-                    <br />
-                </div>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
                     style={{
                         overlay: {
@@ -96,7 +91,43 @@ export default function Sprints() {
                     <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
                     <Add_Sprint />
                 </Modal>
-            </>
+                <div className={StylesSprint.paginaEquipes}>
+                    <div className={StylesSprint.navEquipes}></div>
+                    <div>
+                        <div className={StylesSprint.tituloFlex}>
+                            <h1 className={StylesSprint.tituloPagina}>Nome da equipe aqui (LUIGY)</h1>
+
+                        </div>
+                        <br />
+                        <hr className={StylesSprint.hr1} color="#4a4a4a" />
+                    </div>
+
+                    {(sprints.length != 0) ? (
+                        <div className={StylesSprint.equipeFlex}>
+                            <div className={StylesSprint.sprintsDiv}>
+                                <table className={StylesSprint.tableSprints}>   
+                                    <tr className={StylesSprint.tableTitulo}>
+                                        <th><div className={StylesSprint.tbBorder}>Nome</div></th>
+                                        <th><div className={StylesSprint.tbBorder}>Início</div></th>
+                                        <th><div className={StylesSprint.tbBorder}>Término</div></th>
+                                        <th><div className={StylesSprint.tbBorder}></div></th>
+                                    </tr>
+                                    
+                                    {apr()}
+                                </table>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <br /><br /><br />
+                            <h4>Sem Sprints! Crie uma Sprint!</h4>
+                            <br />
+                        </>
+                    )}
+
+                    <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                </div>
+            </div>
         )
     } else {
         return (redirecionar('login'))
