@@ -20,8 +20,9 @@
 .conteudo > h1, .conteudo > div {
     color: white;
 }
+
 .projeto:hover {
-    background-color: rgb(57, 66, 70);
+    background-color: #344253;
     cursor:pointer;
 }
 
@@ -75,7 +76,7 @@
 }
 
 .bttEditarProj:hover {
-    background-color: rgb(82, 92, 95);
+    background-color: #2b3847;
 }
 
 .cabecalhoProj {
@@ -122,6 +123,7 @@
     text-align: center;
     width: 20px;
     padding-right: 10px;
+
 }
 .imgEditarProj:hover{
     cursor:pointer;
@@ -135,8 +137,12 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
-}
+    transition: 0.25s;
 
+}
+.botaoNewProjeto:hover{
+    scale: 105%;
+}
 .imgEditarProj{
     height: 100%;
     width: 100%;

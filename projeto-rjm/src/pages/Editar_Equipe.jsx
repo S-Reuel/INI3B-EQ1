@@ -1,16 +1,18 @@
 import { useParams } from "react-router-dom";
-import { getEquipeById, updateEquipe } from "../data/services/API";
+import { getEquipeById, getUser, updateEquipe } from "../data/services/API";
 import { useEffect, useState } from "react";
-import { voltar } from "./util/functions";
+import CabProj from "../ui/components/_cabecalho";
 
 export default function Editar_Equipe() {
     const { id } = useParams()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
+    const [membros, setMembros] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         async function fetch() {
             const req = await getEquipeById(id)
+            setMembros(cabras)
             setNome(req.nome)
             setDesc(req.descricao)
         }
@@ -19,11 +21,12 @@ export default function Editar_Equipe() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateEquipe(id, {nome, descricao})
+        updateEquipe(id, { nome, descricao })
     }
 
     return (
         <div>
+            <CabProj />
             <center>
                 <h1>Editar Equipe</h1>
                 <form>
@@ -45,10 +48,16 @@ export default function Editar_Equipe() {
                             onChange={(e) => setDesc(e.target.value)}
                         />
                     </label>
-                    <br /><br />
+                    <br />
+                    {/* Devemos ver isso! URGENTE! :) */}
+                    <label >
+                        <label>Membros</label> <br />
+                        <select id='selectEquipes'>
+                        </select>
+                    </label>
+                    <br /> <br />
                     <button type="submit" onClick={onSave}>Enviar</button>
                 </form>
-                <button onClick={voltar}>Voltar</button>
             </center>
         </div>
     )
