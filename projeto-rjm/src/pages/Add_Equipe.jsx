@@ -21,7 +21,7 @@ export default function Add_Equipe() {
                             <label className={addEquipeStyle.lbl}>Nome:</label><br />
                             <input
                                 type="text" nome="nome"
-                                placeholder="Digite o nome equipe" required
+                                placeholder="Digite o nome da equipe" required
                                 onChange={(e) => setNome(e.target.value)}
                                 className={addEquipeStyle.input}
                             />
@@ -32,7 +32,7 @@ export default function Add_Equipe() {
                             <br />
                             <input
                                 type="text" name="descricao"
-                                placeholder="Digite a descrição do projeto" required
+                                placeholder="Digite a descrição da equipe" required
                                 onChange={(e) => setDesc(e.target.value)}
                                 className={addEquipeStyle.input}
                             />

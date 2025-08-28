@@ -45,7 +45,7 @@ export default function Add_Task() {
                             <input
                                 className={addProjStyle.input}
                                 type="text" name="nome"
-                                placeholder="Digite aqui o Título da Task" required
+                                placeholder="Digite aqui a Descrição da Task" required
                                 onChange={(e) => setDes(e.target.value)}
                             />
                         </label>
