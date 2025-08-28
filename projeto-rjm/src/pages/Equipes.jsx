@@ -93,9 +93,10 @@ export default function Equipes() {
                         <hr className={equipeStyle.hr1} color="#4a4a4a" />
                     </div>
                     {(eqs.length != 0) ? (
+                        <div className={equipeStyle.equipesDivCenter}>
                         <div className={equipeStyle.equipeFlex}>
                             {apr()}
-                        </div>
+                        </div></div>
                     ) : (
                         <>
                             <br /><br /><br />

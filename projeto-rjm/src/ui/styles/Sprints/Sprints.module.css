@@ -58,7 +58,7 @@
 
 .equipeFlex{
     display: flex;
-    width: 80vw;
+    width: 79vw;
     height: max-content;
     gap: 10px;
     justify-content: center;
@@ -95,7 +95,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh calc(85vh - 60px);
+    grid-template-rows: 15vh auto
     
 
     
@@ -160,6 +160,7 @@
     border: solid 1px rgba(80, 80, 80, 0.712);
     border-radius: 15px;
     padding: 5px;
+    margin-bottom: 50px;
 }
 
 .tableSprints{
@@ -209,4 +210,8 @@
 
 .sprintDatas{
     text-align: center;
+}
+
+.tdNome{
+    padding-left: 16px;
 }
