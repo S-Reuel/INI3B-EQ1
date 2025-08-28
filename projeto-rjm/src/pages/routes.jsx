@@ -15,8 +15,6 @@ import Editar_Equipe from "./Editar_Equipe";
 import Editar_Sprint from "./Editar_Sprint.jsx";
 import Tasks from "./Tasks.jsx";
 import Editar_Task from "./Editar_Task.jsx";
-import Add_Equipe from "./Add_Equipe.jsx";
-import Add_Sprint from "./Add_Sprint.jsx";
 import Task from "./Task.jsx";
 
 export default function Routers() {

@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react"
-import { getTaskId, updateTask, } from "../data/services/API"
+import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import taskStlye from "../ui/styles/task/task.module.css"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
-    const [titulo, setTitulo] = useState('')
-    const [descricao, setDesc] = useState('')
-    const [status, setStatus] = useState('')
-    const [arquivos, setArquivos] = useState()
+    const [titulo, setTitulo] = useState()
+    const [descricao, setDesc] = useState()
+    const [status, setStatus] = useState()
 
     useEffect(() => {
         async function fetch() {
@@ -17,14 +16,16 @@ export default function Editar_Task() {
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
-            setArquivos(res.arquivos)
         }
         fetch()
     }, [])
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateTask(task_id, { titulo, descricao, status, arquivos })
+        let arq = document.getElementById("arq")
+        const formData = new formData()
+        formData.append('arquivo', arq)
+        console.log(task_id, { titulo, descricao, status, formData })
     }
 
     if (localStorage.getItem('authToken')) {
@@ -35,14 +36,18 @@ export default function Editar_Task() {
                     <h1 >Editar Task</h1>
                     <form onSubmit={onSave}>
                         <br />
-                        <input type="file" name="arquivo" />
+                        <label>
+                            <label>Adicione somente um arquivo</label> <br />
+                            <input
+                                type="file" name="arquivo" id="arq"
+                            />
+                        </label>
                         <br />
                         <br />
                         <label>
                             <label>Título da Task</label><br />
                             <input
-
-                                type="text" name="nome" defaultValue={titulo} required
+                                type="text" name="nome" value={titulo} required
                                 onChange={(e) => setTitulo(e.target.value)}
                             />
                         </label>
@@ -50,8 +55,7 @@ export default function Editar_Task() {
                         <label>
                             <label>Descrição da Task</label><br />
                             <input
-
-                                type="text" name="nome" defaultValue={descricao} required
+                                type="text" name="nome" value={descricao} required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
@@ -59,8 +63,7 @@ export default function Editar_Task() {
                         <label>
                             <label>Status da Task</label><br />
                             <input
-
-                                type="text" name="nome" defaultValue={status} required
+                                type="text" name="nome" value={status} required
                                 onChange={(e) => setStatus(e.target.value)}
                             />
                         </label>
