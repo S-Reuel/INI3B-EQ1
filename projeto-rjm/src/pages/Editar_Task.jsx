@@ -1,14 +1,22 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import taskStlye from "../ui/styles/task/task.module.css"
+import { isFormatStatus } from "./util/functions"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
-    const [status, setStatus] = useState()
+    const [stt, setStatus] = useState()
+    const [file, setFile] = useState(null);
+
+    function handleFileChange(e) {
+        if (e.target.files) {
+            setFile(e.target.files[0])
+        }
+    }
 
     useEffect(() => {
         async function fetch() {
@@ -22,10 +30,14 @@ export default function Editar_Task() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let arq = document.getElementById("arq")
-        const formData = new formData()
-        formData.append('arquivo', arq)
-        console.log(task_id, { titulo, descricao, status, formData })
+        if (file) {
+            console.log('Uploading file...');
+            const formData = new FormData();
+            formData.append('file', file);
+            console.log(formData);
+        }
+        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
+        // updateTask(task_id, {titulo, descricao, status, arquivos})
     }
 
     if (localStorage.getItem('authToken')) {
@@ -38,9 +50,7 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Adicione somente um arquivo</label> <br />
-                            <input
-                                type="file" name="arquivo" id="arq"
-                            />
+                            <input type="file" id="fileInput" onChange={handleFileChange} multiple />
                         </label>
                         <br />
                         <br />
@@ -62,10 +72,14 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Status da Task</label><br />
-                            <input
-                                type="text" name="nome" value={status} required
-                                onChange={(e) => setStatus(e.target.value)}
-                            />
+                            <select id='selectStatus'>
+                                <option value={stt}>{isFormatStatus(stt)}</option>
+                                <option value={'pendente'}>Pendente</option>
+                                <option value={'em_andamento'}>Em andamento</option>
+                                <option value={'atrasado'}>Atrasado</option>
+                                <option value={'cancelado'}>Cancelado</option>
+                                <option value={'concluido'}>Concluído</option>
+                            </select>
                         </label>
                         <br /><br />
                         <button type="submit">Atualiza Sprint</button>

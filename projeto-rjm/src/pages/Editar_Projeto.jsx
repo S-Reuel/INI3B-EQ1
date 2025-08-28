@@ -41,9 +41,10 @@ export default function Editar_Projeto() {
                         </label>
                         <label >
                             <p className={addProjStyle.inputTipo}>Descrição:</p>
-                            <input
+                            <textarea 
+                                rows='8' cols='50'
                                 className={addProjStyle.input}
-                                type="text" name="descricao" defaultValue={descricao}
+                                defaultValue={descricao}
                                 placeholder="Descrição Antiga" required
                                 onChange={(e) => setDesc(e.target.value)}
                             />

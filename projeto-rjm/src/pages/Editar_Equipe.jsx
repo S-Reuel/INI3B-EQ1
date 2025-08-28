@@ -12,7 +12,7 @@ export default function Editar_Equipe() {
     useEffect(() => {
         async function fetch() {
             const req = await getEquipeById(id)
-            setMembros(cabras)
+            setMembros()
             setNome(req.nome)
             setDesc(req.descricao)
         }
@@ -42,8 +42,9 @@ export default function Editar_Equipe() {
                     <label >
                         Descrição:
                         <br />
-                        <input
-                            type="text" name="descricao" defaultValue={descricao}
+                        <textarea 
+                            rows='8' cols='50'
+                            defaultValue={descricao}
                             placeholder="Digite a descrição" required
                             onChange={(e) => setDesc(e.target.value)}
                         />

@@ -30,8 +30,8 @@ export default function Add_Equipe() {
                         <label >
                             <label className={addEquipeStyle.lbl}>Descrição:</label>
                             <br />
-                            <input
-                                type="text" name="descricao"
+                            <textarea 
+                                rows='8' cols='50'
                                 placeholder="Digite a descrição do projeto" required
                                 onChange={(e) => setDesc(e.target.value)}
                                 className={addEquipeStyle.input}

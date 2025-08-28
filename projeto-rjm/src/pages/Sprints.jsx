@@ -55,11 +55,11 @@ export default function Sprints() {
                     caminho(i.id, 'task')
                 }}>
 
-                    <div>{i.id}</div>
-                    <div>{i.nome}</div>
-                    <div>{dataInicio}</div>
-                    <div>{dataFim}</div>
-                    <div>{i.projeto_id}</div>
+                    <div>Id: {i.id}</div>
+                    <div>Nome: {i.nome}</div>
+                    <div>Data Inicio: {dataInicio}</div>
+                    <div>Data Fim: {dataFim}</div>
+                    <div>Id do projeto: {i.projeto_id}</div>
                     <button onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'ed')
