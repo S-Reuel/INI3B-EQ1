@@ -1,6 +1,8 @@
 class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
+
+  $host = "https://5b9257d0b811.ngrok-free.app"
   # GET /tasks
   def index
     @tasks = Task.all
@@ -24,8 +26,8 @@ class Api::V2::TasksController < ApplicationController
       }
     }).merge(
       arquivos_urls: task.arquivos.map { |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: "https://dc564bb63c72.ngrok-free.app")
-      }
+        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
+     s }
     )
   }
   end
@@ -40,7 +42,7 @@ class Api::V2::TasksController < ApplicationController
       }
     }).merge(
       arquivos_urls: @task.arquivos.map do |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: "localhost", port: 3000)
+        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
       end
     )
   end
