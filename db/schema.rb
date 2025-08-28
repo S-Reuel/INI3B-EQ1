@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_28_020008) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_28_024430) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -110,8 +110,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_28_020008) do
   create_table "tasks", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
-    t.datetime "data_criacao"
-    t.datetime "data_alteracao"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
