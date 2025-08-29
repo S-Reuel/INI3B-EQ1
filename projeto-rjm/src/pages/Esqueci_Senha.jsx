@@ -48,7 +48,7 @@ export default function EsqueciSenha() {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </label>
-                        <button type="submit" className={esqueciStyle.formButton} disabled={botaoDesativado} >Enviar</button>
+                        <button type="submit" className={esqueciStyle.formButton} disabled={botaoDesativado}>Enviar</button>
                     </form>
                     <div className={esqueciStyle.SignUpForgot}>
                         <p>

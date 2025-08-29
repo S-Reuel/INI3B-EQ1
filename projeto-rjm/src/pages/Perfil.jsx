@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getUserByEmail } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-import iconeUser from "../ui/icons/user.png"
 import perfilStyle from '../ui/styles/Perfil/Perfil.module.css'
 import logoutIcon from '../ui/icons/logoutIcon.png'
 import editIcon from '../ui/icons/editIcon.png'
@@ -22,7 +21,7 @@ export default function Perfil() {
         return (
             <>
             <br />
-                <img src={iconeUser} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
+                <img src={perfil.avatar_url} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
                 <div className={perfilStyle.tituloModal}>
                      {perfil.nome}
                 </div>

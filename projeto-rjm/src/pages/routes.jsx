@@ -8,7 +8,7 @@ import Usuarios from "./Usuarios.jsx";
 import EsqueciSenha from "./Esqueci_Senha";
 import Equipes from "./Equipes";
 import Sprints from "./Sprints";
-import EditUser from "./Editar_Usuario";
+import EditUser from "./Editar_Perfil";
 import Editar_Projeto from "./Editar_Projeto";
 import Sobre from "./Quem_Somos";
 import Editar_Equipe from "./Editar_Equipe";
