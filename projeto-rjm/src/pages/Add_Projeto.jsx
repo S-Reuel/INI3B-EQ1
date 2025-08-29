@@ -49,8 +49,8 @@ export default function Add_Projeto() {
                         <label >
                             <label className={addProjStyle.lbl}>Descrição</label>
                             <br />
-                            <input
-                                type="text" name="descricao"
+                            <textarea 
+                                rows='8' cols='50'
                                 className={addProjStyle.input}
                                 placeholder="Digite aqui descrição do projeto" required
                                 onChange={(e) => setDesc(e.target.value)}
