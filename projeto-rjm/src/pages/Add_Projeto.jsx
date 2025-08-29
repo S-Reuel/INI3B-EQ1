@@ -64,10 +64,11 @@ export default function Add_Projeto() {
                                 {listaEquipe()}
                             </select>
                         </label>
+                        <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('eq')}>Nova Equipe</a>
+                        <br />
+                        <br/>
                         <button type="submit" className={addProjStyle.formButton}>Criar</button>
                         <br />
-                        <br />
-                        <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('addEq')}>Nova Equipe</a>
                         
                     </form>
                 </center>

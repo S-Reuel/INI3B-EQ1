@@ -35,7 +35,7 @@ export default function Editar_Sprint() {
             <div >
                 <CabProj />
                 <center>
-                    <h1>Criar nova Sprint</h1>
+                    <h1>Editar Sprint</h1>
                     <form onSubmit={onSave}>
                         <label>
                             <label>Nome da Sprint</label><br />
