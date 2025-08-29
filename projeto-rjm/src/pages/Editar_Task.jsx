@@ -26,18 +26,25 @@ export default function Editar_Task() {
             setStatus(res.status)
         }
         fetch()
-    }, [])
+    }, [task_id])
 
     const onSave = async (e) => {
         e.preventDefault()
+        const formData = new FormData();
         if (file) {
             console.log('Uploading file...');
-            const formData = new FormData();
-            formData.append('file', file);
+            formData.append("task[arquivos][]", file);
             console.log(formData);
         }
+        formData.append("task[titulo]", titulo)
+        formData.append("task[descricao]", descricao)
+        formData.append("task[status]", stt)
+
+        const res = await updateTask(task_id, formData)
+        console.log(res);
+        
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
-        // updateTask(task_id, {titulo, descricao, status, arquivos})
+        
     }
 
     if (localStorage.getItem('authToken')) {
@@ -50,7 +57,7 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Adicione somente um arquivo</label> <br />
-                            <input type="file" id="fileInput" onChange={handleFileChange} multiple />
+                            <input type="file" onChange={handleFileChange} multiple />
                         </label>
                         <br />
                         <br />
