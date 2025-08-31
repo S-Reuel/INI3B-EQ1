@@ -34,7 +34,7 @@ export default function Editar_Equipe() {
                         Nome:<br />
                         <input
                             type="text" name="nome" defaultValue={nome}
-                            placeholder="Digite seu nome" required
+                            placeholder="Digite o nome da equipe" required
                             onChange={(e) => setNome(e.target.value)}
                         />
                     </label>
@@ -42,10 +42,9 @@ export default function Editar_Equipe() {
                     <label >
                         Descrição:
                         <br />
-                        <textarea 
-                            rows='8' cols='50'
-                            defaultValue={descricao}
-                            placeholder="Digite a descrição" required
+                        <input
+                            type="text" name="descricao" defaultValue={descricao}
+                            placeholder="Digite a descrição da equipe" required
                             onChange={(e) => setDesc(e.target.value)}
                         />
                     </label>

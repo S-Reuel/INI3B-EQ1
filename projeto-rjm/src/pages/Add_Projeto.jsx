@@ -52,7 +52,7 @@ export default function Add_Projeto() {
                             <textarea 
                                 rows='8' cols='50'
                                 className={addProjStyle.input}
-                                placeholder="Digite aqui descrição do projeto" required
+                                placeholder="Digite aqui a descrição do projeto" required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>

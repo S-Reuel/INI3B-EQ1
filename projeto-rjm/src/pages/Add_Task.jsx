@@ -45,7 +45,8 @@ export default function Add_Task() {
                             <textarea 
                                 rows='8' cols='50'
                                 className={addProjStyle.input}
-                                placeholder="Digite aqui o Título da Task" required
+                                type="text" name="nome"
+                                placeholder="Digite aqui a Descrição da Task" required
                                 onChange={(e) => setDes(e.target.value)}
                             />
                         </label>
