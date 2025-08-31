@@ -12,7 +12,7 @@ export default function Editar_Equipe() {
     useEffect(() => {
         async function fetch() {
             const req = await getEquipeById(id)
-            setMembros(cabras)
+            setMembros()
             setNome(req.nome)
             setDesc(req.descricao)
         }

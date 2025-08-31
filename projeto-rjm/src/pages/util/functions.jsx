@@ -32,6 +32,17 @@ export function isFormatDate(data) {
     */
 }
 
+export function isFormatStatus(stt) {
+    let status = {
+        "em_andamento":"Em andamento", 
+        'pendente':"Pendente",
+        'atrasado':'Atrasado',
+        'cancelado':'Cancelado',
+        'concluido':'Concluido'
+    }
+    return status[stt]
+}
+
 export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':

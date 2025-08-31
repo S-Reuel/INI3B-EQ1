@@ -91,7 +91,7 @@ export default function Registro() {
                                 <br />
                                 <input
                                     className={registroStyle.input}
-                                     type={showPassword}  nome="senha"
+                                    type={showPassword}  nome="senha"
                                     placeholder="Digite sua senha" required
                                     onChange={(e) => setSenha(e.target.value)}
                                 />
