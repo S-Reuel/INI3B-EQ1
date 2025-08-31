@@ -72,11 +72,21 @@
    border-style: none;
    border-radius:15px;
 
+   font-size: var(--input-font-size);
+   font-weight: 400;
+
    margin-bottom: -3%;
 
    padding: 1.5%;
 
+   transition: 300ms;
+   transition-timing-function: ease-in-out;
+
    width:auto;
+}
+
+.formButton:hover{
+   background-color:#9696D5;
 }
 
 .btnFechaModal{
@@ -89,6 +99,7 @@
    line-height: 25px;
    text-align: center;
 }
+
 .botaoNovaEquipe{
 
 
