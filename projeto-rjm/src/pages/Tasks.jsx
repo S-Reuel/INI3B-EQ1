@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { isFormat, redirecionar } from "./util/functions"
-import { getTaskBySprint } from "../data/services/API"
+import { getSprintsId, getTaskBySprint } from "../data/services/API"
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
 import React from 'react';
 import Modal from 'react-modal';
 import Add_Task from "./Add_Task";
-import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
+import iconCalendario from '../ui/icons/calendario.svg'
+import TasksStyle from '../ui/styles/Tasks/Tasks.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
 
 Modal.setAppElement('#root');
@@ -14,11 +15,14 @@ Modal.setAppElement('#root');
 export default function Tasks() {
     const { sprint_id } = useParams()
     const [tasks, setTasks] = useState([])
+    const [sprint, setSprint] = useState([])
 
     useEffect(() => {
         async function fetch() {
             const res = await getTaskBySprint(sprint_id)
+            let r = await getSprintsId(sprint_id)
             setTasks(res.tasks)
+            setSprint(r.nome)
         }
         fetch()
     }, []);
@@ -36,22 +40,67 @@ export default function Tasks() {
         return tasks.map(function (i) {
             let dataCriacao = isFormat(new Date(i.created_at))
             let dataAtualizacao = isFormat(new Date(i.updated_at))
+
+
+
             return (
-                <div onClick={(e) => {
+                <div className={TasksStyle.Task} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-                    <p>
-                        {i.id}   {i.titulo}  {i.descricao}   {i.status}  {dataCriacao} {dataAtualizacao}
-                        <button onClick={(e) => {
+                    <div className={TasksStyle.TaskInner}>
+                        <div className={TasksStyle.taskTitulo}>{i.titulo}</div>
+                        <div className={TasksStyle.botaoEditarTask} onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
-                        }}>Editar</button>
-                    </p>
+                        }}>...</div>
+                        <div className={TasksStyle.taskData}>
+                            <div className={TasksStyle.dataDiv}><img src={iconCalendario} className={TasksStyle.calendarioIMG}></img>{dataAtualizacao}</div>
+                        </div>
+                        <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
+                        <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
+
+
+                    </div>
                 </div>
             )
         })
     }
+    function textoStatus(status) {
+        switch (status.toLowerCase()) {
+            case "concluido":
+                return "Concluído";
+            case "em_andamento":
+                return "Em andamento";
+            case "pendente":
+                return "Pendente";
+            case "atrasado":
+                return "Atrasado";
+            case "cancelado":
+                return "Encerrado"
+            default:
+                return "Erro";
+        }
+    }
+
+    function corStatus(status) {
+        switch (status.toLowerCase()) {
+            case "concluido":
+                return { backgroundColor: "#46F7B7", color: "#096343" };
+            case "em_andamento":
+                return { backgroundColor: "#46A7F7", color: "#144772" };
+            case "pendente":
+                return { backgroundColor: "#F5EB88", color: "#653408" };
+            case "atrasado":
+                return { backgroundColor: "#F78A46", color: "#5C4213" };
+            case "cancelado":
+                return { backgroundColor: "#F27F77", color: "#5F0F0B" };
+            default:
+                return { backgroundColor: "white", color: "black" };;
+        }
+    }
+
+
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -69,31 +118,52 @@ export default function Tasks() {
         return (
             <>
                 <CabProj />
-                <div  >
-                    <center className={StyleProj.conteudo}>
-                        <h1>Tasks</h1>
-                        <div>
-                            {(tasks.length != "") ? (apr()) : (<h4>Sem Task! Crie uma task!</h4>)}
-                        </div>
-                    </center>
-                    <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
-                    <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
-                        style={{
-                            overlay: {
-                                overflowY: "scroll",
-                                backgroundColor: 'rgba(0, 0 ,0, 0.8)'
-                            },
-                            content: {
-                                border: '1px solid black',
-                                background: '#151B23',
+                <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={TasksStyle.modalConteudo}
+                    style={{
+                        overlay: {
+                            overflowY: "scroll",
+                            backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                        },
+                        content: {
+                            border: '1px solid black',
+                            background: '#151B23',
 
-                            }
-                        }}
-                    >
-                        <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
-                        <Add_Task />
-                    </Modal>
+                        }
+                    }}
+                >
+                    <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    <Add_Task />
+                </Modal>
+                <div className={TasksStyle.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
+
+                <div className={TasksStyle.paginaEquipes}>
+                    <div className={TasksStyle.navEquipes}></div>
+                    <div>
+                        <div className={TasksStyle.tituloFlex}>
+                            <h1 className={TasksStyle.tituloPagina}>{sprint}</h1>
+
+                        </div>
+                        <br />
+                        <hr className={TasksStyle.hr1} color="#4a4a4a" />
+                    </div>
+
+                    {(tasks.length != 0) ? (
+                        <div className={TasksStyle.tasksCenter}>
+                            <div className={TasksStyle.equipeFlex}>
+                                {apr()}
+                            </div>
+                        </div>
+
+                    ) : (
+                        <>
+                            <br /><br /><br />
+                            <h4>Sem Tasks! Crie uma Task!</h4>
+                            <br />
+                        </>
+                    )}
+
                 </div>
+
 
             </>
         )

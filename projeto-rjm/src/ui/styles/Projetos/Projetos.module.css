@@ -1,5 +1,3 @@
-
-
 .projeto {
     background-color: #2b3847;
 
@@ -14,16 +12,18 @@
     padding: 10px;
 
     color: white;
-    
-    
+
+
 }
-.conteudo > h1, .conteudo > div {
+
+.conteudo>h1,
+.conteudo>div {
     color: white;
 }
 
 .projeto:hover {
     background-color: #344253;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .tituloProj {
@@ -56,7 +56,7 @@
     font-size: 15px;
     display: flex;
     vertical-align: center;
-    
+
 }
 
 .bttEditarProj {
@@ -99,7 +99,7 @@
 
 }
 
-.bodyProjs > h4 {
+.bodyProjs>h4 {
     color: #c2c2c2;
 }
 
@@ -111,7 +111,7 @@
     height: 30PX;
 }
 
-.calendarioIMG{
+.calendarioIMG {
     width: 15px;
     height: auto;
     margin-bottom: 3px;
@@ -119,17 +119,19 @@
     padding-left: 6px;
     padding-right: 2px;
 }
-.imgEditarProj{
+
+.imgEditarProj {
     text-align: center;
     width: 20px;
     padding-right: 10px;
 
 }
-.imgEditarProj:hover{
-    cursor:pointer;
+
+.imgEditarProj:hover {
+    cursor: pointer;
 }
 
-.botaoNewProjeto{
+.botaoNewProjeto {
     position: fixed;
     border-radius: 25px;
     background-color: purple;
@@ -140,15 +142,17 @@
     transition: 0.25s;
 
 }
-.botaoNewProjeto:hover{
+
+.botaoNewProjeto:hover {
     scale: 105%;
 }
-.imgEditarProj{
+
+.imgEditarProj {
     height: 100%;
     width: 100%;
 }
 
-.modalConteudo{
+.modalConteudo {
     top: calc(30% - 15px);
     left: calc(35% - 15px);
     position: relative;
@@ -159,10 +163,10 @@
     padding: 30px;
     color: white;
     border-radius: 20px;
-    
+
 }
 
-.btnFechaModal{
+.btnFechaModal {
     background-color: grey;
     width: 25px;
     height: 25px;
@@ -174,11 +178,14 @@
     line-height: 25px;
     text-align: center;
 }
-@media screen and (orientation: portrait){ /*--DIEGO:design temporario*/
-    .modalConteudo{
+
+@media screen and (orientation: portrait) {
+
+    /*--DIEGO:design temporario*/
+    .modalConteudo {
         left: 0;
         margin-left: 10%;
 
     }
- 
- }
+
+}

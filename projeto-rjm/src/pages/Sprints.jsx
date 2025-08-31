@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
 import { useEffect, useState } from "react"
-import { getSprintsByProjeto } from "../data/services/API"
+import { getProjetoId, getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
@@ -14,11 +14,14 @@ Modal.setAppElement('#root');
 export default function Sprints() {
     const { projeto_id } = useParams()
     const [sprints, setSprints] = useState([])
+    const [projeto, setProj] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const res = await getSprintsByProjeto(projeto_id)
+            let res = await getSprintsByProjeto(projeto_id)
+            let r = await getProjetoId(projeto_id)
             setSprints(res.sprints)
+            setProj(r.nome)
         }
         fetch()
     }, [])
@@ -54,18 +57,17 @@ export default function Sprints() {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-                
-                        <td className={StylesSprint.tdNome}>{i.nome}</td>
-                        <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
-                        <td className={StylesSprint.sprintDatas}>{dataFim}</td>
-                
-                        <td className={StylesSprint.botaoEditarTableTd} >
-                            <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
+                    <td>{i.nome}</td>
+                    <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
+                    <td className={StylesSprint.sprintDatas}>{dataFim}</td>
+
+                    <td className={StylesSprint.botaoEditarTableTd} >
+                        <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>...</div>
-                        </td>
-                    
+                    </td>
+
                 </tr>
             )
         })
@@ -95,7 +97,7 @@ export default function Sprints() {
                     <div className={StylesSprint.navEquipes}></div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>
-                            <h1 className={StylesSprint.tituloPagina}>Nome da equipe aqui (LUIGY)</h1>
+                            <h1 className={StylesSprint.tituloPagina}>{projeto}</h1>
 
                         </div>
                         <br />
@@ -105,14 +107,14 @@ export default function Sprints() {
                     {(sprints.length != 0) ? (
                         <div className={StylesSprint.equipeFlex}>
                             <div className={StylesSprint.sprintsDiv}>
-                                <table className={StylesSprint.tableSprints}>   
+                                <table className={StylesSprint.tableSprints}>
                                     <tr className={StylesSprint.tableTitulo}>
                                         <th><div className={StylesSprint.tbBorder}>Nome</div></th>
                                         <th><div className={StylesSprint.tbBorder}>Início</div></th>
                                         <th><div className={StylesSprint.tbBorder}>Término</div></th>
                                         <th><div className={StylesSprint.tbBorder}></div></th>
                                     </tr>
-                                    
+
                                     {apr()}
                                 </table>
                             </div>
