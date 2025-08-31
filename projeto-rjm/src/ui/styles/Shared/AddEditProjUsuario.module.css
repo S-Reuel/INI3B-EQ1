@@ -33,7 +33,6 @@
    border-color: #4D555E;
    border-style: solid;
 
-   font-size: 3vw;
    padding: 6%;
    margin-right: 20%;
    margin-bottom: 3%;
@@ -85,12 +84,24 @@
 
    width:auto;
 }
+
 .formButton:hover{
    background-color:#9696D5;
 }
+
+.btnFechaModal{
+   background-color: transparent;
+   border: 0px;
+   border-radius: 5px;
+
+   height: 25px;
+
+   line-height: 25px;
+   text-align: center;
+}
+
 .botaoNovaEquipe{
 
-   font-size: 1.5vw;
 
    padding: 1.5%;
 
