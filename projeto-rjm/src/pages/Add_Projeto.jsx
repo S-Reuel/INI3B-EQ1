@@ -4,7 +4,7 @@ import { redirecionar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
-export default function Add_Projeto(props) {
+export default function Add_Projeto() {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [equipes, setEquipes] = useState([])
@@ -37,7 +37,7 @@ export default function Add_Projeto(props) {
                     <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
                         <label>
-                            <label className={addProjStyle.lbl}><h1>Nome do Projeto</h1></label>
+                            <label className={addProjStyle.lbl}>Nome do Projeto</label><br />
                             <input
                                 className={addProjStyle.input}
                                 type="text" name="nome"
@@ -47,7 +47,8 @@ export default function Add_Projeto(props) {
                         </label>
                         <br />
                         <label >
-                            <label className={addProjStyle.lbl}><h1>Descrição</h1></label>
+                            <label className={addProjStyle.lbl}>Descrição</label>
+                            <br />
                             <textarea 
                                 rows='8' cols='50'
                                 className={addProjStyle.input}
@@ -55,8 +56,9 @@ export default function Add_Projeto(props) {
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
+                        <br />
                         <label >
-                            <label className={addProjStyle.lbl}><h1>Equipe</h1></label>
+                            <label className={addProjStyle.lbl}>Equipe</label>
                             <select className={addProjStyle.input} id='selectEquipes'>
                                 <option value={0}>Selecione</option>
                                 {listaEquipe()}
@@ -65,7 +67,6 @@ export default function Add_Projeto(props) {
                         <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('eq')}>Nova Equipe</a>
                         <br />
                         <br/>
-                        <button className={addProjStyle.btnFechaModal} id='btnFecharModal' onClick={props.onClose}>Cancelar</button>
                         <button type="submit" className={addProjStyle.formButton}>Criar</button>
                         <br />
                         

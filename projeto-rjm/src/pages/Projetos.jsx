@@ -101,7 +101,8 @@ export default function Projetos() {
                         }
                     }}
                 >
-                    <Add_Projeto onClose={fecharModal}/>
+                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    <Add_Projeto />
                 </Modal>
             </>
         )
