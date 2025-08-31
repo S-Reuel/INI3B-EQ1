@@ -57,7 +57,6 @@ export default function Sprints() {
                     e.stopPropagation()
                     caminho(i.id, 'task')
                 }}>
-
                     <td>{i.nome}</td>
                     <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
                     <td className={StylesSprint.sprintDatas}>{dataFim}</td>

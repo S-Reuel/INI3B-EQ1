@@ -95,13 +95,22 @@
      background-color: #AD56C7;
      border-style: none;
      border-radius: 16px;
-     width: 90%;
+
+     color: white;
+     
+     height: var(--form-height-input);
+
      padding: 1.5%;
      text-align: center;
-     color: white;
-     height: var(--form-height-input);
- }
+     transition: 300ms;
+     transition-timing-function: ease-in-out;
 
+     width: 90%;
+}
+.formButton:enabled:hover{
+    background-color: #D394E7;
+    
+}
  .formButton:disabled {
      background-color: gray;
  }
