@@ -55,7 +55,7 @@ export default function Sprints() {
                     caminho(i.id, 'task')
                 }}>
                 
-                        <td>{i.nome}</td>
+                        <td className={StylesSprint.tdNome}>{i.nome}</td>
                         <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
                         <td className={StylesSprint.sprintDatas}>{dataFim}</td>
                 
