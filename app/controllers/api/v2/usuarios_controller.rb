@@ -4,7 +4,7 @@ class Api::V2::UsuariosController < ApplicationController
 
   # GET /usuarios
   def index
-    @usuarios = Usuario.where("excluido == ?", false)
+    @usuarios = Usuario.where("excluido = ?", false)
 
     render json: @usuarios
   end

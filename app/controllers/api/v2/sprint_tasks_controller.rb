@@ -19,7 +19,7 @@ class Api::V2::SprintTasksController < ApplicationController
       @tasks = @sprint.tasks
       render json: @sprint.as_json(include: {
         tasks: {
-          only: [ :id, :titulo, :descricao, :created_at, :updated_at, :status, :arquivos ]
+          only: [ :id, :titulo, :descricao, :created_at, :updated_at, :status, :arquivos, :excluido ]
         }
       })
   end
