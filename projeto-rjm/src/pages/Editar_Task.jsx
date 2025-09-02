@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import taskStlye from "../ui/styles/task/task.module.css"
 import { isFormatStatus } from "./util/functions"
 
 export default function Editar_Task() {
@@ -12,12 +11,7 @@ export default function Editar_Task() {
     const [stt, setStatus] = useState()
     const [file, setFile] = useState(null);
 
-    function handleFileChange(e) {
-        if (e.target.files) {
-            setFile(e.target.files[0])
-        }
-    }
-
+    
     useEffect(() => {
         async function fetch() {
             const res = await getTaskId(task_id)
@@ -27,24 +21,25 @@ export default function Editar_Task() {
         }
         fetch()
     }, [task_id])
-
+    
+    function handleFileChange(e) {
+        if (e.target.files) {
+            setFile(e.target.files[0])
+        }
+    }
+    
     const onSave = async (e) => {
         e.preventDefault()
+        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
         if (file) {
-            console.log('Uploading file...');
             formData.append("task[arquivos][]", file);
-            console.log(formData);
         }
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
-        formData.append("task[status]", stt)
+        formData.append("task[status]", status)
 
-        const res = await updateTask(task_id, formData)
-        console.log(res);
-        
-        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
-        
+        const res = await updateTask(task_id, formData)  
     }
 
     if (localStorage.getItem('authToken')) {
