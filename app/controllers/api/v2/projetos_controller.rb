@@ -3,7 +3,7 @@ class Api::V2::ProjetosController < ApplicationController
 
   # GET /projetos
   def index
-    @projetos = Projeto.all
+    @projetos = Projeto.where("excluido = ?", false)
 
     render json: @projetos
   end
@@ -27,7 +27,7 @@ class Api::V2::ProjetosController < ApplicationController
     if @projeto
       render json: @projeto.as_json(include: {
         sprints: {
-          only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id ]
+          only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id, :excluido ]
         }
       })
     else
@@ -68,6 +68,6 @@ class Api::V2::ProjetosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def projeto_params
-      params.expect(projeto: [ :nome, :descricao ])
+      params.expect(projeto: [ :nome, :descricao, :excluido ])
     end
 end
