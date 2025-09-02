@@ -85,12 +85,6 @@ export default function Projetos() {
         return (
             <>
                 <CabProj />
-                <center className={StyleProj.bodyProjs}>
-                    <br />
-                    <div className={StyleProj.tituloPag}>{equipe}</div>
-                    {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
-                </center>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
                     style={{
                         overlay: {
@@ -104,8 +98,26 @@ export default function Projetos() {
                         }
                     }}
                 >
-                    <Add_Projeto onClose={fecharModal}/>
+                    <Add_Projeto onClose={fecharModal} />
                 </Modal>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <div className={StyleProj.paginaEquipes}>
+                    <div className={StyleProj.navEquipes}></div>
+                    <div>
+                        <div className={StyleProj.tituloFlex}>
+                            <h1 className={StyleProj.tituloPagina}>{equipe}</h1>
+
+                        </div>
+                        <br />
+                        <hr className={StyleProj.hr1} color="#4a4a4a" />
+                    </div>
+
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                    </center>
+
+                </div>
             </>
         )
     } else {

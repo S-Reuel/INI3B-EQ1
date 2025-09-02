@@ -4,7 +4,7 @@
     border-radius: 15px;
     border: 1px solid #4D555E;
 
-    width: 90vw;
+    width: 90%;
     height: 15vh;
     border-radius: 10px;
     position: relative;
@@ -79,19 +79,7 @@
     background-color: #2b3847;
 }
 
-.cabecalhoProj {
-    height: 100px;
-    width: 100vw;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-
-
-}
 
 .tituloPag {
     color: #BE5FDB;
@@ -139,6 +127,7 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
+    z-index: 9;
     transition: 0.25s;
 
 }
@@ -188,4 +177,112 @@
 
     }
 
+}
+
+.equipeDiv{
+    background-color: #212a36 ;
+    color: white;
+    width: 30%;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.25s;
+    border: 1px solid #4D555E;
+}
+
+.equipeDiv:hover{
+    cursor: pointer;
+    background-color: #283241;
+
+}
+
+.equipesDivCenter{
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.equipeFlex{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: #151B23;
+    margin-left: 16px;
+}
+
+.botaoEditarEquipe{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+    transition: 0.25s;
+}
+
+.botaoEditarEquipe:hover{
+    background-color: #2f3b4d;
+}
+.tituloPagina{
+    color: #BE5FDB;
+}
+.navEquipes{
+    grid-row: span 2;
+    background-color: #151B23;
+    border-right: 1px solid rgba(255, 255, 255, 0.048);
+}
+.paginaEquipes{
+    display: grid;
+    min-height: 90vh;
+    grid-template-columns: 20vw 79vw;
+    grid-template-rows: 15vh 73vh;
+    
+
+    
+}
+
+.hr1{
+    width: 90%;
+    
+}
+
+.tituloFlex{
+    display:flex;
+    justify-content: center;
+}
+
+.bttCriarEquipe {
+    position: absolute;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+    z-index: 99;
+    transition: 0.25s;
+
+}
+.bttCriarEquipe:hover{
+    cursor:pointer;
+    scale:105%;
+}
+
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
+}
+.semEquipe{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: white;
 }
