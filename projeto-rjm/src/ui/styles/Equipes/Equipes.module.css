@@ -61,9 +61,8 @@
 .paginaEquipes{
     display: grid;
     min-height: 90vh;
-
     grid-template-columns: 20vw 80vw;
-    grid-template-rows: 15vh auto;
+    grid-template-rows: 15vh 73vh;
     
 
     
@@ -126,4 +125,11 @@
     border-radius: 5px;
     line-height: 25px;
     text-align: center;
+}
+
+.semEquipe{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: white;
 }

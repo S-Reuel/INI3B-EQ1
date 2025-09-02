@@ -99,9 +99,9 @@ export default function Equipes() {
                         </div></div>
                     ) : (
                         <>
-                            <br /><br /><br />
-                            <h4>Sem Equipes! Crie uma equipe!</h4>
-                            <br />
+                            
+                            <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
+                            
                         </>
                     )}
 

@@ -215,3 +215,10 @@
 .tdNome{
     padding-left: 16px;
 }
+
+.semSprint{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: white;
+}
