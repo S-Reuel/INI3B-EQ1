@@ -51,6 +51,7 @@ export default function Projetos() {
     function apr() {
         return projetos.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
+            if(!(i.excluido)){
             return (
                 <>
                     <div className={StyleProj.projeto} onClick={(e) => {
@@ -77,7 +78,7 @@ export default function Projetos() {
                     </div>
                     <br />
                 </>
-            )
+            )}
         })
     }
 
