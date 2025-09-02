@@ -1,7 +1,7 @@
 .equipeDiv{
     background-color: #212a36 ;
     color: white;
-    width: 450px;
+    width: 30%;
     height: 200px;
     padding: 15px;
     border-radius: 10px;
@@ -16,15 +16,22 @@
 
 }
 
+.equipesDivCenter{
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
 .equipeFlex{
     display: flex;
-    width: 80vw;
+    width: 100%;
     height: max-content;
-    gap: 10px;
-    justify-content: center;
+    gap: 16px;
+    justify-content: flex-start;
     flex-wrap: wrap;
     align-content: flex-start;
     background-color: #151B23;
+    margin-left: 16px;
 }
 
 .botaoEditarEquipe{
@@ -55,7 +62,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 80vw;
-    grid-template-rows: 15vh calc(85vh - 60px);
+    grid-template-rows: 15vh 73vh;
     
 
     
@@ -72,13 +79,20 @@
 }
 
 .bttCriarEquipe {
-    position: fixed;
+    position: absolute;
     border-radius: 25px;
     background-color: purple;
     height: 100px;
     width: 100px;
     bottom: 7%;
     right: 5%;
+    z-index: 99;
+    transition: 0.25s;
+
+}
+.bttCriarEquipe:hover{
+    cursor:pointer;
+    scale:105%;
 }
 
 .imgEditarProj{
@@ -111,4 +125,11 @@
     border-radius: 5px;
     line-height: 25px;
     text-align: center;
+}
+
+.semEquipe{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: white;
 }

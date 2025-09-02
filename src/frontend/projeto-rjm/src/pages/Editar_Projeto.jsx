@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
-import { voltar } from "./util/functions";
-
 import addProjStyle from "../ui/styles/editar_Projeto/editar_Projeto.module.css"
+import CabProj from "../ui/components/_cabecalho";
 
 
 export default function Editar_Projeto() {
@@ -27,6 +26,7 @@ export default function Editar_Projeto() {
     if (localStorage.getItem('authToken')) {
         return (
             <div className={addProjStyle.paginaBody}>
+                <CabProj/>
                 <center className={addProjStyle.center}>
                     <h1 className={addProjStyle.tituloPagina}>Editar Projeto</h1>
                     <form  className={addProjStyle.form}>
@@ -41,9 +41,10 @@ export default function Editar_Projeto() {
                         </label>
                         <label >
                             <p className={addProjStyle.inputTipo}>Descrição:</p>
-                            <input
+                            <textarea 
+                                rows='8' cols='50'
                                 className={addProjStyle.input}
-                                type="text" name="descricao" defaultValue={descricao}
+                                defaultValue={descricao}
                                 placeholder="Descrição Antiga" required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
@@ -51,7 +52,6 @@ export default function Editar_Projeto() {
                         <br /><br />
                         <div className={addProjStyle.divBotoes}>
                             <button className={addProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
-                            <button className={addProjStyle.buttonReturn} onClick={voltar}>Cancelar</button>
                         </div>
 
                     </form>
@@ -63,7 +63,3 @@ export default function Editar_Projeto() {
         return (redirecionar('login'))
     }
 }
-
-/*
-    Concertar os campos de input
-*/

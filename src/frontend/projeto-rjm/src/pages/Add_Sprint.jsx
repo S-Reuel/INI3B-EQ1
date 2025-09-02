@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { postSprint } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 import { useParams } from 'react-router-dom'
 
 export default function Add_Sprint() {
@@ -22,7 +21,6 @@ export default function Add_Sprint() {
     if (localStorage.getItem('authToken')) {
         return (
             <div >
-                <CabProj />
                 <center>
                     <h1>Criar nova Sprint</h1>
                     <form onSubmit={onSave}>

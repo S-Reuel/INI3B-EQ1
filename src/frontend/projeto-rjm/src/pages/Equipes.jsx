@@ -7,7 +7,6 @@ import CabProj from '../ui/components/_cabecalho.jsx'
 import Add_Equipe from "./Add_Equipe.jsx";
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
-import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 Modal.setAppElement('#root');
 
 export default function Equipes() {
@@ -43,23 +42,25 @@ export default function Equipes() {
     }
 
     function apr() {
-        return eqs.map((i) =>
-            <>
-                <div className={equipeStyle.equipeDiv} onClick={(e) => {
-                    e.stopPropagation()
-                    caminho(i.id, 'pr')
-                }}>
-
-                    <td>{i.nome}</td><br />
-                    <td>{i.descricao}</td>
-
-                    <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
+        return eqs.map((i) => {
+            if (!(i.excluido)) {
+                return (<>
+                    <div className={equipeStyle.equipeDiv} onClick={(e) => {
                         e.stopPropagation()
-                        caminho(i.id, 'ed')
-                    }}>...</div>
-                </div>
-            </>
-        )
+                        caminho(i.id, 'pr')
+                    }}>
+
+                        <td>{i.nome}</td><br />
+                        <td>{i.descricao}</td>
+
+                        <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
+                            e.stopPropagation()
+                            caminho(i.id, 'ed')
+                        }}>...</div>
+                    </div>
+                </>)
+            }
+        })
     }
 
     if (localStorage.getItem('authToken')) {
@@ -88,20 +89,21 @@ export default function Equipes() {
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
-                            
+
                         </div>
                         <br />
                         <hr className={equipeStyle.hr1} color="#4a4a4a" />
                     </div>
                     {(eqs.length != 0) ? (
-                        <div className={equipeStyle.equipeFlex}>
-                            {apr()}
-                        </div>
+                        <div className={equipeStyle.equipesDivCenter}>
+                            <div className={equipeStyle.equipeFlex}>
+                                {apr()}
+                            </div></div>
                     ) : (
                         <>
-                            <br /><br /><br />
-                            <h4>Sem Equipes! Crie uma equipe!</h4>
-                            <br />
+                            
+                            <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
+                            
                         </>
                     )}
 

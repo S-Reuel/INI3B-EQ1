@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://463705a469f8.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://a3fbeaf14c95.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -59,7 +59,7 @@ export async function updateUser(id, params) {
 
 export async function deleteUser(id) {
     try {
-        await URL.patch(`usuarios/excluir/${id}`).then(() => { redirecionar('perfil') })
+        await URL.patch(`usuarios/excluir/${id}`).then(() => { location.reload() })
     } catch (error) {
         alert(error.status)
     }
@@ -197,7 +197,7 @@ export async function postSprint(params) {
     try {
         let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
         if (bool) {
-            await URL.post('sprints', params).then(() => { voltar() })
+            await URL.post('sprints', params).then(() => { location.reload() })
         } else {
             location.reload()
         }
@@ -242,16 +242,25 @@ export async function deleteSprint(id) {
 }
 
 /*  CRUD's Task */
-export async function postTask(params) {
+export async function postTask(sprint_id, params) {
     try {
         let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {
-            await URL.post('task', params).then((res) => {
-                res.data
+        if (bool) {            
+            await URL.post('tasks', {task: params}).then((res) => {
+                let task_id = res.data.id
+                postTaskBySprint({sprint_id, task_id})
             });
         }
     } catch (error) {
         alert(error.status)
+    }
+}
+
+async function postTaskBySprint(params) {
+    try {
+        await URL.post('sprint_tasks', params).then(() => { location.reload() })
+    } catch (error) {
+        return (error.status);
     }
 }
 
@@ -267,6 +276,15 @@ export async function getTaskBySprint(id) {
 export async function getTaskId(id) {
     try {
         let r = await URL.get(`tasks/${id}`)
+        return r.data
+    } catch (error) {
+        return (error.status)
+    }
+}
+
+export async function getTaskByGitHub(id) {
+    try {
+        let r = await URL.get(`task/githubdataid/${id}`)
         return r.data
     } catch (error) {
         return (error.status)

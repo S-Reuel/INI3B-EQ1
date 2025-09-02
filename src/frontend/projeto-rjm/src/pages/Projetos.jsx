@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react"
 import Modal from 'react-modal';
-import { getProjetosByEquipe } from "../data/services/API.jsx"
+import { getEquipeById, getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import { isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
@@ -12,13 +12,16 @@ import Add_Projeto from './Add_Projeto.jsx';
 import imgMaisProjeto from '../ui/icons/mais.png'
 Modal.setAppElement('#root');
 export default function Projetos() {
-    const [projetos, setProj] = useState([])
     const { equipe_id } = useParams()
+    const [projetos, setProj] = useState([])
+    const [equipe, setEquipe] = useState([])
 
     useEffect(() => {
         async function fetch() {
             let res = await getProjetosByEquipe(equipe_id)
+            let r = await getEquipeById(equipe_id)
             setProj(res.projetos)
+            setEquipe(r.nome)
         }
         fetch()
     }, [])
@@ -48,6 +51,7 @@ export default function Projetos() {
     function apr() {
         return projetos.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
+            if(!(i.excluido)){
             return (
                 <>
                     <div className={StyleProj.projeto} onClick={(e) => {
@@ -74,7 +78,7 @@ export default function Projetos() {
                     </div>
                     <br />
                 </>
-            )
+            )}
         })
     }
 
@@ -82,12 +86,6 @@ export default function Projetos() {
         return (
             <>
                 <CabProj />
-                <center className={StyleProj.bodyProjs}>
-                    <br />
-                    <div className={StyleProj.tituloPag}>Projetos Inscritos</div>
-                    {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
-                </center>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={StyleProj.modalConteudo}
                     style={{
                         overlay: {
@@ -101,9 +99,26 @@ export default function Projetos() {
                         }
                     }}
                 >
-                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
-                    <Add_Projeto />
+                    <Add_Projeto onClose={fecharModal} />
                 </Modal>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <div className={StyleProj.paginaEquipes}>
+                    <div className={StyleProj.navEquipes}></div>
+                    <div>
+                        <div className={StyleProj.tituloFlex}>
+                            <h1 className={StyleProj.tituloPagina}>{equipe}</h1>
+
+                        </div>
+                        <br />
+                        <hr className={StyleProj.hr1} color="#4a4a4a" />
+                    </div>
+
+                    <center className={StyleProj.bodyProjs}>
+                        <br />
+                        {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                    </center>
+
+                </div>
             </>
         )
     } else {

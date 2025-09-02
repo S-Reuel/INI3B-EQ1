@@ -1,47 +1,65 @@
-import { useEffect, useState } from "react"
-import { getTaskId, updateTask, } from "../data/services/API"
+import React, { useEffect, useState } from "react"
+import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
+import { isFormatStatus } from "./util/functions"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
-    const [status, setStatus] = useState()
-    const [arquivos, setArquivos] = useState()
+    const [stt, setStatus] = useState()
+    const [file, setFile] = useState(null);
 
+    
     useEffect(() => {
         async function fetch() {
             const res = await getTaskId(task_id)
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
-            setArquivos(res.arquivos)
         }
         fetch()
-    }, [])
-
+    }, [task_id])
+    
+    function handleFileChange(e) {
+        if (e.target.files) {
+            setFile(e.target.files[0])
+        }
+    }
+    
     const onSave = async (e) => {
         e.preventDefault()
-        updateTask(task_id, { titulo, descricao, status, arquivos })
+        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
+        const formData = new FormData();
+        if (file) {
+            formData.append("task[arquivos][]", file);
+        }
+        formData.append("task[titulo]", titulo)
+        formData.append("task[descricao]", descricao)
+        formData.append("task[status]", status)
+
+        const res = await updateTask(task_id, formData)  
     }
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div >
+            <div>
                 <CabProj />
                 <center>
-                    <h1>Editar Task</h1>
+                    <h1 >Editar Task</h1>
                     <form onSubmit={onSave}>
                         <br />
-                        <input type="file" name="arquivo" defaultValue={arquivos} />
+                        <label>
+                            <label>Adicione somente um arquivo</label> <br />
+                            <input type="file" onChange={handleFileChange} multiple />
+                        </label>
                         <br />
                         <br />
                         <label>
                             <label>Título da Task</label><br />
                             <input
-
-                                type="text" name="nome" defaultValue={titulo} required
+                                type="text" name="nome" value={titulo} required
                                 onChange={(e) => setTitulo(e.target.value)}
                             />
                         </label>
@@ -49,19 +67,21 @@ export default function Editar_Task() {
                         <label>
                             <label>Descrição da Task</label><br />
                             <input
-
-                                type="text" name="nome" defaultValue={descricao} required
+                                type="text" name="nome" value={descricao} required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
                         <br />
                         <label>
                             <label>Status da Task</label><br />
-                            <input
-
-                                type="text" name="nome" defaultValue={status} required
-                                onChange={(e) => setStatus(e.target.value)}
-                            />
+                            <select id='selectStatus'>
+                                <option value={stt}>{isFormatStatus(stt)}</option>
+                                <option value={'pendente'}>Pendente</option>
+                                <option value={'em_andamento'}>Em andamento</option>
+                                <option value={'atrasado'}>Atrasado</option>
+                                <option value={'cancelado'}>Cancelado</option>
+                                <option value={'concluido'}>Concluído</option>
+                            </select>
                         </label>
                         <br /><br />
                         <button type="submit">Atualiza Sprint</button>

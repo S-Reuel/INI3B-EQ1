@@ -4,7 +4,6 @@
 (Add_Equipes.jsx)
 
 */
-
 .paginaBody{
    --form-left-margin:3%;
    --center-left-margin:3%;
@@ -34,7 +33,6 @@
    border-color: #4D555E;
    border-style: solid;
 
-   font-size: 3vw;
    padding: 6%;
    margin-right: 20%;
    margin-bottom: 3%;
@@ -42,7 +40,7 @@
    text-align: left;
 
 }
-.input{
+.input, .selectBox{
    background-color: #151B23;
    border:1px;
    border-color: #4D555E;
@@ -58,6 +56,9 @@
 
    width: 100%;
 }
+.selectBox * {
+   font-family: "Space Grotesk";
+}
 .imgUsuario{
    grid-column: 2;
    height:70px;
@@ -72,21 +73,39 @@
    border-radius:15px;
 
    font-size: var(--input-font-size);
+   font-weight: 400;
 
    margin-bottom: -3%;
 
    padding: 1.5%;
 
+   transition: 300ms;
+   transition-timing-function: ease-in-out;
+
    width:auto;
 }
-.botaoNovaEquipe{
-   background-color: #4848B6;
 
-   border-color: #4848B6;
-   border-style: none;
-   border-radius:15px;
+.formButton:hover{
+   background-color:#9696D5;
+}
+
+.btnFechaModal{
+   background-color: transparent;
+   border: 0px;
+   border-radius: 5px;
+
+   height: 25px;
+
+   line-height: 25px;
+   text-align: center;
+}
+
+.botaoNovaEquipe{
+
 
    padding: 1.5%;
+
+   text-decoration: underline white;
 }
 .botaoNovaEquipe:hover{
    cursor: pointer;
