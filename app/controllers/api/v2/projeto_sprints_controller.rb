@@ -21,7 +21,7 @@ class  Api::V2::ProjetoSprintsController < ApplicationController
 
     render json: @projeto.as_json(include: {
       sprints: {
-        only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id ]
+        only: [ :id, :nome, :data_inicio, :data_fim, :projeto_id, :excluido ]
       }
     })
   end

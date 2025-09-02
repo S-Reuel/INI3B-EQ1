@@ -183,6 +183,8 @@ GEM
     parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
+    pg (1.6.1-x64-mingw-ucrt)
+    pg (1.6.1-x86_64-linux)
     popper_js (2.11.8)
     psych (5.2.2)
       date
@@ -374,6 +376,7 @@ DEPENDENCIES
   dotenv-rails
   jwt
   kamal
+  pg
   puma (>= 5.0)
   rack-cors
   rails (~> 8.0.1)

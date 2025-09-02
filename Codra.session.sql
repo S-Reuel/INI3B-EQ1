@@ -1,1 +1,1 @@
-SELECT * FROM git_hubs_tasks
+SELECT * FROM usuario_equipes

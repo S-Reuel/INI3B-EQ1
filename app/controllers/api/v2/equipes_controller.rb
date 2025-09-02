@@ -3,14 +3,18 @@ class Api::V2::EquipesController < ApplicationController
 
   # GET /equipes
   def index
-    @equipes = Equipe.all
+    @equipes = Equipe.where("excluido = ?", false)
 
     render json: @equipes
   end
 
   # GET /equipes/1
   def show
-    render json: @equipe
+    if !@equipe.excluido
+      render json: @equipe
+    else
+      render json: @equipe.errors, status: :not_found
+    end
   end
 
   # POST /equipes
@@ -46,6 +50,6 @@ class Api::V2::EquipesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def equipe_params
-      params.expect(equipe: [ :nome, :descricao ])
+      params.expect(equipe: [ :nome, :descricao, :excluido ])
     end
 end

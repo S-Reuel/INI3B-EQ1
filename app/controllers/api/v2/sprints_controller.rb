@@ -3,7 +3,7 @@ class Api::V2::SprintsController < ApplicationController
 
   # GET /sprints
   def index
-    @sprints = Sprint.all
+    @sprints = Sprint.where("excluido = ?", false)
 
     render json: @sprints
   end
@@ -57,6 +57,6 @@ class Api::V2::SprintsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sprint_params
-      params.expect(sprint: [ :nome, :data_inicio, :data_fim, :projeto_id ])
+      params.expect(sprint: [ :nome, :data_inicio, :data_fim, :projeto_id, :excluido ])
     end
 end
