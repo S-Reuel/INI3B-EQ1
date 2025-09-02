@@ -20,7 +20,7 @@ class Api::V2::EquipeProjetosController < ApplicationController
     @projetos = @equipes.projetos
     render json: @equipes.as_json(include: {
       projetos: {
-        only: [ :id, :nome, :descricao, :created_at, :updated_at ]
+        only: [ :id, :nome, :descricao, :created_at, :updated_at, :excluido ]
       }
     })
   end
@@ -58,6 +58,6 @@ class Api::V2::EquipeProjetosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def equipe_projeto_params
-      params.expect(equipe_projeto: [ :equipe_id, :projeto_id ])
+      params.expect(equipe_projeto: [ :equipe_id, :projeto_id, :excluido ])
     end
 end
