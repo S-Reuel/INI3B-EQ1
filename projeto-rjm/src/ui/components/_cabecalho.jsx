@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import cabProjetoStyle from '../styles/cabProjeto.module.css'
-import iconeCodra from "../icons/Codra.png"
+import iconeCodra from "../icons/Codra.png"  
+import iconeUser from "../icons/user.png"  
 import iconeVoltar from "../icons/voltar.png"
 import { voltar } from '../../pages/util/functions'
 import { redirecionar } from "../../pages/util/functions.jsx"
 import Modal from 'react-modal';
 import Perfil from '../../pages/Perfil.jsx';
-import iconeUser from "../icons/user.png"
 import { getUserByEmail } from '../../data/services/API.jsx';
 
 Modal.setAppElement('#root');

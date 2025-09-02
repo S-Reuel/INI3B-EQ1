@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { esqueciSenha, getUserByEmail, updateUser } from '../data/services/API.jsx'
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import iconeUser from "../ui/icons/user.png"  
 
 export default function EditUser() {
     const [id, setId] = useState('')
@@ -10,9 +11,8 @@ export default function EditUser() {
     const [user_git, setNg] = useState('')
     const [avatar_url, setAvatar] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('')
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState('');
     let excluido = false
-    let icone = '/projeto-rjm/src/ui/icons/user.png'
 
     useEffect(() => {
         async function fetch() {
@@ -41,19 +41,15 @@ export default function EditUser() {
     }
 
     const onSave = async (e) => {
+        e.preventDefault()
         const formData = new FormData();
         setBotaoDesativado("disabled")
-        e.preventDefault()
-        try{
-            formData.append("usuario[avatar]", file);
-        }catch(e){
-            formData.append("usuario[avatar]", icone); // Não funciona, imagem padrão
-        }
         formData.append("usuario[nome]", nome)
-            formData.append("usuario[email]", email)
-            formData.append("usuario[user_git]", user_git)
-            formData.append("usuario[excluido]", excluido)
-            updateUser(id, formData)
+        formData.append("usuario[email]", email)
+        formData.append("usuario[user_git]", user_git)
+        formData.append("usuario[excluido]", excluido)
+        formData.append("usuario[avatar]", file);
+        updateUser(id, formData)
     }
 
     if (localStorage.getItem('authToken')) {
@@ -68,11 +64,10 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label>
                                     <br />
-                                    <img src={avatar_url} className={perfilStyle.imgUsuario}></img>
+                                    <img src={(avatar_url)? avatar_url : iconeUser} className={perfilStyle.imgUsuario}/>
                                     <br />
                                     <input type="file" accept="image/*" onChange={handleFileChange} multiple />
                                 </label>
-                                <br />
                                 <br />
                                 <label>
                                     <label className={perfilStyle.lbl}>Nome</label>

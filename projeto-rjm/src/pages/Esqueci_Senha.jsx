@@ -23,7 +23,6 @@ export default function EsqueciSenha() {
     }
 
     if (!localStorage.getItem('authToken')) {
-
         return (
             <div className={esqueciStyle.page}>
                 <div className={esqueciStyle.logo}>

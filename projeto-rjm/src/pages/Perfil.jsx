@@ -5,6 +5,7 @@ import perfilStyle from '../ui/styles/Perfil/Perfil.module.css'
 import logoutIcon from '../ui/icons/logoutIcon.png'
 import editIcon from '../ui/icons/editIcon.png'
 import emailIcon from '../ui/icons/emailIcon.png'
+import iconeUser from '../ui/icons/user.png'
 import githubIcon from '../ui/icons/githubIcon.png'
 
 export default function Perfil() {
@@ -21,7 +22,7 @@ export default function Perfil() {
         return (
             <>
             <br />
-                <img src={perfil.avatar_url} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
+                <img src={(perfil.avatar_url)? perfil.avatar_url : iconeUser} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
                 <div className={perfilStyle.tituloModal}>
                      {perfil.nome}
                 </div>
@@ -33,10 +34,6 @@ export default function Perfil() {
                 </div>
                 <br /><br />
                 <hr className={perfilStyle.hr} color="#4a4a4a"/>
-                
-            
-                
-
             </>
         )
     }
