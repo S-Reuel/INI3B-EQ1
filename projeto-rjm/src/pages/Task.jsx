@@ -30,18 +30,19 @@ export default function Task() {
                     <br /> <br />
                     <h2>Commits do GitHub</h2>
                     {task.git_hub.map((i) => {
-                        return (
-                            <>
-                                Nome respositório: {i.nome_repo} <br />
-                                Nome do Usuário: {i.usuario_gh} <br />
-                                Nome do evento: {i.evento_gh}  <br />
-                                Data: {isFormat(new Date(i.data))}  <br />
-                                Commit: <code>{i.mensagem}</code>  
-                                <br />
-                                <br /> <br /> <br /> <br /> <br />
-                            </>
-                        )
-                    })}
+                            return (
+                                <>
+                                    Nome respositório: {i.nome_repo} <br />
+                                    Nome do Usuário: {i.usuario_gh} <br />
+                                    Nome do evento: {i.evento_gh}  <br />
+                                    Data: {isFormat(new Date(i.data))}  <br />
+                                    Commit: <code>{i.mensagem}</code>  
+                                    <br />
+                                    <br /> <br /> <br /> <br /> <br />
+                                </>
+                            )
+                        }
+                    )}
                     <h2>Arquivos anexados</h2>
                     {arquivos.map((i) => {
                         return (

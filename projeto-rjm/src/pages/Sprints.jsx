@@ -52,24 +52,25 @@ export default function Sprints() {
         return sprints.map(function (i) {
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
-            return (
-                <tr className={StylesSprint.sprint} onClick={(e) => {
-                    e.stopPropagation()
-                    caminho(i.id, 'task')
-                }}>
-                    <td>{i.nome}</td>
-                    <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
-                    <td className={StylesSprint.sprintDatas}>{dataFim}</td>
+            if (!(i.excluido)) {
+                return (
+                    <tr className={StylesSprint.sprint} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'task')
+                    }}>
+                        <td>{i.nome}</td>
+                        <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
+                        <td className={StylesSprint.sprintDatas}>{dataFim}</td>
 
-                    <td className={StylesSprint.botaoEditarTableTd} >
-                        <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
-                            e.stopPropagation()
-                            caminho(i.id, 'ed')
-                        }}>...</div>
-                    </td>
-
-                </tr>
-            )
+                        <td className={StylesSprint.botaoEditarTableTd} >
+                            <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
+                                e.stopPropagation()
+                                caminho(i.id, 'ed')
+                            }}>...</div>
+                        </td>
+                    </tr>
+                )
+            }
         })
     }
 

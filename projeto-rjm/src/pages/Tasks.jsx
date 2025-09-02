@@ -41,9 +41,8 @@ export default function Tasks() {
             let dataCriacao = isFormat(new Date(i.created_at))
             let dataAtualizacao = isFormat(new Date(i.updated_at))
 
-
-
-            return (
+            if(!(i.excluido))
+            {return (
                 <div className={TasksStyle.Task} onClick={(e) => {
                     e.stopPropagation()
                     caminho(i.id, 'task')
@@ -63,7 +62,7 @@ export default function Tasks() {
 
                     </div>
                 </div>
-            )
+            )}
         })
     }
     function textoStatus(status) {

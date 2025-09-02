@@ -42,23 +42,25 @@ export default function Equipes() {
     }
 
     function apr() {
-        return eqs.map((i) =>
-            <>
-                <div className={equipeStyle.equipeDiv} onClick={(e) => {
-                    e.stopPropagation()
-                    caminho(i.id, 'pr')
-                }}>
-
-                    <td>{i.nome}</td><br />
-                    <td>{i.descricao}</td>
-
-                    <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
+        return eqs.map((i) => {
+            if (!(i.excluido)) {
+                return (<>
+                    <div className={equipeStyle.equipeDiv} onClick={(e) => {
                         e.stopPropagation()
-                        caminho(i.id, 'ed')
-                    }}>...</div>
-                </div>
-            </>
-        )
+                        caminho(i.id, 'pr')
+                    }}>
+
+                        <td>{i.nome}</td><br />
+                        <td>{i.descricao}</td>
+
+                        <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
+                            e.stopPropagation()
+                            caminho(i.id, 'ed')
+                        }}>...</div>
+                    </div>
+                </>)
+            }
+        })
     }
 
     if (localStorage.getItem('authToken')) {
@@ -87,16 +89,16 @@ export default function Equipes() {
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
-                            
+
                         </div>
                         <br />
                         <hr className={equipeStyle.hr1} color="#4a4a4a" />
                     </div>
                     {(eqs.length != 0) ? (
                         <div className={equipeStyle.equipesDivCenter}>
-                        <div className={equipeStyle.equipeFlex}>
-                            {apr()}
-                        </div></div>
+                            <div className={equipeStyle.equipeFlex}>
+                                {apr()}
+                            </div></div>
                     ) : (
                         <>
                             
