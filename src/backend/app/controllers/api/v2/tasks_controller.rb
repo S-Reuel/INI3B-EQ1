@@ -1,9 +1,11 @@
 class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
+
+  $host = "https://a3fbeaf14c95.ngrok-free.app"
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = Task.where("excluido = ?", false)
 
     render json: @tasks
   end
@@ -24,8 +26,8 @@ class Api::V2::TasksController < ApplicationController
       }
     }).merge(
       arquivos_urls: task.arquivos.map { |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: "https://dc564bb63c72.ngrok-free.app")
-      }
+        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
+     }
     )
   }
   end
@@ -40,7 +42,7 @@ class Api::V2::TasksController < ApplicationController
       }
     }).merge(
       arquivos_urls: @task.arquivos.map do |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: "localhost", port: 3000)
+        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
       end
     )
   end
@@ -91,6 +93,6 @@ class Api::V2::TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.expect(task: [ :titulo, :descricao, :data_criacao, :data_alteracao, :status, :arquivos_urls ])
+      params.expect(task: [ :titulo, :descricao, :data_criacao, :data_alteracao, :status, :arquivos_urls, :excluido ])
     end
 end

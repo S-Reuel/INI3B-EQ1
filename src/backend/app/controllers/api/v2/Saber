@@ -1,10 +1,20 @@
+ADICIONAR OS CAMPOS de excluido em todas as tabelas, exceto em Tasks e git_hubs
+
+ADICIONAR O CAMPO encerrado EM Sprint
+
+
+REMOVER data DE git_hubs
+REMOVER data_criacao DE projetos
+REMOVER data_criacao e data_alteracao DE tasks
+
+
 Converti método GET para POST, funciona de forma perfeita!!!
 Front não está conseguindo consumir dados dele mesmo, o que é um problema.
 Realiza-se uma consulta que consegue o id de equipe, e envia isso para projeto, porém isso é feito através de um GET, deve ser trocado para POST, não acho que seja algo tão complexo, veremos...
 
 
 SEMPRE QUE INICIAR O SERVIDOR
-trocar o link do ngrok em "task_serializer.rb" e "usuario_serializer" para o nome_novo
+trocar o link do ngrok em "task_serializer.rb", "usuario_serializer" e $host em "tasks_controller.rb" para o nome_novo
 atualize as imagens
 
 !!!Quando for subir para o servidor real, reconfigurar a rota

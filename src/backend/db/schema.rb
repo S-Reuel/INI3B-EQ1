@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_02_145352) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,6 +53,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
     t.string "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "excluido", default: false
   end
 
   create_table "git_hubs", force: :cascade do |t|
@@ -60,7 +61,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
     t.string "usuario_gh"
     t.string "evento_gh"
     t.integer "id_gh"
-    t.date "data"
     t.text "mensagem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -85,9 +85,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
   create_table "projetos", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
-    t.date "data_criacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "excluido", default: false
   end
 
   create_table "sprint_tasks", force: :cascade do |t|
@@ -106,17 +106,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_002248) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "projeto_id"
+    t.boolean "excluido", default: false
     t.index ["projeto_id"], name: "index_sprints_on_projeto_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
-    t.datetime "data_criacao"
-    t.datetime "data_alteracao"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "excluido", default: false
   end
 
   create_table "usuario_equipes", force: :cascade do |t|

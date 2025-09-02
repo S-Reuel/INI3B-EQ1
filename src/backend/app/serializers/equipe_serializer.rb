@@ -1,3 +1,3 @@
 class EquipeSerializer < ActiveModel::Serializer
-  attributes :id, :nome, :descricao
+  attributes :id, :nome, :descricao, :excluido
 end

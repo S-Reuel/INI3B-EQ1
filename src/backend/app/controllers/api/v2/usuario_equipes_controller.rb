@@ -29,6 +29,7 @@ class Api::V2::UsuarioEquipesController < ApplicationController
       nome: equipe.nome,
       descricao: equipe.descricao,
       papel: papel&.papel,
+      excluido: equipe.excluido,
       created_at: equipe.created_at,
       updated_at: equipe.updated_at
     }
