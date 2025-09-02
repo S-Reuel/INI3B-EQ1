@@ -266,7 +266,7 @@
 .taskDescricao {
     grid-column: 1 / -1;
     grid-row: 3;
-    word-break: break-all;
+    overflow-wrap: break-word;
     display: -webkit-box;
     -webkit-line-clamp: 8;
     -webkit-box-orient: vertical;
@@ -312,4 +312,11 @@
     margin-right: 5px;
     padding-left: 6px;
     padding-right: 2px;
+}
+
+.semTask{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: white;
 }

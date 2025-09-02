@@ -156,9 +156,9 @@ export default function Tasks() {
 
                     ) : (
                         <>
-                            <br /><br /><br />
-                            <h4>Sem Tasks! Crie uma Task!</h4>
-                            <br />
+                            
+                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+                            
                         </>
                     )}
 

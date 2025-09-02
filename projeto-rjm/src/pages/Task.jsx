@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskByGitHub } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";

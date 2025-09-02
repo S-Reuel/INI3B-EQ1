@@ -121,13 +121,13 @@ export default function Sprints() {
                         </div>
                     ) : (
                         <>
-                            <br /><br /><br />
-                            <h4>Sem Sprints! Crie uma Sprint!</h4>
-                            <br />
+                            
+                            <h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>
+                            
                         </>
                     )}
 
-                    <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <div className={StylesSprint.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>
         )
