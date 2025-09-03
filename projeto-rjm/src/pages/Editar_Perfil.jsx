@@ -103,10 +103,10 @@ export default function EditUser() {
                                     />
                                 </label>
                                 <br />
-                                Quer mudar a Senha?
-                                <a onClick={() => esqueci()} disabled={botaoDesativado}> Trocar</a>
-                                <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
-                                <p>Alterar Senha?<a className={perfilStyle.link} onClick={(e) => redirecionar('redSenha')}> Vá para redefinir senha</a></p>
+                                <div className={perfilStyle.divBotoes}>
+                                    <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
+                                </div>
+                                <p>Alterar Senha?<a className={perfilStyle.link} onClick={(e) => esqueci()} disabled={botaoDesativado}> Vá para redefinir senha</a></p>
                                 <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={(e) => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>
