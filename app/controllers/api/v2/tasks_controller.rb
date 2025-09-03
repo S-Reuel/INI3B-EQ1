@@ -2,7 +2,7 @@ class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
 
-  $host = "https://a3fbeaf14c95.ngrok-free.app"
+  $host = "https://1bcd54e242e3.ngrok-free.app"
   # GET /tasks
   def index
     @tasks = Task.where("excluido = ?", false)
@@ -17,11 +17,11 @@ class Api::V2::TasksController < ApplicationController
 
   # GET /task/githubdata
   def show_with_github_data
-  @tasks = Task.includes(:git_hub, arquivos_attachments: :blob).all
+  @tasks = Task.includes(:git_hubs, arquivos_attachments: :blob).all
 
   render json: @tasks.map { |task|
     task.as_json(include: {
-      git_hub: {
+      git_hubs: {
         only: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :data, :mensagem ]
       }
     }).merge(
@@ -34,10 +34,10 @@ class Api::V2::TasksController < ApplicationController
 
   # GET task/githubdataid/1
   def show_with_github_data_by_id
-    @task = Task.includes(:git_hub, arquivos_attachments: :blob).find(params[:id])
+    @task = Task.includes(:git_hubs, arquivos_attachments: :blob).find(params[:id])
 
     render json: @task.as_json(include: {
-      git_hub: {
+      git_hubs: {
         only: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :data, :mensagem ]
       }
     }).merge(
