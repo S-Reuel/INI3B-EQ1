@@ -3,7 +3,7 @@ import { esqueciSenha, getUserByEmail, updateUser } from '../data/services/API.j
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
 import iconeUser from "../ui/icons/user.png"  
-
+import { redirecionar } from './util/functions.jsx'
 export default function EditUser() {
     const [id, setId] = useState('')
     const [nome, setNome] = useState('')
@@ -106,6 +106,8 @@ export default function EditUser() {
                                 Quer mudar a Senha?
                                 <a onClick={() => esqueci()} disabled={botaoDesativado}> Trocar</a>
                                 <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
+                                <p>Alterar Senha?<a className={perfilStyle.link} onClick={(e) => redirecionar('redSenha')}> Vá para redefinir senha</a></p>
+                                <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={(e) => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>
                     </div>
