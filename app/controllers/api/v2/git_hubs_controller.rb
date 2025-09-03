@@ -1,4 +1,5 @@
 class Api::V2::GitHubsController < ApplicationController
+  skip_before_action :authenticate_request, only: [ :receive ]
   before_action :set_git_hub, only: %i[ show update destroy ]
 
   # GET /git_hubs
@@ -24,6 +25,42 @@ class Api::V2::GitHubsController < ApplicationController
     end
   end
 
+  # POST /git_hubs/receive
+  def receive
+    payload = request.body.read
+    data = JSON.parse(payload)
+
+    repo_name = data["repository"]["name"]
+    user_name = data["pusher"]["name"] rescue data["sender"]["login"]
+    event_type = request.headers["X-GitHub-Event"]
+
+    commit_data = data["head_commit"] || data["commits"]&.last
+    if commit_data
+      message = commit_data["message"]
+      commit_id = commit_data["id"]
+
+      git_hub = GitHub.create!(
+        nome_repo: repo_name,
+        usuario_gh: user_name,
+        evento_gh: event_type,
+        id_gh: commit_id,
+        mensagem: message
+      )
+
+      # Captura todas as tasks (#task:id) da mensagem
+      task_ids = message.scan(/#task:\s*(\d+)/).flatten.map(&:to_i)
+      task_ids.each do |task_id|
+        if (task = Task.find_by(id: task_id))
+          git_hub.tasks << task unless git_hub.tasks.include?(task)
+        end
+      end
+    end
+
+    render json: { status: "ok" }, status: :created
+  rescue => e
+    render json: { error: e.message }, status: :unprocessable_content
+  end
+
   # PATCH/PUT /git_hubs/1
   def update
     if @git_hub.update(git_hub_params)
@@ -46,6 +83,6 @@ class Api::V2::GitHubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def git_hub_params
-      params.expect(git_hub: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :data, :mensagem ])
+      params.expect(git_hub: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :mensagem ])
     end
 end
