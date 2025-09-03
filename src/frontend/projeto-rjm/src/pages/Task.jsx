@@ -20,6 +20,8 @@ export default function Task() {
         let arquivos = task.arquivos_urls
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
+        console.log(task);
+        
         return (
             <div >
                 <p>
@@ -29,7 +31,8 @@ export default function Task() {
                     Data Atualizado: {dataAtualizacao} <br />
                     <br /> <br />
                     <h2>Commits do GitHub</h2>
-                    {task.git_hub.map((i) => {
+                    
+                    {task.git_hubs.map((i) => {
                             return (
                                 <>
                                     Nome respositório: {i.nome_repo} <br />
