@@ -29,7 +29,7 @@ export default function Task() {
                     Data Atualizado: {dataAtualizacao} <br />
                     <br /> <br />
                     <h2>Commits do GitHub</h2>
-                    {task.git_hub.map((i) => {
+                    {task.git_hubs((i) => {
                             return (
                                 <>
                                     Nome respositório: {i.nome_repo} <br />
