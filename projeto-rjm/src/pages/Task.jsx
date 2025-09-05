@@ -20,6 +20,8 @@ export default function Task() {
         let arquivos = task.arquivos_urls
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
+        console.log(task);
+        
         return (
             <div >
                 <p>
