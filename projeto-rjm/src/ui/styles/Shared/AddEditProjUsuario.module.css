@@ -23,16 +23,9 @@
 }
 .tituloPagina{
    color:#BE5FDB;
-   text-align: left;
+   text-align: center;
 }
 .form{
-   background-color: #212A36;
-
-   border:1px;
-   border-radius: 16px;
-   border-color: #4D555E;
-   border-style: solid;
-
    padding: 6%;
    margin-right: 20%;
    margin-bottom: 3%;
@@ -41,7 +34,7 @@
 
 }
 .input, .selectBox{
-   background-color: #151B23;
+   background-color: #212A36;
    border:1px;
    border-color: #4D555E;
    border-style: solid;
@@ -99,7 +92,19 @@
    line-height: 25px;
    text-align: center;
 }
-
+.divBotoes{
+   display: flex;
+   flex-direction: row-reverse;
+   gap: 20px;
+}
+.buttonReturn{
+   background-color: transparent;
+   border-style: none;
+   font-size: var(--input-font-size);
+   margin-bottom: -3%;
+   padding: 1.5%;
+   width: auto;
+}
 .botaoNovaEquipe{
 
 
@@ -109,6 +114,17 @@
 }
 .botaoNovaEquipe:hover{
    cursor: pointer;
+}
+.link {
+   background-color: transparent;
+   border-color: transparent;
+   color: #d39745;
+   text-decoration: none;
+
+}
+
+.link:hover{
+   cursor:pointer
 }
 @media screen and (orientation: portrait){ /*design temporario*/
    .paginaBody{
