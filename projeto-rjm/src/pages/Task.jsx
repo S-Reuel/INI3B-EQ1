@@ -31,7 +31,6 @@ export default function Task() {
                     Data Atualizado: {dataAtualizacao} <br />
                     <br /> <br />
                     <h2>Commits do GitHub</h2>
-                    
                     {task.git_hubs.map((i) => {
                             return (
                                 <>
