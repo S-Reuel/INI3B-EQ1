@@ -12,8 +12,7 @@ const URL = axios.create({
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
-    let resultado = await valor
-    return resultado
+    return await valor
 }
 
 /*  CRUD's Users */
