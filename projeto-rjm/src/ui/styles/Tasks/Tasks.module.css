@@ -320,3 +320,30 @@
     top: 50%;
     color: white;
 }
+
+@media screen and (orientation: portrait) {
+
+    .paginaEquipes{
+        grid-template-rows: 20vh calc(85vh - 60px);
+
+    }
+    .navEquipes{
+        background-color: blue;
+        display: none;
+        grid-column: 3/span 1;
+    }
+    .tituloPagina{
+        grid-column: 1/span 2;
+        margin-left:75vw;
+    }
+    .tasksCenter{
+        grid-column: 1/span 2;
+        grid-row: 2/span 1;
+        margin-left:20%
+
+    }
+
+    .hr1{
+        width: 100vw;
+    }
+}

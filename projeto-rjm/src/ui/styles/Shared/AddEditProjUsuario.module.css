@@ -11,9 +11,8 @@
    background-color: var(--cor-do-fundo-da-pagina);
 }
 .paginaBody * {
-   color:#FFFFFF;
    font-family: inherit;
-
+   color:white
 }
 .center * {
    font-weight: 700;
@@ -33,7 +32,7 @@
    text-align: left;
 
 }
-.input, .selectBox{
+.input, .selectBox, .inputPaginaPropria{
    background-color: #212A36;
    border:1px;
    border-color: #4D555E;
@@ -52,11 +51,13 @@
 .selectBox * {
    font-family: "Space Grotesk";
 }
+.inputPaginaPropria{ /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
+   height: 5vh;
+}
 .imgUsuario{
    grid-column: 2;
    height:70px;
    width:70px;
-
 }
 .formButton{
    background-color:#4848B6;
@@ -64,6 +65,7 @@
    border-color: #4848B6;
    border-style: none;
    border-radius:15px;
+
 
    font-size: var(--input-font-size);
    font-weight: 400;
