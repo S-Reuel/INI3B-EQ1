@@ -3,7 +3,7 @@ import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isFormatStatus, redirecionar  } from "./util/functions"
-import editEquipeStyle from "../ui/styles/shared/AddEditProjUsuario.module.css"
+import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Task() {
     const { task_id } = useParams()

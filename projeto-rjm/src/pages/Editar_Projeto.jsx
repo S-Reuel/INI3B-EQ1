@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
-import editProjStyle from "../ui/styles/shared/AddEditProjUsuario.module.css"
+import editProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from "../ui/components/_cabecalho";
 
 

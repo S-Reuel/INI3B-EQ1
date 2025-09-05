@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { getEquipeById, getUser, updateEquipe } from "../data/services/API";
 import { useEffect, useState } from "react";
 import CabProj from "../ui/components/_cabecalho";
-import editEquipeStyle from "../ui/styles/shared/AddEditProjUsuario.module.css";
+import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css";
 import { redirecionar } from "./util/functions";
 
 export default function Editar_Equipe() {
