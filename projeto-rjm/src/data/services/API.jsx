@@ -6,14 +6,13 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://a3fbeaf14c95.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://b810713de90f.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
-    let resultado = await valor
-    return resultado
+    return await valor
 }
 
 /*  CRUD's Users */
