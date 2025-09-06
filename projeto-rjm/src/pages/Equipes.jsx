@@ -50,8 +50,9 @@ export default function Equipes() {
                         caminho(i.id, 'pr')
                     }}>
 
-                        <td>{i.nome}</td><br />
-                        <td>{i.descricao}</td>
+                        <div className={equipeStyle.tituloEquipe}>{i.nome}</div><br />
+                        
+                        <div className={equipeStyle.descEquipe}>{i.descricao}</div>
 
                         <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
                             e.stopPropagation()

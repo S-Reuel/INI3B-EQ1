@@ -208,6 +208,13 @@
 
 }
 
+.sprintNome{
+    max-width: 30vw;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
 .sprintDatas{
     text-align: center;
 }
