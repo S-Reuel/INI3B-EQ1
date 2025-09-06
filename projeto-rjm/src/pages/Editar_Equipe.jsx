@@ -27,7 +27,7 @@ export default function Editar_Equipe() {
     }
 
     return (
-        <div>
+        <div className={editEquipeStyle.paginaBody}>
             <CabProj />
             <center className={editEquipeStyle.center}>
                 <h1 className={editEquipeStyle.tituloPagina}>Editar Equipe</h1>
@@ -45,7 +45,7 @@ export default function Editar_Equipe() {
                     <label >
                         <p className={editEquipeStyle.inputTipo}>Descrição:</p>
                         <input
-                            className={editEquipeStyle.input}
+                            className={editEquipeStyle.inputPaginaPropria}
                             type="text" name="descricao" defaultValue={descricao}
                             placeholder="Digite a descrição da equipe" required
                             onChange={(e) => setDesc(e.target.value)}
@@ -55,7 +55,7 @@ export default function Editar_Equipe() {
                     {/* Devemos ver isso! URGENTE! :) */}
                     <label >
                         <label>Membros</label> <br />
-                        <select className={editEquipeStyle.input} id='selectEquipes'>
+                        <select className={editEquipeStyle.inputPaginaPropria} id='selectEquipes'>
                         </select>
                     </label>
                     <br /> <br />
