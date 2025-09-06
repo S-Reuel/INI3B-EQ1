@@ -65,10 +65,10 @@ export function redirecionar(caminho) {
             location.href = '/login'
             break
         case 'esqSenha':
-            location.href = 'login/esqueciSenha'
+            location.href = '/login/esqueciSenha'
             break
         case 'redSenha':
-            location.href = 'login/redefinirSenha'
+            location.href = '/login/redefinirSenha'
             break
         case 'proj':
             location.href = '/projetos'

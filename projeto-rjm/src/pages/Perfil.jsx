@@ -22,7 +22,7 @@ export default function Perfil() {
         return (
             <>
             <br />
-                <img src={(perfil.avatar_url)? perfil.avatar_url : iconeUser} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
+                <img src={(localStorage.getItem('avatar'))? localStorage.getItem('avatar') : iconeUser} alt="Perfil do Usuário" className={perfilStyle.fotoModal}/>
                 <div className={perfilStyle.tituloModal}>
                      {perfil.nome}
                 </div>

@@ -22,6 +22,7 @@ export default function Task() {
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         return (
+
             <div className={taskStyle.divRetorno}>
                 <div>
                     <div className={taskStyle.datasDaTask}>
@@ -76,6 +77,7 @@ export default function Task() {
                     </div>
 
                 </div>
+
             </div>
         )
     }

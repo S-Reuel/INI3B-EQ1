@@ -11,9 +11,8 @@
    background-color: var(--cor-do-fundo-da-pagina);
 }
 .paginaBody * {
-   color:#FFFFFF;
    font-family: inherit;
-
+   color:white
 }
 .center * {
    font-weight: 700;
@@ -23,16 +22,9 @@
 }
 .tituloPagina{
    color:#BE5FDB;
-   text-align: left;
+   text-align: center;
 }
 .form{
-   background-color: #212A36;
-
-   border:1px;
-   border-radius: 16px;
-   border-color: #4D555E;
-   border-style: solid;
-
    padding: 6%;
    margin-right: 20%;
    margin-bottom: 3%;
@@ -40,8 +32,8 @@
    text-align: left;
 
 }
-.input, .selectBox{
-   background-color: #151B23;
+.input, .selectBox, .inputPaginaPropria{
+   background-color: #212A36;
    border:1px;
    border-color: #4D555E;
    border-style: solid;
@@ -59,11 +51,13 @@
 .selectBox * {
    font-family: "Space Grotesk";
 }
+.inputPaginaPropria{ /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
+   height: 5vh;
+}
 .imgUsuario{
    grid-column: 2;
    height:70px;
    width:70px;
-
 }
 .formButton{
    background-color:#4848B6;
@@ -71,6 +65,7 @@
    border-color: #4848B6;
    border-style: none;
    border-radius:15px;
+
 
    font-size: var(--input-font-size);
    font-weight: 400;
@@ -99,7 +94,19 @@
    line-height: 25px;
    text-align: center;
 }
-
+.divBotoes{
+   display: flex;
+   flex-direction: row-reverse;
+   gap: 20px;
+}
+.buttonReturn{
+   background-color: transparent;
+   border-style: none;
+   font-size: var(--input-font-size);
+   margin-bottom: -3%;
+   padding: 1.5%;
+   width: auto;
+}
 .botaoNovaEquipe{
 
 
@@ -109,6 +116,17 @@
 }
 .botaoNovaEquipe:hover{
    cursor: pointer;
+}
+.link {
+   background-color: transparent;
+   border-color: transparent;
+   color: #d39745;
+   text-decoration: none;
+
+}
+
+.link:hover{
+   cursor:pointer
 }
 @media screen and (orientation: portrait){ /*design temporario*/
    .paginaBody{
