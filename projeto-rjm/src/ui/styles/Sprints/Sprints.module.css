@@ -15,6 +15,8 @@
 .sprint{
     background-color: transparent;
     height: 70px;
+    max-height: 70px;
+    overflow-y: auto;
     width: 100%;
     border-radius: 10px;
     color: white;
@@ -169,6 +171,7 @@
     border-spacing: 0px;
     
     
+    
 }
 
 .tableTitulo{
@@ -209,10 +212,14 @@
 }
 
 .sprintNome{
+    height: 70px;
+
     max-width: 30vw;
     overflow: hidden;
+    overflow-y: auto;
     overflow-wrap: break-word;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .sprintDatas{
