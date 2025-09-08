@@ -1,5 +1,5 @@
 .projeto {
-    background-color: #2b3847;
+    background-color: #212a36;
 
     border-radius: 15px;
     border: 1px solid #4D555E;
@@ -12,7 +12,7 @@
     padding: 10px;
 
     color: white;
-
+    transition: 0.25s;
 
 }
 
@@ -22,7 +22,7 @@
 }
 
 .projeto:hover {
-    background-color: #344253;
+    background-color: #25303d;
     cursor: pointer;
 }
 
@@ -250,7 +250,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh 73vh;
+    grid-template-rows: 15vh auto;
     overflow-x: hidden;
 
     

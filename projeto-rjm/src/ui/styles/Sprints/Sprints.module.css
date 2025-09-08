@@ -22,11 +22,12 @@
     color: white;
     padding: 5px;
     transition: 0.25s;   
+
 }
 
 .sprint:hover{
-    background-color: transparent;
-    background-color: #2b3849;
+    background-color: #25303d;
+    cursor: pointer;
 }
 
 .telaSprint{
@@ -158,12 +159,14 @@
 .sprintsDiv{
     width: 80%;
     height: max-content;
-    background-color: #1e2733;
+    background-color: #212a36;
     border: solid 1px rgba(80, 80, 80, 0.712);
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 50px;
 }
+
+
 
 .tableSprints{
     width: 100%;
