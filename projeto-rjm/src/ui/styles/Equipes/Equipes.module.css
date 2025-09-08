@@ -8,6 +8,8 @@
     position: relative;
     transition: 0.25s;
     border: 1px solid #4D555E;
+    
+    
 }
 
 .equipeDiv:hover{
@@ -63,6 +65,7 @@
     min-height: 90vh;
     grid-template-columns: 20vw 80vw;
     grid-template-rows: 15vh 73vh;
+    overflow-x: hidden;
     
 
     
@@ -132,4 +135,41 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+
+.descEquipe{
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    
+    
+}
+
+.tituloEquipe{
+    color: #BE5FDB;
+    font-size: 20px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #212a36;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333f52;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #42536b;
 }

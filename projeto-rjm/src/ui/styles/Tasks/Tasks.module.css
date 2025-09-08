@@ -95,6 +95,9 @@
 
 .tituloPagina {
     color: #BE5FDB;
+    overflow: hidden;
+    line-break: anywhere;
+    text-overflow: ellipsis;
 }
 
 .navEquipes {
@@ -108,7 +111,7 @@
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
     grid-template-rows: 15vh calc(85vh - 60px);
-
+    overflow-x: hidden;
 
 
 }
