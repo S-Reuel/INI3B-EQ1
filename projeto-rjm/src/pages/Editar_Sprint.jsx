@@ -3,6 +3,7 @@ import { getSprintsId, updateSprint } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isFormatDate } from "./util/functions"
+import editSprintStyle from "projeto-rjm/src/ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Sprint() {
     const { id } = useParams()
@@ -32,15 +33,15 @@ export default function Editar_Sprint() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div >
+            <div className={editSprintStyle.paginaBody}>
                 <CabProj />
-                <center>
-                    <h1>Editar Sprint</h1>
-                    <form onSubmit={onSave}>
+                <center className={editSprintStyle.center}>
+                    <h1 className={editSprintStyle.tituloPagina}>Editar Sprint</h1>
+                    <form  className={editSprintStyle.form} onSubmit={onSave}>
                         <label>
-                            <label>Nome da Sprint</label><br />
+                            <label className={editSprintStyle.lbl}>Nome da Sprint</label><br />
                             <input
-
+                                className={editSprintStyle.input}
                                 type="text" name="nome" defaultValue={nome}
                                 placeholder="Digite aqui o nome da Sprint" required
                                 onChange={(e) => setNome(e.target.value)}
@@ -48,18 +49,22 @@ export default function Editar_Sprint() {
                         </label>
                         <br />
                         <label >
-                            <label>Data de Inicio</label>
+                            <label className={editSprintStyle.lbl}>Data de Inicio</label>
                             <br />
-                            <input type="date" defaultValue={dataI} onChange={(e) => setDI(e.target.value)}/>
+                            <input className={editSprintStyle.input} type="date" defaultValue={dataI} onChange={(e) => setDI(e.target.value)}/>
                         </label>
                         <br />
                         <label >
-                            <label>Data de Termino</label>
+                            <label className={editSprintStyle.lbl}>Data de Termino</label>
                             <br />
-                            <input type="date" defaultValue={dataF} onChange={(e) => setDF(e.target.value)}/>
+                            <input className={editSprintStyle.input} type="date" defaultValue={dataF} onChange={(e) => setDF(e.target.value)}/>
                         </label>
                         <br /><br />
-                        <button type="submit">Atualiza Sprint</button>
+                        <div className={editSprintStyle.divBotoes}>
+                            <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
+                            <button className={editSprintStyle.btnFechaModal} type="button" onClick={history.back}>Cancelar</button>
+
+                        </div>
                     </form>
                 </center>
             </div>
