@@ -84,14 +84,14 @@
 }
 
 .bttCriarEquipe {
-    position: absolute;
+     position: fixed;
     border-radius: 25px;
     background-color: purple;
     height: 100px;
     width: 100px;
     bottom: 7%;
     right: 5%;
-    z-index: 99;
+    z-index: 9;
     transition: 0.25s;
 
 }
