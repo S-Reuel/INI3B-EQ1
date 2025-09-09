@@ -111,7 +111,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh auto;
+    grid-template-rows: 15vh minmax(78vh, auto);
     overflow-x: hidden;
 
 
@@ -143,7 +143,7 @@
 }
 
 .modalConteudo {
-    top: calc(30% - 15px);
+    top: calc(15% - 15px);
     left: calc(35% - 15px);
     position: relative;
     background-color: #151B23;
