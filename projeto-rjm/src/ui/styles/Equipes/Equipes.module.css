@@ -8,16 +8,18 @@
     position: relative;
     transition: 0.25s;
     border: 1px solid #4D555E;
+    
+    
 }
 
 .equipeDiv:hover{
     cursor: pointer;
-    background-color: #283241;
+    background-color: #25303d;
 
 }
 
 .equipesDivCenter{
-    width: 80vw;
+    width: 79vw;
     display: flex;
     justify-content: center;
 }
@@ -25,13 +27,15 @@
 .equipeFlex{
     display: flex;
     width: 100%;
-    height: max-content;
+    height: max-content;    
     gap: 16px;
     justify-content: flex-start;
     flex-wrap: wrap;
     align-content: flex-start;
     background-color: #151B23;
     margin-left: 16px;
+    margin-bottom: 16px;
+    
 }
 
 .botaoEditarEquipe{
@@ -61,8 +65,9 @@
 .paginaEquipes{
     display: grid;
     min-height: 90vh;
-    grid-template-columns: 20vw 80vw;
-    grid-template-rows: 15vh 73vh;
+    grid-template-columns: 20vw 79vw;
+    grid-template-rows: 15vh auto;
+    overflow-x: hidden;
     
 
     
@@ -132,4 +137,65 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+
+.descEquipe{
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.048);
+    
+}
+
+.tituloEquipe{
+    color: #BE5FDB;
+    font-size: 20px;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #212a36;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333f52;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #42536b;
+}
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+    .semEquipe{
+        align-self: center;
+        
+        position: inherit;
+
+        text-align: center;
+        
+    }
+    .equipeFlex{
+        justify-content: center;
+    }
+    .equipesDivCenter{
+        width: 100vw;
+    }
 }

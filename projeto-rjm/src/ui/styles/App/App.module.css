@@ -1,9 +1,17 @@
 .app{
     /* Usa a altura mínima para que o fundo cubra toda a tela, mesmo com pouco conteúdo */
-    min-height: 100vh;
-    background-image: url("/src/ui/icons/fundoAppQuemSomos.png");
-    background-size: cover;
-    background-position: bottom center;
+}
+.fundoImg{
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 99vw;
+  min-height: 99vh; 
+  z-index: -1; 
+  object-fit: cover; 
 }
 .login{
     height: 40px;
@@ -46,24 +54,87 @@
 
 .divCadastro{
     overflow: hidden;
-    background-color: #BE5FDB;
+    justify-self: center;
+    background-color: #151B23;
     color: white;
     border-radius: 8px;
     gap:10px;
     padding: 16px;
-    width: 49vw;
+    width: 32vw;
     font-weight: 400;
     font-size: 20px;
     display: flex; /* Adiciona display: flex para alinhar os elementos internos */
     align-items: center;
     justify-content: space-between;
+    border: 2px solid #4D555E;
 }
 .butCadastro{
-    background-color: white;
-    color:#BE5FDB;
+    background-color: #4848B6;
+    color:white;
     border-radius: 8px;
     border-style: none;
     font-family: inherit;
     font-size: 16px;
     height: 40px;
+}
+
+.fotos_integrantes{
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+}
+.quemSomosTitulo{
+    padding-top: 2%;
+    padding-bottom: 3%;
+    color:#BE5FDB;
+    font-size: 50px;
+    justify-self: center;
+}
+.quemSomosFLEX{
+    display: flex;
+    width: 99vw;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 0.7%;
+    
+}
+.integrante{
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
+.flexFeatures{
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    
+}
+
+.featureDiv{
+    background-color: #151B23;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #4D555E;
+    width: 360px;
+    height: 140px;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.featureIMG{
+    height: 32px;
+    width: 32px;
+}
+
+.tecnologias{
+    width: 100px;
+    
+    
+}
+.tecnoDiv{
+    display: flex;
+    align-items: center;
 }

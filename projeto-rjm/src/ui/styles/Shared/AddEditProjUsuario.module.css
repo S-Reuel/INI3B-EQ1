@@ -2,7 +2,12 @@
 (Editar_Usuario.jsx)
 (Add_Projetos.jsx)
 (Add_Equipes.jsx)
-
+(Add_Sprints.jsx)
+(Add_Task.jsx)
+(Editar_Equipe.jsx)
+(Editar_Perfil.jsx)
+(Editar_Projeto.jsx)
+(Editar_Task.jsx)
 */
 .paginaBody{
    --form-left-margin:3%;
@@ -11,9 +16,8 @@
    background-color: var(--cor-do-fundo-da-pagina);
 }
 .paginaBody * {
-   color:#FFFFFF;
    font-family: inherit;
-
+   color:white
 }
 .center * {
    font-weight: 700;
@@ -26,14 +30,14 @@
    text-align: center;
 }
 .form{
-   padding: 6%;
+   padding: 32px, 32px;
    margin-right: 20%;
    margin-bottom: 3%;
 
    text-align: left;
-
+   gap:16px;
 }
-.input, .selectBox{
+.input, .selectBox, .inputPaginaPropria{
    background-color: #212A36;
    border:1px;
    border-color: #4D555E;
@@ -41,22 +45,23 @@
    border-radius: 16px;
 
    color:#B6B8BB;
-
    font-weight: 400;
 
    margin-bottom: var(--input-margin-bottom);
-   padding:var(--form-left-margin);
+   padding: 17px 23px;
 
    width: 100%;
 }
 .selectBox * {
    font-family: "Space Grotesk";
 }
+.inputPaginaPropria{ /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
+   height: 5vh;
+}
 .imgUsuario{
    grid-column: 2;
    height:70px;
    width:70px;
-
 }
 .formButton{
    background-color:#4848B6;
@@ -65,12 +70,13 @@
    border-style: none;
    border-radius:15px;
 
+
    font-size: var(--input-font-size);
    font-weight: 400;
 
    margin-bottom: -3%;
 
-   padding: 1.5%;
+   padding: 12px;
 
    transition: 300ms;
    transition-timing-function: ease-in-out;
@@ -90,6 +96,7 @@
    height: 25px;
 
    line-height: 25px;
+   padding: 12px;
    text-align: center;
 }
 .divBotoes{
@@ -101,7 +108,6 @@
    background-color: transparent;
    border-style: none;
    font-size: var(--input-font-size);
-   margin-bottom: -3%;
    padding: 1.5%;
    width: auto;
 }
@@ -140,6 +146,15 @@
    }
    .center{
       margin-left:0%;
+   }
+   .lbl{
+      margin-left: 5%;
+   }
+   .input, .selectBox, .inputPaginaPropria{
+      width: 80%;
+      margin-left:5%;
+      margin-right:5%;
+
    }
 }
 

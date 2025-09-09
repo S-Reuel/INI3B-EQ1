@@ -7,7 +7,10 @@
     bottom: 7%;
     right: 5%;
 }
+.botaoNewProjeto:hover{
+    cursor: pointer;
 
+}
 .imgEditarProj {
     height: 100%;
     width: 100%;
@@ -66,6 +69,7 @@
     flex-wrap: wrap;
     align-content: center;
     background-color: #151B23;
+    margin-bottom: 16px;
 }
 .tasksCenter{
     width: 79vw;
@@ -92,6 +96,9 @@
 
 .tituloPagina {
     color: #BE5FDB;
+    overflow: hidden;
+    line-break: anywhere;
+    text-overflow: ellipsis;
 }
 
 .navEquipes {
@@ -104,8 +111,8 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh calc(85vh - 60px);
-
+    grid-template-rows: 15vh auto;
+    overflow-x: hidden;
 
 
 }
@@ -319,4 +326,31 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+
+@media screen and (orientation: portrait) {
+
+    .paginaEquipes{
+        grid-template-rows: 20vh calc(85vh - 60px);
+
+    }
+    .navEquipes{
+        background-color: blue;
+        display: none;
+        grid-column: 3/span 1;
+    }
+    .tituloPagina{
+        grid-column: 1/span 2;
+        margin-left:75vw;
+    }
+    .tasksCenter{
+        grid-column: 1/span 2;
+        grid-row: 2/span 1;
+        margin-left:20%
+
+    }
+
+    .hr1{
+        width: 100vw;
+    }
 }
