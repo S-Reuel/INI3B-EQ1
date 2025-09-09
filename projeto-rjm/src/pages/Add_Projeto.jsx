@@ -40,7 +40,6 @@ export default function Add_Projeto(props) {
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
-                        <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('eq')}>Nova Equipe</a>
                         <br />
                         <br/>
                         <button className={addProjStyle.btnFechaModal} id='btnFecharModal' onClick={props.onClose}>Cancelar</button>

@@ -6,13 +6,27 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://b810713de90f.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'https://91845cdff877.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
     return await valor
+}
+
+/* Função para pegar os membros da equipe */
+export async function getMembros(params) {
+    /* 
+        Busca os membros pelo ID da equipe e retorna um JSON com todas as informações 
+        { id, nome, email, user_git, excluido, password_reset_sent_at, avatar_url }
+    */
+    try {
+        let r = await URL.get(`equipe/membros/${params}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
 }
 
 /*  CRUD's Users */
@@ -46,6 +60,16 @@ export async function getUserByEmail() {
     }
 }
 
+export async function getUserByName(nome) {
+    // Lista as informações do usuário pesquisado
+    try {
+        let r = await URL.get(`usuarios/nome/${nome}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
+}
+
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
@@ -65,7 +89,7 @@ export async function deleteUser(id) {
 }
 
 /* CRUD's Equipes */
-export async function postEquipe(params) {
+export async function postEquipe(membros, params) {
     /* 
         Cria equipe apartir das informações digitadas pelo usuário
         O usuário que cria o projeto é definido como DEV
@@ -74,21 +98,26 @@ export async function postEquipe(params) {
     try {
         const usuario = await getUserByEmail()
         let usuario_id = usuario.id
-        let papel = "dev"
         await URL.post('equipes', params).then((res) => {
             let equipe_id = res.data.id
-            addUserEquipe({ usuario_id, equipe_id, papel })
+            addUserEquipe(membros, usuario_id, equipe_id)
         });
     } catch (error) {
         alert(error.status)
     }
 }
 
-async function addUserEquipe(params) {
+async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
+        let adm = "admin"
         if (confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior."))
-            await URL.post('usuario_equipes', params).then(() => { location.href = '../equipes' })
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, adm }).then(() => {
+                if (membros.length != 0) {
+                    let dev = 'dev'
+                    membros.map((usuario_id) => URL.post('usuario_equipes', { usuario_id, equipe_id, dev })).then(() => { location.reload() })
+                }
+            })
     } catch (error) {
         alert(error.status);
     }
@@ -244,10 +273,10 @@ export async function deleteSprint(id) {
 export async function postTask(sprint_id, params) {
     try {
         let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {            
-            await URL.post('tasks', {task: params}).then((res) => {
+        if (bool) {
+            await URL.post('tasks', { task: params }).then((res) => {
                 let task_id = res.data.id
-                postTaskBySprint({sprint_id, task_id})
+                postTaskBySprint({ sprint_id, task_id })
             });
         }
     } catch (error) {
