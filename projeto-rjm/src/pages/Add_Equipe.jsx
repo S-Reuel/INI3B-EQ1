@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { getUserByName, postEquipe } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Add_Equipe() {
@@ -18,7 +17,7 @@ export default function Add_Equipe() {
         e.preventDefault()
         let res = await getUserByName(pesquisa)
         document.getElementById("addMembro").value = ''
-        if (!(res.nome == undefined)) {
+        if (res.nome != undefined && res.excluido == false) {
             document.getElementById("erro").innerHTML = ''
             let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}` }, ...membros]
             setMembro(item)
@@ -30,7 +29,7 @@ export default function Add_Equipe() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        postEquipe(membros.map((i)=>{return(i.ID)}), { nome, descricao })
+        postEquipe(membros.map((i) => { return (i.ID) }), { nome, descricao })
     }
 
 
@@ -68,13 +67,13 @@ export default function Add_Equipe() {
                                 onChange={handleChange}
                                 className={addEquipeStyle.input}
                             />
-                            <label id="erro" />
                             <button type="submit" onClick={pesquisar} className={addEquipeStyle.formButton}>Pesquisar</button>
+                            <br /><br /><label id="erro" />
                         </form>
                         <br />
                         <textarea
                             rows='6' cols='30'
-                            value={membros.map((i) => { return(` ${i.nome}`) })}
+                            value={membros.map((i) => { return (` ${i.nome}`) })}
                         />
                         <br /> <br />
                         <button type="submit" onClick={onSave} className={addEquipeStyle.formButton}>Criar</button>

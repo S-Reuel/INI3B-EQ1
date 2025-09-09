@@ -17,7 +17,7 @@
 }
 .paginaBody * {
    font-family: inherit;
-   color:white
+   /* color:white */
 }
 .center * {
    font-weight: 700;
