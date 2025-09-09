@@ -149,6 +149,7 @@ border-radius: 8px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     
     
 }
@@ -163,7 +164,7 @@ border-radius: 8px;
     color: white;
 }
 .linkTask{
-    background-color: #212A36;
+    background-color: #212a36;
     height: 50px;
     width: 100%;
     overflow: hidden;
@@ -194,6 +195,8 @@ border-radius: 8px;
 .msgTask{
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
 }
 .tituloCommit{
     display: inline;
@@ -221,7 +224,7 @@ border-radius: 8px;
 
 }
 .linklink:hover{
-    background-color: #242e3b;
+    background-color: #25303d;
 }
 
 .tableCabeca{

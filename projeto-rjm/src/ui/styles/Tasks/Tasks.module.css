@@ -69,6 +69,7 @@
     flex-wrap: wrap;
     align-content: center;
     background-color: #151B23;
+    margin-bottom: 16px;
 }
 .tasksCenter{
     width: 79vw;
@@ -110,7 +111,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh calc(85vh - 60px);
+    grid-template-rows: 15vh auto;
     overflow-x: hidden;
 
 
