@@ -93,10 +93,9 @@
 
 .statusDescTask{
     width: 79vw;
-    display: grid;
-    grid-template-columns: 15% 85%;
+    display: flex;
     height: max-content;
-    
+    margin-left: 10%;
 }
 
 .statusTask{
@@ -104,6 +103,8 @@
     align-items: flex-start;
     justify-content: flex-end;
     padding: 5px;
+    justify-self: center;
+    
 }
 .statusDiv {
     height: max-content;
@@ -240,4 +241,13 @@ border-radius: 8px;
 
 .divRetorno{
     
+}
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+
 }

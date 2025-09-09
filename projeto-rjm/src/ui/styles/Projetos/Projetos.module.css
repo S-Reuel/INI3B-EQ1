@@ -316,3 +316,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #42536b;
 }
+
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+    .semEquipe{
+        align-self: center;
+        
+        position: inherit;
+
+        text-align: center;
+        
+    }
+}
