@@ -70,9 +70,6 @@ export function redirecionar(caminho) {
         case 'redSenha':
             location.href = '/login/redefinirSenha'
             break
-        case 'proj':
-            location.href = '/projetos'
-            break
         case 'eq':
             location.href = '/equipes'
             break
