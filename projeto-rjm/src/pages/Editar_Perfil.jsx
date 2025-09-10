@@ -16,6 +16,7 @@ export default function EditUser() {
     const [user_git, setNg] = useState('')
     const [file, setFile] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('')
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     let excluido = false
 
     useEffect(() => {
@@ -35,16 +36,7 @@ export default function EditUser() {
             setFile(e.target.files[0])
         }
     }
-
-    async function esqueci() {
-        let mensagem = await esqueciSenha(email)
-        if (mensagem == 'Um email de redefinição foi enviado') {
-            location.href = '/login/redefinirSenha'
-        }
-    }
-
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-
+    
     // Função que abre a modal
     function abrirModal() {
         setIsOpen(true);
@@ -53,9 +45,22 @@ export default function EditUser() {
     // Função que fecha a modal
     function fecharModal() {
         setIsOpen(false);
-        alert('Para ver a foto deve primeiro atualizar as informações')
     }
 
+    async function esqueci() {
+        let mensagem = await esqueciSenha(email)
+        if (mensagem == 'Um email de redefinição foi enviado') {
+            location.href = '/login/redefinirSenha'
+        }
+    }
+
+    function atualizarAvatar(){
+        const formData = new FormData()
+        if (file != '' && file != undefined) {
+            formData.append("usuario[avatar]", file)
+            updateUser(id, formData)
+        }
+    }
 
     const onSave = async (e) => {
         e.preventDefault()
@@ -65,9 +70,6 @@ export default function EditUser() {
         formData.append("usuario[email]", email)
         formData.append("usuario[user_git]", user_git)
         formData.append("usuario[excluido]", excluido)
-        if (file != '' && file != undefined) {
-            formData.append("usuario[avatar]", file)
-        }
         updateUser(id, formData)
     }
 
@@ -101,7 +103,7 @@ export default function EditUser() {
                                             <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuario} /> <br />
                                             <label>Nova foto</label>
                                             <input type="file" onChange={handleFileChange} multiple />
-                                            <button onClick={fecharModal}>OK</button>
+                                            <button onClick={atualizarAvatar}>OK</button>
                                         </Modal>
                                     </div>
                                 </label>
