@@ -5,6 +5,8 @@ import CabProj from "../ui/components/_cabecalho";
 import { isFormat } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
+import calendario from '../ui/icons/calendario.svg'
+
 export default function Task() {
     const { task_id } = useParams()
     const [task, setTask] = useState([])
@@ -26,8 +28,8 @@ export default function Task() {
             <div className={taskStyle.divRetorno}>
                 <div>
                     <div className={taskStyle.datasDaTask}>
-                        <div className={taskStyle.criacaoTask}>Data Criação: {dataCriacao}</div>
-                        <div className={taskStyle.atlzTask}>Data Atualizado: {dataAtualizacao}</div>
+                        <div className={taskStyle.criacaoTask}><img src={calendario}/> Iniciado em: {dataCriacao}</div>
+                        <div className={taskStyle.atlzTask}><img src={calendario}/> Terminado em: {dataAtualizacao}</div>
                     </div>
                     <div className={taskStyle.statusDescTask}>
                         <div className={taskStyle.statusTask}><div className={taskStyle.statusDiv} style={corStatus(task.status)}>{textoStatus(task.status)}</div></div>
