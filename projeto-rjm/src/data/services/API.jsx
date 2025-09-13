@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://c9f79edf6dc9.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
@@ -73,8 +73,7 @@ export async function getUserByName(nome) {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        if (confirm("Perfil atualizado com sucesso!\nAperte OK para restornar à página anterior."))
-            await URL.patch(`usuarios/${id}`, params).then(() => { redirecionar('login') });
+        await URL.patch(`usuarios/${id}`, params).then(() => { voltar() });
     } catch (error) {
         alert(error.status)
     }

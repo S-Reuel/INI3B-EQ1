@@ -9,42 +9,51 @@
 (Editar_Projeto.jsx)
 (Editar_Task.jsx)
 */
-.paginaBody{
-   --form-left-margin:3%;
-   --center-left-margin:3%;
-   --input-margin-bottom:3.33vh;
+.paginaBody {
+   --form-left-margin: 3%;
+   --center-left-margin: 3%;
+   --input-margin-bottom: 3.33vh;
    background-color: var(--cor-do-fundo-da-pagina);
+   color: white;
 }
+
 .paginaBody * {
    font-family: inherit;
    /* color:white */
 }
+
 .center * {
    font-weight: 700;
 }
-.center{
+
+.center {
    margin-left: 5%;
 }
-.tituloPagina{
-   color:#BE5FDB;
+
+.tituloPagina {
+   color: #BE5FDB;
    text-align: center;
 }
-.form{
+
+.form {
    padding: 32px, 32px;
    margin-right: 20%;
    margin-bottom: 3%;
 
    text-align: left;
-   gap:16px;
+   gap: 16px;
 }
-.input, .selectBox, .inputPaginaPropria{
+
+.input,
+.selectBox,
+.inputPaginaPropria {
    background-color: #212A36;
-   border:1px;
+   border: 1px;
    border-color: #4D555E;
    border-style: solid;
    border-radius: 16px;
 
-   color:#B6B8BB;
+   color: #B6B8BB;
    font-weight: 400;
 
    margin-bottom: var(--input-margin-bottom);
@@ -52,23 +61,42 @@
 
    width: 100%;
 }
+
 .selectBox * {
    font-family: "Space Grotesk";
 }
-.inputPaginaPropria{ /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
+
+.inputPaginaPropria {
+   /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
    height: 5vh;
 }
-.imgUsuario{
+
+.imgUsuario {
    grid-column: 2;
-   height:70px;
-   width:70px;
+   height: 130px;
+   width: 130px;
+
 }
-.formButton{
-   background-color:#4848B6;
+.imgUsuarioModal {
+   grid-column: 2;
+   height: 130px;
+   width: 130px;
+   
+}
+
+.modalUserImg {
+   height: 100%;
+   width: 100%;
+   justify-content: center;
+   overflow: hidden;
+}
+
+.formButton {
+   background-color: #4848B6;
 
    border-color: #4848B6;
    border-style: none;
-   border-radius:15px;
+   border-radius: 15px;
 
 
    font-size: var(--input-font-size);
@@ -81,14 +109,14 @@
    transition: 300ms;
    transition-timing-function: ease-in-out;
 
-   width:auto;
+   width: auto;
 }
 
-.formButton:hover{
-   background-color:#9696D5;
+.formButton:hover {
+   background-color: #9696D5;
 }
 
-.btnFechaModal{
+.btnFechaModal {
    background-color: transparent;
    border: 0px;
    border-radius: 5px;
@@ -99,28 +127,33 @@
    padding: 12px;
    text-align: center;
 }
-.divBotoes{
+
+.divBotoes {
    display: flex;
    flex-direction: row-reverse;
    gap: 20px;
 }
-.buttonReturn{
+
+.buttonReturn {
    background-color: transparent;
    border-style: none;
    font-size: var(--input-font-size);
    padding: 1.5%;
    width: auto;
 }
-.botaoNovaEquipe{
+
+.botaoNovaEquipe {
 
 
    padding: 1.5%;
 
    text-decoration: underline white;
 }
-.botaoNovaEquipe:hover{
+
+.botaoNovaEquipe:hover {
    cursor: pointer;
 }
+
 .link {
    background-color: transparent;
    border-color: transparent;
@@ -129,33 +162,77 @@
 
 }
 
-.link:hover{
-   cursor:pointer
+.link:hover {
+   cursor: pointer
 }
-@media screen and (orientation: portrait){ /*design temporario*/
-   .paginaBody{
-      --center-left-margin:0%;
-      --input-margin-bottom:10%;
+
+@media screen and (orientation: portrait) {
+
+   /*design temporario*/
+   .paginaBody {
+      --center-left-margin: 0%;
+      --input-margin-bottom: 10%;
    }
-   .tituloPagina{
+
+   .tituloPagina {
       text-align: center;
    }
-   .form{
+
+   .form {
       margin-left: 0;
       margin-right: 0;
    }
-   .center{
-      margin-left:0%;
+
+   .center {
+      margin-left: 0%;
    }
-   .lbl{
+
+   .lbl {
       margin-left: 5%;
    }
-   .input, .selectBox, .inputPaginaPropria{
+
+   .input,
+   .selectBox,
+   .inputPaginaPropria {
       width: 80%;
-      margin-left:5%;
-      margin-right:5%;
+      margin-left: 5%;
+      margin-right: 5%;
 
    }
+}
+
+.btnCancelarFoto {
+   position: absolute;
+   bottom: 5%;
+   left: 8%;
+   background-color: inherit;
+   padding: 8px;
+   border-radius: 8px;
+}
+
+.btnCancelarFoto:hover {
+   cursor: pointer;
+}
+
+.salvarImgBtn {
+   position: absolute;
+   bottom: 5%;
+   right: 8%;
+   background-color: #4848B6;
+   padding: 8px;
+   border-radius: 8px;
+
+}
+
+.salvarImgBtn:hover {
+   cursor: pointer;
+}
+
+.botoesModalImg {
+   
+}
+.arquivoBtn{
+   background-color: #E8A446;
 }
 
 /*#4D555E*/
