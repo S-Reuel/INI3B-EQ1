@@ -73,8 +73,7 @@ export async function getUserByName(nome) {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        if (confirm("Perfil atualizado com sucesso!\nAperte OK para restornar à página anterior."))
-            await URL.patch(`usuarios/${id}`, params).then(() => { redirecionar('login') });
+        await URL.patch(`usuarios/${id}`, params).then(() => { voltar() });
     } catch (error) {
         alert(error.status)
     }
