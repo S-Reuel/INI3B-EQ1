@@ -44,7 +44,7 @@ export default function App() {
           </h1>
           <p className={appStyle.textoArticle}>
             Conecte seu aprendizado ao GitHub de forma intuitiva. Nossa plataforma integra código, organização e colaboração para que seus projetos de desenvolvimento sejam mais eficientes e menos estressantes.
-          </p>
+          </p><br />
 
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
