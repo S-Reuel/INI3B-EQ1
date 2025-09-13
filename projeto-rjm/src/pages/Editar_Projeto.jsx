@@ -52,6 +52,7 @@ export default function Editar_Projeto() {
                         <br /><br />
                         <div className={editProjStyle.divBotoes}>
                             <button className={editProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
+                            <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
                         </div>
 
                     </form>
