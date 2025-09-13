@@ -46,7 +46,12 @@
 }
 .tituloPagina{
     color: #BE5FDB;
+    
     overflow-wrap: break-word;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    text-align: center;
 }
 .navEquipes{
     grid-row: span 2;
@@ -71,7 +76,8 @@
 .tituloFlex{
     display:flex;
     justify-content: center;
-    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 15vh;
 }
 
 
@@ -107,25 +113,26 @@
     
 }
 .statusDiv {
+    font-weight: 600;
     height: max-content;
     width: max-content;
     padding: 5px;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 1px solid #4D555E;
 }
 
 .descTask{
- 
     color: #ffffff83;
     padding: 5px;
     overflow-wrap: break-word;
-
+    margin-right: 10%;
 }
 .datasDaTask{
-    width: 100%;
+    color:white;
     display: flex;
-    justify-content: center;
     gap: 16px;
+    justify-content: center;
+    width: 100%;
 }
 
 .criacaoTask{
