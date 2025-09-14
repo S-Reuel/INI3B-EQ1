@@ -39,7 +39,7 @@ export default function App() {
             <br /><br /><br />
             Seja bem Vindo!
           </p>
-          <h1>
+          <h1 className={appStyle.titulo}>
             Código, Organização e Produtividade em um Só Lugar!
           </h1>
           <p className={appStyle.textoArticle}>
@@ -154,7 +154,7 @@ export default function App() {
             <br /><br /><br />
             Seja bem Vindo!
           </p>
-          <h1>
+          <h1 className={appStyle.titulo}>
             Código, Organização e Produtividade em um Só Lugar!
           </h1>
           <p className={appStyle.textoArticle}>

@@ -6,12 +6,12 @@
     position: absolute;
     z-index: -1;
     top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 99vw;
-  min-height: 99vh; 
-  z-index: -1; 
-  object-fit: cover; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 99vw;
+    min-height: 99vh; 
+    z-index: -1; 
+    object-fit: cover; 
 }
 .login{
     height: 40px;
@@ -40,11 +40,13 @@
 .welcomeText{
     color:#FFB44D;
 }
-.a > h1{
+.titulo{
     color:#F9EFFB;
     font-weight: 700;
     font-size: 50px;
     margin: 0px;
+
+    word-wrap: break-word;
 }
 .textoArticle
 {
@@ -89,6 +91,7 @@
     color:#BE5FDB;
     font-size: 50px;
     justify-self: center;
+    word-wrap: break-word;
 }
 .quemSomosFLEX{
     display: flex;
@@ -108,7 +111,7 @@
     display: flex;
     justify-content: space-evenly;
     position: relative;
-    
+    width: fit-content;
 }
 
 .featureDiv{
@@ -138,3 +141,24 @@
     display: flex;
     align-items: center;
 }
+@media screen and (max-width: 1080px) {
+    /* Styles applied when the viewport width is 768px or less */
+    .flexFeatures{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .featureDiv{
+        height: auto;
+        margin-bottom: 10%;
+    }
+    .featureIMG{
+        width: 16px;
+        height: auto;
+    }
+    .featureDiv > a{
+        font-size: 50%;
+        line-break: anywhere;
+    }
+  }
+/*    width: 360px;
+*/

@@ -1,4 +1,4 @@
-.botaoNewProjeto{
+.botaoNewSprint{
     position: fixed;
     border-radius: 25px;
     background-color: purple;
@@ -6,6 +6,10 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
+    transition: 0.25s;
+}
+.botaoNewSprint:hover {
+    scale: 105%;
 }
 .imgEditarProj{
     height: 100%;

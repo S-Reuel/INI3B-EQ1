@@ -133,7 +133,7 @@ export default function Tasks() {
                     <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
                     <Add_Task />
                 </Modal>
-                <div className={TasksStyle.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
+                <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
 
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}></div>
