@@ -49,7 +49,7 @@
     
     overflow-wrap: break-word;
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     text-align: center;
 }
@@ -76,7 +76,6 @@
 .tituloFlex{
     display:flex;
     justify-content: center;
-    overflow-y: scroll;
     max-height: 15vh;
 }
 
@@ -98,10 +97,13 @@
 
 
 .statusDescTask{
-    width: 79vw;
+    width: 75vw;
     display: flex;
     height: max-content;
-    margin-left: 10%;
+    margin-left: 5%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    line-break:auto;
 }
 
 .statusTask{
