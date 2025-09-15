@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import CabProj from "../ui/components/_cabecalho";
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css";
 import { redirecionar } from "./util/functions";
+import userIcon from "../ui/icons/user.png"
+import trashIcon from "../ui/icons/trash.png"
+
 
 export default function Editar_Equipe() {
     const { id } = useParams()
@@ -35,27 +38,29 @@ export default function Editar_Equipe() {
         if (addMembro.length != 0) {
             return (
                 <>
-                    <label>Membros a serem adicionados</label> <br />
-                    <table>
-                        <tr>
-                            <td>Nome</td>
-                            <td>Papel</td>
-                            <td>
-                                <button
-                                    onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")){setAddMembro([])}}}>
-                                    Remover todos</button>
-                            </td>
-                        </tr>
-                        {addMembro.map((i) => {
-                            return (
-                                <tr>
-                                    <td>{i.nome}</td>
-                                    <td>{i.papel}</td>
-                                    <td><button onClick={() => { remover(i.id) }}>Remover</button></td>
-                                </tr>
-                            )
-                        })}
-                    </table>
+                    <div className={editEquipeStyle.membrosAtuaisDiv}>
+                        <div className={editEquipeStyle.atuaisTitulo2}>
+                            <label>Membros a serem adicionados</label>
+                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")) { setAddMembro([]) } }}>Remover todos</div>
+                        </div>
+                        <table className={editEquipeStyle.atuaisTable}>
+                            <tr className={editEquipeStyle.thAtuais}>
+                                <td className={editEquipeStyle.thhAtuais}>Nome</td>
+                                <td className={editEquipeStyle.thhAtuais2}>Função</td>
+                                <td></td>
+                            </tr>
+                            {addMembro.map((i) => {
+                                return (
+                                    <tr className={editEquipeStyle.trAtuais}>
+                                        <td className={editEquipeStyle.tdAtuaisUser}>{i.nome}</td>
+                                        <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                    </div>
+
                 </>
             )
         }
@@ -116,33 +121,37 @@ export default function Editar_Equipe() {
                         />
                     </label>
                     <br /> <br />
-                    <label >
-                        <label>Membros</label> <br />
-                        <table>
-                            <tr>
-                                <td>Nome</td>
-                                <td>Papel</td>
+                    <div className={editEquipeStyle.membrosAtuaisDiv}>
+                        <div className={editEquipeStyle.atuaisTitulo}>Membros Atuais</div>
+                        <table className={editEquipeStyle.atuaisTable}>
+                            <tr className={editEquipeStyle.thAtuais}>
+                                <td className={editEquipeStyle.thhAtuais}>Nome</td>
+                                <td className={editEquipeStyle.thhAtuais2}>Função</td>
+                                <td ></td>
                             </tr>
                             {membros.map((i) => {
                                 return (
-                                    <tr>
-                                        <td>{i.usuario.nome}</td>
-                                        <td>{i.papel}</td>
-                                        <td><button onClick={() => { remover(i.id) }}>Remover</button></td>
+                                    <tr className={editEquipeStyle.trAtuais}>
+                                        <td className={editEquipeStyle.tdAtuaisUser}>
+                                            <img src={userIcon} className={editEquipeStyle.userImg} />
+                                            {i.usuario.nome}
+                                        </td>
+                                        <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}
                         </table>
-                    </label>
+                    </div>
                     <br />
                     <form >
                         <label>Adicionar membros: </label> <br />
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"
-                            onChange={handleChange}
+                            onChange={handleChange} className={editEquipeStyle.imputMembro}
                         />
-                        <button type="submit" onClick={pesquisar}>Pesquisar</button>
+                        <div type="submit" onClick={pesquisar} className={editEquipeStyle.btnAdicionarMembro}>Adicionar</div>
                         <br />
                         <label id="erro" />
                     </form>

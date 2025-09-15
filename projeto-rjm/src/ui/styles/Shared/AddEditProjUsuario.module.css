@@ -77,11 +77,12 @@
    width: 130px;
 
 }
+
 .imgUsuarioModal {
    grid-column: 2;
    height: 130px;
    width: 130px;
-   
+
 }
 
 .modalUserImg {
@@ -98,12 +99,12 @@
    border-style: none;
    border-radius: 15px;
 
-   color:white;
+   color: white;
 
    font-size: var(--input-font-size);
    font-weight: 400;
 
-   margin-bottom: -3%;
+   
 
    padding: 12px;
 
@@ -122,7 +123,7 @@
    border: 0px;
    border-radius: 5px;
 
-   color:white;
+   color: white;
 
    height: 25px;
 
@@ -137,8 +138,8 @@
    gap: 20px;
 }
 
-.divBotoes *{
-   color:white;
+.divBotoes * {
+   color: white;
 }
 
 .buttonReturn {
@@ -235,11 +236,150 @@
    cursor: pointer;
 }
 
-.botoesModalImg {
-   
-}
-.arquivoBtn{
+.botoesModalImg {}
+
+.arquivoBtn {
    background-color: #E8A446;
+}
+
+.membrosAtuaisDiv {
+   background-color: #212a36;
+   padding: 4px;
+   border-radius: 16px;
+   border: 1px solid #4D555E;
+   width: 100%;
+
+}
+
+.atuaisTitulo {
+   color: #E8A446;
+   border-bottom: 1px solid #4D555E;
+   display: flex;
+   align-items: center;
+   padding-left: 16px;
+   height: 50px;
+
+}
+
+.atuaisTitulo2 {
+   color: #E8A446;
+   border-bottom: 1px solid #4D555E;
+   display: flex;
+   align-items: center;
+   padding-left: 16px;
+   height: 50px;
+   justify-content: space-between;
+}
+
+.thAtuais {
+   height: 50px;
+   border-bottom: 1px solid #4D555E;
+
+}
+
+.thhAtuais {
+   width: 50%;
+   border-right: 1px solid #4D555E;
+   color: #9696D5;
+   padding-left: 16px;
+}
+.thhAtuais2 {
+   width: 50%;
+
+   color: #9696D5;
+   padding-left: 16px;
+}
+
+.trAtuais {
+   height: 50px;
+   transition: 0.25s;
+}
+
+.trAtuais:hover {
+   background-color: #25303d;
+}
+
+.atuaisTable {
+   border-collapse: collapse;
+   overflow: hidden;
+   width: 100%;
+}
+
+.tdAtuais {
+   border-right: 1px solid #4D555E;
+   padding-left: 16px;
+}
+.tdAtuais2 {
+   
+   padding-left: 16px;
+}
+
+.tdAtuaisUser {
+   border-right: 1px solid #4D555E;
+   height: 50px;
+   padding-left: 16px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.userImg {
+   height: 32px;
+   width: 32px;
+}
+.trashImg{
+   height: 24px;
+   width: 24px;
+}
+.remvBtn{
+   background-color: transparent;
+   margin-right: 16px;
+   height: 24px;
+   width: 24px;
+   padding: 4px;
+   border-radius: 8px;
+}
+.remvBtn:hover{
+   background-color: #1e2731;
+   cursor: pointer;
+}
+.imputMembro{
+   background-color: #212A36;
+   border: 1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
+
+   color: #B6B8BB;
+   font-weight: 400;
+
+   margin-bottom: var(--input-margin-bottom);
+   padding: 17px 23px;
+
+   width: 100%;
+}
+
+.btnRemoverTodos{
+   padding: 8px;
+   color: white;
+   margin-right: 8px;
+   border-radius: 8px;
+   transition: 0.25s;
+}
+.btnRemoverTodos:hover{
+   background-color: #1e2731;
+   cursor: pointer;
+}
+.btnAdicionarMembro{
+   padding: 8px;
+   border-radius: 8px;
+   width: min-content;
+   transition: 0.25s;
+   border: 1px solid #4D555E;
+}
+.btnAdicionarMembro:hover{
+   background-color: #1e2731;
+   cursor: pointer;
 }
 
 /*#4D555E*/
