@@ -100,7 +100,7 @@ export default function EditUser() {
                                             <label className={perfilStyle.lbl}>Foto atual</label> <br />
                                             <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuario} /> <br />
                                             <label>Nova foto</label>
-                                            <input type="file" onChange={handleFileChange} multiple />
+                                            <input type="file" onChange={handleFileChange} />
                                             <button onClick={fecharModal}>OK</button>
                                         </Modal>
                                     </div>

@@ -3,6 +3,7 @@ import { getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import editProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from "../ui/components/_cabecalho";
+import { isDeCripto } from "./util/functions";
 
 
 export default function Editar_Projeto() {
@@ -12,7 +13,8 @@ export default function Editar_Projeto() {
 
     useEffect(() => {
         async function fetch() {
-            const req = await getProjetoId(id)
+            let decript_id = isDeCripto(id)
+            const req = await getProjetoId(decript_id)
             setNome(req.nome)
             setDesc(req.descricao)
         }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getSprintsId, updateSprint } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isFormatDate } from "./util/functions"
+import { isDeCripto, isFormatDate } from "./util/functions"
 import editSprintStyle from "projeto-rjm/src/ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Sprint() {
@@ -14,7 +14,8 @@ export default function Editar_Sprint() {
 
     useEffect(() => {
         async function fetch() {
-            const res = await getSprintsId(id)
+            let decript_id = isDeCripto(id)
+            const res = await getSprintsId(decript_id)
             setId(res.projeto_id)
             setNome(res.nome)
             setDI(isFormatDate(new Date(res.data_inicio)))

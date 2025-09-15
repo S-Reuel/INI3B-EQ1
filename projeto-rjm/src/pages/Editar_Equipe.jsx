@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
-import { getEquipeById, getMembros, getUserByName, updateEquipe } from "../data/services/API";
-import { useEffect, useRef, useState } from "react";
-import CabProj from "../ui/components/_cabecalho";
-import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css";
-import { redirecionar } from "./util/functions";
+import { useParams } from "react-router-dom"
+import { getEquipeById, getMembros, getUserByName } from "../data/services/API"
+import { useEffect, useState } from "react"
+import CabProj from "../ui/components/_cabecalho"
+import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
+import { isDeCripto, redirecionar } from "./util/functions"
 
 export default function Editar_Equipe() {
     const { id } = useParams()
@@ -13,11 +13,11 @@ export default function Editar_Equipe() {
     const [membros, setMembros] = useState([])
     const [addMembro, setAddMembro] = useState([])
 
-
     useEffect(() => {
         async function fetch() {
-            let eq = await getEquipeById(id)
-            let me = await getMembros(id)
+            let decript_id = isDeCripto(id)
+            let eq = await getEquipeById(decript_id)
+            let me = await getMembros(decript_id)
             setMembros(me)
             setNome(eq.nome)
             setDesc(eq.descricao)
@@ -42,7 +42,7 @@ export default function Editar_Equipe() {
                             <td>Papel</td>
                             <td>
                                 <button
-                                    onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")){setAddMembro([])}}}>
+                                    onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")) { setAddMembro([]) } }}>
                                     Remover todos</button>
                             </td>
                         </tr>

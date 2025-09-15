@@ -17,7 +17,7 @@ export default function CabProj() {
   useEffect(() => {
     async function fetch() {
       let res = await getUserByEmail()
-      localStorage.setItem('avatar', (res.avatar_url))
+      localStorage.setItem('avatar', res.avatar_url)
     }
     fetch()
   }, [])

@@ -1,15 +1,16 @@
-import React from 'react';
+import React from 'react'
 import { useEffect, useState } from "react"
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 import { getEquipeById, getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
-import { isFormat } from "./util/functions.jsx"
+import { isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom"
-import Add_Projeto from './Add_Projeto.jsx';
+import Add_Projeto from './Add_Projeto.jsx'
 import imgMaisProjeto from '../ui/icons/mais.png'
+
 Modal.setAppElement('#root');
 export default function Projetos() {
     const { equipe_id } = useParams()
@@ -18,8 +19,9 @@ export default function Projetos() {
 
     useEffect(() => {
         async function fetch() {
-            let res = await getProjetosByEquipe(equipe_id)
-            let r = await getEquipeById(equipe_id)
+            let decript_id = isDeCripto(equipe_id)
+            let res = await getProjetosByEquipe(decript_id)
+            let r = await getEquipeById(decript_id)
             setProj(res.projetos)
             setEquipe(r.nome)
         }
@@ -27,7 +29,9 @@ export default function Projetos() {
     }, [])
 
     // Função utilizada para otimizar o envio do ID pela URL
-    const caminho = (id, tipo) => {
+    const caminho = (ID, tipo) => {
+        // Criptografia do ID
+        let id = isCripto(ID)
         if (tipo == 'spr') {
             location.href = `/projeto/sprints/${id}`
         } else if (tipo == 'ed') {
@@ -51,34 +55,35 @@ export default function Projetos() {
     function apr() {
         return projetos.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
-            if(!(i.excluido)){
-            return (
-                <>
-                    <div className={StyleProj.projeto} onClick={(e) => {
-                        e.stopPropagation()
-                        caminho(i.id, 'spr')
-                    }}>
-                        <div className={StyleProj.tituloProj}>
-                            {i.nome}
-                        </div>
-                        <div className={StyleProj.descricaoProj}>
-                            {i.descricao}
-                        </div>
-                        <div className={StyleProj.dataProj}>
-                            Atualizado em:
-                            <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
-                        </div>
-                        <button className={StyleProj.bttEditarProj} onClick={(e) => {
+            if (!(i.excluido)) {
+                return (
+                    <>
+                        <div className={StyleProj.projeto} onClick={(e) => {
                             e.stopPropagation()
-                            caminho(i.id, 'ed')
+                            caminho(i.id, 'spr')
                         }}>
-                            <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
-                        </button>
+                            <div className={StyleProj.tituloProj}>
+                                {i.nome}
+                            </div>
+                            <div className={StyleProj.descricaoProj}>
+                                {i.descricao}
+                            </div>
+                            <div className={StyleProj.dataProj}>
+                                Atualizado em:
+                                <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
+                            </div>
+                            <button className={StyleProj.bttEditarProj} onClick={(e) => {
+                                e.stopPropagation()
+                                caminho(i.id, 'ed')
+                            }}>
+                                <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
+                            </button>
+                            <br />
+                        </div>
                         <br />
-                    </div>
-                    <br />
-                </>
-            )}
+                    </>
+                )
+            }
         })
     }
 

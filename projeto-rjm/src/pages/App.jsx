@@ -18,17 +18,9 @@ import ruby from "../ui/icons/ruby.png"
 import ubuntu from "../ui/icons/ubuntu.png"
 import wsl from "../ui/icons/wsl.png"
 import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
-export default function App() {
-  const A = (e) => {
-    e.preventDefault()
-    location.href = '/login'
-  }
-  const B = (e) => {
-    e.preventDefault()
-    location.href = '/add/usuario'
-  }
 
-  if (localStorage.getItem('authToken')) {
+export default function App() {  
+  if (localStorage.getItem('authToken') == null) {
     return (
       <div className={appStyle.app}>
         {/* Navbar */}
@@ -52,7 +44,7 @@ export default function App() {
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        
+
         <div className={appStyle.flexFeatures}>
           <img src={fundo} className={appStyle.fundoImg} />
           <div className={appStyle.featureDiv}>
@@ -69,7 +61,6 @@ export default function App() {
           </div>
 
         </div>
-
 
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <div className={appStyle.quemSomosTitulo}><b>Equipe de desenvolvedores</b></div>
@@ -113,31 +104,31 @@ export default function App() {
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={github} className={appStyle.tecnologias} />
-          
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={vscode} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={rails} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={reactjs} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={ruby} className={appStyle.tecnologias} />
-           
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={ubuntu} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={wsl} className={appStyle.tecnologias} />
-            
+
           </div>
         </div>
         <br /><br /><br /><br />
@@ -167,7 +158,7 @@ export default function App() {
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        
+
         <div className={appStyle.flexFeatures}>
           <img src={fundo} className={appStyle.fundoImg} />
           <div className={appStyle.featureDiv}>
@@ -228,31 +219,31 @@ export default function App() {
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={github} className={appStyle.tecnologias} />
-          
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={vscode} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={rails} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={reactjs} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={ruby} className={appStyle.tecnologias} />
-           
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={ubuntu} className={appStyle.tecnologias} />
-            
+
           </div>
           <div className={appStyle.tecnoDiv}>
             <img src={wsl} className={appStyle.tecnologias} />
-            
+
           </div>
         </div>
         <br /><br /><br /><br />

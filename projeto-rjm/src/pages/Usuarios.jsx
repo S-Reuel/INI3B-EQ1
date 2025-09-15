@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { deleteUser, getUser } from "../data/services/API.jsx";
 import CabProj from "../ui/components/_cabecalho.jsx";
+import { redirecionar } from "./util/functions.jsx";
 
 export default function Usuarios() {
     const [users, setUsers] = useState([])
