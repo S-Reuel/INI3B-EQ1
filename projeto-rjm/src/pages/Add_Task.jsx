@@ -14,9 +14,6 @@ export default function Add_Task() {
         var element = document.getElementById("selectStatus")
         var status = element.options[element.selectedIndex].value
         var arquivos = document.getElementById("arq").value
-        let data = new Date()
-        let horario = `${data.toISOString().split('T')[1]}`
-        
         postTask(sprint_id, {titulo, descricao, status, arquivos})
     }
 

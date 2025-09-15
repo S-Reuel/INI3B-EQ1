@@ -113,7 +113,6 @@ export default function EditUser() {
                                                 </div>
 
                                             </center>
-
                                         </Modal>
                                     </div>
                                 </label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isFormatStatus, redirecionar  } from "./util/functions"
+import { isDeCripto, isFormatStatus, redirecionar  } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Task() {
@@ -15,13 +15,14 @@ export default function Editar_Task() {
     
     useEffect(() => {
         async function fetch() {
-            const res = await getTaskId(task_id)
+            let decript_id = isDeCripto(task_id)
+            const res = await getTaskId(decript_id)
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
         }
         fetch()
-    }, [task_id])
+    }, [])
     
     function handleFileChange(e) {
         if (e.target.files) {

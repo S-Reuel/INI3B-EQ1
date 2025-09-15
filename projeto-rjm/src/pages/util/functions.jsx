@@ -1,4 +1,5 @@
-import { offSession } from "../../data/services/Session";
+import { offSession } from "../../data/services/API"
+import CryptoJS from "crypto-js"
 // Formatação da data para ser apresentada na tela
 export function isFormat(data) {
     let mesFormat = {
@@ -34,11 +35,11 @@ export function isFormatDate(data) {
 
 export function isFormatStatus(stt) {
     let status = {
-        "em_andamento":"Em andamento", 
-        'pendente':"Pendente",
-        'atrasado':'Atrasado',
-        'cancelado':'Cancelado',
-        'concluido':'Concluido'
+        "em_andamento": "Em andamento",
+        'pendente': "Pendente",
+        'atrasado': 'Atrasado',
+        'cancelado': 'Cancelado',
+        'concluido': 'Concluido'
     }
     return status[stt]
 }
@@ -81,4 +82,16 @@ export function redirecionar(caminho) {
 // Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
+}
+
+export function isCripto(dado) {
+    var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+    var id = CryptoJS.AES.encrypt(`${dado}`, key).toString()
+    return encodeURIComponent(id)
+}
+
+export function isDeCripto(dado) {
+    var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+    var bytes = CryptoJS.AES.decrypt(dado, key)
+    return bytes.toString(CryptoJS.enc.Utf8)
 }
