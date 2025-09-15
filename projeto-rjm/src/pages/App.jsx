@@ -31,12 +31,12 @@ export default function App() {
             <br /><br /><br />
             Seja bem Vindo!
           </p>
-          <h1>
+          <h1 className={appStyle.titulo}>
             Código, Organização e Produtividade em um Só Lugar!
           </h1>
           <p className={appStyle.textoArticle}>
             Conecte seu aprendizado ao GitHub de forma intuitiva. Nossa plataforma integra código, organização e colaboração para que seus projetos de desenvolvimento sejam mais eficientes e menos estressantes.
-          </p>
+          </p><br />
 
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
@@ -145,7 +145,7 @@ export default function App() {
             <br /><br /><br />
             Seja bem Vindo!
           </p>
-          <h1>
+          <h1 className={appStyle.titulo}>
             Código, Organização e Produtividade em um Só Lugar!
           </h1>
           <p className={appStyle.textoArticle}>

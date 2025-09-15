@@ -52,6 +52,9 @@
      font-size: 5vh;
  }
 
+.pageDescription{
+    margin-bottom: -10%;
+}
  .form>label {
      display: grid;
      margin-bottom: 3%;

@@ -1,4 +1,4 @@
-.botaoNewProjeto {
+.botaoNewTask {
     position: fixed;
     border-radius: 25px;
     background-color: purple;
@@ -6,10 +6,12 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
-}
-.botaoNewProjeto:hover{
-    cursor: pointer;
+    transition: 0.25s;
 
+}
+.botaoNewTask:hover{
+    cursor: pointer;
+    scale: 105%;
 }
 .imgEditarProj {
     height: 100%;

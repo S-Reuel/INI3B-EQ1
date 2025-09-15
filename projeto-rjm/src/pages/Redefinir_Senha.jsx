@@ -50,7 +50,7 @@ export default function RedefinirSenha() {
             <center className={redefinirStyle.center}>
                 <h1 className={redefinirStyle.pageText}>Redefinir Senha</h1>
                 <h3 className={redefinirStyle.response} id="response"></h3>
-                <h4>Um código de recuperação foi enviado para você. Complete os campos.</h4>
+                <h4 className={redefinirStyle.pageDescription}>Um código de recuperação foi enviado para você. Complete os campos.</h4>
                 <form onSubmit={onSave} className={redefinirStyle.form}>
                     <label>
                         <p>Digite o token</p>

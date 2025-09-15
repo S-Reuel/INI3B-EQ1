@@ -63,7 +63,7 @@ export default function Editar_Sprint() {
                         <br /><br />
                         <div className={editSprintStyle.divBotoes}>
                             <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
-                            <button className={editSprintStyle.btnFechaModal} type="button" onClick={history.back}>Cancelar</button>
+                            <button className={editSprintStyle.btnFechaModal} type="button"  onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
 
                         </div>
                     </form>

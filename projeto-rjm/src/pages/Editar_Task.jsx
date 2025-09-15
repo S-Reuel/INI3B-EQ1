@@ -90,7 +90,7 @@ export default function Editar_Task() {
                         <br /><br />               
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
-                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => history.back()}>Cancelar</button>
+                            <button className={editEquipeStyle.buttonReturn} type="button"  onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
                         </div>
                     </form>
                 </center>

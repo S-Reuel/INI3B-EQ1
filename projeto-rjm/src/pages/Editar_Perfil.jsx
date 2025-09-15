@@ -16,6 +16,7 @@ export default function EditUser() {
     const [user_git, setNg] = useState('')
     const [file, setFile] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('')
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     let excluido = false
 
     useEffect(() => {
@@ -36,15 +37,6 @@ export default function EditUser() {
         }
     }
 
-    async function esqueci() {
-        let mensagem = await esqueciSenha(email)
-        if (mensagem == 'Um email de redefinição foi enviado') {
-            location.href = '/login/redefinirSenha'
-        }
-    }
-
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-
     // Função que abre a modal
     function abrirModal() {
         setIsOpen(true);
@@ -53,9 +45,22 @@ export default function EditUser() {
     // Função que fecha a modal
     function fecharModal() {
         setIsOpen(false);
-        alert('Para ver a foto deve primeiro atualizar as informações')
     }
 
+    async function esqueci() {
+        let mensagem = await esqueciSenha(email)
+        if (mensagem == 'Um email de redefinição foi enviado') {
+            location.href = '/login/redefinirSenha'
+        }
+    }
+
+    function atualizarAvatar() {
+        const formData = new FormData()
+        if (file != '' && file != undefined) {
+            formData.append("usuario[avatar]", file)
+            updateUser(id, formData)
+        }
+    }
 
     const onSave = async (e) => {
         e.preventDefault()
@@ -65,9 +70,6 @@ export default function EditUser() {
         formData.append("usuario[email]", email)
         formData.append("usuario[user_git]", user_git)
         formData.append("usuario[excluido]", excluido)
-        if (file != '' && file != undefined) {
-            formData.append("usuario[avatar]", file)
-        }
         updateUser(id, formData)
     }
 
@@ -82,7 +84,7 @@ export default function EditUser() {
                             <form className={perfilStyle.form}>
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label> <br />
-                                    <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
                                     <div>
                                         <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
                                             style={{
@@ -95,13 +97,22 @@ export default function EditUser() {
 
                                                 }
                                             }}
-                                        >
-                                            <button className={cabProjetoStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
-                                            <label className={perfilStyle.lbl}>Foto atual</label> <br />
-                                            <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuario} /> <br />
-                                            <label>Nova foto</label>
-                                            <input type="file" onChange={handleFileChange} />
-                                            <button onClick={fecharModal}>OK</button>
+                                        ><center>
+                                                <button className={cabProjetoStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                                                <div className={perfilStyle.modalUserImg}>
+                                                    <label className={perfilStyle.lbl}>Foto atual</label> <br />
+                                                    <br />
+                                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
+                                                    <br /><br />
+                                                    <input type="file" onChange={handleFileChange} />
+                                                    <div className={perfilStyle.botoesModalImg}>
+                                                        <div className={perfilStyle.btnCancelarFoto} id='btnFecharModal' onClick={fecharModal}>Cancelar</div>
+                                                        <div onClick={atualizarAvatar} className={perfilStyle.salvarImgBtn}>Salvar</div>   
+                                                    </div>
+
+                                                </div>
+
+                                            </center>
                                         </Modal>
                                     </div>
                                 </label>
