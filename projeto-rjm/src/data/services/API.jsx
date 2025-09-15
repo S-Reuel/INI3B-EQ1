@@ -1,18 +1,26 @@
 import axios from "axios"
-import { onSession } from "./Session"
+import CryptoJS from "crypto-js"
 import { redirecionar, voltar } from "../../pages/util/functions"
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://491747525ac7.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'http://localhost:3000/api/v2/' /* Local */
+    // baseURL: 'https://b2418ed164e5.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
     return await valor
+}
+
+function onSession(key, dd) {
+    localStorage.setItem(key, dd)
+}
+
+export function offSession() {
+    localStorage.clear()
 }
 
 /* Função para pegar os membros da equipe */
@@ -53,8 +61,17 @@ export async function getUser() {
 export async function getUserByEmail() {
     // Lista as informações do usuário logado
     try {
-        let r = await URL.get(`usuarios/email/${localStorage.getItem('authEmail')}`)
-        return r.data
+        // Descriptografia
+        var result = localStorage.getItem('authEmail')
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var bytes = CryptoJS.AES.decrypt(result, key)
+        var dadosDescriptografados = bytes.toString(CryptoJS.enc.Utf8)
+        // return dadosDescriptografados
+        // Consulta
+        if (dadosDescriptografados) {
+            let r = await URL.get(`usuarios/email/${dadosDescriptografados}`)
+            return r.data
+        }
     } catch (error) {
         return (error.status);
     }
@@ -235,7 +252,7 @@ export async function postSprint(params) {
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.post(`projetos/ps/`, { id })
+        let res = await URL.post(`projetos/ps/`,{id})
         return res.data
     } catch (error) {
         alert(error.status)
@@ -338,12 +355,18 @@ export async function deleteTask(id) {
 /* Login */
 export async function postLogin(params) {
     try {
-        let r = await URL.post('auth/login', params)
-        const t = r.data.token;
-        if (t != '') {
-            onSession('authToken', t, params.email)
-            location.href = '/equipes'
-        }
+        // Chave secreta para criptografia (NUNCA DEIXE HARD-CODED!)
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var dadosCriptografados = CryptoJS.AES.encrypt(params.email, key).toString()
+        // Criptografar e salvar
+        await URL.post('auth/login', params).then((r)=>{
+            let t = r.data.token
+            if (t != '') {
+                onSession('authToken', t)
+                onSession('authEmail', dadosCriptografados)
+                location.href = '/equipes'
+            }
+        })
     } catch (error) {
         return (error);
     }

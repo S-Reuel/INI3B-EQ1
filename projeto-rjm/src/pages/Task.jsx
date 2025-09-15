@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskByGitHub } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
-import { isFormat } from "./util/functions";
+import { isDeCripto, isFormat } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
@@ -13,7 +13,8 @@ export default function Task() {
 
     useEffect(() => {
         async function fetch() {
-            const res = await getTaskByGitHub(task_id)
+            let decript_id = isDeCripto(task_id)
+            const res = await getTaskByGitHub(decript_id)
             setTask(res)
         }
         fetch()

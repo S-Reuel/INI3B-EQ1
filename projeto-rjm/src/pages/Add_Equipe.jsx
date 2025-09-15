@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { getUserByName, postEquipe } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
