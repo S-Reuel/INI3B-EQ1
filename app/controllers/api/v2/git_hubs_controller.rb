@@ -38,13 +38,15 @@ class Api::V2::GitHubsController < ApplicationController
     if commit_data
       message = commit_data["message"]
       commit_id = commit_data["id"]
+      timestamp = commit_data["timestamp"]
 
       git_hub = GitHub.create!(
         nome_repo: repo_name,
         usuario_gh: user_name,
         evento_gh: event_type,
         id_gh: commit_id,
-        mensagem: message
+        mensagem: message,
+        data: timestamp
       )
 
       # Captura todas as tasks (#task:id) da mensagem
@@ -83,6 +85,6 @@ class Api::V2::GitHubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def git_hub_params
-      params.expect(git_hub: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :mensagem ])
+      params.expect(git_hub: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :mensagem, :data ])
     end
 end
