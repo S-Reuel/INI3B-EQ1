@@ -44,9 +44,9 @@ class Api::V2::UsuarioEquipesController < ApplicationController
   def show_members
     @equipe = Equipe.find(params[:equipe_id])
 
-    @membros = @equipe.usuarios
+    @equipe_usuario = @equipe.usuario_equipes
 
-    render json: @membros
+    render json: @equipe_usuario
   end
 
   # POST /usuario_equipes
@@ -60,7 +60,7 @@ class Api::V2::UsuarioEquipesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /usuario_equipes/1
+  # PATCH/PUT /usuario_equipes/1  >> id = id do conteudo usuario_equipes, não é nem id de usuario nem de equipe
   def update
     if @usuario_equipe.update(usuario_equipe_params)
       render json: @usuario_equipe
