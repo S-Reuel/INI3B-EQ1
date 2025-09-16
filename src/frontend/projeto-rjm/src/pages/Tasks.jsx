@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { isFormat, redirecionar } from "./util/functions"
+import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
 import { getSprintsId, getTaskBySprint } from "../data/services/API"
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
@@ -19,8 +19,9 @@ export default function Tasks() {
 
     useEffect(() => {
         async function fetch() {
-            const res = await getTaskBySprint(sprint_id)
-            let r = await getSprintsId(sprint_id)
+            let decript_id = isDeCripto(sprint_id)
+            const res = await getTaskBySprint(decript_id)
+            let r = await getSprintsId(decript_id)
             setTasks(res.tasks)
             setSprint(r.nome)
         }
@@ -28,7 +29,9 @@ export default function Tasks() {
     }, []);
 
     // Função utilizada para otimizar o envio do ID pela URL
-    function caminho(id, tipo) {
+    function caminho(ID, tipo) {
+        // Criptografia do ID
+        let id = isCripto(ID)
         if (tipo == 'task') {
             location.href = `/projeto/sprint/task/${id}`
         } else if (tipo == 'ed') {
@@ -41,28 +44,29 @@ export default function Tasks() {
             let dataCriacao = isFormat(new Date(i.created_at))
             let dataAtualizacao = isFormat(new Date(i.updated_at))
 
-            if(!(i.excluido))
-            {return (
-                <div className={TasksStyle.Task} onClick={(e) => {
-                    e.stopPropagation()
-                    caminho(i.id, 'task')
-                }}>
-                    <div className={TasksStyle.TaskInner}>
-                        <div className={TasksStyle.taskTitulo}>{i.titulo}</div>
-                        <div className={TasksStyle.botaoEditarTask} onClick={(e) => {
-                            e.stopPropagation()
-                            caminho(i.id, 'ed')
-                        }}>...</div>
-                        <div className={TasksStyle.taskData}>
-                            <div className={TasksStyle.dataDiv}><img src={iconCalendario} className={TasksStyle.calendarioIMG}></img>{dataAtualizacao}</div>
+            if (!(i.excluido)) {
+                return (
+                    <div className={TasksStyle.Task} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'task')
+                    }}>
+                        <div className={TasksStyle.TaskInner}>
+                            <div className={TasksStyle.taskTitulo}>{i.titulo}</div>
+                            <div className={TasksStyle.botaoEditarTask} onClick={(e) => {
+                                e.stopPropagation()
+                                caminho(i.id, 'ed')
+                            }}>...</div>
+                            <div className={TasksStyle.taskData}>
+                                <div className={TasksStyle.dataDiv}><img src={iconCalendario} className={TasksStyle.calendarioIMG}></img>{dataAtualizacao}</div>
+                            </div>
+                            <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
+                            <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
+
+
                         </div>
-                        <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
-                        <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
-
-
                     </div>
-                </div>
-            )}
+                )
+            }
         })
     }
     function textoStatus(status) {
@@ -133,7 +137,7 @@ export default function Tasks() {
                     <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
                     <Add_Task />
                 </Modal>
-                <div className={TasksStyle.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
+                <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
 
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}></div>
@@ -155,9 +159,9 @@ export default function Tasks() {
 
                     ) : (
                         <>
-                            
+
                             <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
-                            
+
                         </>
                     )}
 

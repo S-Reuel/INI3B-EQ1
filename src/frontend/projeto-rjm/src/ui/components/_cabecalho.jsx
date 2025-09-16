@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import cabProjetoStyle from '../styles/cabProjeto.module.css'
-import iconeCodra from "../icons/Codra.png"  
-import iconeUser from "../icons/user.png"  
+import iconeCodra from "../icons/Codra.png"
+import iconeUser from "../icons/user.png"
 import iconeVoltar from "../icons/voltar.png"
 import { voltar } from '../../pages/util/functions'
 import { redirecionar } from "../../pages/util/functions.jsx"
@@ -13,12 +13,11 @@ Modal.setAppElement('#root');
 
 
 export default function CabProj() {
-  const [avatar, setAvatar] = useState()
 
   useEffect(() => {
     async function fetch() {
       let res = await getUserByEmail()
-      setAvatar(res.avatar_url)
+      localStorage.setItem('avatar', res.avatar_url)
     }
     fetch()
   }, [])
@@ -54,13 +53,11 @@ export default function CabProj() {
 
             <div className={cabProjetoStyle.IrEquipes} onClick={() => redirecionar('eq')}>Ver Equipes</div>
 
-            <img src={(avatar)? avatar : iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} id='btnModal' onClick={abrirModal} />
+            <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} id='btnModal' onClick={abrirModal} />
 
           </div>
 
         </header>
-
-
           <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
             style={{
               overlay: {

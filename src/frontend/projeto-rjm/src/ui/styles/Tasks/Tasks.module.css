@@ -1,4 +1,4 @@
-.botaoNewProjeto {
+.botaoNewTask {
     position: fixed;
     border-radius: 25px;
     background-color: purple;
@@ -6,8 +6,13 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
-}
+    transition: 0.25s;
 
+}
+.botaoNewTask:hover{
+    cursor: pointer;
+    scale: 105%;
+}
 .imgEditarProj {
     height: 100%;
     width: 100%;
@@ -66,6 +71,7 @@
     flex-wrap: wrap;
     align-content: center;
     background-color: #151B23;
+    margin-bottom: 16px;
 }
 .tasksCenter{
     width: 79vw;
@@ -92,6 +98,9 @@
 
 .tituloPagina {
     color: #BE5FDB;
+    overflow: hidden;
+    line-break: anywhere;
+    text-overflow: ellipsis;
 }
 
 .navEquipes {
@@ -104,8 +113,8 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh calc(85vh - 60px);
-
+    grid-template-rows: 15vh minmax(78vh, auto);
+    overflow-x: hidden;
 
 
 }
@@ -136,7 +145,7 @@
 }
 
 .modalConteudo {
-    top: calc(30% - 15px);
+    top: calc(15% - 15px);
     left: calc(35% - 15px);
     position: relative;
     background-color: #151B23;
@@ -319,4 +328,31 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+
+@media screen and (orientation: portrait) {
+
+    .paginaEquipes{
+        grid-template-rows: 20vh calc(85vh - 60px);
+
+    }
+    .navEquipes{
+        background-color: blue;
+        display: none;
+        grid-column: 3/span 1;
+    }
+    .tituloPagina{
+        grid-column: 1/span 2;
+        margin-left:75vw;
+    }
+    .tasksCenter{
+        grid-column: 1/span 2;
+        grid-row: 2/span 1;
+        margin-left:20%
+
+    }
+
+    .hr1{
+        width: 100vw;
+    }
 }

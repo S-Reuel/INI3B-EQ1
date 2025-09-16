@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { postTask } from "../data/services/API"
-import { isFormatDate } from "./util/functions"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from "react-router-dom"
 
@@ -12,13 +11,9 @@ export default function Add_Task() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        var element = document.getElementById("selectStatus");
+        var element = document.getElementById("selectStatus")
+        var status = element.options[element.selectedIndex].value
         var arquivos = document.getElementById("arq").value
-        var status = element.options[element.selectedIndex].value;
-        let data = new Date()
-        let horario = `${data.toISOString().split('T')[1]}`
-        let dataCriacao = `${isFormatDate(data)}T${horario}`
-        
         postTask(sprint_id, {titulo, descricao, status, arquivos})
     }
 

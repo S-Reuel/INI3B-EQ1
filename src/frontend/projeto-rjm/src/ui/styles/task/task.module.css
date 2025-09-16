@@ -1,3 +1,265 @@
 .corpo * {
     color: white;
 }
+
+.equipeDiv{
+    background-color: #212a36 ;
+    color: white;
+    width: 30%;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    position: relative;
+    transition: 0.25s;
+    border: 1px solid #4D555E;
+}
+
+
+
+.equipeFlex{
+    display: flex;
+    width: 100%;
+    height: max-content;
+    gap: 16px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: #151B23;
+    margin-left: 16px;
+}
+
+.botaoEditarEquipe{
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+    transition: 0.25s;
+}
+
+.botaoEditarEquipe:hover{
+    background-color: #2f3b4d;
+}
+.tituloPagina{
+    color: #BE5FDB;
+    
+    overflow-wrap: break-word;
+    overflow: hidden;
+    overflow-y: auto;
+
+    text-align: center;
+}
+.navEquipes{
+    grid-row: span 2;
+    background-color: #151B23;
+    border-right: 1px solid rgba(255, 255, 255, 0.048);
+}
+.paginaEquipes{
+    display: grid;
+    min-height: 90vh;
+    grid-template-columns: 20vw 79vw;
+    grid-template-rows: 15vh auto;
+    
+
+    
+}
+
+.hr1{
+    width: 90%;
+   
+}
+
+.tituloFlex{
+    display:flex;
+    justify-content: center;
+    max-height: 15vh;
+}
+
+
+.bttCriarEquipe:hover{
+    cursor:pointer;
+    scale:105%;
+}
+
+.imgEditarProj{
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
+
+.statusDescTask{
+    width: 75vw;
+    display: flex;
+    height: max-content;
+    margin-left: 5%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    line-break:auto;
+}
+
+.statusTask{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 5px;
+    justify-self: center;
+    
+}
+.statusDiv {
+    font-weight: 600;
+    height: max-content;
+    width: max-content;
+    padding: 5px;
+    border-radius: 16px;
+    border: 1px solid #4D555E;
+}
+
+.descTask{
+    color: #ffffff83;
+    padding: 5px;
+    overflow-wrap: break-word;
+    margin-right: 10%;
+}
+.datasDaTask{
+    color:white;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    width: 100%;
+}
+
+.criacaoTask{
+background-color: #6666c262;
+padding: 5px;
+border: 1px solid #4D555E;
+border-radius: 8px;
+}
+.atlzTask{
+background-color: #6666c262;
+padding: 5px;
+border: 1px solid #4D555E;
+border-radius: 8px;
+}
+.commitTask{
+    border: 1px solid rgba(255, 255, 255, 0.123);
+    background-color: #212A36;
+    border-radius: 10px;
+    height: 130px;
+    width: 30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    
+    
+}
+
+.divCommits{
+    
+    width: 90%;
+    display: flex;
+    gap: 10px;
+    height: max-content;
+    flex-wrap: wrap;
+    color: white;
+}
+.linkTask{
+    background-color: #212a36;
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+}
+.divArquivos{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tableArquivos{
+    width: 80%;
+    color: white;
+    background-color: #212A36;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.userDataTask{
+    padding-top: 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.123);
+    align-self:baseline;
+    color: #ffffff9d;
+}
+.msgTask{
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+}
+.tituloCommit{
+    display: inline;
+}
+.corDoCoiso{
+    color: #6666C2 ;
+}
+
+.divDaDivCommits{
+    margin-top: 30px;
+    width: 79vw;
+    display: flex;
+    justify-content: center;
+}
+.linklink{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    color: white;
+}
+.linklinklink{
+    margin-left: 7px;
+    
+
+}
+.linklink:hover{
+    background-color: #25303d;
+}
+
+.tableCabeca{
+    background-color: #212A36;
+    height: 60px;
+    font-size: 20px;
+    color: #E8A446;
+    display: flex;
+    align-items: center;   
+    justify-content: center;
+}
+.fileIMG{
+    height: 30px;
+    width: 30px;
+    margin-left: 7px;
+}
+
+.divRetorno{
+    
+}
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+
+}

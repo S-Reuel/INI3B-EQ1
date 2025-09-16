@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import { useEffect, useState } from "react"
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 import { getEquipeByUser } from "../data/services/API"
-import { redirecionar } from "./util/functions"
+import { isCripto, redirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx'
-import Add_Equipe from "./Add_Equipe.jsx";
+import Add_Equipe from "./Add_Equipe.jsx"
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
 Modal.setAppElement('#root');
@@ -21,7 +21,9 @@ export default function Equipes() {
     }, [])
 
     // Função utilizada para otimizar o envio do ID pela URL
-    const caminho = (id, tipo) => {
+    const caminho = (ID, tipo) => {
+        // Criptografia do ID
+        let id = isCripto(ID)
         if (tipo == 'pr') {
             location.href = `/projetos/${id}`
         } else if (tipo == 'ed') {
@@ -50,8 +52,9 @@ export default function Equipes() {
                         caminho(i.id, 'pr')
                     }}>
 
-                        <td>{i.nome}</td><br />
-                        <td>{i.descricao}</td>
+                        <div className={equipeStyle.tituloEquipe}>{i.nome}</div><br />
+
+                        <div className={equipeStyle.descEquipe}>{i.descricao}</div>
 
                         <div className={equipeStyle.botaoEditarEquipe} onClick={(e) => {
                             e.stopPropagation()
@@ -101,9 +104,9 @@ export default function Equipes() {
                             </div></div>
                     ) : (
                         <>
-                            
+
                             <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
-                            
+
                         </>
                     )}
 

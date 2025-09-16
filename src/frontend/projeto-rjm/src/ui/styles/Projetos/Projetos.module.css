@@ -1,5 +1,5 @@
 .projeto {
-    background-color: #2b3847;
+    background-color: #212a36;
 
     border-radius: 15px;
     border: 1px solid #4D555E;
@@ -12,7 +12,7 @@
     padding: 10px;
 
     color: white;
-
+    transition: 0.25s;
 
 }
 
@@ -22,12 +22,16 @@
 }
 
 .projeto:hover {
-    background-color: #344253;
+    background-color: #25303d;
     cursor: pointer;
 }
 
 .tituloProj {
     height: 30px;
+    justify-self:baseline;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: start;
     font-size: 20px;
 
@@ -36,6 +40,9 @@
 .descricaoProj {
     display: flex;
     text-align: justify;
+    overflow-y: auto;
+    word-break: break-all;
+    height: 50%;
     left: 0;
 
 }
@@ -142,7 +149,7 @@
 }
 
 .modalConteudo {
-    top: calc(30% - 15px);
+    top: calc(15% - 15px);
     left: calc(35% - 15px);
     position: relative;
     background-color: #151B23;
@@ -243,8 +250,8 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh 73vh;
-    
+    grid-template-rows: 15vh minmax(78vh, auto);
+    overflow-x: hidden;
 
     
 }
@@ -257,6 +264,9 @@
 .tituloFlex{
     display:flex;
     justify-content: center;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    
 }
 
 .bttCriarEquipe {
@@ -285,4 +295,41 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #212a36;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #333f52;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #42536b;
+}
+
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+    .semEquipe{
+        align-self: center;
+        
+        position: inherit;
+
+        text-align: center;
+        
+    }
 }

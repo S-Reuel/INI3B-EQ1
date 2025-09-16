@@ -1,38 +1,111 @@
-import { useParams } from "react-router-dom";
-import { getEquipeById, getUser, updateEquipe } from "../data/services/API";
-import { useEffect, useState } from "react";
-import CabProj from "../ui/components/_cabecalho";
+
+
+import { useParams } from "react-router-dom"
+import { getEquipeById, getMembros, getUserByName } from "../data/services/API"
+import { useEffect, useState } from "react"
+import { isDeCripto, redirecionar } from "./util/functions"
+import CabProj from "../ui/components/_cabecalho"
+import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
+import userIcon from "../ui/icons/user.png"
+import trashIcon from "../ui/icons/trash.png"
 
 export default function Editar_Equipe() {
     const { id } = useParams()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
+    const [pesquisa, setPesquisa] = useState('')
     const [membros, setMembros] = useState([])
+    const [addMembro, setAddMembro] = useState([])
 
     useEffect(() => {
         async function fetch() {
-            const req = await getEquipeById(id)
-            setMembros()
-            setNome(req.nome)
-            setDesc(req.descricao)
+            let decript_id = isDeCripto(id)
+            let eq = await getEquipeById(decript_id)
+            let me = await getMembros(decript_id)
+            setMembros(me)
+            setNome(eq.nome)
+            setDesc(eq.descricao)
         }
         fetch()
     }, [])
 
-    const onSave = async (e) => {
+    function remover(e, param) {
         e.preventDefault()
-        updateEquipe(id, { nome, descricao })
+        let a = addMembro.filter(addMembro => addMembro.ID !== param)
+        console.log(a)
+    }
+
+    function listarAddMembros() {
+        if (addMembro.length != 0) {
+            return (
+                <>
+                    <div className={editEquipeStyle.membrosAtuaisDiv}>
+                        <div className={editEquipeStyle.atuaisTitulo2}>
+                            <label>Membros a serem adicionados</label>
+                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")) { setAddMembro([]) } }}>Remover todos</div>
+                        </div>
+                        <table className={editEquipeStyle.atuaisTable}>
+                            <tr className={editEquipeStyle.thAtuais}>
+                                <td className={editEquipeStyle.thhAtuais}>Nome</td>
+                                <td className={editEquipeStyle.thhAtuais2}>Função</td>
+                                <td></td>
+                            </tr>
+                            {addMembro.map((i) => {
+                                return (
+                                    <tr className={editEquipeStyle.trAtuais}>
+                                        <td className={editEquipeStyle.tdAtuaisUser}>{i.nome}</td>
+                                        <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                    </div>
+
+                </>
+            )
+        }
+    }
+
+    const handleClearAll = () => {
+
+
+    };
+
+    function handleChange(event) {
+        setPesquisa(event.target.value)
+    }
+
+    async function pesquisar(e) {
+        e.preventDefault()
+        let res = await getUserByName(pesquisa)
+        document.getElementById("addMembro").value = ''
+        if (res.nome != undefined && res.excluido == false) {
+            document.getElementById("erro").innerHTML = ''
+            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "Dev" }, ...addMembro]
+            setAddMembro(item)
+            setPesquisa('')
+        } else {
+            document.getElementById("erro").innerHTML = "Não encontrado! Por favor digite o nome novamente"
+        }
+    }
+
+    const onSave = (e) => {
+        e.preventDefault()
+        console.log("Sim")
+        // updateEquipe(id, { nome, descricao })
     }
 
     return (
-        <div>
+        <div className={editEquipeStyle.paginaBody}>
             <CabProj />
-            <center>
-                <h1>Editar Equipe</h1>
-                <form>
+            <center className={editEquipeStyle.center}>
+                <h1 className={editEquipeStyle.tituloPagina}>Editar Equipe</h1>
+                <form className={editEquipeStyle.form}>
                     <label>
-                        Nome:<br />
+                        <p className={editEquipeStyle.inputTipo}>Nome:</p>
                         <input
+                            className={editEquipeStyle.input}
                             type="text" name="nome" defaultValue={nome}
                             placeholder="Digite o nome da equipe" required
                             onChange={(e) => setNome(e.target.value)}
@@ -40,29 +113,61 @@ export default function Editar_Equipe() {
                     </label>
                     <br />
                     <label >
-                        Descrição:
-                        <br />
+                        <p className={editEquipeStyle.inputTipo}>Descrição:</p>
                         <input
+                            className={editEquipeStyle.inputPaginaPropria}
                             type="text" name="descricao" defaultValue={descricao}
                             placeholder="Digite a descrição da equipe" required
                             onChange={(e) => setDesc(e.target.value)}
                         />
                     </label>
-                    <br />
-                    {/* Devemos ver isso! URGENTE! :) */}
-                    <label >
-                        <label>Membros</label> <br />
-                        <select id='selectEquipes'>
-                        </select>
-                    </label>
                     <br /> <br />
-                    <button type="submit" onClick={onSave}>Enviar</button>
+                    <div className={editEquipeStyle.membrosAtuaisDiv}>
+                        <div className={editEquipeStyle.atuaisTitulo}>Membros Atuais</div>
+                        <table className={editEquipeStyle.atuaisTable}>
+                            <tr className={editEquipeStyle.thAtuais}>
+                                <td className={editEquipeStyle.thhAtuais}>Nome</td>
+                                <td className={editEquipeStyle.thhAtuais2}>Função</td>
+                                <td ></td>
+                            </tr>
+                            {membros.map((i) => {
+                                return (
+                                    <tr className={editEquipeStyle.trAtuais}>
+                                        <td className={editEquipeStyle.tdAtuaisUser}>
+                                            <img src={userIcon} className={editEquipeStyle.userImg} />
+                                            {i.usuario.nome}
+                                        </td>
+                                        <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                    </div>
+                    <br />
+                    <form >
+                        <label>Adicionar membros: </label> <br />
+                        <input
+                            type="text" id="addMembro"
+                            placeholder="Digite o nome do membro"
+                            onChange={handleChange} className={editEquipeStyle.imputMembro}
+                        />
+                        <div type="submit" onClick={pesquisar} className={editEquipeStyle.btnAdicionarMembro}>Adicionar</div>
+                        <br />
+                        <label id="erro" />
+                    </form>
+                    <br />
+                    <label >
+                        {listarAddMembros()}
+                    </label>
+                    <br /><br />
+
+                    <div className={editEquipeStyle.divBotoes}>
+                        <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
+                        <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
+                    </div>
                 </form>
             </center>
         </div>
     )
 }
-
-/*
-    Concertar os campos de input
-*/

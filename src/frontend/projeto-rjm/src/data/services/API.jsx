@@ -1,19 +1,40 @@
 import axios from "axios"
-import { onSession } from "./Session"
+import CryptoJS from "crypto-js"
 import { redirecionar, voltar } from "../../pages/util/functions"
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    // baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    baseURL: 'https://1a4f6369f94e.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'http://localhost:3000/api/v2/' /* Local */
+    // baseURL: 'https://b2418ed164e5.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
-    let resultado = await valor
-    return resultado
+    return await valor
+}
+
+function onSession(key, dd) {
+    localStorage.setItem(key, dd)
+}
+
+export function offSession() {
+    localStorage.clear()
+}
+
+/* Função para pegar os membros da equipe */
+export async function getMembros(params) {
+    /* 
+        Busca os membros pelo ID da equipe e retorna um JSON com todas as informações 
+        { id, nome, email, user_git, excluido, password_reset_sent_at, avatar_url }
+    */
+    try {
+        let r = await URL.get(`equipe/membros/${params}`)
+        return r.data
+    } catch (error) {
+        return (error.status);
+    }
 }
 
 /*  CRUD's Users */
@@ -40,7 +61,26 @@ export async function getUser() {
 export async function getUserByEmail() {
     // Lista as informações do usuário logado
     try {
-        let r = await URL.get(`usuarios/email/${localStorage.getItem('authEmail')}`)
+        // Descriptografia
+        var result = localStorage.getItem('authEmail')
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var bytes = CryptoJS.AES.decrypt(result, key)
+        var dadosDescriptografados = bytes.toString(CryptoJS.enc.Utf8)
+        // return dadosDescriptografados
+        // Consulta
+        if (dadosDescriptografados) {
+            let r = await URL.get(`usuarios/email/${dadosDescriptografados}`)
+            return r.data
+        }
+    } catch (error) {
+        return (error.status);
+    }
+}
+
+export async function getUserByName(nome) {
+    // Lista as informações do usuário pesquisado
+    try {
+        let r = await URL.get(`usuarios/nome/${nome}`)
         return r.data
     } catch (error) {
         return (error.status);
@@ -50,8 +90,7 @@ export async function getUserByEmail() {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        if (confirm("Perfil atualizado com sucesso!\nAperte OK para restornar à página anterior."))
-            await URL.patch(`usuarios/${id}`, params).then(() => { redirecionar('login') });
+        await URL.patch(`usuarios/${id}`, params).then(() => { voltar() });
     } catch (error) {
         alert(error.status)
     }
@@ -66,7 +105,7 @@ export async function deleteUser(id) {
 }
 
 /* CRUD's Equipes */
-export async function postEquipe(params) {
+export async function postEquipe(membros, params) {
     /* 
         Cria equipe apartir das informações digitadas pelo usuário
         O usuário que cria o projeto é definido como DEV
@@ -75,21 +114,26 @@ export async function postEquipe(params) {
     try {
         const usuario = await getUserByEmail()
         let usuario_id = usuario.id
-        let papel = "dev"
         await URL.post('equipes', params).then((res) => {
             let equipe_id = res.data.id
-            addUserEquipe({ usuario_id, equipe_id, papel })
+            addUserEquipe(membros, usuario_id, equipe_id)
         });
     } catch (error) {
         alert(error.status)
     }
 }
 
-async function addUserEquipe(params) {
+async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
+        let adm = "admin"
         if (confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior."))
-            await URL.post('usuario_equipes', params).then(() => { location.href = '../equipes' })
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, adm }).then(() => {
+                if (membros.length != 0) {
+                    let dev = 'dev'
+                    membros.map((usuario_id) => URL.post('usuario_equipes', { usuario_id, equipe_id, dev })).then(() => { location.reload() })
+                }
+            })
     } catch (error) {
         alert(error.status);
     }
@@ -208,7 +252,7 @@ export async function postSprint(params) {
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.post(`projetos/ps/`, { id })
+        let res = await URL.post(`projetos/ps/`,{id})
         return res.data
     } catch (error) {
         alert(error.status)
@@ -245,10 +289,10 @@ export async function deleteSprint(id) {
 export async function postTask(sprint_id, params) {
     try {
         let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {            
-            await URL.post('tasks', {task: params}).then((res) => {
+        if (bool) {
+            await URL.post('tasks', { task: params }).then((res) => {
                 let task_id = res.data.id
-                postTaskBySprint({sprint_id, task_id})
+                postTaskBySprint({ sprint_id, task_id })
             });
         }
     } catch (error) {
@@ -311,12 +355,18 @@ export async function deleteTask(id) {
 /* Login */
 export async function postLogin(params) {
     try {
-        let r = await URL.post('auth/login', params)
-        const t = r.data.token;
-        if (t != '') {
-            onSession('authToken', t, params.email)
-            location.href = '/equipes'
-        }
+        // Chave secreta para criptografia (NUNCA DEIXE HARD-CODED!)
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var dadosCriptografados = CryptoJS.AES.encrypt(params.email, key).toString()
+        // Criptografar e salvar
+        await URL.post('auth/login', params).then((r)=>{
+            let t = r.data.token
+            if (t != '') {
+                onSession('authToken', t)
+                onSession('authEmail', dadosCriptografados)
+                location.href = '/equipes'
+            }
+        })
     } catch (error) {
         return (error);
     }

@@ -5,7 +5,7 @@ import { getProjetoId, getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
-import { isFormat, redirecionar } from "./util/functions"
+import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
 import React from 'react';
 import Modal from 'react-modal';
 import Add_Sprint from "./Add_Sprint"
@@ -18,8 +18,9 @@ export default function Sprints() {
 
     useEffect(() => {
         async function fetch() {
-            let res = await getSprintsByProjeto(projeto_id)
-            let r = await getProjetoId(projeto_id)
+            let decript_id = isDeCripto(projeto_id)
+            let res = await getSprintsByProjeto(decript_id)
+            let r = await getProjetoId(decript_id)
             setSprints(res.sprints)
             setProj(r.nome)
         }
@@ -27,7 +28,9 @@ export default function Sprints() {
     }, [])
 
     // Função utilizada para otimizar o envio do ID pela URL
-    const caminho = (id, tipo) => {
+    const caminho = (ID, tipo) => {
+        // Criptografia do ID
+        let id = isCripto(ID)
         if (tipo == 'task') {
             location.href = `/projeto/sprint/tasks/${id}`
         } else if (tipo == 'ed') {
@@ -58,7 +61,7 @@ export default function Sprints() {
                         e.stopPropagation()
                         caminho(i.id, 'task')
                     }}>
-                        <td>{i.nome}</td>
+                        <td className={StylesSprint.sprintNome}>{i.nome}</td>
                         <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
                         <td className={StylesSprint.sprintDatas}>{dataFim}</td>
 
@@ -122,13 +125,13 @@ export default function Sprints() {
                         </div>
                     ) : (
                         <>
-                            
+
                             <h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>
-                            
+
                         </>
                     )}
 
-                    <div className={StylesSprint.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>
         )

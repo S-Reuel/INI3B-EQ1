@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react"
 import { getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isFormatStatus } from "./util/functions"
+import { isDeCripto, isFormatStatus, redirecionar  } from "./util/functions"
+import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Task() {
     const { task_id } = useParams()
@@ -14,13 +15,14 @@ export default function Editar_Task() {
     
     useEffect(() => {
         async function fetch() {
-            const res = await getTaskId(task_id)
+            let decript_id = isDeCripto(task_id)
+            const res = await getTaskId(decript_id)
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
         }
         fetch()
-    }, [task_id])
+    }, [])
     
     function handleFileChange(e) {
         if (e.target.files) {
@@ -44,11 +46,11 @@ export default function Editar_Task() {
 
     if (localStorage.getItem('authToken')) {
         return (
-            <div>
+            <div className={editEquipeStyle.paginaBody}>
                 <CabProj />
-                <center>
-                    <h1 >Editar Task</h1>
-                    <form onSubmit={onSave}>
+                <center className={editEquipeStyle.center}>
+                    <h1 className={editEquipeStyle.tituloPagina}>Editar Task</h1>
+                    <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
                         <label>
                             <label>Adicione somente um arquivo</label> <br />
@@ -57,16 +59,18 @@ export default function Editar_Task() {
                         <br />
                         <br />
                         <label>
-                            <label>Título da Task</label><br />
+                            <label className={editEquipeStyle.inputTipo}>Título da Task</label><br />
                             <input
+                                className={editEquipeStyle.input}
                                 type="text" name="nome" value={titulo} required
                                 onChange={(e) => setTitulo(e.target.value)}
                             />
                         </label>
                         <br />
                         <label>
-                            <label>Descrição da Task</label><br />
+                            <label className={editEquipeStyle.inputTipo}>Descrição da Task</label><br />
                             <input
+                                className={editEquipeStyle.input}
                                 type="text" name="nome" value={descricao} required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
@@ -74,7 +78,7 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Status da Task</label><br />
-                            <select id='selectStatus'>
+                            <select className={editEquipeStyle.input} id='selectStatus'>
                                 <option value={stt}>{isFormatStatus(stt)}</option>
                                 <option value={'pendente'}>Pendente</option>
                                 <option value={'em_andamento'}>Em andamento</option>
@@ -83,8 +87,11 @@ export default function Editar_Task() {
                                 <option value={'concluido'}>Concluído</option>
                             </select>
                         </label>
-                        <br /><br />
-                        <button type="submit">Atualiza Sprint</button>
+                        <br /><br />               
+                        <div className={editEquipeStyle.divBotoes}>
+                            <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
+                            <button className={editEquipeStyle.buttonReturn} type="button"  onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
+                        </div>
                     </form>
                 </center>
             </div>

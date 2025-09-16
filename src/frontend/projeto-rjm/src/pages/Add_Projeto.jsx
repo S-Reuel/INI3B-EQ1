@@ -1,33 +1,18 @@
-import { useEffect, useState } from 'react'
-import { getEquipeByUser, postProjeto } from "../data/services/API"
+import { useState } from 'react'
+import { postProjeto } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
+import { useParams } from 'react-router-dom'
 
 export default function Add_Projeto(props) {
+    const {equipe_id} = useParams();
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
-    const [equipes, setEquipes] = useState([])
-
-    useEffect(() => {
-        async function fetch() {
-            const req = await getEquipeByUser()
-            setEquipes(req.equipes)
-        }
-        fetch()
-    }, [])
 
     const onSave = async (e) => {
         e.preventDefault()
-        var element = document.getElementById("selectEquipes");
-        var equipe_id = element.options[element.selectedIndex].value;
         postProjeto(equipe_id, { nome, descricao})
-    }
-
-    function listaEquipe() {
-        return equipes.map((i) =>
-            <option value={i.id}>{i.nome}</option>
-        )
     }
 
     if (localStorage.getItem('authToken')) {
@@ -55,14 +40,6 @@ export default function Add_Projeto(props) {
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>
-                        <label >
-                            <label className={addProjStyle.lbl}><h1>Equipe</h1></label>
-                            <select className={addProjStyle.input} id='selectEquipes'>
-                                <option value={0}>Selecione</option>
-                                {listaEquipe()}
-                            </select>
-                        </label>
-                        <a className={addProjStyle.botaoNovaEquipe} onClick={() => redirecionar('eq')}>Nova Equipe</a>
                         <br />
                         <br/>
                         <button className={addProjStyle.btnFechaModal} id='btnFecharModal' onClick={props.onClose}>Cancelar</button>

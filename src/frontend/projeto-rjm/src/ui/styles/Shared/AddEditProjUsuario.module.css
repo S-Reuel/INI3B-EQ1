@@ -2,129 +2,384 @@
 (Editar_Usuario.jsx)
 (Add_Projetos.jsx)
 (Add_Equipes.jsx)
-
+(Add_Sprints.jsx)
+(Add_Task.jsx)
+(Editar_Equipe.jsx)
+(Editar_Perfil.jsx)
+(Editar_Projeto.jsx)
+(Editar_Task.jsx)
 */
-.paginaBody{
-   --form-left-margin:3%;
-   --center-left-margin:3%;
-   --input-margin-bottom:3.33vh;
+.paginaBody {
+   --form-left-margin: 3%;
+   --center-left-margin: 3%;
+   --input-margin-bottom: 3.33vh;
    background-color: var(--cor-do-fundo-da-pagina);
+   color: white;
 }
-.paginaBody * {
-   color:#FFFFFF;
-   font-family: inherit;
 
+.paginaBody * {
+   font-family: inherit;
+   /* color:white */
 }
+
 .center * {
    font-weight: 700;
 }
-.center{
+
+.center {
    margin-left: 5%;
 }
-.tituloPagina{
-   color:#BE5FDB;
-   text-align: left;
+
+.tituloPagina {
+   color: #BE5FDB;
+   text-align: center;
 }
-.form{
-   background-color: #212A36;
 
-   border:1px;
-   border-radius: 16px;
-   border-color: #4D555E;
-   border-style: solid;
-
-   padding: 6%;
+.form {
+   padding: 32px, 32px;
    margin-right: 20%;
    margin-bottom: 3%;
 
    text-align: left;
-
+   gap: 16px;
 }
-.input, .selectBox{
-   background-color: #151B23;
-   border:1px;
+
+.input,
+.selectBox,
+.inputPaginaPropria {
+   background-color: #212A36;
+   border: 1px;
    border-color: #4D555E;
    border-style: solid;
    border-radius: 16px;
 
-   color:#B6B8BB;
-
+   color: #B6B8BB;
    font-weight: 400;
 
    margin-bottom: var(--input-margin-bottom);
-   padding:var(--form-left-margin);
+   padding: 17px 23px;
 
    width: 100%;
 }
+
 .selectBox * {
    font-family: "Space Grotesk";
 }
-.imgUsuario{
+
+.inputPaginaPropria {
+   /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
+   height: 5vh;
+}
+
+.imgUsuario {
    grid-column: 2;
-   height:70px;
-   width:70px;
+   height: 130px;
+   width: 130px;
 
 }
-.formButton{
-   background-color:#4848B6;
+
+.imgUsuarioModal {
+   grid-column: 2;
+   height: 130px;
+   width: 130px;
+
+}
+
+.modalUserImg {
+   height: 100%;
+   width: 100%;
+   justify-content: center;
+   overflow: hidden;
+}
+
+.formButton {
+   background-color: #4848B6;
 
    border-color: #4848B6;
    border-style: none;
-   border-radius:15px;
+   border-radius: 15px;
+
+   color: white;
 
    font-size: var(--input-font-size);
    font-weight: 400;
 
-   margin-bottom: -3%;
+   
 
-   padding: 1.5%;
+   padding: 12px;
 
    transition: 300ms;
    transition-timing-function: ease-in-out;
 
-   width:auto;
+   width: auto;
 }
 
-.formButton:hover{
-   background-color:#9696D5;
+.formButton:hover {
+   background-color: #9696D5;
 }
 
-.btnFechaModal{
+.btnFechaModal {
    background-color: transparent;
    border: 0px;
    border-radius: 5px;
 
+   color: white;
+
    height: 25px;
 
    line-height: 25px;
+   padding: 12px;
    text-align: center;
 }
 
-.botaoNovaEquipe{
+.divBotoes {
+   display: flex;
+   flex-direction: row-reverse;
+   gap: 20px;
+}
+
+.divBotoes * {
+   color: white;
+}
+
+.buttonReturn {
+   background-color: transparent;
+   border-style: none;
+   font-size: var(--input-font-size);
+   padding: 1.5%;
+   width: auto;
+}
+
+.botaoNovaEquipe {
 
 
    padding: 1.5%;
 
    text-decoration: underline white;
 }
-.botaoNovaEquipe:hover{
+
+.botaoNovaEquipe:hover {
    cursor: pointer;
 }
-@media screen and (orientation: portrait){ /*design temporario*/
-   .paginaBody{
-      --center-left-margin:0%;
-      --input-margin-bottom:10%;
+
+.link {
+   background-color: transparent;
+   border-color: transparent;
+   color: #d39745;
+   text-decoration: none;
+
+}
+
+.link:hover {
+   cursor: pointer
+}
+
+@media screen and (orientation: portrait) {
+
+   /*design temporario*/
+   .paginaBody {
+      --center-left-margin: 0%;
+      --input-margin-bottom: 10%;
    }
-   .tituloPagina{
+
+   .tituloPagina {
       text-align: center;
    }
-   .form{
+
+   .form {
       margin-left: 0;
       margin-right: 0;
    }
-   .center{
-      margin-left:0%;
+
+   .center {
+      margin-left: 0%;
    }
+
+   .lbl {
+      margin-left: 5%;
+   }
+
+   .input,
+   .selectBox,
+   .inputPaginaPropria {
+      width: 80%;
+      margin-left: 5%;
+      margin-right: 5%;
+
+   }
+}
+
+.btnCancelarFoto {
+   position: absolute;
+   bottom: 5%;
+   left: 8%;
+   background-color: inherit;
+   padding: 8px;
+   border-radius: 8px;
+}
+
+.btnCancelarFoto:hover {
+   cursor: pointer;
+}
+
+.salvarImgBtn {
+   position: absolute;
+   bottom: 5%;
+   right: 8%;
+   background-color: #4848B6;
+   padding: 8px;
+   border-radius: 8px;
+
+}
+
+.salvarImgBtn:hover {
+   cursor: pointer;
+}
+
+.botoesModalImg {}
+
+.arquivoBtn {
+   background-color: #E8A446;
+}
+
+.membrosAtuaisDiv {
+   background-color: #212a36;
+   padding: 4px;
+   border-radius: 16px;
+   border: 1px solid #4D555E;
+   width: 100%;
+
+}
+
+.atuaisTitulo {
+   color: #E8A446;
+   border-bottom: 1px solid #4D555E;
+   display: flex;
+   align-items: center;
+   padding-left: 16px;
+   height: 50px;
+
+}
+
+.atuaisTitulo2 {
+   color: #E8A446;
+   border-bottom: 1px solid #4D555E;
+   display: flex;
+   align-items: center;
+   padding-left: 16px;
+   height: 50px;
+   justify-content: space-between;
+}
+
+.thAtuais {
+   height: 50px;
+   border-bottom: 1px solid #4D555E;
+
+}
+
+.thhAtuais {
+   width: 50%;
+   border-right: 1px solid #4D555E;
+   color: #9696D5;
+   padding-left: 16px;
+}
+.thhAtuais2 {
+   width: 50%;
+
+   color: #9696D5;
+   padding-left: 16px;
+}
+
+.trAtuais {
+   height: 50px;
+   transition: 0.25s;
+}
+
+.trAtuais:hover {
+   background-color: #25303d;
+}
+
+.atuaisTable {
+   border-collapse: collapse;
+   overflow: hidden;
+   width: 100%;
+}
+
+.tdAtuais {
+   border-right: 1px solid #4D555E;
+   padding-left: 16px;
+}
+.tdAtuais2 {
+   
+   padding-left: 16px;
+}
+
+.tdAtuaisUser {
+   border-right: 1px solid #4D555E;
+   height: 50px;
+   padding-left: 16px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+
+.userImg {
+   height: 32px;
+   width: 32px;
+}
+.trashImg{
+   height: 24px;
+   width: 24px;
+}
+.remvBtn{
+   background-color: transparent;
+   margin-right: 16px;
+   height: 24px;
+   width: 24px;
+   padding: 4px;
+   border-radius: 8px;
+}
+.remvBtn:hover{
+   background-color: #1e2731;
+   cursor: pointer;
+}
+.imputMembro{
+   background-color: #212A36;
+   border: 1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
+
+   color: #B6B8BB;
+   font-weight: 400;
+
+   margin-bottom: var(--input-margin-bottom);
+   padding: 17px 23px;
+
+   width: 100%;
+}
+
+.btnRemoverTodos{
+   padding: 8px;
+   color: white;
+   margin-right: 8px;
+   border-radius: 8px;
+   transition: 0.25s;
+}
+.btnRemoverTodos:hover{
+   background-color: #1e2731;
+   cursor: pointer;
+}
+.btnAdicionarMembro{
+   padding: 8px;
+   border-radius: 8px;
+   width: min-content;
+   transition: 0.25s;
+   border: 1px solid #4D555E;
+}
+.btnAdicionarMembro:hover{
+   background-color: #1e2731;
+   cursor: pointer;
 }
 
 /*#4D555E*/

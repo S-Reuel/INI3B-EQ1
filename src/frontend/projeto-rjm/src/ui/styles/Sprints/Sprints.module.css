@@ -1,4 +1,4 @@
-.botaoNewProjeto{
+.botaoNewSprint{
     position: fixed;
     border-radius: 25px;
     background-color: purple;
@@ -6,6 +6,10 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
+    transition: 0.25s;
+}
+.botaoNewSprint:hover {
+    scale: 105%;
 }
 .imgEditarProj{
     height: 100%;
@@ -15,16 +19,19 @@
 .sprint{
     background-color: transparent;
     height: 70px;
+    max-height: 70px;
+    overflow-y: auto;
     width: 100%;
     border-radius: 10px;
     color: white;
     padding: 5px;
     transition: 0.25s;   
+
 }
 
 .sprint:hover{
-    background-color: transparent;
-    background-color: #2b3849;
+    background-color: #25303d;
+    cursor: pointer;
 }
 
 .telaSprint{
@@ -95,7 +102,7 @@
     display: grid;
     min-height: 90vh;
     grid-template-columns: 20vw 79vw;
-    grid-template-rows: 15vh auto
+    grid-template-rows: 15vh minmax(78vh, auto)
     
 
     
@@ -156,17 +163,20 @@
 .sprintsDiv{
     width: 80%;
     height: max-content;
-    background-color: #1e2733;
+    background-color: #212a36;
     border: solid 1px rgba(80, 80, 80, 0.712);
     border-radius: 15px;
     padding: 5px;
     margin-bottom: 50px;
 }
 
+
+
 .tableSprints{
     width: 100%;
     color: #FFB44C;
     border-spacing: 0px;
+    
     
     
 }
@@ -208,6 +218,17 @@
 
 }
 
+.sprintNome{
+    height: 70px;
+
+    max-width: 30vw;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .sprintDatas{
     text-align: center;
 }
@@ -221,4 +242,27 @@
     left: 50%;
     top: 50%;
     color: white;
+}
+@media screen and (orientation: portrait) {
+    .paginaEquipes{
+        grid-template-columns: 100vw;
+    }
+    .navEquipes{
+        display: none;
+    }
+    .semEquipe{
+        align-self: center;
+        
+        position: inherit;
+
+        text-align: center;
+        
+    }
+    .equipeFlex{
+        margin-top: 10%;
+        width: 100vw;
+    }
+    .sprintsDiv{
+        width: 90%;
+    }
 }
