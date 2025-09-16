@@ -2,6 +2,7 @@ ADICIONAR OS CAMPOS de excluido em todas as tabelas, exceto em Tasks e git_hubs
 
 ADICIONAR O CAMPO encerrado EM Sprint
 
+rails generate migration AddRemovidoToUsuarioEquipes removido:boolean
 
 REMOVER data DE git_hubs
 REMOVER data_criacao DE projetos
