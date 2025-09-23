@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get "equipe/equipe_de_user/:usuario_id", to: "usuario_equipes#show_by_user_id"
       get "equipe/membros/:equipe_id", to: "usuario_equipes#show_members"
       post "auth/login", to: "authentication#login" # Rota para fazer login
+      resources :usuario_tasks
       resources :usuarios
       patch "usuarios/excluir/:id", to: "usuarios#excluir" # Rota para excluir um usuário logicamente
       get "usuarios/mostra/tudo", to: "usuarios#tudo" # Rota para listar usuários incluindo excluídos
