@@ -2,7 +2,7 @@ class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
 
-  $host = "http://eq1.ini3b.projetoscti.com.br/"
+  $host = "http://eq1.ini3b.projetoscti.com.br"
   # GET /tasks
   def index
     @tasks = Task.where("excluido = ?", false)

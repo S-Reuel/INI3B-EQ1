@@ -1,4 +1,5 @@
 class Usuario < ApplicationRecord
+  attr_readonly :password
   require "securerandom"
   require "jwt"
 
