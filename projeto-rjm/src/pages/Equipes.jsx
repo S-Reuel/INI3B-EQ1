@@ -65,7 +65,21 @@ export default function Equipes() {
             }
         })
     }
+ function teste() {
+        return eqs.map((i) => {
+            if (!(i.excluido)) {
+                return (<>
+                    <details>
 
+                        <summary className={equipeStyle.tituloEquipe}>{i.nome}</summary><br />
+
+                        <div className={equipeStyle.descEquipe} teste="true">{i.descricao}</div>
+
+                    </details>
+                </>)
+            }
+        })
+    }
     if (localStorage.getItem('authToken')) {
         return (
             <div>
@@ -88,7 +102,9 @@ export default function Equipes() {
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
-                    <div className={equipeStyle.navEquipes}></div>
+                    <div className={equipeStyle.navEquipes}>
+                        {teste()}
+                    </div>
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>

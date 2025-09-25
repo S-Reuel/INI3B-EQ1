@@ -5,7 +5,7 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    baseURL: 'http://localhost:3000/api/v2/' /* Local */
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Local */
     // baseURL: 'https://b2418ed164e5.ngrok-free.app/api/v2/'  /* Ngrok */
 })
 
