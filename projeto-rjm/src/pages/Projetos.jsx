@@ -11,6 +11,10 @@ import { useParams } from "react-router-dom"
 import Add_Projeto from './Add_Projeto.jsx'
 import imgMaisProjeto from '../ui/icons/mais.png'
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
+import setaDetails from '../ui/icons/setaDetails.png'
+import mmbros from '../ui/icons/membrosEquipe.png'
+import clipbb from '../ui/icons/clipboard.png'
+import holderUser from '../ui/icons/userHolderSla.png'
 
 Modal.setAppElement('#root');
 export default function Projetos() {
@@ -90,6 +94,7 @@ export default function Projetos() {
             }
         })
     }
+    
 
     if (localStorage.getItem('authToken')) {
         return (
@@ -114,14 +119,22 @@ export default function Projetos() {
                 <div className={StyleProj.paginaEquipes}>
                     <div className={StyleProj.navEquipes}>
                         <details className={StyleProj.descEquipe} open='true'>
-                            <summary>Descrição</summary>
-                            <div teste="true">{equipe.descricao}</div>
+                            <summary>
+                                <img src={setaDetails} className={StyleProj.icon}/>
+                                <img src={clipbb} className={StyleProj.ilustIcon}/>
+                                Descrição
+                            </summary>
+                            <div teste="true" className={StyleProj.descConteudo}>{equipe.descricao}</div>
                             <br />
                         </details>
-
+                    <br />
                         <details className={StyleProj.descEquipe} open='true'>
-                            <summary>Membros</summary>
-                            <div teste="true">{membros.map((i)=>{ return (<ul className={equipeStyle.descEquipe} teste="true"> {i.usuario.nome} </ul>)})}</div>
+                            <summary>
+                                <img src={setaDetails} className={StyleProj.icon}/>
+                                <img src={mmbros} className={StyleProj.ilustIcon}/>
+                                Membros
+                            </summary>
+                            <div teste="true" className={StyleProj.descConteudo}>{membros.map((i)=>{ return (<div teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2}/> {i.usuario.nome} </div>)})}</div>
                             <br />
                         </details>
 
