@@ -71,15 +71,34 @@
    height: 5vh;
 }
 
-.imgUsuario {
-   grid-column: 2;
-   height: 130px;
+.iconeDePerfil{
+   position: relative;
    width: 130px;
-
+   margin-left: 5%;
 }
 
+.imgUsuario {
+   height: 130px;
+   width: 100%;
+   border-radius: 100%;
+   
+}
+
+.imgUsuario:hover{
+   opacity: 50%;
+}
+.imgCamera{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   display: none;
+}
+.imgUsuario:hover ~ .imgCamera{
+   display: block;  
+}
 .imgUsuarioModal {
-   grid-column: 2;
    height: 130px;
    width: 130px;
 

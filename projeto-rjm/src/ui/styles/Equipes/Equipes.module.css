@@ -22,6 +22,7 @@
     width: 79vw;
     display: flex;
     justify-content: center;
+    margin-left: 5%;
 }
 
 .equipeFlex{
@@ -200,5 +201,8 @@
     }
     .equipesDivCenter{
         width: 100vw;
+    }
+    .equipeDiv{
+        width: 60%;
     }
 }
