@@ -36,11 +36,9 @@ export default function App() {
           <p className={appStyle.textoArticle}>
             Conecte seu aprendizado ao GitHub de forma intuitiva. Nossa plataforma integra código, organização e colaboração para que seus projetos de desenvolvimento sejam mais eficientes e menos estressantes.
           </p><br />
-
-
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
-            {(localStorage.getItem('authToken') == null) ? <a href='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></a> : <a href='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></a>}
+            {(localStorage.getItem('authToken') == "null") ? <a href='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></a> : <a href='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></a>}
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -22,7 +22,7 @@ export default function Sprints() {
             let res = await getSprintsByProjeto(decript_id)
             let r = await getProjetoId(decript_id)
             setSprints(res.sprints)
-            setProj(r.nome)
+            setProj(r)
         }
         fetch()
     }, [])
@@ -98,10 +98,13 @@ export default function Sprints() {
                     <Add_Sprint />
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
-                    <div className={StylesSprint.navEquipes}></div>
+                    <div className={StylesSprint.navEquipes}>
+                        <div className={equipeStyle.descEquipe} teste="true">Descrição da equipe: {equipe.descricao}</div> <br />
+                        <div className={equipeStyle.descEquipe} teste="true">Membros da equipe:</div>
+                    </div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>
-                            <h1 className={StylesSprint.tituloPagina}>{projeto}</h1>
+                            <h1 className={StylesSprint.tituloPagina}>{projeto.nome}</h1>
 
                         </div>
                         <br />

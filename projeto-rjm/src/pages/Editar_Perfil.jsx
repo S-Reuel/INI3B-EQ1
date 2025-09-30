@@ -84,7 +84,7 @@ export default function EditUser() {
                             <form className={perfilStyle.form}>
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label> <br />
-                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                    <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
                                     <div>
                                         <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
                                             style={{
@@ -102,7 +102,7 @@ export default function EditUser() {
                                                 <div className={perfilStyle.modalUserImg}>
                                                     <label className={perfilStyle.lbl}>Foto atual</label> <br />
                                                     <br />
-                                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
+                                                    <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
                                                     <br /><br />
                                                     <input type="file" onChange={handleFileChange} />
                                                     <div className={perfilStyle.botoesModalImg}>
