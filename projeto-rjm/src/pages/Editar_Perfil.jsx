@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
+import camera from "../ui/icons/camera.svg"
 
 Modal.setAppElement('#root');
 
@@ -84,7 +85,11 @@ export default function EditUser() {
                             <form className={perfilStyle.form}>
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label> <br />
-                                    <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                    <div className={perfilStyle.iconeDePerfil}>
+                                        <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                        <img src={camera} className={perfilStyle.imgCamera}/>
+                                    </div>
+
                                     <div>
                                         <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
                                             style={{
