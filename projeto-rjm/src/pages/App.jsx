@@ -40,7 +40,7 @@ export default function App() {
 
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
-            <a href='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></a>
+            <a href='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></a>
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -154,7 +154,8 @@ export default function App() {
 
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
-            <a href='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></a>
+            <a href='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></a>
+            
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

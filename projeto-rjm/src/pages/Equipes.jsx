@@ -65,16 +65,16 @@ export default function Equipes() {
             }
         })
     }
- function teste() {
+
+    function teste() {
         return eqs.map((i) => {
             if (!(i.excluido)) {
-                return (<>
+                return (
+                <>
                     <details>
-
                         <summary className={equipeStyle.tituloEquipe}>{i.nome}</summary><br />
-
                         <div className={equipeStyle.descEquipe} teste="true">{i.descricao}</div>
-
+                        <br />
                     </details>
                 </>)
             }

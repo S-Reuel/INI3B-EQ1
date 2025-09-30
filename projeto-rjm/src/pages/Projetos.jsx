@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
-import { getEquipeById, getProjetosByEquipe } from "../data/services/API.jsx"
+import { getEquipeById, getMembros, getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import { isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
@@ -10,20 +10,24 @@ import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom"
 import Add_Projeto from './Add_Projeto.jsx'
 import imgMaisProjeto from '../ui/icons/mais.png'
+import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 
 Modal.setAppElement('#root');
 export default function Projetos() {
     const { equipe_id } = useParams()
     const [projetos, setProj] = useState([])
     const [equipe, setEquipe] = useState([])
+    const [membros, setMembro] = useState([])
 
     useEffect(() => {
         async function fetch() {
             let decript_id = isDeCripto(equipe_id)
             let res = await getProjetosByEquipe(decript_id)
             let r = await getEquipeById(decript_id)
+            let me = await getMembros(decript_id)
             setProj(res.projetos)
-            setEquipe(r.nome)
+            setEquipe(r)
+            setMembro(me)
         }
         fetch()
     }, [])
@@ -108,11 +112,24 @@ export default function Projetos() {
                 </Modal>
                 <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <div className={StyleProj.paginaEquipes}>
-                    <div className={StyleProj.navEquipes}></div>
+                    <div className={StyleProj.navEquipes}>
+                        <details className={StyleProj.descEquipe} open='true'>
+                            <summary>Descrição</summary>
+                            <div teste="true">{equipe.descricao}</div>
+                            <br />
+                        </details>
+
+                        <details className={StyleProj.descEquipe} open='true'>
+                            <summary>Membros</summary>
+                            <div teste="true">{membros.map((i)=>{ return (<ul className={equipeStyle.descEquipe} teste="true"> {i.usuario.nome} </ul>)})}</div>
+                            <br />
+                        </details>
+
+                        
+                    </div>
                     <div>
                         <div className={StyleProj.tituloFlex}>
-                            <h1 className={StyleProj.tituloPagina}>{equipe}</h1>
-
+                            <h1 className={StyleProj.tituloPagina}>{equipe.nome}</h1>
                         </div>
                         <br />
                         <hr className={StyleProj.hr1} color="#4a4a4a" />

@@ -1,7 +1,5 @@
-
-
 import { useParams } from "react-router-dom"
-import { getEquipeById, getMembros, getUserByName } from "../data/services/API"
+import { deleteUserByEquipe, getEquipeById, getMembros, getUserByName, updateEquipe } from "../data/services/API"
 import { useEffect, useState } from "react"
 import { isDeCripto, redirecionar } from "./util/functions"
 import CabProj from "../ui/components/_cabecalho"
@@ -29,10 +27,13 @@ export default function Editar_Equipe() {
         fetch()
     }, [])
 
-    function remover(e, param) {
-        e.preventDefault()
-        let a = addMembro.filter(addMembro => addMembro.ID !== param)
-        console.log(a)
+    async function remover( param, tipo) {
+        if(tipo == "Membros futuros"){
+            let a = addMembro.filter(addMembro => addMembro.ID !== param)
+            console.log(a)
+        } else if(tipo == "Membros") {
+            await deleteUserByEquipe(param)
+        }
     }
 
     function listarAddMembros() {
@@ -55,7 +56,7 @@ export default function Editar_Equipe() {
                                     <tr className={editEquipeStyle.trAtuais}>
                                         <td className={editEquipeStyle.tdAtuaisUser}>{i.nome}</td>
                                         <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, "Membros futuros") }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}
@@ -66,11 +67,6 @@ export default function Editar_Equipe() {
             )
         }
     }
-
-    const handleClearAll = () => {
-
-
-    };
 
     function handleChange(event) {
         setPesquisa(event.target.value)
@@ -92,8 +88,7 @@ export default function Editar_Equipe() {
 
     const onSave = (e) => {
         e.preventDefault()
-        console.log("Sim")
-        // updateEquipe(id, { nome, descricao })
+        updateEquipe(addMembro, isDeCripto(id), { nome, descricao })
     }
 
     return (
@@ -138,7 +133,7 @@ export default function Editar_Equipe() {
                                             {i.usuario.nome}
                                         </td>
                                         <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, 'Membros')}}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}
@@ -146,7 +141,7 @@ export default function Editar_Equipe() {
                     </div>
                     <br />
                     <form >
-                        <label>Adicionar membros: </label> <br />
+                        <label>Adicionar membros: </label> <br /><br />
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"
