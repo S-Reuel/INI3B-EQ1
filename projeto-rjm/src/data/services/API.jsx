@@ -5,7 +5,7 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Local */
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
 
 })
 
@@ -131,17 +131,22 @@ async function addUserEquipe(membros, usuario_id, equipe_id) {
             if (usuario_id != 0) {
                 await URL.post('usuario_equipes', { usuario_id, equipe_id, adm }).then(() => {
                     if (membros.length != 0) {
-                        let dev = 'dev'
-                        membros.map((usuario_id) => URL.post('usuario_equipes', { usuario_id, equipe_id, dev })).then(() => { location.reload() })
+                        membros.map((usuario) => {
+                            let usuario_id = usuario.ID
+                            let dev = usuario.papel
+                            URL.post('usuario_equipes', { usuario_id, equipe_id, dev })
+                        })
+                        location.reload()
                     }
                 })
             } else {
                 if (membros.length != 0) {
                     membros.map((usuario) => {
-                        let usuario_id = usuario.id
+                        let usuario_id = usuario.ID
                         let dev = usuario.papel
                         URL.post('usuario_equipes', { usuario_id, equipe_id, dev })
-                }).then(() => { location.reload() })
+                    })
+                    location.reload()
                 }
             }
     } catch (error) {
@@ -174,9 +179,9 @@ export async function getEquipeByUser() {
 export async function updateEquipe(membros, id, params) {
     // Atualiza a equipe
     try {
-        // await URL.patch(`equipes/${id}`, params).then(() => {
+        await URL.patch(`equipes/${id}`, params).then(() => {
             addUserEquipe(membros, 0, id)
-        // })
+        })
     } catch (error) {
         return (error.status);
     }

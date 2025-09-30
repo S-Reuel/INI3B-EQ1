@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { postProjeto } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-import "projeto-rjm/src/ui/components/_cabecalho.jsx"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 

@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { postSprint } from "../data/services/API"
 import { redirecionar } from "./util/functions"
-import "projeto-rjm/src/ui/components/_cabecalho.jsx"
-import addSprintStyle from "projeto-rjm/src/ui/styles/Shared/AddEditProjUsuario.module.css"
+import addSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 export default function Add_Sprint() {
     const {projeto_id} = useParams()
