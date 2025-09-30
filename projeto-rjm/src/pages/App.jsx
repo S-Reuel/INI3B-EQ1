@@ -17,7 +17,7 @@ import reactjs from "../ui/icons/reactjs.png"
 import ruby from "../ui/icons/ruby.png"
 import ubuntu from "../ui/icons/ubuntu.png"
 import wsl from "../ui/icons/wsl.png"
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import CabProj from "../ui/components/_cabecalho";
 
 export default function App() {  
     return (

@@ -27,10 +27,10 @@ export default function Editar_Equipe() {
         fetch()
     }, [])
 
-    async function remover( param, tipo) {
+    async function remover(param, tipo) {
         if(tipo == "Membros futuros"){
-            let a = addMembro.filter(addMembro => addMembro.ID !== param)
-            console.log(a)
+            let a = addMembro.filter(obj => obj.ID != param)
+            setAddMembro(a)
         } else if(tipo == "Membros") {
             await deleteUserByEquipe(param)
         }
@@ -56,7 +56,7 @@ export default function Editar_Equipe() {
                                     <tr className={editEquipeStyle.trAtuais}>
                                         <td className={editEquipeStyle.tdAtuaisUser}>{i.nome}</td>
                                         <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, "Membros futuros") }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.ID, "Membros futuros") }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}

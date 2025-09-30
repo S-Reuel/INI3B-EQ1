@@ -1,7 +1,5 @@
-
 import QuemSomosStyle from "../ui/styles/Quem_Somos/Quem_Somos.module.css"
-
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import CabProj from '../ui/components/_cabecalho.jsx'
 import Davi from "../ui/icons/davi_ok.jpeg"
 import Maria from "../ui/icons/maria_ok.jpg"
 import Ana from "../ui/icons/ana_ok.jpg"

@@ -4,7 +4,7 @@ import iconeUser from "../ui/icons/user.png"
 import { redirecionar } from './util/functions.jsx'
 import Modal from 'react-modal'
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
 
 Modal.setAppElement('#root');
