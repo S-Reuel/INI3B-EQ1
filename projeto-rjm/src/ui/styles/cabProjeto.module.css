@@ -142,7 +142,7 @@
     width: 100vw;
     height: auto;
     justify-content: left;
-    line-break: anywhere;
+    word-break: normal;
   }
   .botaoCadastro, .botaoLogin, .IrEquipes{
     height: auto;

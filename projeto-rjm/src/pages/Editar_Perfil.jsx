@@ -125,6 +125,7 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>Nome</label>
                                     <br />
+                                    <br />
                                     <input
                                         defaultValue={nome || ''}
                                         onChange={(e) => setNome(e.target.value)}
@@ -137,6 +138,7 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>E-mail Cadastrado</label>
                                     <br />
+                                    <br />
                                     <input
                                         defaultValue={email || ''}
                                         type="mail" name="email"
@@ -148,6 +150,8 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>Usuário do Github</label>
                                     <br />
+                                    <br />
+
                                     <input
                                         defaultValue={user_git || ''}
                                         type="text" name="user_git"

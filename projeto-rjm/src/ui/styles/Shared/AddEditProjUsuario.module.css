@@ -66,15 +66,9 @@
    font-family: "Space Grotesk";
 }
 
-.inputPaginaPropria {
-   /*--Diego:usado quando a pagina não é acessada por um modal, mas sim em sua própria página*/
-   height: 5vh;
-}
-
 .iconeDePerfil{
    position: relative;
    width: 130px;
-   margin-left: 5%;
 }
 
 .imgUsuario {
@@ -125,12 +119,11 @@
 
    
 
-   padding: 12px;
+   padding: 17px 23px;
 
    transition: 300ms;
    transition-timing-function: ease-in-out;
 
-   width: auto;
 }
 
 .formButton:hover {
@@ -191,41 +184,6 @@
 
 .link:hover {
    cursor: pointer
-}
-
-@media screen and (orientation: portrait) {
-
-   /*design temporario*/
-   .paginaBody {
-      --center-left-margin: 0%;
-      --input-margin-bottom: 10%;
-   }
-
-   .tituloPagina {
-      text-align: center;
-   }
-
-   .form {
-      margin-left: 0;
-      margin-right: 0;
-   }
-
-   .center {
-      margin-left: 0%;
-   }
-
-   .lbl {
-      margin-left: 5%;
-   }
-
-   .input,
-   .selectBox,
-   .inputPaginaPropria {
-      width: 80%;
-      margin-left: 5%;
-      margin-right: 5%;
-
-   }
 }
 
 .btnCancelarFoto {
@@ -402,3 +360,46 @@
 }
 
 /*#4D555E*/
+
+@media screen and (orientation: portrait) {
+
+   /*design temporario*/
+   .paginaBody {
+      --center-left-margin: 0%;
+      --input-margin-bottom: 10%;
+   }
+
+   .tituloPagina {
+      text-align: center;
+   }
+
+   .form {
+      margin-left: 0;
+      margin-right: 0;
+   }
+
+   .center {
+      margin-left: 0%;
+   }
+   .imgUsuario, .imgCamera{
+      margin-left: 10%;
+   }
+   .lbl {
+      margin-left: 5%;
+   }
+   .divBotoes{
+      display: block;
+   }
+   .formButton{
+      margin-left: 5%;
+      margin-right: 5%;
+   }
+   .input,
+   .selectBox,
+   .inputPaginaPropria{
+      width: 80%;
+      margin-left: 5%;
+      margin-right: 5%;
+
+   }
+}
