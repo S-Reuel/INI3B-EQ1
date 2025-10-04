@@ -56,6 +56,24 @@
 .botaoEditarEquipe:hover{
     background-color: #2f3b4d;
 }
+
+.botaoExcluirEquipe{
+    position: absolute;
+    top: 75%;
+    right: 7%;
+    height: 30px;
+    text-align: center;
+    line-height: 25px;
+    width: 30px;
+    border-radius: 10px;
+    background-color: inherit;
+    transition: 0.25s;
+}
+
+.botaoEcluirEquipe:hover{
+    background-color: #2f3b4d;
+}
+
 .tituloPagina{
     color: #BE5FDB;
 }

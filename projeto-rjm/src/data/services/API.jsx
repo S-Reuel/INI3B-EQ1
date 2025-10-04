@@ -1,6 +1,6 @@
 import axios from "axios"
 import CryptoJS from "crypto-js"
-import { redirecionar, voltar } from "../../pages/util/functions"
+import { voltar } from "../../pages/util/functions"
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
@@ -190,7 +190,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        await URL.delete(`equipes/${id}`).then((res) => res.data)
+        await URL.delete(`equipes/${id}`).then(() => location.reload())
     } catch (error) {
         alert(error.status)
     }
@@ -256,7 +256,7 @@ export async function updateProjeto(id, params) {
 
 export async function deleteProjeto(id) {
     try {
-        await URL.delete(`projetos/${id}`).then((res) => res.data)
+        await URL.delete(`projetos/${id}`).then(() => location.reload() )
     } catch (error) {
         alert(error.status)
     }
