@@ -52,6 +52,7 @@
    border-color: #4D555E;
    border-style: solid;
    border-radius: 16px;
+   resize: none;
 
    color: #B6B8BB;
    font-weight: 400;
@@ -402,4 +403,21 @@
       margin-right: 5%;
 
    }
+}
+
+
+.textAreo{
+   resize: none;
+   background-color: #212A36;
+   border: 1px;
+   border-color: #4D555E;
+   border-style: solid;
+   border-radius: 16px;
+   color: #B6B8BB;
+   font-weight: 400;
+
+   margin-bottom: var(--input-margin-bottom);
+   padding: 17px 23px;
+
+   width: 100%;
 }

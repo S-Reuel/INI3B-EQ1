@@ -74,6 +74,7 @@ export default function Add_Equipe() {
                         <textarea
                             rows='6' cols='30'
                             value={membros.map((i) => { return (` ${i.nome}`) })}
+                            className={addEquipeStyle.textAreo} disabled
                         />
                         <br /> <br />
                         <button type="submit" onClick={onSave} className={addEquipeStyle.formButton}>Criar</button>
