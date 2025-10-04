@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { deleteUserByEquipe, getEquipeById, getMembros, getUserByName, updateEquipe } from "../data/services/API"
+import { deleteEquipe, deleteUserByEquipe, getEquipeById, getMembros, getUserByName, updateEquipe } from "../data/services/API"
 import { useEffect, useState } from "react"
 import { isDeCripto, redirecionar } from "./util/functions"
 import CabProj from "../ui/components/_cabecalho"
@@ -9,6 +9,7 @@ import trashIcon from "../ui/icons/trash.png"
 
 export default function Editar_Equipe() {
     const { id } = useParams()
+    let decript_id = isDeCripto(id)
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [pesquisa, setPesquisa] = useState('')
@@ -17,7 +18,6 @@ export default function Editar_Equipe() {
 
     useEffect(() => {
         async function fetch() {
-            let decript_id = isDeCripto(id)
             let eq = await getEquipeById(decript_id)
             let me = await getMembros(decript_id)
             setMembros(me)
@@ -28,10 +28,10 @@ export default function Editar_Equipe() {
     }, [])
 
     async function remover(param, tipo) {
-        if(tipo == "Membros futuros"){
+        if (tipo == "Membros futuros") {
             let a = addMembro.filter(obj => obj.ID != param)
             setAddMembro(a)
-        } else if(tipo == "Membros") {
+        } else if (tipo == "Membros") {
             await deleteUserByEquipe(param)
         }
     }
@@ -133,7 +133,7 @@ export default function Editar_Equipe() {
                                             {i.usuario.nome}
                                         </td>
                                         <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, 'Membros')}}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, 'Membros') }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}
@@ -156,7 +156,11 @@ export default function Editar_Equipe() {
                         {listarAddMembros()}
                     </label>
                     <br /><br />
-
+                    {/* Não exclui  */}
+                    <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
+                        e.stopPropagation()
+                        await deleteEquipe(decript_id)
+                    }}>X Excluir</button>
                     <div className={editEquipeStyle.divBotoes}>
                         <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
