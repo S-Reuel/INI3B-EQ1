@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
-import { getEquipeByUser } from "../data/services/API"
+import { deleteEquipe, getEquipeByUser } from "../data/services/API"
 import { isCripto, redirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import Add_Equipe from "./Add_Equipe.jsx"
@@ -51,7 +51,6 @@ export default function Equipes() {
                         e.stopPropagation()
                         caminho(i.id, 'pr')
                     }}>
-
                         <div className={equipeStyle.tituloEquipe}>{i.nome}</div><br />
 
                         <div className={equipeStyle.descEquipe}>{i.descricao}</div>
@@ -60,6 +59,11 @@ export default function Equipes() {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>...</div>
+                        <br /><br /><br />
+                        <div className={equipeStyle.botaoExcluirEquipe} onClick={async (e) => {
+                            e.stopPropagation()
+                            await deleteEquipe(i.id)
+                        }}>X Excluir</div>
                     </div>
                 </>)
             }
@@ -80,6 +84,11 @@ export default function Equipes() {
             }
         })
     }
+
+    async function excluir(e){
+        
+    }
+
     if (localStorage.getItem('authToken')) {
         return (
             <div>
