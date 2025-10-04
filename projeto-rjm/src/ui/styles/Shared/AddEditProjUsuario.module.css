@@ -67,7 +67,7 @@
    font-family: "Space Grotesk";
 }
 
-.iconeDePerfil{
+.iconeDePerfil {
    position: relative;
    width: 130px;
 }
@@ -76,13 +76,14 @@
    height: 130px;
    width: 100%;
    border-radius: 100%;
-   
+
 }
 
-.imgUsuario:hover{
+.imgUsuario:hover {
    opacity: 50%;
 }
-.imgCamera{
+
+.imgCamera {
    position: absolute;
    top: 50%;
    left: 50%;
@@ -90,9 +91,11 @@
 
    display: none;
 }
-.imgUsuario:hover ~ .imgCamera{
-   display: block;  
+
+.imgUsuario:hover~.imgCamera {
+   display: block;
 }
+
 .imgUsuarioModal {
    height: 130px;
    width: 130px;
@@ -108,26 +111,39 @@
 
 .formButton {
    background-color: #4848B6;
-
    border-color: #4848B6;
    border-style: none;
    border-radius: 15px;
-
    color: white;
-
    font-size: var(--input-font-size);
    font-weight: 400;
-
-   
-
    padding: 17px 23px;
-
    transition: 300ms;
    transition-timing-function: ease-in-out;
-
 }
 
 .formButton:hover {
+   background-color: #9696D5;
+}
+
+
+.formButtonDelete {
+   position: absolute;
+   top: 96,4%;
+   right: 87%;
+   background-color: #4848B6;
+   border-color: #4848B6;
+   border-style: none;
+   border-radius: 15px;
+   color: white;
+   font-size: var(--input-font-size);
+   font-weight: 400;
+   padding: 17px 23px;
+   transition: 300ms;
+   transition-timing-function: ease-in-out;
+}
+
+.formButtonDelete:hover {
    background-color: #9696D5;
 }
 
@@ -261,6 +277,7 @@
    color: #9696D5;
    padding-left: 16px;
 }
+
 .thhAtuais2 {
    width: 50%;
 
@@ -287,8 +304,9 @@
    border-right: 1px solid #4D555E;
    padding-left: 16px;
 }
+
 .tdAtuais2 {
-   
+
    padding-left: 16px;
 }
 
@@ -305,11 +323,13 @@
    height: 32px;
    width: 32px;
 }
-.trashImg{
+
+.trashImg {
    height: 24px;
    width: 24px;
 }
-.remvBtn{
+
+.remvBtn {
    background-color: transparent;
    margin-right: 16px;
    height: 24px;
@@ -317,11 +337,13 @@
    padding: 4px;
    border-radius: 8px;
 }
-.remvBtn:hover{
+
+.remvBtn:hover {
    background-color: #1e2731;
    cursor: pointer;
 }
-.imputMembro{
+
+.imputMembro {
    background-color: #212A36;
    border: 1px;
    border-color: #4D555E;
@@ -337,25 +359,28 @@
    width: 100%;
 }
 
-.btnRemoverTodos{
+.btnRemoverTodos {
    padding: 8px;
    color: white;
    margin-right: 8px;
    border-radius: 8px;
    transition: 0.25s;
 }
-.btnRemoverTodos:hover{
+
+.btnRemoverTodos:hover {
    background-color: #1e2731;
    cursor: pointer;
 }
-.btnAdicionarMembro{
+
+.btnAdicionarMembro {
    padding: 8px;
    border-radius: 8px;
    width: min-content;
    transition: 0.25s;
    border: 1px solid #4D555E;
 }
-.btnAdicionarMembro:hover{
+
+.btnAdicionarMembro:hover {
    background-color: #1e2731;
    cursor: pointer;
 }
@@ -382,22 +407,28 @@
    .center {
       margin-left: 0%;
    }
-   .imgUsuario, .imgCamera{
+
+   .imgUsuario,
+   .imgCamera {
       margin-left: 10%;
    }
+
    .lbl {
       margin-left: 5%;
    }
-   .divBotoes{
+
+   .divBotoes {
       display: block;
    }
-   .formButton{
+
+   .formButton {
       margin-left: 5%;
       margin-right: 5%;
    }
+
    .input,
    .selectBox,
-   .inputPaginaPropria{
+   .inputPaginaPropria {
       width: 80%;
       margin-left: 5%;
       margin-right: 5%;
@@ -406,7 +437,7 @@
 }
 
 
-.textAreo{
+.textAreo {
    resize: none;
    background-color: #212A36;
    border: 1px;
