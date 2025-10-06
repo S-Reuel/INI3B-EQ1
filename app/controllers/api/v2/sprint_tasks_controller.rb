@@ -32,7 +32,7 @@ class Api::V2::SprintTasksController < ApplicationController
     if @sprint_task.save
       render json: @sprint_task, status: :created, location: api_v2_sprint_task_url(@sprint_task)
     else
-      render json: @sprint_task.errors, status: :unprocessable_entity
+      render json: @sprint_task.errors, status: :unprocessable_content
     end
   end
 
@@ -41,7 +41,7 @@ class Api::V2::SprintTasksController < ApplicationController
     if @sprint_task.update(sprint_task_params)
       render json: @sprint_task
     else
-      render json: @sprint_task.errors, status: :unprocessable_entity
+      render json: @sprint_task.errors, status: :unprocessable_content
     end
   end
 

@@ -33,7 +33,7 @@ class  Api::V2::ProjetoSprintsController < ApplicationController
     if @projeto_sprint.save
       render json: @projeto_sprint, status: :created, location: @projeto_sprint
     else
-      render json: @projeto_sprint.errors, status: :unprocessable_entity
+      render json: @projeto_sprint.errors, status: :unprocessable_content
     end
   end
 
@@ -42,7 +42,7 @@ class  Api::V2::ProjetoSprintsController < ApplicationController
     if @projeto_sprint.update(projeto_sprint_params)
       render json: @projeto_sprint
     else
-      render json: @projeto_sprint.errors, status: :unprocessable_entity
+      render json: @projeto_sprint.errors, status: :unprocessable_content
     end
   end
 

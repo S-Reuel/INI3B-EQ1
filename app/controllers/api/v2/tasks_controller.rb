@@ -2,7 +2,7 @@ class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
 
-  $host = "http://eq1.ini3b.projetoscti.com.br"
+  $host = "http://localhost:3000"
   # GET /tasks
   def index
     @tasks = Task.where("excluido = ?", false)
@@ -54,7 +54,7 @@ class Api::V2::TasksController < ApplicationController
     if @task.save
       render json: @task, status: :created, location: api_v2_task_url(@task)
     else
-      render json: @task.errors, status: :unprocessable_entity
+      render json: @task.errors, status: :unprocessable_content
     end
   end
 
@@ -66,7 +66,7 @@ class Api::V2::TasksController < ApplicationController
       end
       render json: @task
     else
-      render json: @task.errors, status: :unprocessable_entity
+      render json: @task.errors, status: :unprocessable_content
     end
   end
 
