@@ -8,8 +8,8 @@ import userIcon from "../ui/icons/user.png"
 import trashIcon from "../ui/icons/trash.png"
 
 export default function Editar_Equipe() {
-    const { id } = useParams()
-    let decript_id = isDeCripto(id)
+    const { id_equipe } = useParams()
+    let decript_id = isDeCripto(id_equipe)
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [pesquisa, setPesquisa] = useState('')

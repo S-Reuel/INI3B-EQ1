@@ -85,10 +85,6 @@ export default function Projetos() {
                             }}>
                                 <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
                             </button>
-                            <div className={StyleProj.botaoExcluirEquipe} onClick={async (e) => {
-                                e.stopPropagation()
-                                await deleteProjeto(i.id)
-                            }}>X Excluir</div>
                             <br />
                         </div>
                         <br />
