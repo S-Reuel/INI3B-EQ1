@@ -53,7 +53,7 @@ export default function CabProj() {
 
             <div className={cabProjetoStyle.IrEquipes} onClick={() => redirecionar('eq')}>Ver Equipes</div>
 
-            <img src={(localStorage.getItem('avatar')) ? localStorage.getItem('avatar') : iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} id='btnModal' onClick={abrirModal} />
+            <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} alt="Perfil do Usuário" className={cabProjetoStyle.usuario} id='btnModal' onClick={abrirModal} />
 
           </div>
 

@@ -51,7 +51,6 @@ export default function Equipes() {
                         e.stopPropagation()
                         caminho(i.id, 'pr')
                     }}>
-
                         <div className={equipeStyle.tituloEquipe}>{i.nome}</div><br />
 
                         <div className={equipeStyle.descEquipe}>{i.descricao}</div>
@@ -74,21 +73,24 @@ export default function Equipes() {
                     style={{
                         overlay: {
                             overflowY: "scroll",
+
                             backgroundColor: 'rgba(0, 0 ,0, 0.8)'
                         },
                         content: {
                             border: '1px solid black',
                             background: '#151B23',
+                            maxHeight: '70vh',
+                            overflowY: "scroll",
 
                         }
                     }}
                 >
-                    <button className={equipeStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    
                     <Add_Equipe />
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
-                    <div className={equipeStyle.navEquipes}></div>
+                    
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>

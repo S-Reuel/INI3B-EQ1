@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { redefinirSenha } from "../data/services/API";
-
 import eyeOFF from "../ui/icons/eyeOFF.svg";
 import eyeON from "../ui/icons/eyeON.svg";
-
 import redefinirStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function RedefinirSenha() {

@@ -19,7 +19,7 @@ export default function Add_Equipe() {
         document.getElementById("addMembro").value = ''
         if (res.nome != undefined && res.excluido == false) {
             document.getElementById("erro").innerHTML = ''
-            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}` }, ...membros]
+            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "dev" }, ...membros]
             setMembro(item)
             setPesquisa('')
         } else {
@@ -29,7 +29,7 @@ export default function Add_Equipe() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        postEquipe(membros.map((i) => { return (i.ID) }), { nome, descricao })
+        postEquipe(membros, { nome, descricao })
     }
 
 
@@ -74,6 +74,7 @@ export default function Add_Equipe() {
                         <textarea
                             rows='6' cols='30'
                             value={membros.map((i) => { return (` ${i.nome}`) })}
+                            className={addEquipeStyle.textAreo} disabled
                         />
                         <br /> <br />
                         <button type="submit" onClick={onSave} className={addEquipeStyle.formButton}>Criar</button>

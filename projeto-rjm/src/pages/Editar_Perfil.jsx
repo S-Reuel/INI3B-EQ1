@@ -4,8 +4,9 @@ import iconeUser from "../ui/icons/user.png"
 import { redirecionar } from './util/functions.jsx'
 import Modal from 'react-modal'
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
-import CabProj from 'projeto-rjm/src/ui/components/_cabecalho.jsx'
+import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
+import camera from "../ui/icons/camera.svg"
 
 Modal.setAppElement('#root');
 
@@ -84,7 +85,11 @@ export default function EditUser() {
                             <form className={perfilStyle.form}>
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label> <br />
-                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                    <div className={perfilStyle.iconeDePerfil}>
+                                        <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
+                                        <img src={camera} className={perfilStyle.imgCamera}/>
+                                    </div>
+
                                     <div>
                                         <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
                                             style={{
@@ -102,7 +107,7 @@ export default function EditUser() {
                                                 <div className={perfilStyle.modalUserImg}>
                                                     <label className={perfilStyle.lbl}>Foto atual</label> <br />
                                                     <br />
-                                                    <img src={(localStorage.getItem('avatar') != null) ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
+                                                    <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
                                                     <br /><br />
                                                     <input type="file" onChange={handleFileChange} />
                                                     <div className={perfilStyle.botoesModalImg}>
@@ -120,6 +125,7 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>Nome</label>
                                     <br />
+                                    <br />
                                     <input
                                         defaultValue={nome || ''}
                                         onChange={(e) => setNome(e.target.value)}
@@ -132,6 +138,7 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>E-mail Cadastrado</label>
                                     <br />
+                                    <br />
                                     <input
                                         defaultValue={email || ''}
                                         type="mail" name="email"
@@ -143,6 +150,8 @@ export default function EditUser() {
                                 <label>
                                     <label className={perfilStyle.lbl}>Usuário do Github</label>
                                     <br />
+                                    <br />
+
                                     <input
                                         defaultValue={user_git || ''}
                                         type="text" name="user_git"

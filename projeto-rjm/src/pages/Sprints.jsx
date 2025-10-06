@@ -3,6 +3,7 @@ import CabProj from "../ui/components/_cabecalho"
 import { useEffect, useState } from "react"
 import { getProjetoId, getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
+import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
 import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
@@ -22,7 +23,7 @@ export default function Sprints() {
             let res = await getSprintsByProjeto(decript_id)
             let r = await getProjetoId(decript_id)
             setSprints(res.sprints)
-            setProj(r.nome)
+            setProj(r)
         }
         fetch()
     }, [])
@@ -98,10 +99,12 @@ export default function Sprints() {
                     <Add_Sprint />
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
-                    <div className={StylesSprint.navEquipes}></div>
+                    <div className={StylesSprint.navEquipes}>
+                        <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: {projeto.descricao}</div> <br />
+                    </div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>
-                            <h1 className={StylesSprint.tituloPagina}>{projeto}</h1>
+                            <h1 className={StylesSprint.tituloPagina}>{projeto.nome}</h1>
 
                         </div>
                         <br />

@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { postProjeto } from "../data/services/API"
-import { redirecionar } from "./util/functions"
-import "projeto-rjm/src/ui/components/_cabecalho.jsx"
+import { isDeCripto, redirecionar } from "./util/functions"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 
@@ -9,10 +8,11 @@ export default function Add_Projeto(props) {
     const {equipe_id} = useParams();
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
+    let decript_id = isDeCripto(equipe_id)
 
     const onSave = async (e) => {
         e.preventDefault()
-        postProjeto(equipe_id, { nome, descricao})
+        postProjeto(decript_id, { nome, descricao})
     }
 
     if (localStorage.getItem('authToken')) {
