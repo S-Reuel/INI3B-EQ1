@@ -21,7 +21,7 @@ class Api::V2::PasswordController < ApplicationController
       if usuario.update(password: params[:password])
         render json: { alert: "Senha redefinida com sucesso!" }
       else
-        render json: { error: usuario.errors.full_messages }, status: :unprocessable_entity
+        render json: { error: usuario.errors.full_messages }, status: :unprocessable_content
       end
     rescue JWT::ExpiredSignature
       render json: { alert: "Token expirado. Solicite outro." }, status: :unauthorized

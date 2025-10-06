@@ -48,7 +48,7 @@ class Api::V2::UsuariosController < ApplicationController
     if @usuario.save
       render json: @usuario, status: :created, location: api_v2_usuario_url(@usuario)
     else
-      render json: @usuario.errors, status: :unprocessable_entity
+      render json: @usuario.errors, status: :unprocessable_content
     end
   end
 
@@ -60,7 +60,7 @@ class Api::V2::UsuariosController < ApplicationController
       end
       render json: @usuario
     else
-      render json: @usuario.errors, status: :unprocessable_entity
+      render json: @usuario.errors, status: :unprocessable_content
     end
   end
 

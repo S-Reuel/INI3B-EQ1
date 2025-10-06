@@ -21,7 +21,7 @@ class Api::V2::GitHubsController < ApplicationController
     if @git_hub.save
       render json: @git_hub, status: :created, location: @git_hub
     else
-      render json: @git_hub.errors, status: :unprocessable_entity
+      render json: @git_hub.errors, status: :unprocessable_content
     end
   end
 
@@ -68,7 +68,7 @@ class Api::V2::GitHubsController < ApplicationController
     if @git_hub.update(git_hub_params)
       render json: @git_hub
     else
-      render json: @git_hub.errors, status: :unprocessable_entity
+      render json: @git_hub.errors, status: :unprocessable_content
     end
   end
 
