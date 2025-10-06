@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { postSprint } from "../data/services/API"
-import { redirecionar } from "./util/functions"
+import { isDeCripto, redirecionar } from "./util/functions"
 import addSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 export default function Add_Sprint() {
@@ -8,13 +8,17 @@ export default function Add_Sprint() {
     const [nome, setNome] = useState('')
     const [dataI, setDI] = useState()
     const [dataF, setDF] = useState()
+    let decript_id = isDeCripto(projeto_id)
 
     const onSave = async (e) => {
         e.preventDefault()
         let horario = `${new Date().toISOString().split('T')[1]}`
         let data_inicio = `${dataI}T${horario}`
         let data_fim = `${dataF}T${horario}`
-        postSprint({ nome, data_inicio, data_fim, projeto_id})
+        let mensagem = await  postSprint({ nome, data_inicio, data_fim, projeto_id: decript_id})
+        if (mensagem) {
+            document.getElementById("response").innerHTML = "Não foi possível a criação"
+        }
     }
 
     if (localStorage.getItem('authToken')) {
@@ -22,6 +26,7 @@ export default function Add_Sprint() {
             <div className={addSprintStyle.paginaBody}>
                 <center className={addSprintStyle.center}>
                     <h1 className={addSprintStyle.tituloPagina}>Criar nova Sprint</h1>
+                    <h3 id="response"></h3>
                     <form onSubmit={onSave} className={addSprintStyle.form}>
                         <label>
                             <label className={addSprintStyle.lbl}>Nome da Sprint</label><br />
@@ -55,9 +60,3 @@ export default function Add_Sprint() {
         return (redirecionar('login'))
     }
 }
-
-/*
-    Campos necessarios: nome da sprint, data de inicio, data de termino e id do projeto que ela está incerida;
-    mudar o forms
-    Criar Rotas na API
-*/

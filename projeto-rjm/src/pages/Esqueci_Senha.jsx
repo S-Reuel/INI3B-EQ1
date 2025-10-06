@@ -13,8 +13,8 @@ export default function EsqueciSenha() {
         setBotaoDesativado("disabled")
         e.preventDefault()
         let status = await esqueciSenha(emailEnviado)
-        if (!(status == 500 || status == 402)) {
-            // location.href = '/login/redefinirSenha'
+        if (status) {
+            location.href = '/login/redefinirSenha'
             console.log(status)
         } else {
             setBotaoDesativado("")

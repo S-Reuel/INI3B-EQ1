@@ -28,7 +28,7 @@ export default function Projetos() {
             let res = await getProjetosByEquipe(decript_id)
             let r = await getEquipeById(decript_id)
             let me = await getMembros(decript_id)
-            // setProj(res.projetos)
+            setProj(res.projetos)
             setEquipe(r)
             setMembro(me)
         }

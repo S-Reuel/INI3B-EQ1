@@ -5,7 +5,7 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
+    baseURL: 'http://localhost:3000/api/v2/' /* Servidor CTI */
 
 })
 
@@ -126,29 +126,27 @@ export async function postEquipe(membros, params) {
 async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
-        let adm = "admin"
-        if (confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior."))
-            if (usuario_id != 0) {
-                await URL.post('usuario_equipes', { usuario_id, equipe_id, adm }).then(() => {
-                    if (membros.length != 0) {
-                        membros.map((usuario) => {
-                            let usuario_id = usuario.ID
-                            let dev = usuario.papel
-                            URL.post('usuario_equipes', { usuario_id, equipe_id, dev })
-                        })
-                        location.reload()
-                    }
-                })
-            } else {
+        if (usuario_id != 0) {
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "admin" }).then(() => {
                 if (membros.length != 0) {
                     membros.map((usuario) => {
                         let usuario_id = usuario.ID
-                        let dev = usuario.papel
-                        URL.post('usuario_equipes', { usuario_id, equipe_id, dev })
+                        let papel = usuario.papel
+                        URL.post('usuario_equipes', { usuario_id, equipe_id, papel })
                     })
                     location.reload()
                 }
+            })
+        } else {
+            if (membros.length != 0) {
+                membros.map((usuario) => {
+                    let usuario_id = usuario.ID
+                    let papel = usuario.papel
+                    URL.post('usuario_equipes', { usuario_id, equipe_id, papel })
+                })
+                location.reload()
             }
+        }
     } catch (error) {
         alert(error.status);
     }
@@ -190,6 +188,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
+        
         await URL.delete(`equipes/${id}`).then(() => { redirecionar('eq') })
     } catch (error) {
         alert(error.status)
@@ -198,9 +197,9 @@ export async function deleteEquipe(id) {
 
 export async function deleteUserByEquipe(id) {
     try {
-        await URL.patch(`usuario_equipes/${id}`).then(() => { location.reload() })
+        await URL.delete(`usuario_equipes/${id}`).then(() => { location.reload() })
     } catch (error) {
-        console.log(error.status)
+        return(true)
     }
 }
 
@@ -223,7 +222,7 @@ async function postProjetoByEquipe(params) {
     try {
         await URL.post('equipe_projetos', params).then(() => { location.reload() })
     } catch (error) {
-        return (error.status);
+        alert(error.status);
     }
 }
 
@@ -265,14 +264,9 @@ export async function deleteProjeto(id) {
 /*  CRUD's Sprints */
 export async function postSprint(params) {
     try {
-        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {
-            await URL.post('sprints', params).then(() => { location.reload() })
-        } else {
-            location.reload()
-        }
+        await URL.post('sprints', params).then(() => { location.reload() })
     } catch (error) {
-        console.log(error.status)
+        return(true)
     }
 }
 
@@ -404,7 +398,7 @@ export async function esqueciSenha(params) {
         let r = await URL.post(`esqueci/`, { email: params })
         return r.data.alert
     } catch (error) {
-        return (error.status)
+        return (true)
     }
 }
 

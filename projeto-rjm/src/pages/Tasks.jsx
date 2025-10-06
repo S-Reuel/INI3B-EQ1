@@ -4,6 +4,7 @@ import { getSprintsId, getTaskBySprint } from "../data/services/API"
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
 import React from 'react';
+import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import Modal from 'react-modal';
 import Add_Task from "./Add_Task";
 import iconCalendario from '../ui/icons/calendario.svg'
@@ -23,7 +24,7 @@ export default function Tasks() {
             const res = await getTaskBySprint(decript_id)
             let r = await getSprintsId(decript_id)
             setTasks(res.tasks)
-            setSprint(r.nome)
+            setSprint(r)
         }
         fetch()
     }, []);
@@ -138,13 +139,15 @@ export default function Tasks() {
                     <Add_Task />
                 </Modal>
                 <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
-
                 <div className={TasksStyle.paginaEquipes}>
-                    <div className={TasksStyle.navEquipes}></div>
+                    <div className={TasksStyle.navEquipes}>
+                        <div className={equipeStyle.descEquipe} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
+                        <br /> 
+                        <div className={equipeStyle.descEquipe} teste="true">Data de término da Sprint: <br />{isFormat(new Date(sprint.data_fim))}</div>
+                    </div>
                     <div>
                         <div className={TasksStyle.tituloFlex}>
-                            <h1 className={TasksStyle.tituloPagina}>{sprint}</h1>
-
+                            <h1 className={TasksStyle.tituloPagina}>{sprint.nome}</h1>
                         </div>
                         <br />
                         <hr className={TasksStyle.hr1} color="#4a4a4a" />

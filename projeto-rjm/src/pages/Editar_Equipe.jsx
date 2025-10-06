@@ -32,7 +32,10 @@ export default function Editar_Equipe() {
             let a = addMembro.filter(obj => obj.ID != param)
             setAddMembro(a)
         } else if (tipo == "Membros") {
-            await deleteUserByEquipe(param)
+            let mensagem = await deleteUserByEquipe(param)
+            if (mensagem) {
+                document.getElementById("erro").innerHTML = "Membro não removido da equipe!"
+            }
         }
     }
 
@@ -43,7 +46,7 @@ export default function Editar_Equipe() {
                     <div className={editEquipeStyle.membrosAtuaisDiv}>
                         <div className={editEquipeStyle.atuaisTitulo2}>
                             <label>Membros a serem adicionados</label>
-                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { if (window.confirm("Deseja realmente remover todos os usuários?")) { setAddMembro([]) } }}>Remover todos</div>
+                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { setAddMembro([])}}>Remover todos</div>
                         </div>
                         <table className={editEquipeStyle.atuaisTable}>
                             <tr className={editEquipeStyle.thAtuais}>
@@ -96,6 +99,10 @@ export default function Editar_Equipe() {
             <CabProj />
             <center className={editEquipeStyle.center}>
                 <h1 className={editEquipeStyle.tituloPagina}>Editar Equipe</h1>
+            <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
+                membros.map((i) => {remover(i.id, 'Membros')})
+                await deleteEquipe(decript_id)
+            }}>X Excluir</button>
                 <form className={editEquipeStyle.form}>
                     <label>
                         <p className={editEquipeStyle.inputTipo}>Nome:</p>
@@ -156,11 +163,6 @@ export default function Editar_Equipe() {
                         {listarAddMembros()}
                     </label>
                     <br /><br />
-                    {/* Não exclui  */}
-                    <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
-                        e.stopPropagation()
-                        await deleteEquipe(decript_id)
-                    }}>X Excluir</button>
                     <div className={editEquipeStyle.divBotoes}>
                         <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
