@@ -76,7 +76,7 @@ RSpec.describe "/usuario_tasks", type: :request do
       it "renders a JSON response with errors for the new usuario_task" do
         post usuario_tasks_url,
              params: { usuario_task: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe "/usuario_tasks", type: :request do
         usuario_task = UsuarioTask.create! valid_attributes
         patch usuario_task_url(usuario_task),
               params: { usuario_task: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end

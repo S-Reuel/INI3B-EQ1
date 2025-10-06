@@ -56,7 +56,7 @@ class Api::V2::UsuarioEquipesController < ApplicationController
     if @usuario_equipe.save
       render json: @usuario_equipe, status: :created, location: api_v2_usuario_equipe_url(@usuario_equipe)
     else
-      render json: @usuario_equipe.errors, status: :unprocessable_entity
+      render json: @usuario_equipe.errors, status: :unprocessable_content
     end
   end
 
@@ -65,7 +65,7 @@ class Api::V2::UsuarioEquipesController < ApplicationController
     if @usuario_equipe.update(usuario_equipe_params)
       render json: @usuario_equipe
     else
-      render json: @usuario_equipe.errors, status: :unprocessable_entity
+      render json: @usuario_equipe.errors, status: :unprocessable_content
     end
   end
 

@@ -42,7 +42,7 @@ class Api::V2::ProjetosController < ApplicationController
     if @projeto.save
       render json: @projeto, status: :created, location: api_v2_projeto_url(@projeto)
     else
-      render json: @projeto.errors, status: :unprocessable_entity
+      render json: @projeto.errors, status: :unprocessable_content
     end
   end
 
@@ -51,7 +51,7 @@ class Api::V2::ProjetosController < ApplicationController
     if @projeto.update(projeto_params)
       render json: @projeto
     else
-      render json: @projeto.errors, status: :unprocessable_entity
+      render json: @projeto.errors, status: :unprocessable_content
     end
   end
 

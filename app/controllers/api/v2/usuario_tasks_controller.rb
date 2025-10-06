@@ -21,7 +21,7 @@ class Api::V2::UsuarioTasksController < ApplicationController
     if @usuario_task.save
       render json: @usuario_task, status: :created, location: api_v2_usuario_task_url(@usuario_task)
     else
-      render json: @usuario_task.errors, status: :unprocessable_entity
+      render json: @usuario_task.errors, status: :unprocessable_content
     end
   end
 
@@ -30,7 +30,7 @@ class Api::V2::UsuarioTasksController < ApplicationController
     if @usuario_task.update(usuario_task_params)
       render json: @usuario_task
     else
-      render json: @usuario_task.errors, status: :unprocessable_entity
+      render json: @usuario_task.errors, status: :unprocessable_content
     end
   end
 

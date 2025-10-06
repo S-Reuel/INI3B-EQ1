@@ -24,7 +24,7 @@ class Api::V2::EquipesController < ApplicationController
     if @equipe.save
       render json: @equipe, status: :created, location: api_v2_equipe_url(@equipe)
     else
-      render json: @equipe.errors, status: :unprocessable_entity
+      render json: @equipe.errors, status: :unprocessable_content
     end
   end
 
@@ -33,7 +33,7 @@ class Api::V2::EquipesController < ApplicationController
     if @equipe.update(equipe_params)
       render json: @equipe
     else
-      render json: @equipe.errors, status: :unprocessable_entity
+      render json: @equipe.errors, status: :unprocessable_content
     end
   end
 
