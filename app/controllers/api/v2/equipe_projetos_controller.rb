@@ -32,7 +32,7 @@ class Api::V2::EquipeProjetosController < ApplicationController
     if @equipe_projeto.save
       render json: @equipe_projeto, status: :created, location: api_v2_equipe_projeto_url(@equipe_projeto)
     else
-      render json: @equipe_projeto.errors, status: :unprocessable_entity
+      render json: @equipe_projeto.errors, status: :unprocessable_content
     end
   end
 
@@ -41,7 +41,7 @@ class Api::V2::EquipeProjetosController < ApplicationController
     if @equipe_projeto.update(equipe_projeto_params)
       render json: @equipe_projeto
     else
-      render json: @equipe_projeto.errors, status: :unprocessable_entity
+      render json: @equipe_projeto.errors, status: :unprocessable_content
     end
   end
 
