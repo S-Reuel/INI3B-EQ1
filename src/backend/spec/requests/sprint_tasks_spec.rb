@@ -76,7 +76,7 @@ RSpec.describe "/sprint_tasks", type: :request do
       it "renders a JSON response with errors for the new sprint_task" do
         post sprint_tasks_url,
              params: { sprint_task: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe "/sprint_tasks", type: :request do
         sprint_task = SprintTask.create! valid_attributes
         patch sprint_task_url(sprint_task),
               params: { sprint_task: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
