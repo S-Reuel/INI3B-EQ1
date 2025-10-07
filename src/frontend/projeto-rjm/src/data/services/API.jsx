@@ -5,8 +5,8 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    baseURL: 'http://localhost:3000/api/v2/' /* Local */
-    // baseURL: 'https://b2418ed164e5.ngrok-free.app/api/v2/'  /* Ngrok */
+    baseURL: 'http://localhost:3000/api/v2/' /* Servidor CTI */
+
 })
 
 /* Função para tratar Promise */
@@ -126,14 +126,27 @@ export async function postEquipe(membros, params) {
 async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
-        let adm = "admin"
-        if (confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior."))
-            await URL.post('usuario_equipes', { usuario_id, equipe_id, adm }).then(() => {
+        if (usuario_id != 0) {
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "admin" }).then(() => {
                 if (membros.length != 0) {
-                    let dev = 'dev'
-                    membros.map((usuario_id) => URL.post('usuario_equipes', { usuario_id, equipe_id, dev })).then(() => { location.reload() })
+                    membros.map((usuario) => {
+                        let usuario_id = usuario.ID
+                        let papel = usuario.papel
+                        URL.post('usuario_equipes', { usuario_id, equipe_id, papel })
+                    })
+                    location.reload()
                 }
             })
+        } else {
+            if (membros.length != 0) {
+                membros.map((usuario) => {
+                    let usuario_id = usuario.ID
+                    let papel = usuario.papel
+                    URL.post('usuario_equipes', { usuario_id, equipe_id, papel })
+                })
+                location.reload()
+            }
+        }
     } catch (error) {
         alert(error.status);
     }
@@ -161,20 +174,32 @@ export async function getEquipeByUser() {
     }
 }
 
-export async function updateEquipe(id, params) {
+export async function updateEquipe(membros, id, params) {
     // Atualiza a equipe
     try {
-        await URL.patch(`equipes/${id}`, params).then(() => redirecionar('eq'))
+        await URL.patch(`equipes/${id}`, params).then(() => {
+            addUserEquipe(membros, 0, id)
+        })
     } catch (error) {
         return (error.status);
     }
 }
 
 export async function deleteEquipe(id) {
+    // Deleta equipe
     try {
-        await URL.delete(`equipes/${id}`).then((res) => res.data)
+        
+        await URL.delete(`equipes/${id}`).then(() => { redirecionar('eq') })
     } catch (error) {
         alert(error.status)
+    }
+}
+
+export async function deleteUserByEquipe(id) {
+    try {
+        await URL.delete(`usuario_equipes/${id}`).then(() => { location.reload() })
+    } catch (error) {
+        return(true)
     }
 }
 
@@ -197,7 +222,7 @@ async function postProjetoByEquipe(params) {
     try {
         await URL.post('equipe_projetos', params).then(() => { location.reload() })
     } catch (error) {
-        return (error.status);
+        alert(error.status);
     }
 }
 
@@ -230,7 +255,7 @@ export async function updateProjeto(id, params) {
 
 export async function deleteProjeto(id) {
     try {
-        await URL.delete(`projetos/${id}`).then((res) => res.data)
+        await URL.delete(`projetos/${id}`).then(() => location.reload() )
     } catch (error) {
         alert(error.status)
     }
@@ -239,20 +264,15 @@ export async function deleteProjeto(id) {
 /*  CRUD's Sprints */
 export async function postSprint(params) {
     try {
-        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {
-            await URL.post('sprints', params).then(() => { location.reload() })
-        } else {
-            location.reload()
-        }
+        await URL.post('sprints', params).then(() => { location.reload() })
     } catch (error) {
-        alert(error.status)
+        return(true)
     }
 }
 
 export async function getSprintsByProjeto(id) {
     try {
-        let res = await URL.post(`projetos/ps/`,{id})
+        let res = await URL.post(`projetos/ps/`, { id })
         return res.data
     } catch (error) {
         alert(error.status)
@@ -359,7 +379,7 @@ export async function postLogin(params) {
         var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
         var dadosCriptografados = CryptoJS.AES.encrypt(params.email, key).toString()
         // Criptografar e salvar
-        await URL.post('auth/login', params).then((r)=>{
+        await URL.post('auth/login', params).then((r) => {
             let t = r.data.token
             if (t != '') {
                 onSession('authToken', t)
@@ -378,7 +398,7 @@ export async function esqueciSenha(params) {
         let r = await URL.post(`esqueci/`, { email: params })
         return r.data.alert
     } catch (error) {
-        alert(error.status)
+        return (true)
     }
 }
 

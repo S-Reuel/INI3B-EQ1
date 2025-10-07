@@ -137,3 +137,22 @@
   line-height: 25px;
   text-align: center;
 }
+@media screen and (max-width: 379px) {
+  .cabecalho_proj{
+    width: 100vw;
+    height: auto;
+    justify-content: left;
+    word-break: normal;
+  }
+  .botaoCadastro, .botaoLogin, .IrEquipes{
+    height: auto;
+    width: auto;
+  }
+  .usuario{
+    width: 16px;
+    height: 16px;
+  }
+  .codra{
+    display: none;
+  }
+}

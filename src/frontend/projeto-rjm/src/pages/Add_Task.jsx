@@ -2,19 +2,21 @@ import { useState } from "react"
 import { postTask } from "../data/services/API"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from "react-router-dom"
+import { isDeCripto } from "./util/functions"
 
 
 export default function Add_Task() {
     const {sprint_id} = useParams()
     const [titulo, setTitulo] = useState('')
     const [descricao, setDes] = useState('')
+    let decript_id = isDeCripto(sprint_id)
 
     const onSave = async (e) => {
         e.preventDefault()
         var element = document.getElementById("selectStatus")
         var status = element.options[element.selectedIndex].value
         var arquivos = document.getElementById("arq").value
-        postTask(sprint_id, {titulo, descricao, status, arquivos})
+        postTask(decript_id, {titulo, descricao, status, arquivos})
     }
 
     if (localStorage.getItem('authToken')) {
@@ -24,7 +26,7 @@ export default function Add_Task() {
                     <h1 className={addProjStyle.tituloPagina}>Criar nova Task</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
                         <input type="file" name="arquivo" id="arq" />
-                        <br />
+                        <br /> <br />
                         <label>
                             <label>Título da Task</label><br />
                             <input

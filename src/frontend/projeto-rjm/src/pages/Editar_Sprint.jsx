@@ -3,7 +3,7 @@ import { getSprintsId, updateSprint } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isDeCripto, isFormatDate } from "./util/functions"
-import editSprintStyle from "projeto-rjm/src/ui/styles/Shared/AddEditProjUsuario.module.css"
+import editSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Sprint() {
     const { id } = useParams()

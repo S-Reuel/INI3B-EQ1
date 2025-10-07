@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
-import { getEquipeById, getProjetosByEquipe } from "../data/services/API.jsx"
+import { deleteProjeto, getEquipeById, getMembros, getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import { isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
@@ -10,20 +10,27 @@ import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import { useParams } from "react-router-dom"
 import Add_Projeto from './Add_Projeto.jsx'
 import imgMaisProjeto from '../ui/icons/mais.png'
+import setaDetails from '../ui/icons/setaDetails.png'
+import mmbros from '../ui/icons/membrosEquipe.png'
+import clipbb from '../ui/icons/clipboard.png'
+import holderUser from '../ui/icons/userHolderSla.png'
 
 Modal.setAppElement('#root');
 export default function Projetos() {
     const { equipe_id } = useParams()
     const [projetos, setProj] = useState([])
     const [equipe, setEquipe] = useState([])
+    const [membros, setMembro] = useState([])
 
     useEffect(() => {
         async function fetch() {
             let decript_id = isDeCripto(equipe_id)
             let res = await getProjetosByEquipe(decript_id)
             let r = await getEquipeById(decript_id)
+            let me = await getMembros(decript_id)
             setProj(res.projetos)
-            setEquipe(r.nome)
+            setEquipe(r)
+            setMembro(me)
         }
         fetch()
     }, [])
@@ -78,6 +85,10 @@ export default function Projetos() {
                             }}>
                                 <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
                             </button>
+                            <div className={StyleProj.botaoExcluirEquipe} onClick={async (e) => {
+                                e.stopPropagation()
+                                await deleteProjeto(i.id)
+                            }}>X Excluir</div>
                             <br />
                         </div>
                         <br />
@@ -86,6 +97,7 @@ export default function Projetos() {
             }
         })
     }
+
 
     if (localStorage.getItem('authToken')) {
         return (
@@ -108,11 +120,32 @@ export default function Projetos() {
                 </Modal>
                 <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <div className={StyleProj.paginaEquipes}>
-                    <div className={StyleProj.navEquipes}></div>
+                    <div className={StyleProj.navEquipes}>
+                        <details className={StyleProj.descEquipe} open='true'>
+                            <summary>
+                                <img src={setaDetails} className={StyleProj.icon} />
+                                <img src={clipbb} className={StyleProj.ilustIcon} />
+                                Descrição
+                            </summary>
+                            <div teste="true" className={StyleProj.descConteudo}>{equipe.descricao}</div>
+                            <br />
+                        </details>
+                        <br />
+                        <details className={StyleProj.descEquipe} open='true'>
+                            <summary>
+                                <img src={setaDetails} className={StyleProj.icon} />
+                                <img src={mmbros} className={StyleProj.ilustIcon} />
+                                Membros
+                            </summary>
+                            <div teste="true" className={StyleProj.descConteudo}>{membros.map((i) => { return (<div teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
+                            <br />
+                        </details>
+
+
+                    </div>
                     <div>
                         <div className={StyleProj.tituloFlex}>
-                            <h1 className={StyleProj.tituloPagina}>{equipe}</h1>
-
+                            <h1 className={StyleProj.tituloPagina}>{equipe.nome}</h1>
                         </div>
                         <br />
                         <hr className={StyleProj.hr1} color="#4a4a4a" />

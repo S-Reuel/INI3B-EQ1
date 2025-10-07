@@ -1,4 +1,3 @@
-// import styles from '../ui/components/Rec/Rec.module.css'
 import { useState } from "react";
 import { esqueciSenha } from "../data/services/API";
 import esqueciStyle from '../ui/styles/Shared/FormConta.module.css'
@@ -13,12 +12,13 @@ export default function EsqueciSenha() {
         setEmail("")
         setBotaoDesativado("disabled")
         e.preventDefault()
-        let mensagem = await esqueciSenha(emailEnviado)
-        if (mensagem == 'Um email de redefinição foi enviado') {
+        let status = await esqueciSenha(emailEnviado)
+        if (status) {
             location.href = '/login/redefinirSenha'
+            console.log(status)
         } else {
             setBotaoDesativado("")
-            document.getElementById("response").innerHTML = JSON.stringify(mensagem)
+            document.getElementById("response").innerHTML = "Email não encontrado!"
         }
     }
 
