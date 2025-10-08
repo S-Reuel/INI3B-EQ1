@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProjetoId, updateProjeto } from "../data/services/API";
+import { deleteProjeto, getProjetoId, updateProjeto } from "../data/services/API";
 import { useEffect, useState } from "react";
 import editProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from "../ui/components/_cabecalho";
@@ -7,13 +7,13 @@ import { isDeCripto } from "./util/functions";
 
 
 export default function Editar_Projeto() {
-    const { id } = useParams()
+    const { id_projeto } = useParams()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
+    let decript_id = isDeCripto(id_projeto)
 
     useEffect(() => {
         async function fetch() {
-            let decript_id = isDeCripto(id)
             const req = await getProjetoId(decript_id)
             setNome(req.nome)
             setDesc(req.descricao)
@@ -23,15 +23,19 @@ export default function Editar_Projeto() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateProjeto(id, { nome, descricao })
+        updateProjeto(decript_id, { nome, descricao })
     }
     if (localStorage.getItem('authToken')) {
         return (
             <div className={editProjStyle.paginaBody}>
-                <CabProj/>
+                <CabProj />
                 <center className={editProjStyle.center}>
                     <h1 className={editProjStyle.tituloPagina}>Editar Projeto</h1>
-                    <form  className={editProjStyle.form}>
+                    <button onClick={async (e) => {
+                        e.stopPropagation()
+                        await deleteProjeto(decript_id)
+                    }}>X Excluir</button>
+                    <form className={editProjStyle.form}>
                         <label >
                             <p className={editProjStyle.inputTipo}>Nome do Projeto:</p>
                             <input
@@ -43,7 +47,7 @@ export default function Editar_Projeto() {
                         </label>
                         <label >
                             <p className={editProjStyle.inputTipo}>Descrição:</p>
-                            <textarea 
+                            <textarea
                                 rows='8' cols='50'
                                 className={editProjStyle.input}
                                 defaultValue={descricao}
@@ -54,11 +58,11 @@ export default function Editar_Projeto() {
                         <br /><br />
                         <div className={editProjStyle.divBotoes}>
                             <button className={editProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
-                            <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
+                            <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
 
                     </form>
-                    <br/>
+                    <br />
                 </center>
             </div>
         )
