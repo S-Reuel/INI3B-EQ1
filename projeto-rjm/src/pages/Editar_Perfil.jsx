@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { esqueciSenha, getUserByEmail, updateUser } from '../data/services/API.jsx'
+import { deleteUser, esqueciSenha, getUserByEmail, updateUser } from '../data/services/API.jsx'
 import iconeUser from "../ui/icons/user.png"
 import { redirecionar } from './util/functions.jsx'
 import Modal from 'react-modal'
@@ -59,7 +59,11 @@ export default function EditUser() {
         const formData = new FormData()
         if (file != '' && file != undefined) {
             formData.append("usuario[avatar]", file)
-            updateUser(id, formData)
+            let erro = updateUser(id, formData)
+            if (erro) {
+                fecharModal()
+                document.getElementById("erro").innerHTML = "Foto não atualizada!"
+            }
         }
     }
 
@@ -71,7 +75,9 @@ export default function EditUser() {
         formData.append("usuario[email]", email)
         formData.append("usuario[user_git]", user_git)
         formData.append("usuario[excluido]", excluido)
-        updateUser(id, formData)
+        let erro = updateUser(id, formData)
+        if (erro)
+            document.getElementById("erro").innerHTML = "Não foi possível alterar perfil!"
     }
 
     if (localStorage.getItem('authToken')) {
@@ -82,12 +88,13 @@ export default function EditUser() {
                         <CabProj />
                         <center className={perfilStyle.center}>
                             <h1 className={perfilStyle.tituloPagina}>Editar Perfil</h1>
+                            <h3 id="erro" />
                             <form className={perfilStyle.form}>
                                 <label>
                                     <label className={perfilStyle.lbl}>Foto de perfil</label> <br />
                                     <div className={perfilStyle.iconeDePerfil}>
                                         <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} onClick={() => abrirModal()} className={perfilStyle.imgUsuario} />
-                                        <img src={camera} className={perfilStyle.imgCamera}/>
+                                        <img src={camera} className={perfilStyle.imgCamera} />
                                     </div>
 
                                     <div>
@@ -112,7 +119,7 @@ export default function EditUser() {
                                                     <input type="file" onChange={handleFileChange} />
                                                     <div className={perfilStyle.botoesModalImg}>
                                                         <div className={perfilStyle.btnCancelarFoto} id='btnFecharModal' onClick={fecharModal}>Cancelar</div>
-                                                        <div onClick={atualizarAvatar} className={perfilStyle.salvarImgBtn}>Salvar</div>   
+                                                        <div onClick={atualizarAvatar} className={perfilStyle.salvarImgBtn}>Salvar</div>
                                                     </div>
 
                                                 </div>
@@ -160,6 +167,12 @@ export default function EditUser() {
                                     />
                                 </label>
                                 <br />
+                                <button onClick={async (e) => {
+                                    e.stopPropagation()
+                                    let erro = await deleteUser(id)
+                                    if (erro)
+                                        document.getElementById("erro").innerHTML = "Não foi possível excluir seu perfil!"
+                                }}>Excluir conta</button>
                                 <div className={perfilStyle.divBotoes}>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
