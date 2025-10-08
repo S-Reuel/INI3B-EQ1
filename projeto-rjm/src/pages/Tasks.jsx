@@ -141,9 +141,9 @@ export default function Tasks() {
                 <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}>
-                        <div className={equipeStyle.descEquipe} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
+                        <div className={TasksStyle.descData} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
                         <br /> 
-                        <div className={equipeStyle.descEquipe} teste="true">Data de término da Sprint: <br />{isFormat(new Date(sprint.data_fim))}</div>
+                        <div className={TasksStyle.descData} teste="true">Data de término da Sprint: <br />{isFormat(new Date(sprint.data_fim))}</div>
                     </div>
                     <div>
                         <div className={TasksStyle.tituloFlex}>

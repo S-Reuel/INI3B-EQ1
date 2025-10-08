@@ -6,6 +6,9 @@ import { isDeCripto, isFormat } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
+import setaDetails from '../ui/icons/setaDetails.png'
+import mmbros from '../ui/icons/membrosEquipe.png'
+import clipbb from '../ui/icons/clipboard.png'
 
 export default function Task() {
     const { task_id } = useParams()
@@ -29,12 +32,12 @@ export default function Task() {
             <div className={taskStyle.divRetorno}>
                 <div>
                     <div className={taskStyle.datasDaTask}>
-                        <div className={taskStyle.criacaoTask}><img src={calendario}/> Iniciado em: {dataCriacao}</div>
-                        <div className={taskStyle.atlzTask}><img src={calendario}/> Terminado em: {dataAtualizacao}</div>
+                        <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
+                        <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
                     <div className={taskStyle.statusDescTask}>
                         <div className={taskStyle.statusTask}><div className={taskStyle.statusDiv} style={corStatus(task.status)}>{textoStatus(task.status)}</div></div>
-                        <div className={taskStyle.descTask}>{task.descricao}</div>
+                        
                     </div>
 
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
@@ -124,7 +127,19 @@ export default function Task() {
             <>
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
-                    <div className={taskStyle.navEquipes}></div>
+                    <div className={taskStyle.navEquipes}>
+                        <details className={taskStyle.descEquipe} open='true'>
+                            <summary>
+                                <img src={setaDetails} className={taskStyle.icon} />
+                                <img src={clipbb} className={taskStyle.ilustIcon} />
+                                Descrição
+                            </summary>
+                            <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
+                            <br />
+                        </details>
+                        
+                        
+                    </div>
                     <div>
                         <div className={taskStyle.tituloFlex}>
                             <h1 className={taskStyle.tituloPagina}>
@@ -132,13 +147,13 @@ export default function Task() {
                             </h1>
                         </div>
                         <br />
-                        
+
                     </div>
                     {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
                 </div>
 
             </>
-        )   
+        )
     } else {
         return (redirecionar('login'))
     }
