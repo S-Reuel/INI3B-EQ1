@@ -5,9 +5,7 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    // baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
-    baseURL: 'https://cc1f3b7b34fd.ngrok-free.app/api/v2/' /* Ngrok */
-
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
 })
 
 /* Função para tratar Promise */
