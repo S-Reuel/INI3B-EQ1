@@ -5,9 +5,7 @@ import { redirecionar, voltar } from "../../pages/util/functions"
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
-    baseURL: 'http://localhost:3000/api/v2/'
-    //baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
-
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
 })
 
 /* Função para tratar Promise */
@@ -93,15 +91,15 @@ export async function updateUser(id, params) {
     try {
         await URL.patch(`usuarios/${id}`, params).then(() => { voltar() });
     } catch (error) {
-        alert(error.status)
+        return(true)
     }
 }
 
 export async function deleteUser(id) {
     try {
-        await URL.patch(`usuarios/excluir/${id}`).then(() => { location.reload() })
+        await URL.delete(`usuarios/excluir/${id}`).then(() => { location.reload() })
     } catch (error) {
-        alert(error.status)
+        return(error.status)
     }
 }
 
@@ -246,17 +244,17 @@ export async function getProjetoId(id) {
 }
 
 export async function updateProjeto(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`projetos/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try{
+        await URL.patch(`projetos/${id}`, params)
+        .then(() => { voltar() })
+    } catch(error){
+        console.log(error.status);
     }
 }
 
 export async function deleteProjeto(id) {
     try {
-        await URL.delete(`projetos/${id}`).then(() => location.reload() )
+        await URL.delete(`projetos/${id}`).then( voltar() )
     } catch (error) {
         alert(error.status)
     }
