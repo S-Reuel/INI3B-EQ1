@@ -35,10 +35,7 @@ export default function Task() {
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
                         <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
-                    <div className={taskStyle.statusDescTask}>
-                        <div className={taskStyle.statusTask}><div className={taskStyle.statusDiv} style={corStatus(task.status)}>{textoStatus(task.status)}</div></div>
-                        
-                    </div>
+
 
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
 
@@ -69,7 +66,7 @@ export default function Task() {
                                 const match = caminhoDoArquivo.match(regex);
                                 return (
                                     <tr className={taskStyle.linkTask}>
-                                        <a href={i} target="_self" className={taskStyle.linklink}>
+                                        <a href={i} target="_blank" className={taskStyle.linklink}>
                                             <img src={fileIcon} className={taskStyle.fileIMG} />
                                             <div className={taskStyle.linklinklink}>{match[0]}</div>
 
@@ -85,6 +82,12 @@ export default function Task() {
                 </div>
 
             </div>
+        )
+    }
+
+    function statusDesc() {
+        return (
+            <div className={taskStyle.statusTask}><div className={taskStyle.statusDiv} style={corStatus(task.status)}>{textoStatus(task.status)}</div></div>
         )
     }
 
@@ -128,6 +131,10 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
+                        <div className={taskStyle.statusDescTask}>
+                            {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                        </div>
+
                         <details className={taskStyle.descEquipe} open='true'>
                             <summary>
                                 <img src={setaDetails} className={taskStyle.icon} />
@@ -137,8 +144,8 @@ export default function Task() {
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
                             <br />
                         </details>
-                        
-                        
+
+
                     </div>
                     <div>
                         <div className={taskStyle.tituloFlex}>

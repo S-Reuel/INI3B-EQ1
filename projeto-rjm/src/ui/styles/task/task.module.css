@@ -102,9 +102,11 @@
     display: flex;
     height: max-content;
     margin-left: 5%;
+    align-items: baseline;
     overflow-wrap: break-word;
     word-wrap: break-word;
     line-break:auto;
+    margin-bottom: 15px;
 }
 
 .statusTask{
@@ -318,6 +320,8 @@ border-radius: 8px;
 }
 .descConteudo{
     color: #B6B8BB;
+    margin-left: 50px;
+    margin-top: 10px;
 }
 
 .descEquipe .descConteudo {
@@ -326,7 +330,9 @@ border-radius: 8px;
     opacity: 0;
     transition: max-height 0.8s ease, opacity 0.3s ease;
 }
-
+.descConteudo[membros="true"]{ /*quando o atributo "membros" tiver o valor "true", executa*/
+    margin-left: 60px;
+}
 .descEquipe[open] .descConteudo {
     max-height: 1000px;
     /* grande o suficiente para conter o conteúdo */
