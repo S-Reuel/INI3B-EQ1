@@ -49,10 +49,7 @@ export default function Editar_Task() {
                 <CabProj />
                 <center className={editEquipeStyle.center}>
                     <h1 className={editEquipeStyle.tituloPagina}>Editar Task</h1>
-                    <button onClick={async (e) => {
-                        e.stopPropagation()
-                        await deleteTask(decript_id)
-                    }}>X Excluir</button>
+
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
                         <label>
@@ -92,6 +89,10 @@ export default function Editar_Task() {
                         </label>
                         <br /><br />
                         <div className={editEquipeStyle.divBotoes}>
+                            <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
+                                e.stopPropagation()
+                                await deleteTask(decript_id)
+                            }}>X Excluir</button>
                             <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
                             <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>

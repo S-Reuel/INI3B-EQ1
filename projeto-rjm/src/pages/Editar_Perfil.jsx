@@ -167,13 +167,14 @@ export default function EditUser() {
                                     />
                                 </label>
                                 <br />
-                                <button onClick={async (e) => {
-                                    e.stopPropagation()
-                                    let erro = await deleteUser(id)
-                                    if (erro)
-                                        document.getElementById("erro").innerHTML = "Não foi possível excluir seu perfil!"
-                                }}>Excluir conta</button>
+
                                 <div className={perfilStyle.divBotoes}>
+                                    <button className={perfilStyle.formButton} onClick={async (e) => {
+                                        e.stopPropagation()
+                                        let erro = await deleteUser(id)
+                                        if (erro)
+                                            document.getElementById("erro").innerHTML = "Não foi possível excluir seu perfil!"
+                                    }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
                                 <p>Alterar Senha?<a className={perfilStyle.link} onClick={(e) => esqueci()} disabled={botaoDesativado}> Vá para redefinir senha</a></p>
