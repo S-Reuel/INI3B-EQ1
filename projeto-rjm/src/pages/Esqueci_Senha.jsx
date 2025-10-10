@@ -15,7 +15,6 @@ export default function EsqueciSenha() {
         let status = await esqueciSenha(emailEnviado)
         if (status) {
             location.href = '/login/redefinirSenha'
-            console.log(status)
         } else {
             setBotaoDesativado("")
             document.getElementById("response").innerHTML = "Email não encontrado!"
