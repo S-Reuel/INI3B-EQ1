@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { getTaskId, updateTask } from "../data/services/API"
+import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isDeCripto, isFormatStatus, redirecionar  } from "./util/functions"
+import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Task() {
@@ -11,11 +11,10 @@ export default function Editar_Task() {
     const [descricao, setDesc] = useState()
     const [stt, setStatus] = useState()
     const [file, setFile] = useState(null);
+    let decript_id = isDeCripto(task_id)
 
-    
     useEffect(() => {
         async function fetch() {
-            let decript_id = isDeCripto(task_id)
             const res = await getTaskId(decript_id)
             setTitulo(res.titulo)
             setDesc(res.descricao)
@@ -23,13 +22,13 @@ export default function Editar_Task() {
         }
         fetch()
     }, [])
-    
+
     function handleFileChange(e) {
         if (e.target.files) {
             setFile(e.target.files[0])
         }
     }
-    
+
     const onSave = async (e) => {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
@@ -41,7 +40,7 @@ export default function Editar_Task() {
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
 
-        const res = await updateTask(task_id, formData)  
+        const res = await updateTask(decript_id, formData)
     }
 
     if (localStorage.getItem('authToken')) {
@@ -50,6 +49,10 @@ export default function Editar_Task() {
                 <CabProj />
                 <center className={editEquipeStyle.center}>
                     <h1 className={editEquipeStyle.tituloPagina}>Editar Task</h1>
+                    <button onClick={async (e) => {
+                        e.stopPropagation()
+                        await deleteTask(decript_id)
+                    }}>X Excluir</button>
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
                         <label>
@@ -87,10 +90,10 @@ export default function Editar_Task() {
                                 <option value={'concluido'}>Concluído</option>
                             </select>
                         </label>
-                        <br /><br />               
+                        <br /><br />
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
-                            <button className={editEquipeStyle.buttonReturn} type="button"  onClick={(e) => {history.back(); window.close();}}>Cancelar</button>
+                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
                     </form>
                 </center>

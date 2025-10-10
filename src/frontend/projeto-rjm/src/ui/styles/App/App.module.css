@@ -62,7 +62,8 @@
     border-radius: 8px;
     gap:10px;
     padding: 16px;
-    width: 32vw;
+    min-width: 32vw;
+    width: auto;
     font-weight: 400;
     font-size: 20px;
     display: flex; /* Adiciona display: flex para alinhar os elementos internos */
