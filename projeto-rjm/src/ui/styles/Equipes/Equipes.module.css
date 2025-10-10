@@ -157,6 +157,7 @@
 .tituloEquipe{
     color:#BE5FDB;
     font-size: 20px;
+    font-weight: 700;
     max-width: 90%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -203,6 +204,10 @@
         width: 100vw;
     }
     .equipeDiv{
-        width: 60%;
+        height: 153px;;
+    }
+    .botaoEditarEquipe{
+        font-size: 24px;
+        font-weight: 700;
     }
 }

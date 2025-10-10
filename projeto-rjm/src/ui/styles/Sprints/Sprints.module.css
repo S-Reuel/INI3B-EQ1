@@ -239,9 +239,8 @@
 }
 
 .semSprint{
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    text-align: center;
+    align-self: center;
     color: white;
 }
 @media screen and (orientation: portrait) {
