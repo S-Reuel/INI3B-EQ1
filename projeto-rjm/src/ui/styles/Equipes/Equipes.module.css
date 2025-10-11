@@ -205,4 +205,8 @@
     .equipeDiv{
         width: 60%;
     }
+    .modalConteudo{
+        left: 0;
+        width:100vw;
+    }
 }

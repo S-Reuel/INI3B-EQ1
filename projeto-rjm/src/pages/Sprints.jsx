@@ -151,7 +151,7 @@ export default function Sprints() {
                         </>
                     )}
 
-                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>
         )

@@ -435,3 +435,8 @@
 .descEquipe:hover {
     cursor: pointer;
 }
+@media screen and (orientation: portrait) {
+    .modalConteudo{
+        margin-left: 0;
+    }
+}

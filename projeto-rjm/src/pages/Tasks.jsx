@@ -138,7 +138,7 @@ export default function Tasks() {
                     <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
                     <Add_Task />
                 </Modal>
-                <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
+                <div className={TasksStyle.botaoNewTask} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}>
                         <div className={TasksStyle.descData} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
