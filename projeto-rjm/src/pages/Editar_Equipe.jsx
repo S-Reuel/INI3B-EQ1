@@ -46,7 +46,7 @@ export default function Editar_Equipe() {
                     <div className={editEquipeStyle.membrosAtuaisDiv}>
                         <div className={editEquipeStyle.atuaisTitulo2}>
                             <label>Membros a serem adicionados</label>
-                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { setAddMembro([])}}>Remover todos</div>
+                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { setAddMembro([]) }}>Remover todos</div>
                         </div>
                         <table className={editEquipeStyle.atuaisTable}>
                             <tr className={editEquipeStyle.thAtuais}>
@@ -99,10 +99,7 @@ export default function Editar_Equipe() {
             <CabProj />
             <center className={editEquipeStyle.center}>
                 <h1 className={editEquipeStyle.tituloPagina}>Editar Equipe</h1>
-            <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
-                membros.map((i) => {remover(i.id, 'Membros')})
-                await deleteEquipe(decript_id)
-            }}>X Excluir</button>
+
                 <form className={editEquipeStyle.form}>
                     <label>
                         <p className={editEquipeStyle.inputTipo}>Nome:</p>
@@ -162,8 +159,12 @@ export default function Editar_Equipe() {
                     <label >
                         {listarAddMembros()}
                     </label>
-                    <br /><br />
+
                     <div className={editEquipeStyle.divBotoes}>
+                        <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
+                            membros.map((i) => { remover(i.id, 'Membros') })
+                            await deleteEquipe(decript_id)
+                        }}>X Excluir</button>
                         <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>

@@ -31,10 +31,7 @@ export default function Editar_Projeto() {
                 <CabProj />
                 <center className={editProjStyle.center}>
                     <h1 className={editProjStyle.tituloPagina}>Editar Projeto</h1>
-                    <button onClick={async (e) => {
-                        e.stopPropagation()
-                        await deleteProjeto(decript_id)
-                    }}>X Excluir</button>
+
                     <form className={editProjStyle.form}>
                         <label >
                             <p className={editProjStyle.inputTipo}>Nome do Projeto:</p>
@@ -57,6 +54,10 @@ export default function Editar_Projeto() {
                         </label>
                         <br /><br />
                         <div className={editProjStyle.divBotoes}>
+                            <button className={editProjStyle.formButtonDelete} onClick={async (e) => {
+                                e.stopPropagation()
+                                await deleteProjeto(decript_id)
+                            }}>X Excluir</button>
                             <button className={editProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                             <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
