@@ -125,7 +125,7 @@ export default function Projetos() {
                                 <img src={clipbb} className={StyleProj.ilustIcon} />
                                 Descrição
                             </summary>
-                            <div teste="true" className={StyleProj.descConteudo}>{equipe.descricao}</div>
+                            <div className={StyleProj.descConteudo}>{equipe.descricao}</div>
                             <br />
                         </details>
                         <br />
@@ -135,7 +135,7 @@ export default function Projetos() {
                                 <img src={mmbros} className={StyleProj.ilustIcon} />
                                 Membros
                             </summary>
-                            <div teste="true" className={StyleProj.descConteudo}>{membros.map((i) => { return (<div teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
+                            <div membros="true" className={StyleProj.descConteudo}>{membros.map((i) => { return (<div teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
                             <br />
                         </details>
 

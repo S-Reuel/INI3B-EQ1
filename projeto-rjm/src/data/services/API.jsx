@@ -6,8 +6,6 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 const URL = axios.create({
     baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
-    // baseURL: '/api/v2/' /* Ngrok */
-
 })
 
 /* Função para tratar Promise */

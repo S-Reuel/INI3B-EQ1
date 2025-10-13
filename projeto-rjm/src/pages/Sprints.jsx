@@ -10,6 +10,8 @@ import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
 import React from 'react';
 import Modal from 'react-modal';
 import Add_Sprint from "./Add_Sprint"
+import setaDetails from '../ui/icons/setaDetails.png'
+import clipbb from '../ui/icons/clipboard.png'
 Modal.setAppElement('#root');
 
 export default function Sprints() {
@@ -100,7 +102,22 @@ export default function Sprints() {
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
                     <div className={StylesSprint.navEquipes}>
-                        <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: {projeto.descricao}</div> <br />
+                        {/* <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: </div> <br /> */}
+
+                        <details className={StyleProj.descEquipe} open='true'>
+                            <summary>
+                                <img src={setaDetails} className={StyleProj.icon} />
+                                <img src={clipbb} className={StyleProj.ilustIcon} />
+                                Descrição
+                            </summary>
+                            <div teste="true" className={StyleProj.descConteudo}>{projeto.descricao}</div>
+                            <br />
+                        </details>
+                        <br />
+                        
+
+
+
                     </div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>

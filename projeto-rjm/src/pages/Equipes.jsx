@@ -85,12 +85,12 @@ export default function Equipes() {
                         }
                     }}
                 >
-                    
+
                     <Add_Equipe />
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
-                    
+
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
@@ -103,7 +103,8 @@ export default function Equipes() {
                         <div className={equipeStyle.equipesDivCenter}>
                             <div className={equipeStyle.equipeFlex}>
                                 {apr()}
-                            </div></div>
+                            </div>
+                        </div>
                     ) : (
                         <>
 
