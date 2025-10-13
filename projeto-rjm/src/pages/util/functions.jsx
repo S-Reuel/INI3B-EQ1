@@ -16,21 +16,11 @@ export function isFormat(data) {
     return `${dia} de ${mesFormat[mes]} de ${ano}`;
 }
 // Formatação da data para ser consumida pela API
-export function isFormatDate(data) {
-    let ano = data.getFullYear()
-    let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
-    let dia = (data.getDate() < 10) ? `0${data.getDate()}` : data.getDate()
-    return `${ano}-${mes}-${dia}`
-    /*
-        Update é para quando é alterada a data pelo usuário em editar sprints
-        get é num primeiro instante no qual deve ser apresentada na tela a data vinda do Back-end
-        
-        if (tipo == "update") {
-            let dia = (data.getDate() + 1 < 10) ? `0${data.getDate() + 1}` : data.getDate() + 1
-            return `${ano}-${mes}-${dia}`
-        } else if (tipo == "get") {
-        }
-    */
+export function isFormatDate(param, data) {
+        let ano = data.getFullYear()
+        let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
+        let dia = (data.getDate() + param < 10) ? `0${data.getDate() + param}` : data.getDate()
+        return `${ano}-${mes}-${dia}`
 }
 
 export function isFormatStatus(stt) {

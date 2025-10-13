@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { postSprint } from "../data/services/API"
-import { isDeCripto, redirecionar } from "./util/functions"
+import { isDeCripto, isFormatDate, redirecionar } from "./util/functions"
 import addSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 export default function Add_Sprint() {
@@ -22,6 +22,8 @@ export default function Add_Sprint() {
     }
 
     if (localStorage.getItem('authToken')) {
+        let data_ontem = isFormatDate(-1 , new Date())
+        let data_hoje = isFormatDate(0, new Date())
         return (
             <div className={addSprintStyle.paginaBody}>
                 <center className={addSprintStyle.center}>
@@ -32,7 +34,6 @@ export default function Add_Sprint() {
                             <label className={addSprintStyle.lbl}>Nome da Sprint</label><br />
                             <input
                                 className={addSprintStyle.input}
-
                                 type="text" name="nome"
                                 placeholder="Digite aqui o nome da Sprint" required
                                 onChange={(e) => setNome(e.target.value)}
@@ -42,13 +43,29 @@ export default function Add_Sprint() {
                         <label >
                             <label className={addSprintStyle.lbl}>Data de Inicio</label>  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
                             <br />
-                            <input className={addSprintStyle.input} type="date" required onChange={(e) => setDI(e.target.value)}/>
+                            <input className={addSprintStyle.input} type="date" value={dataI} required onChange={(e) => {
+                                if(e.target.value > data_ontem && e.target.value != dataF){
+                                    document.getElementById("response").innerHTML = ""
+                                    setDI(e.target.value)
+                                } else {
+                                    setDI("")
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                }
+                                }} />
                         </label>
                         <br />
                         <label >
                             <label>Data de Termino</label>
                             <br />
-                            <input className={addSprintStyle.input} type="date" required onChange={(e) => setDF(e.target.value)} />
+                            <input className={addSprintStyle.input} type="date" value={dataF} required onChange={(e) => {
+                                if(e.target.value > data_hoje && e.target.value != dataI){
+                                    document.getElementById("response").innerHTML = ""
+                                    setDF(e.target.value)
+                                } else {
+                                    setDF("")
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                }
+                                }} />
                         </label>
                         <br /><br />
                         <button className={addSprintStyle.formButton} type="submit">Salvar Alterações</button>

@@ -63,6 +63,8 @@ export default function Projetos() {
         return projetos.map(function (i) {
             let dataUp = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
+                console.log(i.nome, i.excluido);
+                
                 return (
                     <>
                         <div className={StyleProj.projeto} onClick={(e) => {

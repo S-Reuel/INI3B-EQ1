@@ -18,8 +18,8 @@ export default function Editar_Sprint() {
             const res = await getSprintsId(decript_id)
             setId(res.projeto_id)
             setNome(res.nome)
-            setDI(isFormatDate(new Date(res.data_inicio)))
-            setDF(isFormatDate(new Date(res.data_fim)))
+            setDI(new Date(res.data_inicio).toISOString().split('T')[0])
+            setDF(new Date(res.data_fim).toISOString().split('T')[0])
         }
         fetch()
     }, [])
@@ -33,12 +33,18 @@ export default function Editar_Sprint() {
     }
 
     if (localStorage.getItem('authToken')) {
+        let data_ontem = isFormatDate(-1, new Date())
+        let data_hoje = isFormatDate(0, new Date())
         return (
             <div className={editSprintStyle.paginaBody}>
                 <CabProj />
                 <center className={editSprintStyle.center}>
                     <h1 className={editSprintStyle.tituloPagina}>Editar Sprint</h1>
-
+                    <h3 id="response"></h3>
+                    <button onClick={async (e) => {
+                        e.stopPropagation()
+                        await deleteSprint(decript_id)
+                    }}>X Excluir</button>
                     <form className={editSprintStyle.form} onSubmit={onSave}>
                         <label>
                             <label className={editSprintStyle.lbl}>Nome da Sprint</label><br />
@@ -53,13 +59,29 @@ export default function Editar_Sprint() {
                         <label >
                             <label className={editSprintStyle.lbl}>Data de Inicio</label>
                             <br />
-                            <input className={editSprintStyle.input} type="date" defaultValue={dataI} onChange={(e) => setDI(e.target.value)} />
+                            <input className={editSprintStyle.input} type="date" defaultValue={dataI} onChange={(e) => {
+                                if (e.target.value > data_ontem && e.target.value != dataF) {
+                                    document.getElementById("response").innerHTML = ""
+                                    setDI(e.target.value)
+                                } else {
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                    setDI('')
+                                }
+                            }} />
                         </label>
                         <br />
                         <label >
                             <label className={editSprintStyle.lbl}>Data de Termino</label>
                             <br />
-                            <input className={editSprintStyle.input} type="date" defaultValue={dataF} onChange={(e) => setDF(e.target.value)} />
+                            <input className={editSprintStyle.input} type="date" defaultValue={dataF} onChange={(e) => {
+                                if (e.target.value > data_hoje && e.target.value != dataI) {
+                                    document.getElementById("response").innerHTML = ""
+                                    setDF(e.target.value)
+                                } else {
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                    setDF('')
+                                }
+                            }} />
                         </label>
                         <br /><br />
                         <div className={editSprintStyle.divBotoes}>
@@ -68,7 +90,7 @@ export default function Editar_Sprint() {
                                 await deleteSprint(decript_id)
                             }}>X Excluir</button>
                             <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
-                            <button className={editSprintStyle.btnFechaModal} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
+                            <button className={editSprintStyle.btnFechaModal} type="button" onClick={() => { history.back(); window.close(); }}>Cancelar</button>
 
                         </div>
                     </form>
