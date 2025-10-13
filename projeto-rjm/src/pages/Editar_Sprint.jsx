@@ -85,6 +85,10 @@ export default function Editar_Sprint() {
                         </label>
                         <br /><br />
                         <div className={editSprintStyle.divBotoes}>
+                            <button className={editSprintStyle.formButtonDelete} onClick={async (e) => {
+                                e.stopPropagation()
+                                await deleteSprint(decript_id)
+                            }}>X Excluir</button>
                             <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
                             <button className={editSprintStyle.btnFechaModal} type="button" onClick={() => { history.back(); window.close(); }}>Cancelar</button>
 
