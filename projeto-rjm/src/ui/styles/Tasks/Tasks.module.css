@@ -366,3 +366,8 @@
     padding: 8px;
     color: white;
 }
+@media screen and (orientation: portrait) {
+    .modalConteudo{
+        left: 0;
+    }
+}

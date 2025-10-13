@@ -61,6 +61,7 @@
    padding: 17px 23px;
 
    width: 100%;
+   max-width: 70vw;
 }
 
 .divBotoes {
@@ -458,4 +459,5 @@
    padding: 17px 23px;
 
    width: 100%;
+   max-width: 75vw;
 }

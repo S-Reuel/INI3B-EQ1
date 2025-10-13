@@ -116,7 +116,7 @@ export default function Projetos() {
                 >
                     <Add_Projeto onClose={fecharModal} />
                 </Modal>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <div className={StyleProj.paginaEquipes}>
                     <div className={StyleProj.navEquipes}>
                         <details className={StyleProj.descEquipe} open='true'>

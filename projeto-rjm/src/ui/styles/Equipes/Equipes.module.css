@@ -210,4 +210,8 @@
         font-size: 24px;
         font-weight: 700;
     }
+    .modalConteudo{
+        left: 0;
+        width:100vw;
+    }
 }

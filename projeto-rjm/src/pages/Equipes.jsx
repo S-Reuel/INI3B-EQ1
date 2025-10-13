@@ -88,7 +88,7 @@ export default function Equipes() {
 
                     <Add_Equipe />
                 </Modal>
-                <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
+                <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
 
                     <div>
