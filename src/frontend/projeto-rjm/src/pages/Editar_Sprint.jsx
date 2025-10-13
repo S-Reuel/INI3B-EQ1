@@ -38,10 +38,7 @@ export default function Editar_Sprint() {
                 <CabProj />
                 <center className={editSprintStyle.center}>
                     <h1 className={editSprintStyle.tituloPagina}>Editar Sprint</h1>
-                    <button onClick={async (e) => {
-                        e.stopPropagation()
-                        await deleteSprint(decript_id)
-                    }}>X Excluir</button>
+
                     <form className={editSprintStyle.form} onSubmit={onSave}>
                         <label>
                             <label className={editSprintStyle.lbl}>Nome da Sprint</label><br />
@@ -66,6 +63,10 @@ export default function Editar_Sprint() {
                         </label>
                         <br /><br />
                         <div className={editSprintStyle.divBotoes}>
+                            <button className={editSprintStyle.formButtonDelete} onClick={async (e) => {
+                                e.stopPropagation()
+                                await deleteSprint(decript_id)
+                            }}>X Excluir</button>
                             <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
                             <button className={editSprintStyle.btnFechaModal} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
 

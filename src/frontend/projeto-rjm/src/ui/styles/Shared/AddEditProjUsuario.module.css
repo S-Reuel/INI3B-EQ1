@@ -139,8 +139,9 @@
 
 .formButtonDelete {
    position: absolute;
-   top: 96,4%;
-   right: 13%;
+   bottom: 0%;
+   left: 0%;
+   transform: translate(-50px);
    background-color: #4848B6;
    border-color: #4848B6;
    border-style: none;
