@@ -92,7 +92,10 @@
 }
 
 
-
+.idDesc{
+    color: #ffffff56;
+    margin-left: 5px;
+}
 
 
 
@@ -342,4 +345,20 @@ border-radius: 8px;
 
 .descEquipe:hover {
     cursor: pointer;
+}
+
+.tutorial{
+    justify-self: center;
+    color: #ffffff56;
+    
+}
+
+.tutoriel{
+    border: 2px solid rgba(255, 255, 255, 0.123);
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 50%;
+}
+.tititirial{
+    text-decoration: none;
 }

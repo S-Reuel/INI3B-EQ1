@@ -7,16 +7,16 @@ import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
 import setaDetails from '../ui/icons/setaDetails.png'
-import mmbros from '../ui/icons/membrosEquipe.png'
 import clipbb from '../ui/icons/clipboard.png'
+import tutorial from '../ui/file/tutorialCodra.txt'
 
 export default function Task() {
     const { task_id } = useParams()
     const [task, setTask] = useState([])
+    let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
         async function fetch() {
-            let decript_id = isDeCripto(task_id)
             const res = await getTaskByGitHub(decript_id)
             setTask(res)
         }
@@ -36,11 +36,15 @@ export default function Task() {
                         <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
 
-
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
-
+                    <a href={tutorial} className={taskStyle.tititirial} download>
+                        <p className={taskStyle.tutorial}><b className={taskStyle.tutoriel}> ?</b> Commits</p>
+                    </a>
+                    
                     <div className={taskStyle.divDaDivCommits}>
+
                         <div className={taskStyle.divCommits}>
+
                             {task.git_hubs.map((i) => {
                                 return (
                                     <div className={taskStyle.commitTask}>
@@ -133,7 +137,12 @@ export default function Task() {
                     <div className={taskStyle.navEquipes}>
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                            <p className={taskStyle.idDesc}>ID: {decript_id}</p>
                         </div>
+
+
+
+
 
                         <details className={taskStyle.descEquipe} open='true'>
                             <summary>
@@ -142,6 +151,7 @@ export default function Task() {
                                 Descrição
                             </summary>
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
+
                             <br />
                         </details>
 
