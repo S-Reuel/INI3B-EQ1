@@ -53,9 +53,7 @@ export default function Task() {
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         return (
             <div className={taskStyle.divRetorno}>
-                <center>
-                    <h3 id="response" />
-                </center>
+
                 <div>
                     <div className={taskStyle.datasDaTask}>
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
@@ -63,13 +61,7 @@ export default function Task() {
                     </div>
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
                     <br />
-                    <center>
-                        <form onSubmit={onSave}>
-                            <label>Adicione arquivos</label> <br />
-                            <input type="file" onChange={handleFileChange} multiple />
-                            <button type="submit" onClick={onSave}>Adicionar</button>
-                        </form>
-                    </center>
+
 
                     <div className={taskStyle.divDaDivCommits}>
                         <div className={taskStyle.divCommits}>
@@ -88,6 +80,17 @@ export default function Task() {
                     </div>
                     <br />
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
+                            <br />
+                    <center>
+                        <form onSubmit={onSave}>
+                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
+                            <input id="fileUpload" type="file" onChange={handleFileChange} multiple />
+                            <button type="submit" onClick={onSave}>Adicionar</button>
+                        </form>
+                    </center>
+                    <center>
+                        <h3 className={taskStyle.responsee} id="response" />
+                    </center>
 
                     <div className={taskStyle.divArquivos}>
                         <table className={taskStyle.tableArquivos}>

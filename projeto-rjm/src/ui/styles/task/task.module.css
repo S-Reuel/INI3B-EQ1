@@ -343,3 +343,22 @@ border-radius: 8px;
 .descEquipe:hover {
     cursor: pointer;
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.fileUpload{
+    color: #653408;
+    border: 1px solid rgba(36, 31, 31, 0.123);
+    border-radius: 8px;
+    background-color: #FFB44C;
+    padding: 5px;
+  display: inline-block;
+  
+  cursor: pointer;
+}
+
+.responsee{
+color: #b6b8bb73
+}
