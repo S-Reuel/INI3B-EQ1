@@ -132,7 +132,9 @@
    transition: 300ms;
    transition-timing-function: ease-in-out;
 }
-
+.formButton:disabled{
+   background-color: #9696D5;
+}
 .formButton:hover {
    background-color: #9696D5;
 }

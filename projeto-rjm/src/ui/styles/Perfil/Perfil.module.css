@@ -1,6 +1,7 @@
 .tituloModal{
     color: white;
     font-size: 30px;
+    line-break: anywhere;
 }
 
 .fotoModal{
