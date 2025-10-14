@@ -362,3 +362,17 @@ input[type="file"] {
 .responsee{
 color: #b6b8bb73
 }
+
+.editarPag{
+    position: absolute;
+    right: 1%;
+    top: 10%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+
+.divTititulo{
+    position: relative;
+}

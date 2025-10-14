@@ -153,6 +153,8 @@
    padding: 17px 23px;
    transition: 300ms;
    transition-timing-function: ease-in-out;
+   display: flex;
+   align-items: center;
 }
 
 .formButtonDelete:hover {
@@ -335,6 +337,12 @@
 .trashImg {
    height: 24px;
    width: 24px;
+}
+
+.trashImg2 {
+   height: 24px;
+   width: 24px;
+   margin-right: 5px;
 }
 
 .remvBtn {

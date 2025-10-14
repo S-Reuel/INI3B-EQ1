@@ -89,23 +89,23 @@ export async function getUserByName(nome) {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        await URL.patch(`usuarios/${id}`, params).then(() => { 
+        await URL.patch(`usuarios/${id}`, params).then(() => {
             location.reload()
             return false
-         });
+        });
     } catch (error) {
-        return(true)
+        return (true)
     }
 }
 
 export async function deleteUser(id) {
     try {
-        await URL.patch(`usuarios/excluir/${id}`).then(() => { 
+        await URL.patch(`usuarios/excluir/${id}`).then(() => {
             redirecionar('logout')
             return false
         })
     } catch (error) {
-        return(true)
+        return (true)
     }
 }
 
@@ -354,7 +354,7 @@ export async function getTaskByGitHub(id) {
 }
 
 export async function updateTask(id, params) {
-    try{
+    try {
         await URL.patch(`/tasks/${id}`, params).then(() => { return false })
     } catch {
         return true
@@ -391,19 +391,23 @@ export async function postLogin(params) {
 
 /*  Alteração de senha   */
 export async function esqueciSenha(params) {
-    try {
-        let r = await URL.post(`esqueci/`, { email: params })
-        return r.data.alert
-    } catch (error) {
-        return (false)
+    let r = await URL.post(`esqueci/`, { email: params })    
+    if( r.data.alert == "Email não encontrado"){
+        return false
+    } else {
+        var result = params
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var dadosCriptografados = CryptoJS.AES.encrypt(result, key).toString()
+        onSession('authEmail', dadosCriptografados)
+        return true
     }
 }
 
 export async function redefinirSenha(t, e, p) {
-    try {
-        let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
-        return r.data.alert
-    } catch (error) {
-        alert(error.status)
+    let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
+    if(r.data.alert == "Token inválido."){
+        return false
+    } else {
+        return true
     }
 }

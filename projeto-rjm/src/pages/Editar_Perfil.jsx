@@ -7,6 +7,7 @@ import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
 import camera from "../ui/icons/camera.svg"
+import trashy from '../ui/icons/trash.png'
 
 Modal.setAppElement('#root');
 
@@ -49,8 +50,7 @@ export default function EditUser() {
     }
 
     async function esqueci() {
-        let mensagem = await esqueciSenha(email)
-        if (mensagem == 'Um email de redefinição foi enviado') {
+        if (await esqueciSenha(email)) {
             location.href = '/login/redefinirSenha'
         }
     }

@@ -38,7 +38,7 @@ export function redirecionar(caminho) {
     switch (caminho) {
         case 'logout':
             offSession()
-            redirecionar('prin')
+            redirecionar('login')
             break
         case 'prin':
             location.href = '/'

@@ -150,7 +150,7 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
-                        <button onClick={() => { location.href = `/../../../sprint/edit/task/${isCripto(decript_id)}` }}>...</button>
+                        
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
                         </div>
@@ -165,7 +165,8 @@ export default function Task() {
                             <br />
                         </details>
                     </div>
-                    <div>
+                    <div className={taskStyle.divTititulo}>
+                        <button className={taskStyle.editarPag} onClick={() => { location.href = `/../../../sprint/edit/task/${isCripto(decript_id)}` }}>...</button>
                         <div className={taskStyle.tituloFlex}>
                             <h1 className={taskStyle.tituloPagina}>
                                 Task {(task.length != "") ? `- ${task.titulo}` : ''}

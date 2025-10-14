@@ -4,15 +4,12 @@ import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
-import taskStyle from "../ui/styles/task/task.module.css";
-import fileIcon from '../ui/icons/fileIcon.png'
+import trashy from '../ui/icons/trash.png'
 
 export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
-    const [file, setFile] = useState()
-    const [files, setFiles] = useState([])
     const [stt, setStatus] = useState()
     let decript_id = isDeCripto(task_id)
 
@@ -22,16 +19,9 @@ export default function Editar_Task() {
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
-            setFiles(res.arquivos_urls)
         }
         fetch()
     }, [])
-
-    function handleFileChange(e) {
-        if (e.target.files) {
-            setFile(e.target.files[0])
-        }
-    }
 
     const onSave = async (e) => {
         e.preventDefault()
@@ -40,12 +30,9 @@ export default function Editar_Task() {
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
-        if (file) {
-            formData.append("task[arquivos][]", file);
-        }
-        (await updateTask(decript_id, formData)) ?
+            (await updateTask(decript_id, formData)) ?
             document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
-        :
+            :
             location.reload()
     }
 
@@ -58,10 +45,7 @@ export default function Editar_Task() {
 
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
-                        <label>
-                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
-                            <input id="fileUpload" type="file" onChange={handleFileChange} />
-                        </label>
+
                         <br /><br />
                         <label>
                             <label className={editEquipeStyle.inputTipo}>Título da Task</label><br />
@@ -93,29 +77,14 @@ export default function Editar_Task() {
                             </select>
                         </label>
                         <br /><br />
-                        <table className={taskStyle.tableArquivos}>
-                            <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
-                            {files.map((i) => {
-                                const caminhoDoArquivo = i;
-                                const regex = /[^/]*$/;
-                                const match = caminhoDoArquivo.match(regex);
-                                return (
-                                    <tr className={taskStyle.linkTask}>
-                                        <a href={i} target="_blank" className={taskStyle.linklink}>
-                                            <img src={fileIcon} className={taskStyle.fileIMG} />
-                                            <div className={taskStyle.linklinklink}>{match[0]}</div>
-
-                                        </a>
-
-                                    </tr>
-                                )
-                            })}
-                        </table>
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
                                 e.stopPropagation()
                                 await deleteTask(decript_id)
-                            }}>X Excluir</button>
+                            }}>
+                                <img src={trashy} className={editEquipeStyle.trashImg2} />
+                                Excluir
+                            </button>
                             <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
                             <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
