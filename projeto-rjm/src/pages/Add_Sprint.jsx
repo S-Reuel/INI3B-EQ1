@@ -22,8 +22,6 @@ export default function Add_Sprint() {
     }
 
     if (localStorage.getItem('authToken')) {
-        let data_ontem = isFormatDate(-1 , new Date())
-        let data_hoje = isFormatDate(0, new Date())
         return (
             <div className={addSprintStyle.paginaBody}>
                 <center className={addSprintStyle.center}>
@@ -44,7 +42,7 @@ export default function Add_Sprint() {
                             <label className={addSprintStyle.lbl}>Data de Inicio</label>  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
                             <br />
                             <input className={addSprintStyle.input} type="date" value={dataI} required onChange={(e) => {
-                                if(e.target.value > data_ontem && e.target.value != dataF){
+                                if(e.target.value != dataF){
                                     document.getElementById("response").innerHTML = ""
                                     setDI(e.target.value)
                                 } else {
@@ -58,7 +56,7 @@ export default function Add_Sprint() {
                             <label>Data de Termino</label>
                             <br />
                             <input className={addSprintStyle.input} type="date" value={dataF} required onChange={(e) => {
-                                if(e.target.value > data_hoje && e.target.value != dataI){
+                                if(e.target.value > dataI && e.target.value != dataI){
                                     document.getElementById("response").innerHTML = ""
                                     setDF(e.target.value)
                                 } else {

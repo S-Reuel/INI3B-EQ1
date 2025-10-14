@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
 import { getSprintsId, getTaskBySprint } from "../data/services/API"
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
-import React from 'react';
-import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
-import Modal from 'react-modal';
-import Add_Task from "./Add_Task";
+import Modal from 'react-modal'
+import Add_Task from "./Add_Task"
 import iconCalendario from '../ui/icons/calendario.svg'
 import TasksStyle from '../ui/styles/Tasks/Tasks.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 export default function Tasks() {
     const { sprint_id } = useParams()
@@ -42,7 +40,6 @@ export default function Tasks() {
 
     function apr() {
         return tasks.map(function (i) {
-            let dataCriacao = isFormat(new Date(i.created_at))
             let dataAtualizacao = isFormat(new Date(i.updated_at))
 
             if (!(i.excluido)) {
@@ -70,6 +67,7 @@ export default function Tasks() {
             }
         })
     }
+
     function textoStatus(status) {
         switch (status.toLowerCase()) {
             case "concluido":
@@ -103,8 +101,6 @@ export default function Tasks() {
                 return { backgroundColor: "white", color: "black" };;
         }
     }
-
-
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 

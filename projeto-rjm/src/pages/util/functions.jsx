@@ -17,10 +17,10 @@ export function isFormat(data) {
 }
 // Formatação da data para ser consumida pela API
 export function isFormatDate(param, data) {
-        let ano = data.getFullYear()
-        let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
-        let dia = (data.getDate() + param < 10) ? `0${data.getDate() + param}` : data.getDate()
-        return `${ano}-${mes}-${dia}`
+    let ano = data.getFullYear()
+    let mes = (data.getMonth() + 1 < 10) ? `0${data.getMonth() + 1}` : data.getMonth() + 1
+    let dia = (data.getDate() + param < 10) ? `0${data.getDate() + param}` : data.getDate()
+    return `${ano}-${mes}-${dia}`
 }
 
 export function isFormatStatus(stt) {

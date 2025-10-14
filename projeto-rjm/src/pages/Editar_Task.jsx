@@ -9,8 +9,8 @@ export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
+    const [file, setFile] = useState()
     const [stt, setStatus] = useState()
-    const [file, setFile] = useState(null);
     let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
@@ -33,13 +33,12 @@ export default function Editar_Task() {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
-        if (file) {
-            formData.append("task[arquivos][]", file);
-        }
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
-
+        if (file) {
+            formData.append("task[arquivos][]", file);
+        }
         const res = await updateTask(decript_id, formData)
     }
 
@@ -53,11 +52,10 @@ export default function Editar_Task() {
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
                         <label>
-                            <label>Adicione somente um arquivo</label> <br />
+                            <label>Adicione arquivos</label> <br />
                             <input type="file" onChange={handleFileChange} multiple />
                         </label>
-                        <br />
-                        <br />
+                        <br /><br />
                         <label>
                             <label className={editEquipeStyle.inputTipo}>Título da Task</label><br />
                             <input

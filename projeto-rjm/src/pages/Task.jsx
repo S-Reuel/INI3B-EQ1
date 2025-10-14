@@ -1,43 +1,75 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getTaskByGitHub } from "../data/services/API";
+import { getTaskByGitHub, updateTask } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
 import { isDeCripto, isFormat } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
 import setaDetails from '../ui/icons/setaDetails.png'
-import mmbros from '../ui/icons/membrosEquipe.png'
 import clipbb from '../ui/icons/clipboard.png'
 
 export default function Task() {
     const { task_id } = useParams()
     const [task, setTask] = useState([])
+    const [file, setFile] = useState([])
+    let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
         async function fetch() {
-            let decript_id = isDeCripto(task_id)
             const res = await getTaskByGitHub(decript_id)
             setTask(res)
         }
         fetch()
     }, []);
 
+    function handleFileChange(e) {
+        if (e.target.files) {
+            setFile(e.target.files[0])
+        }
+    }
+
+    const onSave = async (e) => {
+        e.preventDefault()
+        const formData = new FormData();
+        formData.append("task[titulo]", task.titulo)
+        formData.append("task[descricao]", task.descricao)
+        formData.append("task[status]", task.status)
+        formData.append("task[status]", task.excluido)
+        if (file) {
+            formData.append("task[arquivos][]", file);
+        }
+        const res = await updateTask(decript_id, formData)
+        if (res) {
+            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
+        } else {
+            location.reload()
+        }
+    }
+
     function apr() {
         let arquivos = task.arquivos_urls
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         return (
-
             <div className={taskStyle.divRetorno}>
+                <center>
+                    <h3 id="response" />
+                </center>
                 <div>
                     <div className={taskStyle.datasDaTask}>
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
                         <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
-
-
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
+                    <br />
+                    <center>
+                        <form onSubmit={onSave}>
+                            <label>Adicione arquivos</label> <br />
+                            <input type="file" onChange={handleFileChange} multiple />
+                            <button type="submit" onClick={onSave}>Adicionar</button>
+                        </form>
+                    </center>
 
                     <div className={taskStyle.divDaDivCommits}>
                         <div className={taskStyle.divCommits}>
@@ -144,8 +176,6 @@ export default function Task() {
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
                             <br />
                         </details>
-
-
                     </div>
                     <div>
                         <div className={taskStyle.tituloFlex}>
@@ -158,7 +188,6 @@ export default function Task() {
                     </div>
                     {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
                 </div>
-
             </>
         )
     } else {

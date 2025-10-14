@@ -66,7 +66,6 @@ export async function getUserByEmail() {
         var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
         var bytes = CryptoJS.AES.decrypt(result, key)
         var dadosDescriptografados = bytes.toString(CryptoJS.enc.Utf8)
-        // return dadosDescriptografados
         // Consulta
         if (dadosDescriptografados) {
             let r = await URL.get(`usuarios/email/${dadosDescriptografados}`)
@@ -90,17 +89,23 @@ export async function getUserByName(nome) {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        await URL.patch(`usuarios/${id}`, params).then(() => { location.reload() });
+        await URL.patch(`usuarios/${id}`, params).then(() => { 
+            location.reload()
+            return false
+         });
     } catch (error) {
-        alert(error.status)
+        return(true)
     }
 }
 
 export async function deleteUser(id) {
     try {
-        await URL.patch(`usuarios/excluir/${id}`).then(() => { location.reload() })
+        await URL.patch(`usuarios/excluir/${id}`).then(() => { 
+            redirecionar('logout')
+            return false
+        })
     } catch (error) {
-        alert(error.status)
+        return(true)
     }
 }
 
@@ -349,11 +354,10 @@ export async function getTaskByGitHub(id) {
 }
 
 export async function updateTask(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`/tasks/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try{
+        await URL.patch(`/tasks/${id}`, params).then(() => { return false })
+    } catch {
+        return true
     }
 }
 
