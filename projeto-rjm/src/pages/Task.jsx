@@ -1,8 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskByGitHub, updateTask } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
-import { isDeCripto, isFormat } from "./util/functions";
+import { isCripto, isDeCripto, isFormat } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
@@ -12,7 +12,6 @@ import clipbb from '../ui/icons/clipboard.png'
 export default function Task() {
     const { task_id } = useParams()
     const [task, setTask] = useState([])
-    const [file, setFile] = useState([])
     let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
@@ -23,28 +22,20 @@ export default function Task() {
         fetch()
     }, []);
 
-    function handleFileChange(e) {
-        if (e.target.files) {
-            setFile(e.target.files[0])
-        }
-    }
-
-    const onSave = async (e) => {
-        e.preventDefault()
+    async function handleFileChange(e) {
         const formData = new FormData();
         formData.append("task[titulo]", task.titulo)
         formData.append("task[descricao]", task.descricao)
         formData.append("task[status]", task.status)
-        formData.append("task[status]", task.excluido)
-        if (file) {
-            formData.append("task[arquivos][]", file);
+        formData.append("task[excluido]", task.excluido)
+        if (e.target.files[0]) {
+            formData.append("task[arquivos][]", e.target.files[0]);
         }
-        const res = await updateTask(decript_id, formData)
-        if (res) {
+        (await updateTask(decript_id, formData)) ?
             document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
-        } else {
+        :
             location.reload()
-        }
+
     }
 
     function apr() {
@@ -80,18 +71,14 @@ export default function Task() {
                     </div>
                     <br />
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
-                            <br />
+                    <br />
                     <center>
-                        <form onSubmit={onSave}>
-                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
-                            <input id="fileUpload" type="file" onChange={handleFileChange} multiple />
-                            <button type="submit" onClick={onSave}>Adicionar</button>
-                        </form>
+                        <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
+                        <input id="fileUpload" type="file" onChange={handleFileChange} />
                     </center>
                     <center>
                         <h3 className={taskStyle.responsee} id="response" />
                     </center>
-
                     <div className={taskStyle.divArquivos}>
                         <table className={taskStyle.tableArquivos}>
                             <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
@@ -111,11 +98,8 @@ export default function Task() {
                                 )
                             })}
                         </table>
-
                     </div>
-
                 </div>
-
             </div>
         )
     }
@@ -166,6 +150,7 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
+                        <button onClick={() => { location.href = `/../../../sprint/edit/task/${isCripto(decript_id)}` }}>...</button>
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
                         </div>

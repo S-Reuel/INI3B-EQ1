@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
+import taskStyle from "../ui/styles/task/task.module.css";
+import fileIcon from '../ui/icons/fileIcon.png'
 
 export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
     const [file, setFile] = useState()
+    const [files, setFiles] = useState([])
     const [stt, setStatus] = useState()
     let decript_id = isDeCripto(task_id)
 
@@ -19,6 +22,7 @@ export default function Editar_Task() {
             setTitulo(res.titulo)
             setDesc(res.descricao)
             setStatus(res.status)
+            setFiles(res.arquivos_urls)
         }
         fetch()
     }, [])
@@ -39,7 +43,10 @@ export default function Editar_Task() {
         if (file) {
             formData.append("task[arquivos][]", file);
         }
-        const res = await updateTask(decript_id, formData)
+        (await updateTask(decript_id, formData)) ?
+            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
+        :
+            location.reload()
     }
 
     if (localStorage.getItem('authToken')) {
@@ -52,8 +59,8 @@ export default function Editar_Task() {
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
                         <label>
-                            <label>Adicione arquivos</label> <br />
-                            <input type="file" onChange={handleFileChange} multiple />
+                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
+                            <input id="fileUpload" type="file" onChange={handleFileChange} />
                         </label>
                         <br /><br />
                         <label>
@@ -86,6 +93,24 @@ export default function Editar_Task() {
                             </select>
                         </label>
                         <br /><br />
+                        <table className={taskStyle.tableArquivos}>
+                            <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
+                            {files.map((i) => {
+                                const caminhoDoArquivo = i;
+                                const regex = /[^/]*$/;
+                                const match = caminhoDoArquivo.match(regex);
+                                return (
+                                    <tr className={taskStyle.linkTask}>
+                                        <a href={i} target="_blank" className={taskStyle.linklink}>
+                                            <img src={fileIcon} className={taskStyle.fileIMG} />
+                                            <div className={taskStyle.linklinklink}>{match[0]}</div>
+
+                                        </a>
+
+                                    </tr>
+                                )
+                            })}
+                        </table>
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
                                 e.stopPropagation()
