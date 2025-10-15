@@ -11,9 +11,8 @@ export default function EsqueciSenha() {
         let emailEnviado = email
         setEmail("")
         setBotaoDesativado("disabled")
-        e.preventDefault()
-        let status = await esqueciSenha(emailEnviado)
-        if (status) {
+        e.preventDefault() 
+        if (await esqueciSenha(emailEnviado)) {
             location.href = '/login/redefinirSenha'
         } else {
             setBotaoDesativado("")

@@ -11,7 +11,6 @@ Modal.setAppElement('#root');
 
 export default function Equipes() {
     const [eqs, setEqs] = useState([])
-
     useEffect(() => {
         async function fetch() {
             const res = await getEquipeByUser() // Filtrar equipes pelo usuário
@@ -39,7 +38,7 @@ export default function Equipes() {
     }
 
     // Função que fecha a modal
-    function fecharModal() {
+    async function fecharModal() {
         setIsOpen(false);
     }
 
@@ -86,7 +85,7 @@ export default function Equipes() {
                     }}
                 >
 
-                    <Add_Equipe />
+                    <Add_Equipe fecharModal={fecharModal}/>
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
@@ -107,8 +106,10 @@ export default function Equipes() {
                         </div>
                     ) : (
                         <>
+                            <div style={{display:"inline-grid"}}>
+                                <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
 
-                            <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
+                            </div>
 
                         </>
                     )}

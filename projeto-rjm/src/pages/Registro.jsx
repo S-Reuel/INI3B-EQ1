@@ -21,7 +21,9 @@ export default function Registro() {
 
     const onSave = async (e) => {
         e.preventDefault()
+        
         let res = postUser({ nome, email, password, user_git, excluido, avatar_url: null })
+
         if (await obterValor(res) == true) {
             redirecionar('login')
         } else {

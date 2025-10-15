@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import editProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from "../ui/components/_cabecalho";
 import { isDeCripto } from "./util/functions";
+import trashy from '../ui/icons/trash.png'
 
 
 export default function Editar_Projeto() {
@@ -57,7 +58,9 @@ export default function Editar_Projeto() {
                             <button className={editProjStyle.formButtonDelete} onClick={async (e) => {
                                 e.stopPropagation()
                                 await deleteProjeto(decript_id)
-                            }}>X Excluir</button>
+                            }}>
+                                <img src={trashy} className={editProjStyle.trashImg2} />
+                                Excluir</button>
                             <button className={editProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                             <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>

@@ -108,8 +108,6 @@
 
 
 .modalConteudo{
-  top: calc(25% - 15px);
-  left: 40%;
   position: relative;
   background-color: #151B23;
   min-width: 200px;

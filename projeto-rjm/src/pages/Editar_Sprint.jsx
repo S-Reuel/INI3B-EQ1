@@ -3,6 +3,7 @@ import { deleteSprint, getSprintsId, updateSprint } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isDeCripto, isFormatDate } from "./util/functions"
+import trashy from '../ui/icons/trash.png'
 import editSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Editar_Sprint() {
@@ -40,11 +41,7 @@ export default function Editar_Sprint() {
                 <CabProj />
                 <center className={editSprintStyle.center}>
                     <h1 className={editSprintStyle.tituloPagina}>Editar Sprint</h1>
-                    <h3 id="response"></h3>
-                    <button onClick={async (e) => {
-                        e.stopPropagation()
-                        await deleteSprint(decript_id)
-                    }}>X Excluir</button>
+                    <h3 id="response"/>
                     <form className={editSprintStyle.form} onSubmit={onSave}>
                         <label>
                             <label className={editSprintStyle.lbl}>Nome da Sprint</label><br />
@@ -88,7 +85,9 @@ export default function Editar_Sprint() {
                             <button className={editSprintStyle.formButtonDelete} onClick={async (e) => {
                                 e.stopPropagation()
                                 await deleteSprint(decript_id)
-                            }}>X Excluir</button>
+                            }}>
+                                <img src={trashy} className={editSprintStyle.trashImg2} />
+                                Excluir</button>
                             <button className={editSprintStyle.formButton} type="submit">Salvar Alterações</button>
                             <button className={editSprintStyle.btnFechaModal} type="button" onClick={() => { history.back(); window.close(); }}>Cancelar</button>
 
