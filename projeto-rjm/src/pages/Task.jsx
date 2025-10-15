@@ -8,6 +8,7 @@ import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
 import setaDetails from '../ui/icons/setaDetails.png'
 import clipbb from '../ui/icons/clipboard.png'
+import tutorial from '../ui/file/tutorialCodra.txt'
 
 export default function Task() {
     const { task_id } = useParams()
@@ -50,12 +51,16 @@ export default function Task() {
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
                         <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
+
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
-                    <br />
-
-
+                    <a href={tutorial} className={taskStyle.tititirial} download>
+                        <p className={taskStyle.tutorial}><b className={taskStyle.tutoriel}> ?</b> Commits</p>
+                    </a>
+                    
                     <div className={taskStyle.divDaDivCommits}>
+
                         <div className={taskStyle.divCommits}>
+
                             {task.git_hubs.map((i) => {
                                 return (
                                     <div className={taskStyle.commitTask}>
@@ -153,7 +158,12 @@ export default function Task() {
                         
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                            <p className={taskStyle.idDesc}>ID: {decript_id}</p>
                         </div>
+
+
+
+
 
                         <details className={taskStyle.descEquipe} open='true'>
                             <summary>
@@ -162,6 +172,7 @@ export default function Task() {
                                 Descrição
                             </summary>
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
+
                             <br />
                         </details>
                     </div>
