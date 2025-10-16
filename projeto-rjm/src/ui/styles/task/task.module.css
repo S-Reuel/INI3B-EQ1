@@ -267,7 +267,13 @@ border-radius: 8px;
     .navEquipes{
         display: none;
     }
-
+    .datasDaTask{
+        gap:0px;
+    }
+    .tituloFlex{
+        width:100vw;
+        
+    }
 }
 
 .descEquipe {
