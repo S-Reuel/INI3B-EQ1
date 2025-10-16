@@ -45,8 +45,7 @@ export default function Editar_Equipe() {
                 <>
                     <div className={editEquipeStyle.membrosAtuaisDiv}>
                         <div className={editEquipeStyle.atuaisTitulo2}>
-                            <label>Membros a serem adicionados</label>
-                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { setAddMembro([]) }}>Remover todos</div>
+                            <label>Membro a serer adicionado</label>
                         </div>
                         <table className={editEquipeStyle.atuaisTable}>
                             <tr className={editEquipeStyle.thAtuais}>
@@ -91,7 +90,7 @@ export default function Editar_Equipe() {
 
     const onSave = (e) => {
         e.preventDefault()
-        updateEquipe(addMembro, isDeCripto(id), { nome, descricao })
+        updateEquipe(addMembro, isDeCripto(id_equipe), { nome, descricao })
     }
 
     return (
@@ -145,7 +144,7 @@ export default function Editar_Equipe() {
                     </div>
                     <br />
                     <form >
-                        <label>Adicionar membros: </label> <br /><br />
+                        <label>Adicionar membro: </label> <br /><br />
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"

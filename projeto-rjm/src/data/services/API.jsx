@@ -193,7 +193,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(() => { redirecionar('eq') })
+        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(() => { voltar() })
     } catch (error) {
         alert(error.status)
     }
@@ -246,19 +246,21 @@ export async function getProjetoId(id) {
 }
 
 export async function updateProjeto(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`projetos/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try{
+        await URL.patch(`projetos/${id}`, params)
+        return true
+    } catch {
+        return false
     }
+    
 }
 
 export async function deleteProjeto(id) {
     try {
-        await URL.patch(`projetos/${id}`, { excluido: "true" }).then(() => voltar())
+        await URL.patch(`projetos/${id}`, { excluido: "true" })
+        voltar()
     } catch (error) {
-        alert(error.status)
+        console.log(error.status)
     }
 }
 
@@ -290,11 +292,11 @@ export async function getSprintsId(id) {
 }
 
 export async function updateSprint(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`sprints/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try{
+        await URL.patch(`sprints/${id}`, params)
+        return true
+    } catch {
+        return false
     }
 }
 
@@ -355,7 +357,8 @@ export async function getTaskByGitHub(id) {
 
 export async function updateTask(id, params) {
     try {
-        await URL.patch(`/tasks/${id}`, params).then(() => { return false })
+        await URL.patch(`/tasks/${id}`, params)
+        return false 
     } catch {
         return true
     }

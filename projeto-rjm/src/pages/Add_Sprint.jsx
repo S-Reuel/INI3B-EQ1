@@ -15,8 +15,8 @@ export default function Add_Sprint() {
         let horario = `${new Date().toISOString().split('T')[1]}`
         let data_inicio = `${dataI}T${horario}`
         let data_fim = `${dataF}T${horario}`
-        let mensagem = await  postSprint({ nome, data_inicio, data_fim, projeto_id: decript_id})
-        if (mensagem) {
+        let res = await postSprint({ nome, data_inicio, data_fim, projeto_id: decript_id})
+        if (res) {
             document.getElementById("response").innerHTML = "Não foi possível a criação"
         }
     }
