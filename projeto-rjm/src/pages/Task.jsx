@@ -51,7 +51,7 @@ export default function Task() {
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
                         <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
                     </div>
-
+                    <br />
                     <hr className={taskStyle.hr1} color="#4a4a4a" />
                     <a href={tutorial} className={taskStyle.tititirial} download>
                         <p className={taskStyle.tutorial}><b className={taskStyle.tutoriel}> ?</b> Commits</p>

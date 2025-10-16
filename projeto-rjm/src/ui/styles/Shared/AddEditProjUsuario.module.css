@@ -64,6 +64,10 @@
    max-width: 70vw;
 }
 
+.selectBox{
+   width: calc(100% + 45px);
+}
+
 .divBotoes {
    width: 100%;
    display: flex;
@@ -451,6 +455,9 @@
       margin-left: 5%;
       margin-right: 5%;
 
+   }
+   .selectBox{
+      width: calc(80% + 40px);
    }
 }
 
