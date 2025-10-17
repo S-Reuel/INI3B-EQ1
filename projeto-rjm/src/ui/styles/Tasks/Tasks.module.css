@@ -326,8 +326,8 @@
 
 .semTask{
     position: absolute;
-    left: 50%;
     top: 50%;
+    text-align: center;
     color: white;
 }
 
@@ -344,7 +344,6 @@
     }
     .tituloPagina{
         grid-column: 1/span 2;
-        margin-left:75vw;
     }
     .tasksCenter{
         grid-column: 1/span 2;
@@ -352,9 +351,19 @@
         margin-left:20%
 
     }
-
+    .tituloFlex{
+        width:100vw;
+    }
     .hr1{
         width: 100vw;
+    }
+    .modalConteudo{
+        width: 100vw;
+    }
+    .semTask{
+        align-self: center;
+        text-align: center;
+        
     }
 }
 

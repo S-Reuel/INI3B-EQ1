@@ -158,8 +158,10 @@ export default function Tasks() {
 
                     ) : (
                         <>
+                            <div style={{display:"inline-grid"}}>
+                                <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
 
-                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+                            </div>
 
                         </>
                     )}
