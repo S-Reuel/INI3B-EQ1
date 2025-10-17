@@ -76,6 +76,7 @@ export default function Equipes() {
                             backgroundColor: 'rgba(0, 0 ,0, 0.8)'
                         },
                         content: {
+
                             border: '1px solid black',
                             background: '#151B23',
                             maxHeight: '70vh',

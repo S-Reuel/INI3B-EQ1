@@ -18,6 +18,8 @@ export default function EditUser() {
     const [user_git, setNg] = useState('')
     const [file, setFile] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('')
+    const [linkDesativado, setLinkDesativado] = useState('')
+
     const [modalIsOpen, setIsOpen] = React.useState(false);
     let excluido = false
 
@@ -50,9 +52,13 @@ export default function EditUser() {
     }
 
     async function esqueci() {
+        document.body.style.cursor='wait';
+        setLinkDesativado("true")
         if (await esqueciSenha(email)) {
             location.href = '/login/redefinirSenha'
         }
+        setLinkDesativado("false")
+
     }
 
     function atualizarAvatar() {
@@ -79,6 +85,7 @@ export default function EditUser() {
         if (erro == true){
             document.getElementById("erro").innerHTML = "Não foi possível alterar perfil!"
         }
+
     }
 
     if (localStorage.getItem('authToken')) {
@@ -170,7 +177,7 @@ export default function EditUser() {
                                 <br />
 
                                 <div className={perfilStyle.divBotoes}>
-                                    <button className={perfilStyle.formButton} onClick={async (e) => {
+                                    <button className={perfilStyle.formButton} hack="true" onClick={async (e) => {
                                         e.stopPropagation()
                                         let erro = await deleteUser(id)
                                         if (erro == true)
@@ -178,7 +185,7 @@ export default function EditUser() {
                                     }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
-                                <p>Alterar Senha?<a className={perfilStyle.link} onClick={(e) => esqueci()} disabled={botaoDesativado}> Vá para redefinir senha</a></p>
+                                <p>Alterar Senha?<a className={perfilStyle.link} linkDesativado={linkDesativado} onClick={(e) => esqueci()}> Vá para redefinir senha</a></p>
                                 <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={(e) => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>

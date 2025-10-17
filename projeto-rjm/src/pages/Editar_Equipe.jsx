@@ -167,7 +167,7 @@ export default function Editar_Equipe() {
                         }}>
                             <img src={trashIcon} className={editEquipeStyle.trashImg2}/>
                          Excluir</button>
-                        <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
+                        <button className={editEquipeStyle.formButton} type="submit" onClick={() => {onSave;redirecionar('eq')}}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>
                 </form>
