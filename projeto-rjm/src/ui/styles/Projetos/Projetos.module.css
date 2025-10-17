@@ -442,5 +442,6 @@
 @media screen and (orientation: portrait) {
     .modalConteudo{
         margin-left: 0;
+        width: auto;
     }
 }
