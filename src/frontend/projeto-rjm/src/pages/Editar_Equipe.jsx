@@ -164,7 +164,9 @@ export default function Editar_Equipe() {
                         <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
                             membros.map((i) => { remover(i.id, 'Membros') })
                             await deleteEquipe(decript_id)
-                        }}>X Excluir</button>
+                        }}>
+                            <img src={trashIcon} className={editEquipeStyle.trashImg2}/>
+                         Excluir</button>
                         <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>

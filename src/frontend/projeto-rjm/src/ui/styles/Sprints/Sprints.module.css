@@ -6,9 +6,12 @@
     width: 100px;
     bottom: 7%;
     right: 5%;
+    z-index: 9;
     transition: 0.25s;
+
 }
 .botaoNewSprint:hover {
+    cursor:pointer;
     scale: 105%;
 }
 .imgEditarProj{
@@ -239,9 +242,8 @@
 }
 
 .semSprint{
-    position: absolute;
-    left: 50%;
-    top: 50%;
+    text-align: center;
+    align-self: center;
     color: white;
 }
 @media screen and (orientation: portrait) {

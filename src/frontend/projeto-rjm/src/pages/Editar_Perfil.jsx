@@ -7,6 +7,7 @@ import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
 import camera from "../ui/icons/camera.svg"
+import trashy from '../ui/icons/trash.png'
 
 Modal.setAppElement('#root');
 
@@ -49,8 +50,7 @@ export default function EditUser() {
     }
 
     async function esqueci() {
-        let mensagem = await esqueciSenha(email)
-        if (mensagem == 'Um email de redefinição foi enviado') {
+        if (await esqueciSenha(email)) {
             location.href = '/login/redefinirSenha'
         }
     }
@@ -60,7 +60,7 @@ export default function EditUser() {
         if (file != '' && file != undefined) {
             formData.append("usuario[avatar]", file)
             let erro = updateUser(id, formData)
-            if (erro) {
+            if (erro == true) {
                 fecharModal()
                 document.getElementById("erro").innerHTML = "Foto não atualizada!"
             }
@@ -76,8 +76,9 @@ export default function EditUser() {
         formData.append("usuario[user_git]", user_git)
         formData.append("usuario[excluido]", excluido)
         let erro = updateUser(id, formData)
-        if (erro)
+        if (erro == true){
             document.getElementById("erro").innerHTML = "Não foi possível alterar perfil!"
+        }
     }
 
     if (localStorage.getItem('authToken')) {
@@ -172,7 +173,7 @@ export default function EditUser() {
                                     <button className={perfilStyle.formButton} onClick={async (e) => {
                                         e.stopPropagation()
                                         let erro = await deleteUser(id)
-                                        if (erro)
+                                        if (erro == true)
                                             document.getElementById("erro").innerHTML = "Não foi possível excluir seu perfil!"
                                     }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>

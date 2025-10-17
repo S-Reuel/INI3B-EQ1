@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = true
 const URL = axios.create({
-    baseURL: 'https://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
 })
 
 /* Função para tratar Promise */
@@ -66,7 +66,6 @@ export async function getUserByEmail() {
         var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
         var bytes = CryptoJS.AES.decrypt(result, key)
         var dadosDescriptografados = bytes.toString(CryptoJS.enc.Utf8)
-        // return dadosDescriptografados
         // Consulta
         if (dadosDescriptografados) {
             let r = await URL.get(`usuarios/email/${dadosDescriptografados}`)
@@ -90,17 +89,23 @@ export async function getUserByName(nome) {
 export async function updateUser(id, params) {
     // Atualiza as informações do usuário
     try {
-        await URL.patch(`usuarios/${id}`, params).then(() => { voltar() });
+        await URL.patch(`usuarios/${id}`, params).then(() => {
+            location.reload()
+            return false
+        });
     } catch (error) {
-        return(true)
+        return (true)
     }
 }
 
 export async function deleteUser(id) {
     try {
-        await URL.delete(`usuarios/excluir/${id}`).then(() => { location.reload() })
+        await URL.patch(`usuarios/excluir/${id}`).then(() => {
+            redirecionar('logout')
+            return false
+        })
     } catch (error) {
-        return(error.status)
+        return (true)
     }
 }
 
@@ -188,8 +193,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        
-        await URL.delete(`equipes/${id}`).then(() => { redirecionar('eq') })
+        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(() => { redirecionar('eq') })
     } catch (error) {
         alert(error.status)
     }
@@ -199,20 +203,17 @@ export async function deleteUserByEquipe(id) {
     try {
         await URL.delete(`usuario_equipes/${id}`).then(() => { location.reload() })
     } catch (error) {
-        return(true)
+        return (true)
     }
 }
 
 /*  CRUD's Projetos */
 export async function postProjeto(equipe_id, params) {
     try {
-        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {
-            await URL.post('projetos', params).then((res) => {
-                let projeto_id = res.data.id
-                postProjetoByEquipe({ projeto_id, equipe_id })
-            })
-        }
+        await URL.post('projetos', params).then((res) => {
+            let projeto_id = res.data.id
+            postProjetoByEquipe({ projeto_id, equipe_id })
+        })
     } catch (error) {
         return (error.status);
     }
@@ -245,17 +246,17 @@ export async function getProjetoId(id) {
 }
 
 export async function updateProjeto(id, params) {
-    try{
-        await URL.patch(`projetos/${id}`, params)
-        .then(() => { voltar() })
-    } catch(error){
-        console.log(error.status);
+    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
+    if (bool) {
+        await URL.patch(`projetos/${id}`, params).then(() => { voltar() })
+    } else {
+        location.reload()
     }
 }
 
 export async function deleteProjeto(id) {
     try {
-        await URL.delete(`projetos/${id}`).then( voltar() )
+        await URL.patch(`projetos/${id}`, { excluido: "true" }).then(() => voltar())
     } catch (error) {
         alert(error.status)
     }
@@ -266,7 +267,7 @@ export async function postSprint(params) {
     try {
         await URL.post('sprints', params).then(() => { location.reload() })
     } catch (error) {
-        return(true)
+        return (true)
     }
 }
 
@@ -299,7 +300,7 @@ export async function updateSprint(id, params) {
 
 export async function deleteSprint(id) {
     try {
-        await URL.delete(`/${id}`).then((res) => res.data);
+        await URL.patch(`sprints/${id}`, { excluido: "true" }).then(() => { voltar() });
     } catch (error) {
         alert(error.status)
     }
@@ -308,13 +309,10 @@ export async function deleteSprint(id) {
 /*  CRUD's Task */
 export async function postTask(sprint_id, params) {
     try {
-        let bool = confirm("Adicionado com sucesso! Aperte OK para restornar à página anterior.")
-        if (bool) {
-            await URL.post('tasks', { task: params }).then((res) => {
-                let task_id = res.data.id
-                postTaskBySprint({ sprint_id, task_id })
-            });
-        }
+        await URL.post('tasks', { task: params }).then((res) => {
+            let task_id = res.data.id
+            postTaskBySprint({ sprint_id, task_id })
+        });
     } catch (error) {
         alert(error.status)
     }
@@ -356,17 +354,16 @@ export async function getTaskByGitHub(id) {
 }
 
 export async function updateTask(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`/tasks/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try {
+        await URL.patch(`/tasks/${id}`, params).then(() => { return false })
+    } catch {
+        return true
     }
 }
 
 export async function deleteTask(id) {
     try {
-        await URL.delete(`/${id}`).then((res) => res.data)
+        await URL.patch(`/tasks/${id}`, { excluido: "true" }).then(() => { voltar() })
     } catch (error) {
         alert(error.status)
     }
@@ -394,19 +391,23 @@ export async function postLogin(params) {
 
 /*  Alteração de senha   */
 export async function esqueciSenha(params) {
-    try {
-        let r = await URL.post(`esqueci/`, { email: params })
-        return r.data.alert
-    } catch (error) {
-        return (true)
+    let r = await URL.post(`esqueci/`, { email: params })    
+    if( r.data.alert == "Email não encontrado"){
+        return false
+    } else {
+        var result = params
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var dadosCriptografados = CryptoJS.AES.encrypt(result, key).toString()
+        onSession('authEmail', dadosCriptografados)
+        return true
     }
 }
 
 export async function redefinirSenha(t, e, p) {
-    try {
-        let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
-        return r.data.alert
-    } catch (error) {
-        alert(error.status)
+    let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
+    if(r.data.alert == "Token inválido."){
+        return false
+    } else {
+        return true
     }
 }

@@ -23,12 +23,12 @@ export default function Add_Task() {
         return (
             <div className={addProjStyle.paginaBody}>
                 <center className={addProjStyle.center}>
-                    <h1 className={addProjStyle.tituloPagina}>Criar nova Task</h1>
+                    <h1 className={addProjStyle.tituloPagina}>Nova Task</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
                         <input type="file" name="arquivo" id="arq" />
                         <br /> <br />
                         <label>
-                            <label>Título da Task</label><br />
+                            <label>Título da Task</label><br /><br />
                             <input
                                 className={addProjStyle.input}
                                 type="text" name="nome"
@@ -38,7 +38,7 @@ export default function Add_Task() {
                         </label>
                         <br />
                         <label >
-                            <label>Descricao</label><br />
+                            <label>Descricao</label><br /><br />
                             <textarea 
                                 rows='8' cols='50'
                                 className={addProjStyle.input}
@@ -49,7 +49,7 @@ export default function Add_Task() {
                         </label>
                         <br />
                         <label >
-                            <label>Status</label><br />
+                            <label>Status</label><br /><br />
                             <select id='selectStatus' className={addProjStyle.selectBox}>
                                 <option value={0}>Selecione</option>
                                 <option value={'pendente'}>Pendente</option>

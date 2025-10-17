@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
 import { getSprintsId, getTaskBySprint } from "../data/services/API"
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
-import React from 'react';
-import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
-import Modal from 'react-modal';
-import Add_Task from "./Add_Task";
+import Modal from 'react-modal'
+import Add_Task from "./Add_Task"
 import iconCalendario from '../ui/icons/calendario.svg'
 import TasksStyle from '../ui/styles/Tasks/Tasks.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 export default function Tasks() {
     const { sprint_id } = useParams()
@@ -42,7 +40,6 @@ export default function Tasks() {
 
     function apr() {
         return tasks.map(function (i) {
-            let dataCriacao = isFormat(new Date(i.created_at))
             let dataAtualizacao = isFormat(new Date(i.updated_at))
 
             if (!(i.excluido)) {
@@ -70,6 +67,7 @@ export default function Tasks() {
             }
         })
     }
+
     function textoStatus(status) {
         switch (status.toLowerCase()) {
             case "concluido":
@@ -104,8 +102,6 @@ export default function Tasks() {
         }
     }
 
-
-
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     // Função que abre a modal
@@ -135,10 +131,10 @@ export default function Tasks() {
                         }
                     }}
                 >
-                    <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    
                     <Add_Task />
                 </Modal>
-                <div className={TasksStyle.botaoNewTask} onClick={abrirModal}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
+                <div className={TasksStyle.botaoNewTask} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}>
                         <div className={TasksStyle.descData} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
@@ -162,8 +158,10 @@ export default function Tasks() {
 
                     ) : (
                         <>
+                            <div style={{display:"inline-grid"}}>
+                                <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
 
-                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+                            </div>
 
                         </>
                     )}

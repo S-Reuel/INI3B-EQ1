@@ -3,12 +3,12 @@ import { getUserByName, postEquipe } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
-export default function Add_Equipe() {
+export default function Add_Equipe({fecharModal}) {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     let [membros, setMembro] = useState([])
-
+    const [botaoDesativado, setBotaoDesativado] = useState('')
     function handleChange(event) {
         setPesquisa(event.target.value)
     }
@@ -29,7 +29,17 @@ export default function Add_Equipe() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        postEquipe(membros, { nome, descricao })
+        setBotaoDesativado("disabled")
+        if(nome.trim().length == 0 || descricao.trim().length == 0)
+        {
+            alert("O nome e/ou a descrição estão sem texto! Por favor os preencha e tente novamente")
+        }
+        else
+        {
+            await postEquipe(membros, { nome, descricao })
+            fecharModal();
+        }
+        setBotaoDesativado("")
     }
 
 
@@ -37,10 +47,10 @@ export default function Add_Equipe() {
         return (
             <div className={addEquipeStyle.paginaBody}>
                 <center className={addEquipeStyle.center}>
-                    <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe!</h1>
+                    <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe</h1>
                     <form className={addEquipeStyle.form}>
                         <label>
-                            <label className={addEquipeStyle.lbl}>Nome:</label><br />
+                            <label className={addEquipeStyle.lbl}>Nome:</label><br /><br />
                             <input
                                 type="text" nome="nome"
                                 placeholder="Digite o nome da equipe" required
@@ -50,7 +60,7 @@ export default function Add_Equipe() {
                         </label>
                         <br />
                         <label >
-                            <label className={addEquipeStyle.lbl}>Descrição:</label>
+                            <label className={addEquipeStyle.lbl}>Descrição:</label><br />
                             <br />
                             <textarea
                                 rows='8' cols='50'
@@ -60,7 +70,7 @@ export default function Add_Equipe() {
                             />
                         </label>
                         <form >
-                            <label className={addEquipeStyle.lbl}>Adicionar membros: </label> <br />
+                            <label className={addEquipeStyle.lbl}>Adicionar membros: </label> <br /><br />
                             <input
                                 type="text" id="addMembro"
                                 placeholder="Digite o nome do membro"
@@ -77,7 +87,7 @@ export default function Add_Equipe() {
                             className={addEquipeStyle.textAreo} disabled
                         />
                         <br /> <br />
-                        <button type="submit" onClick={onSave} className={addEquipeStyle.formButton}>Criar</button>
+                        <button type="submit" onClick={onSave} className={addEquipeStyle.formButton} disabled={botaoDesativado}>Criar</button>
                     </form>
                 </center>
             </div>

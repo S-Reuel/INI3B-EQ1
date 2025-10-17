@@ -1,0 +1,43 @@
+##################################
+#     Integrar GitHub ao Codra   #
+##################################
+1.Criar um Webhook no GitHub
+
+- Em um repositório do GitHub vá para configurações (Settings) no menu lateral acesse Webhooks.
+
+- Preencha os campos:
+
+  a) "Payload URL" -> adicione a seguinte URL: http://eq1.ini3b.projetoscti.com.br/api/v2/git_hubs/receive
+
+  b) "Content type": application/json
+
+  c) "Secret" deve ser mantida em branco
+
+  d) "SSL verification": Enable SSL verification
+
+  e) "Quais eventos você gostaria que acionassem este webhook?" (Which events would you like to trigger this webhook?): Envie-me tudo (Send me everything)
+
+  f) "Active" deve ser mantido acionado
+
+- Pressione Update webhook
+
+
+
+2.Na sua mensagem de commit adicione o id da Task à qual deseja vincular o commit
+
+#############################
+#	Exemplo de Commit	    #
+#############################
+
+git commit -m "feat(security): Adiciona travas de segurança
+#task:1"
+
+Para mais de uma task use como abaixo:
+
+git commit -m "feat(security): Adiciona travas de segurança
+#task:1 #task:8 #task:11"
+
+Dessa forma, os commits aparecerão na task cujo ID foi mencionado.
+Se encontrar um erro, contate: codra.suporte@gmail.com
+
+

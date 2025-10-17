@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
 import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
+import trashy from '../ui/icons/trash.png'
 
 export default function Editar_Task() {
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
     const [stt, setStatus] = useState()
-    const [file, setFile] = useState(null);
     let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
@@ -23,24 +23,17 @@ export default function Editar_Task() {
         fetch()
     }, [])
 
-    function handleFileChange(e) {
-        if (e.target.files) {
-            setFile(e.target.files[0])
-        }
-    }
-
     const onSave = async (e) => {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
-        if (file) {
-            formData.append("task[arquivos][]", file);
-        }
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
-
-        const res = await updateTask(decript_id, formData)
+            (await updateTask(decript_id, formData)) ?
+            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
+            :
+            location.reload()
     }
 
     if (localStorage.getItem('authToken')) {
@@ -52,12 +45,8 @@ export default function Editar_Task() {
 
                     <form className={editEquipeStyle.form} onSubmit={onSave}>
                         <br />
-                        <label>
-                            <label>Adicione somente um arquivo</label> <br />
-                            <input type="file" onChange={handleFileChange} multiple />
-                        </label>
-                        <br />
-                        <br />
+
+                        <br /><br />
                         <label>
                             <label className={editEquipeStyle.inputTipo}>Título da Task</label><br />
                             <input
@@ -92,7 +81,10 @@ export default function Editar_Task() {
                             <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
                                 e.stopPropagation()
                                 await deleteTask(decript_id)
-                            }}>X Excluir</button>
+                            }}>
+                                <img src={trashy} className={editEquipeStyle.trashImg2} />
+                                Excluir
+                            </button>
                             <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
                             <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>

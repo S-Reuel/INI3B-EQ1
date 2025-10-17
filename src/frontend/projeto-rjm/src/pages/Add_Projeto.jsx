@@ -19,10 +19,10 @@ export default function Add_Projeto(props) {
         return (
             <div className={addProjStyle.paginaBody}>
                 <center className={addProjStyle.center}>
-                    <h1 className={addProjStyle.tituloPagina}>Criar novo projeto</h1>
+                    <h1 className={addProjStyle.tituloPagina}>Novo projeto</h1>
                     <form onSubmit={onSave} className={addProjStyle.form}>
                         <label>
-                            <label className={addProjStyle.lbl}><h1>Nome do Projeto</h1></label>
+                            <label className={addProjStyle.lbl}>Nome do Projeto</label><br /><br /> 
                             <input
                                 className={addProjStyle.input}
                                 type="text" name="nome"
@@ -32,7 +32,7 @@ export default function Add_Projeto(props) {
                         </label>
                         <br />
                         <label >
-                            <label className={addProjStyle.lbl}><h1>Descrição</h1></label>
+                            <label className={addProjStyle.lbl}>Descrição</label><br /><br />
                             <textarea 
                                 rows='8' cols='50'
                                 className={addProjStyle.input}

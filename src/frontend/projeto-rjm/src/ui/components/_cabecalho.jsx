@@ -61,16 +61,24 @@ export default function CabProj() {
           <Modal isOpen={modalIsOpen} onRequestClose={fecharModal} className={cabProjetoStyle.modalConteudo}
             style={{
               overlay: {
-                backgroundColor: 'rgba(0, 0 ,0, 0.8)'
+                backgroundColor: 'rgba(0, 0 ,0, 0.8)',
+                display:'inline-grid',
+                overflowY: "scroll",
+                
+
               },
               content: {
                 border: '1px solid black',
-                background: '#151B23',
+                overflowY: "scroll",
 
+                background: '#151B23',
+                justifySelf: 'center',
+                alignSelf:'center',
+                
               }
             }}
           >
-            <button className={cabProjetoStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+            
             <Perfil />
           </Modal>
 

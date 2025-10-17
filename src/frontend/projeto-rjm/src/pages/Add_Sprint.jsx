@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { postSprint } from "../data/services/API"
-import { isDeCripto, redirecionar } from "./util/functions"
+import { isDeCripto, isFormatDate, redirecionar } from "./util/functions"
 import addSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 export default function Add_Sprint() {
@@ -25,14 +25,13 @@ export default function Add_Sprint() {
         return (
             <div className={addSprintStyle.paginaBody}>
                 <center className={addSprintStyle.center}>
-                    <h1 className={addSprintStyle.tituloPagina}>Criar nova Sprint</h1>
+                    <h1 className={addSprintStyle.tituloPagina}>Nova Sprint</h1>
                     <h3 id="response"></h3>
                     <form onSubmit={onSave} className={addSprintStyle.form}>
                         <label>
-                            <label className={addSprintStyle.lbl}>Nome da Sprint</label><br />
+                            <label className={addSprintStyle.lbl}>Nome da Sprint</label><br /><br />
                             <input
                                 className={addSprintStyle.input}
-
                                 type="text" name="nome"
                                 placeholder="Digite aqui o nome da Sprint" required
                                 onChange={(e) => setNome(e.target.value)}
@@ -40,15 +39,31 @@ export default function Add_Sprint() {
                         </label>
                         <br />
                         <label >
-                            <label className={addSprintStyle.lbl}>Data de Inicio</label>  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
+                            <label className={addSprintStyle.lbl}>Data de Inicio</label><br />  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
                             <br />
-                            <input className={addSprintStyle.input} type="date" required onChange={(e) => setDI(e.target.value)}/>
+                            <input className={addSprintStyle.input} type="date" value={dataI} required onChange={(e) => {
+                                if(e.target.value != dataF){
+                                    document.getElementById("response").innerHTML = ""
+                                    setDI(e.target.value)
+                                } else {
+                                    setDI("")
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                }
+                                }} />
                         </label>
                         <br />
                         <label >
                             <label>Data de Termino</label>
-                            <br />
-                            <input className={addSprintStyle.input} type="date" required onChange={(e) => setDF(e.target.value)} />
+                            <br /><br />
+                            <input className={addSprintStyle.input} type="date" value={dataF} required onChange={(e) => {
+                                if(e.target.value > dataI && e.target.value != dataI){
+                                    document.getElementById("response").innerHTML = ""
+                                    setDF(e.target.value)
+                                } else {
+                                    setDF("")
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
+                                }
+                                }} />
                         </label>
                         <br /><br />
                         <button className={addSprintStyle.formButton} type="submit">Salvar Alterações</button>

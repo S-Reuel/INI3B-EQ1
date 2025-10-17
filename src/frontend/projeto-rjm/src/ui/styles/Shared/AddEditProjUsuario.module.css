@@ -61,6 +61,11 @@
    padding: 17px 23px;
 
    width: 100%;
+   max-width: 70vw;
+}
+
+.selectBox{
+   width: calc(100% + 45px);
 }
 
 .divBotoes {
@@ -131,7 +136,9 @@
    transition: 300ms;
    transition-timing-function: ease-in-out;
 }
-
+.formButton:disabled{
+   background-color: #9696D5;
+}
 .formButton:hover {
    background-color: #9696D5;
 }
@@ -152,6 +159,8 @@
    padding: 17px 23px;
    transition: 300ms;
    transition-timing-function: ease-in-out;
+   display: flex;
+   align-items: center;
 }
 
 .formButtonDelete:hover {
@@ -336,6 +345,12 @@
    width: 24px;
 }
 
+.trashImg2 {
+   height: 24px;
+   width: 24px;
+   margin-right: 5px;
+}
+
 .remvBtn {
    background-color: transparent;
    margin-right: 16px;
@@ -441,6 +456,9 @@
       margin-right: 5%;
 
    }
+   .selectBox{
+      width: calc(80% + 40px);
+   }
 }
 
 
@@ -458,4 +476,5 @@
    padding: 17px 23px;
 
    width: 100%;
+   max-width: 75vw;
 }

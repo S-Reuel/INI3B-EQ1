@@ -92,7 +92,9 @@ export default function App() {
             <center>Roberto Enrico <br /> FrontEnd</center>
           </div>
         </div>
-        <br /><br /><br /><br /><br /><br />
+        <br />
+        
+        <br /><br /><br /><br /><br />
 
 
         <div className={appStyle.quemSomosTitulo}><b>Tecnologias utilizadas</b></div>
@@ -129,7 +131,10 @@ export default function App() {
 
           </div>
         </div>
-        <br /><br /><br /><br />
+        <br />
+        <p className={appStyle.contato}>Contato: codra.suporte@gmail.com</p>
+        
+        <br /><br /><br />
       </div>
     )
 

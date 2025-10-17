@@ -29,7 +29,7 @@
 .tituloProj {
     height: 30px;
     justify-self: baseline;
-    max-width: 90%;
+    margin-right: 5%;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: start;
@@ -48,7 +48,7 @@
 }
 
 .dataProj {
-    height: 20px;
+    min-height: 20px;
     width: fit-content;
     text-align: start;
     border-color: #4D555E;
@@ -109,9 +109,12 @@
     font-size: 50px;
 
 }
-
-.bodyProjs>h4 {
-    color: #c2c2c2;
+.bodyProjs[semProjetos="false"]
+{
+    display: grid;
+}
+.semProjTexto {
+    color: white;
 }
 
 .bttAdicionarProj {
@@ -198,6 +201,7 @@
     .modalConteudo {
         left: 0;
         margin-left: 10%;
+        width: 100vw;
 
     }
 
@@ -434,4 +438,10 @@
 
 .descEquipe:hover {
     cursor: pointer;
+}
+@media screen and (orientation: portrait) {
+    .modalConteudo{
+        margin-left: 0;
+        width: auto;
+    }
 }

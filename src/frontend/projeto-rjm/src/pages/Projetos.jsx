@@ -114,7 +114,7 @@ export default function Projetos() {
                 >
                     <Add_Projeto onClose={fecharModal} />
                 </Modal>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <div className={StyleProj.paginaEquipes}>
                     <div className={StyleProj.navEquipes}>
                         <details className={StyleProj.descEquipe} open='true'>
@@ -146,10 +146,9 @@ export default function Projetos() {
                         <br />
                         <hr className={StyleProj.hr1} color="#4a4a4a" />
                     </div>
-
-                    <center className={StyleProj.bodyProjs}>
+                    <center className={StyleProj.bodyProjs} semProjetos={projetos.length != 0 ? "true" : "false"}>
                         <br />
-                        {projetos.length != 0 ? apr() : <h4>Sem projetos! Crie projetos!</h4>}
+                        {projetos.length != 0 ? apr() : <h4 className={StyleProj.semProjTexto}> Sem projetos! Crie projetos!</h4>}
                     </center>
 
                 </div>

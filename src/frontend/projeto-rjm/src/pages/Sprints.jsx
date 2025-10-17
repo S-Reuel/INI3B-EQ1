@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { getProjetoId, getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
-import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
 import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
-import React from 'react';
 import Modal from 'react-modal';
 import Add_Sprint from "./Add_Sprint"
 import setaDetails from '../ui/icons/setaDetails.png'
@@ -97,7 +95,7 @@ export default function Sprints() {
                         }
                     }}
                 >
-                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    
                     <Add_Sprint />
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
@@ -151,7 +149,7 @@ export default function Sprints() {
                         </>
                     )}
 
-                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>
         )
