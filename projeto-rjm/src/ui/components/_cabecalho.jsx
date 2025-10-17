@@ -64,6 +64,7 @@ export default function CabProj() {
                 backgroundColor: 'rgba(0, 0 ,0, 0.8)',
                 display:'inline-grid',
                 overflowY: "scroll",
+                
 
               },
               content: {
@@ -77,7 +78,7 @@ export default function CabProj() {
               }
             }}
           >
-            <button className={cabProjetoStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+            
             <Perfil />
           </Modal>
 
