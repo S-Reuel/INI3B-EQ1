@@ -60,8 +60,7 @@ export default function Editar_Projeto() {
                         </label>
                         <br /><br />
                         <div className={editProjStyle.divBotoes}>
-                            <button className={editProjStyle.formButtonDelete} onClick={async (e) => {
-                                e.stopPropagation()
+                            <button type="button" className={editProjStyle.formButtonDelete} onClick={async () => {
                                 await deleteProjeto(decript_id)
                             }}>
                                 <img src={trashy} className={editProjStyle.trashImg2} />
