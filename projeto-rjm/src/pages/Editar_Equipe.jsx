@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { deleteEquipe, deleteUserByEquipe, getEquipeById, getMembros, getUserByName, updateEquipe } from "../data/services/API"
 import { useEffect, useState } from "react"
-import { isDeCripto, redirecionar } from "./util/functions"
+import { isDeCripto, redirecionar, voltar} from "./util/functions"
 import CabProj from "../ui/components/_cabecalho"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import userIcon from "../ui/icons/user.png"
@@ -14,7 +14,6 @@ export default function Editar_Equipe() {
     const [descricao, setDesc] = useState('')
     const [pesquisa, setPesquisa] = useState('')
     const [membros, setMembros] = useState([])
-    const [addMembro, setAddMembro] = useState([])
 
     useEffect(() => {
         async function fetch() {
@@ -27,47 +26,12 @@ export default function Editar_Equipe() {
         fetch()
     }, [])
 
-    async function remover(param, tipo) {
-        if (tipo == "Membros futuros") {
-            let a = addMembro.filter(obj => obj.ID != param)
-            setAddMembro(a)
-        } else if (tipo == "Membros") {
-            let mensagem = await deleteUserByEquipe(param)
-            if (mensagem) {
-                document.getElementById("erro").innerHTML = "Membro não removido da equipe!"
-            }
-        }
-    }
-
-    function listarAddMembros() {
-        if (addMembro.length != 0) {
-            return (
-                <>
-                    <div className={editEquipeStyle.membrosAtuaisDiv}>
-                        <div className={editEquipeStyle.atuaisTitulo2}>
-                            <label>Membros a serem adicionados</label>
-                            <div className={editEquipeStyle.btnRemoverTodos} onClick={() => { setAddMembro([]) }}>Remover todos</div>
-                        </div>
-                        <table className={editEquipeStyle.atuaisTable}>
-                            <tr className={editEquipeStyle.thAtuais}>
-                                <td className={editEquipeStyle.thhAtuais}>Nome</td>
-                                <td className={editEquipeStyle.thhAtuais2}>Função</td>
-                                <td></td>
-                            </tr>
-                            {addMembro.map((i) => {
-                                return (
-                                    <tr className={editEquipeStyle.trAtuais}>
-                                        <td className={editEquipeStyle.tdAtuaisUser}>{i.nome}</td>
-                                        <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.ID, "Membros futuros") }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
-                                    </tr>
-                                )
-                            })}
-                        </table>
-                    </div>
-
-                </>
-            )
+    async function remover(param) {
+        let res = await deleteUserByEquipe(param)
+        if (res) {
+            document.getElementById("erro").innerHTML = "Membro não removido da equipe!"
+        } else {
+            location.reload()
         }
     }
 
@@ -81,8 +45,8 @@ export default function Editar_Equipe() {
         document.getElementById("addMembro").value = ''
         if (res.nome != undefined && res.excluido == false) {
             document.getElementById("erro").innerHTML = ''
-            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "Dev" }, ...addMembro]
-            setAddMembro(item)
+            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "Dev" }]
+            updateEquipe(item, decript_id, { nome, descricao })
             setPesquisa('')
         } else {
             document.getElementById("erro").innerHTML = "Não encontrado! Por favor digite o nome novamente"
@@ -91,7 +55,7 @@ export default function Editar_Equipe() {
 
     const onSave = (e) => {
         e.preventDefault()
-        updateEquipe(addMembro, isDeCripto(id), { nome, descricao })
+        updateEquipe(addMembro, decript_id, { nome, descricao })
     }
 
     return (
@@ -145,7 +109,7 @@ export default function Editar_Equipe() {
                     </div>
                     <br />
                     <form >
-                        <label>Adicionar membros: </label> <br /><br />
+                        <label>Adicionar membro: </label> <br /><br />
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"
@@ -156,17 +120,11 @@ export default function Editar_Equipe() {
                         <label id="erro" />
                     </form>
                     <br />
-                    <label >
-                        {listarAddMembros()}
-                    </label>
 
                     <div className={editEquipeStyle.divBotoes}>
-                        <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
-                            membros.map((i) => { remover(i.id, 'Membros') })
-                            await deleteEquipe(decript_id)
-                        }}>
-                            <img src={trashIcon} className={editEquipeStyle.trashImg2}/>
-                         Excluir</button>
+                        <button type="button" className={editEquipeStyle.formButtonDelete} onClick={() => { deleteEquipe(decript_id); redirecionar("eq") }}>
+                            <img src={trashIcon} className={editEquipeStyle.trashImg2} />
+                            Excluir</button>
                         <button className={editEquipeStyle.formButton} type="submit" onClick={() => {onSave;redirecionar('eq')}}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>

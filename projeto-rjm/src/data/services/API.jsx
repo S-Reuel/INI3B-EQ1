@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = true
 const URL = axios.create({
-    baseURL: 'http://eq1.ini3b.projetoscti.com.br/server/api/v2/' /* Servidor CTI */
+    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
 })
 
 /* Função para tratar Promise */
@@ -110,7 +110,7 @@ export async function deleteUser(id) {
 }
 
 /* CRUD's Equipes */
-export async function postEquipe(membros, params) {
+export async function postEquipe(params) {
     /* 
         Cria equipe apartir das informações digitadas pelo usuário
         O usuário que cria o projeto é definido como DEV
@@ -121,7 +121,7 @@ export async function postEquipe(membros, params) {
         let usuario_id = usuario.id
         await URL.post('equipes', params).then((res) => {
             let equipe_id = res.data.id
-            addUserEquipe(membros, usuario_id, equipe_id)
+            addUserEquipe(0, usuario_id, equipe_id)
         });
     } catch (error) {
         alert(error.status)
@@ -132,7 +132,7 @@ async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
         if (usuario_id != 0) {
-            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "admin" }).then(() => {
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "Admin" }).then(() => {
                 if (membros.length != 0) {
                     membros.map((usuario) => {
                         let usuario_id = usuario.ID
@@ -152,8 +152,8 @@ async function addUserEquipe(membros, usuario_id, equipe_id) {
                 location.reload()
             }
         }
-    } catch (error) {
-        alert(error.status);
+    } catch {
+        location.reload()
     }
 }
 
@@ -182,9 +182,13 @@ export async function getEquipeByUser() {
 export async function updateEquipe(membros, id, params) {
     // Atualiza a equipe
     try {
-        await URL.patch(`equipes/${id}`, params).then(() => {
+        if (params == '') {
             addUserEquipe(membros, 0, id)
-        })
+        } else {
+            await URL.patch(`equipes/${id}`, params).then(() => {
+                addUserEquipe(membros, 0, id)
+            })
+        }
     } catch (error) {
         return (error.status);
     }
@@ -193,17 +197,18 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(() => { redirecionar('eq') })
-    } catch (error) {
-        alert(error.status)
+        await URL.patch(`equipes/${id}`, { excluido: "true" })
+    } catch {
+        location.reload()
     }
 }
 
 export async function deleteUserByEquipe(id) {
     try {
-        await URL.delete(`usuario_equipes/${id}`).then(() => { location.reload() })
-    } catch (error) {
-        return (true)
+        await URL.delete(`usuario_equipes/${id}`)
+        return false
+    } catch {
+        return true
     }
 }
 
@@ -246,19 +251,19 @@ export async function getProjetoId(id) {
 }
 
 export async function updateProjeto(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`projetos/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try {
+        await URL.patch(`projetos/${id}`, params).then(()=>{return true})
+    } catch {
+        return false
     }
 }
 
 export async function deleteProjeto(id) {
     try {
-        await URL.patch(`projetos/${id}`, { excluido: "true" }).then(() => voltar())
+        await URL.patch(`projetos/${id}`, { excluido: "true" })
+        voltar()
     } catch (error) {
-        alert(error.status)
+        console.log(error.status)
     }
 }
 
@@ -290,11 +295,11 @@ export async function getSprintsId(id) {
 }
 
 export async function updateSprint(id, params) {
-    let bool = confirm("Atualizado com sucesso! Aperte OK para restornar à página anterior.")
-    if (bool) {
-        await URL.patch(`sprints/${id}`, params).then(() => { voltar() })
-    } else {
-        location.reload()
+    try {
+        await URL.patch(`sprints/${id}`, params)
+        return true
+    } catch {
+        return false
     }
 }
 
@@ -355,7 +360,8 @@ export async function getTaskByGitHub(id) {
 
 export async function updateTask(id, params) {
     try {
-        await URL.patch(`/tasks/${id}`, params).then(() => { return false })
+        await URL.patch(`/tasks/${id}`, params)
+        return false
     } catch {
         return true
     }
@@ -376,7 +382,7 @@ export async function postLogin(params) {
         var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
         var dadosCriptografados = CryptoJS.AES.encrypt(params.email, key).toString()
         // Criptografar e salvar
-        await URL.post('auth/login', params).then((r) => {
+        await URL.post('auth/login', params).then(async (r) => {
             let t = r.data.token
             if (t != '') {
                 onSession('authToken', t)
@@ -391,9 +397,8 @@ export async function postLogin(params) {
 
 /*  Alteração de senha   */
 export async function esqueciSenha(params) {
-    let r = await URL.post(`esqueci/`, { email: params })    
-    if( r.data.alert == "Email não encontrado"){
-        return false
+    let r = await URL.post(`esqueci/`, { email: params })
+    if (r.data.alert == "Email não encontrado") {
     } else {
         var result = params
         var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
@@ -405,7 +410,7 @@ export async function esqueciSenha(params) {
 
 export async function redefinirSenha(t, e, p) {
     let r = await URL.post(`redefinir/`, { token: t, email: e, password: p })
-    if(r.data.alert == "Token inválido."){
+    if (r.data.alert == "Token inválido.") {
         return false
     } else {
         return true
