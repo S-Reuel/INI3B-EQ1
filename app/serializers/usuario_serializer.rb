@@ -4,6 +4,6 @@ class UsuarioSerializer < ActiveModel::Serializer
   def avatar_url
     return unless object.avatar.attached?
 
-    Rails.application.routes.url_helpers.rails_blob_url(object.avatar, host: "http://eq1.ini3b.projetoscti.com.br/server")
+    Rails.application.routes.url_helpers.rails_blob_url(object.avatar, host: "http://eq1.ini3b.projetoscti.com.br")
   end
 end
