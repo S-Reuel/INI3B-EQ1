@@ -227,7 +227,6 @@
 
     max-width: 30vw;
     overflow: hidden;
-    overflow-y: auto;
     overflow-wrap: break-word;
     text-overflow: ellipsis;
     white-space: nowrap;

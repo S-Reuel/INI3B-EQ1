@@ -218,7 +218,9 @@
 .link:hover {
    cursor: pointer
 }
-
+.link[linkDesativado="true"]{
+   color: gray;
+}
 .btnCancelarFoto {
    position: absolute;
    bottom: 5%;
@@ -447,7 +449,11 @@
       margin-left: 5%;
       margin-right: 5%;
    }
-
+   .formButton[hack="true"]
+   {
+      margin-bottom: 10px;
+   }
+   
    .input,
    .selectBox,
    .inputPaginaPropria {
