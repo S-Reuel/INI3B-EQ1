@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isDeCripto, isFormatStatus, redirecionar, voltar } from "./util/functions"
+import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import trashy from '../ui/icons/trash.png'
 
@@ -25,14 +25,15 @@ export default function Editar_Task() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value        
+        let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
-        let res = await updateTask(decript_id, formData)    
-        console.log(res);            
-        (res) ? document.getElementById("response").innerHTML = "Não foi possível adicionar!!" : voltar()
+            (await updateTask(decript_id, formData)) ?
+            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
+            :
+            location.reload()
     }
 
     if (localStorage.getItem('authToken')) {

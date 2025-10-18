@@ -43,10 +43,10 @@ export default function Equipes() {
     }
 
     function apr() {
-        return eqs.map((i, index) => {
+        return eqs.map((i) => {
             if (!(i.excluido)) {
                 return (<>
-                    <div key={index} className={equipeStyle.equipeDiv} onClick={(e) => {
+                    <div className={equipeStyle.equipeDiv} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'pr')
                     }}>
@@ -85,7 +85,7 @@ export default function Equipes() {
                     }}
                 >
 
-                    <Add_Equipe fecharModal={fecharModal} />
+                    <Add_Equipe fecharModal={fecharModal}/>
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
@@ -98,15 +98,21 @@ export default function Equipes() {
                         <br />
                         <hr className={equipeStyle.hr1} color="#4a4a4a" />
                     </div>
-                    <div className={equipeStyle.equipesDivCenter}>
-                        <div className={equipeStyle.equipeFlex}>
-                            {(eqs.length != 0) ? (
-                                apr()
-                            ) : (
-                                <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
-                            )}
+                    {(eqs.length != 0) ? (
+                        <div className={equipeStyle.equipesDivCenter}>
+                            <div className={equipeStyle.equipeFlex}>
+                                {apr()}
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <>
+                            <div style={{display:"inline-grid"}}>
+                                <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
+
+                            </div>
+
+                        </>
+                    )}
 
                 </div>
             </div>
