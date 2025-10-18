@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { deleteSprint, getSprintsId, updateSprint } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isDeCripto, isFormatDate } from "./util/functions"
+import { isDeCripto, isFormatDate, voltar } from "./util/functions"
 import trashy from '../ui/icons/trash.png'
 import editSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
@@ -30,12 +30,15 @@ export default function Editar_Sprint() {
         let horario = `${new Date().toISOString().split('T')[1]}`
         let data_inicio = `${dataI}T${horario}`
         let data_fim = `${dataF}T${horario}`
-        updateSprint(decript_id, { nome, data_inicio, data_fim, projeto_id })
+        let res = updateSprint(decript_id, { nome, data_inicio, data_fim, projeto_id })
+        if(res){
+            voltar()
+        } else {
+            document.getElementById("response").innerHTML = "Não foi possível alterar Sprint!!"
+        }
     }
 
     if (localStorage.getItem('authToken')) {
-        let data_ontem = isFormatDate(-1, new Date())
-        let data_hoje = isFormatDate(0, new Date())
         return (
             <div className={editSprintStyle.paginaBody}>
                 <CabProj />
@@ -57,7 +60,7 @@ export default function Editar_Sprint() {
                             <label className={editSprintStyle.lbl}>Data de Inicio</label>
                             <br />
                             <input className={editSprintStyle.input} type="date" defaultValue={dataI} onChange={(e) => {
-                                if (e.target.value > data_ontem && e.target.value != dataF) {
+                                if (e.target.value != dataF) {
                                     document.getElementById("response").innerHTML = ""
                                     setDI(e.target.value)
                                 } else {
@@ -71,7 +74,7 @@ export default function Editar_Sprint() {
                             <label className={editSprintStyle.lbl}>Data de Termino</label>
                             <br />
                             <input className={editSprintStyle.input} type="date" defaultValue={dataF} onChange={(e) => {
-                                if (e.target.value > data_hoje && e.target.value != dataI) {
+                                if (e.target.value > dataI && e.target.value != dataI) {
                                     document.getElementById("response").innerHTML = ""
                                     setDF(e.target.value)
                                 } else {

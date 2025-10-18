@@ -82,6 +82,6 @@ export function isCripto(dado) {
 
 export function isDeCripto(dado) {
     var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
-    var bytes = CryptoJS.AES.decrypt(dado, key)
-    return bytes.toString(CryptoJS.enc.Utf8)
+    var id = CryptoJS.AES.decrypt(`${dado}`, key)
+    return id.toString(CryptoJS.enc.Utf8)
 }
