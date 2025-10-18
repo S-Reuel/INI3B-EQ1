@@ -131,7 +131,7 @@ export default function Tasks() {
                         }
                     }}
                 >
-                    <button className={TasksStyle.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    
                     <Add_Task />
                 </Modal>
                 <div className={TasksStyle.botaoNewTask} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
@@ -158,8 +158,10 @@ export default function Tasks() {
 
                     ) : (
                         <>
+                            <div style={{display:"inline-grid"}}>
+                                <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
 
-                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+                            </div>
 
                         </>
                     )}

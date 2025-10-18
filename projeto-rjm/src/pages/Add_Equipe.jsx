@@ -28,10 +28,10 @@ export default function Add_Equipe({fecharModal}) {
         return (
             <div className={addEquipeStyle.paginaBody}>
                 <center className={addEquipeStyle.center}>
-                    <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe!</h1>
+                    <h1 className={addEquipeStyle.tituloPagina}>Nova Equipe</h1>
                     <form className={addEquipeStyle.form}>
                         <label>
-                            <label className={addEquipeStyle.lbl}>Nome:</label><br />
+                            <label className={addEquipeStyle.lbl}>Nome:</label><br /><br />
                             <input
                                 type="text" nome="nome"
                                 placeholder="Digite o nome da equipe" required
@@ -41,7 +41,7 @@ export default function Add_Equipe({fecharModal}) {
                         </label>
                         <br />
                         <label >
-                            <label className={addEquipeStyle.lbl}>Descrição:</label>
+                            <label className={addEquipeStyle.lbl}>Descrição:</label><br />
                             <br />
                             <textarea
                                 rows='8' cols='50'

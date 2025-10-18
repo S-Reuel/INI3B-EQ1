@@ -25,11 +25,11 @@ export default function Add_Sprint() {
         return (
             <div className={addSprintStyle.paginaBody}>
                 <center className={addSprintStyle.center}>
-                    <h1 className={addSprintStyle.tituloPagina}>Criar nova Sprint</h1>
+                    <h1 className={addSprintStyle.tituloPagina}>Nova Sprint</h1>
                     <h3 id="response"></h3>
                     <form onSubmit={onSave} className={addSprintStyle.form}>
                         <label>
-                            <label className={addSprintStyle.lbl}>Nome da Sprint</label><br />
+                            <label className={addSprintStyle.lbl}>Nome da Sprint</label><br /><br />
                             <input
                                 className={addSprintStyle.input}
                                 type="text" name="nome"
@@ -39,7 +39,7 @@ export default function Add_Sprint() {
                         </label>
                         <br />
                         <label >
-                            <label className={addSprintStyle.lbl}>Data de Inicio</label>  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
+                            <label className={addSprintStyle.lbl}>Data de Inicio</label><br />  {/*--DIEGO:note que se o usuário clicar no calendário com um tema branco de navegador, o calendário também estará branco, dando um design ruim ao calendário*/}
                             <br />
                             <input className={addSprintStyle.input} type="date" value={dataI} required onChange={(e) => {
                                 if(e.target.value != dataF){
@@ -54,7 +54,7 @@ export default function Add_Sprint() {
                         <br />
                         <label >
                             <label>Data de Termino</label>
-                            <br />
+                            <br /><br />
                             <input className={addSprintStyle.input} type="date" value={dataF} required onChange={(e) => {
                                 if(e.target.value > dataI && e.target.value != dataI){
                                     document.getElementById("response").innerHTML = ""

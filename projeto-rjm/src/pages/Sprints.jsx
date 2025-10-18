@@ -95,7 +95,7 @@ export default function Sprints() {
                         }
                     }}
                 >
-                    <button className={StyleProj.btnFechaModal} id='btnFecharModal' onClick={fecharModal}>X</button>
+                    
                     <Add_Sprint />
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>

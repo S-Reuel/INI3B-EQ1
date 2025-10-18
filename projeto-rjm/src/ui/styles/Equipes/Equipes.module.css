@@ -210,6 +210,6 @@
     }
     .modalConteudo{
         left: 0;
-        width:100vw;
+        width:auto;
     }
 }
