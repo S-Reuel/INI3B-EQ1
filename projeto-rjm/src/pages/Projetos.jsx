@@ -55,7 +55,9 @@ export default function Projetos() {
 
     // Função que fecha a modal
     function fecharModal() {
+
         setIsOpen(false);
+
     }
 
 

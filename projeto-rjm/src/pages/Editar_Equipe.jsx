@@ -149,7 +149,7 @@ export default function Editar_Equipe() {
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"
-                            onChange={handleChange} className={editEquipeStyle.imputMembro}
+                            onChange={handleChange} className={editEquipeStyle.inputMembro}
                         />
                         <div type="submit" onClick={pesquisar} className={editEquipeStyle.btnAdicionarMembro}>Adicionar</div>
                         <br />
@@ -161,7 +161,8 @@ export default function Editar_Equipe() {
                     </label>
 
                     <div className={editEquipeStyle.divBotoes}>
-                        <button className={editEquipeStyle.formButtonDelete} onClick={async () => {
+                        <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
+                            e.preventDefault()
                             membros.map((i) => { remover(i.id, 'Membros') })
                             await deleteEquipe(decript_id)
                         }}>

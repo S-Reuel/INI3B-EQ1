@@ -72,6 +72,7 @@ export function redirecionar(caminho) {
 // Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
+    //location.replace(document.referrer);
 }
 
 export function isCripto(dado) {

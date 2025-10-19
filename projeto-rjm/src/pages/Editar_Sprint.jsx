@@ -83,6 +83,7 @@ export default function Editar_Sprint() {
                         <br /><br />
                         <div className={editSprintStyle.divBotoes}>
                             <button className={editSprintStyle.formButtonDelete} onClick={async (e) => {
+                                e.preventDefault()
                                 e.stopPropagation()
                                 await deleteSprint(decript_id)
                             }}>
