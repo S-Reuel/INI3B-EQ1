@@ -23,7 +23,7 @@ export default function Editar_Task() {
         fetch()
     }, [])
 
-    const onSave = async (e) => {
+    async function onSave(e) {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
@@ -85,8 +85,8 @@ export default function Editar_Task() {
                                 <img src={trashy} className={editEquipeStyle.trashImg2} />
                                 Excluir
                             </button>
-                            <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualizar sprint</button>
-                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
+                            <button className={editEquipeStyle.formButton} type="button" onClick={(e) => onSave(e)}>Atualizar sprint</button>
+                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
                     </form>
                 </center>

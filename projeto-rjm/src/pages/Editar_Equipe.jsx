@@ -53,9 +53,9 @@ export default function Editar_Equipe() {
         }
     }
 
-    const onSave = (e) => {
+    function onSave(e){
         e.preventDefault()
-        updateEquipe(addMembro, decript_id, { nome, descricao })
+        updateEquipe(0, decript_id, { nome, descricao })
     }
 
     return (
@@ -93,15 +93,15 @@ export default function Editar_Equipe() {
                                 <td className={editEquipeStyle.thhAtuais2}>Função</td>
                                 <td ></td>
                             </tr>
-                            {membros.map((i) => {
+                            {membros.map((i, index) => {
                                 return (
-                                    <tr className={editEquipeStyle.trAtuais}>
+                                    <tr key={index} className={editEquipeStyle.trAtuais}>
                                         <td className={editEquipeStyle.tdAtuaisUser}>
                                             <img src={userIcon} className={editEquipeStyle.userImg} />
                                             {i.usuario.nome}
                                         </td>
                                         <td className={editEquipeStyle.tdAtuais2}>{i.papel}</td>
-                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id, 'Membros') }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
+                                        <td><div className={editEquipeStyle.remvBtn} onClick={() => { remover(i.id) }}><img src={trashIcon} className={editEquipeStyle.trashImg} /></div></td>
                                     </tr>
                                 )
                             })}
@@ -122,10 +122,10 @@ export default function Editar_Equipe() {
                     <br />
 
                     <div className={editEquipeStyle.divBotoes}>
-                        <button type="button" className={editEquipeStyle.formButtonDelete} onClick={() => { deleteEquipe(decript_id); redirecionar("eq") }}>
+                        <button type="button" className={editEquipeStyle.formButtonDelete} onClick={() => { deleteEquipe(decript_id)}}>
                             <img src={trashIcon} className={editEquipeStyle.trashImg2} />
                             Excluir</button>
-                        <button className={editEquipeStyle.formButton} type="submit" onClick={() => {onSave;redirecionar('eq')}}>Salvar Alterações</button>
+                        <button className={editEquipeStyle.formButton} type="submit" onClick={(e) => {onSave(e)}}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>
                 </form>
