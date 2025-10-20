@@ -53,19 +53,18 @@ export default function Sprints() {
 
 
     function apr() {
-        return sprints.map(function (i) {
+        return sprints.map(function (i, index) {
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
             if (!(i.excluido)) {
                 return (
-                    <tr className={StylesSprint.sprint} onClick={(e) => {
+                    <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'task')
                     }}>
                         <td className={StylesSprint.sprintNome}>{i.nome}</td>
                         <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
                         <td className={StylesSprint.sprintDatas}>{dataFim}</td>
-
                         <td className={StylesSprint.botaoEditarTableTd} >
                             <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
                                 e.stopPropagation()
@@ -101,7 +100,6 @@ export default function Sprints() {
                 <div className={StylesSprint.paginaEquipes}>
                     <div className={StylesSprint.navEquipes}>
                         {/* <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: </div> <br /> */}
-
                         <details className={StyleProj.descEquipe} open='true'>
                             <summary>
                                 <img src={setaDetails} className={StyleProj.icon} />
@@ -112,20 +110,14 @@ export default function Sprints() {
                             <br />
                         </details>
                         <br />
-                        
-
-
-
                     </div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>
                             <h1 className={StylesSprint.tituloPagina}>{projeto.nome}</h1>
-
                         </div>
                         <br />
                         <hr className={StylesSprint.hr1} color="#4a4a4a" />
                     </div>
-
                     {(sprints.length != 0) ? (
                         <div className={StylesSprint.equipeFlex}>
                             <div className={StylesSprint.sprintsDiv}>
@@ -136,19 +128,11 @@ export default function Sprints() {
                                         <th><div className={StylesSprint.tbBorder}>Término</div></th>
                                         <th><div className={StylesSprint.tbBorder}></div></th>
                                     </tr>
-
                                     {apr()}
                                 </table>
                             </div>
                         </div>
-                    ) : (
-                        <>
-
-                            <h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>
-
-                        </>
-                    )}
-
+                    ) : (<h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>)}
                     <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>

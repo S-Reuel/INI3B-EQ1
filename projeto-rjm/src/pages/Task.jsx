@@ -45,7 +45,6 @@ export default function Task() {
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         return (
             <div className={taskStyle.divRetorno}>
-
                 <div>
                     <div className={taskStyle.datasDaTask}>
                         <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
@@ -155,16 +154,10 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
-                        
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
                             <p className={taskStyle.idDesc}>ID: {decript_id}</p>
                         </div>
-
-
-
-
-
                         <details className={taskStyle.descEquipe} open='true'>
                             <summary>
                                 <img src={setaDetails} className={taskStyle.icon} />
@@ -172,7 +165,6 @@ export default function Task() {
                                 Descrição
                             </summary>
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
-
                             <br />
                         </details>
                     </div>
@@ -184,9 +176,8 @@ export default function Task() {
                             </h1>
                         </div>
                         <br />
-
                     </div>
-                    {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                    {(task.length != 0) ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
                 </div>
             </>
         )
