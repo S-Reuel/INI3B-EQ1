@@ -63,8 +63,13 @@ export default function Editar_Projeto() {
                             <button type="button" className={editProjStyle.formButtonDelete} onClick={async () => { await deleteProjeto(decript_id) }}>
                                 <img src={trashy} className={editProjStyle.trashImg2} />
                                 Excluir</button>
+<<<<<<< HEAD
+                            <button className={editProjStyle.formButton} type="button" onClick={(e) => onSave(e)}>Salvar Alterações</button>
+                            <button className={editProjStyle.btnFechaModal} type="button" onClick={() => { location.replace(document.referrer); window.close(); }}>Cancelar</button>
+=======
                             <button className={editProjStyle.formButton} type="button" onClick={(e)=>onSave(e)}>Salvar Alterações</button>
                             <button className={editProjStyle.btnFechaModal} type="button" onClick={(e) => { location.replace(document.referrer); window.close(); }}>Cancelar</button>
+>>>>>>> development
                         </div>
 
                     </form>

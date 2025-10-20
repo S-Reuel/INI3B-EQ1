@@ -60,6 +60,11 @@ export default function Tasks() {
                                     </div>
                                     <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
                                     <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> development
                                 </div>
                             </div>
                         </div>
@@ -149,12 +154,21 @@ export default function Tasks() {
                         <hr className={TasksStyle.hr1} color="#4a4a4a" />
                     </div>
                     {(tasks.length != 0) ? (apresentar()) : (
+<<<<<<< HEAD
+                        <div style={{ display: "inline-grid" }}>
+                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+
+                        </div>
+                    )}
+                </div >
+=======
                             <div style={{ display: "inline-grid" }}>
                                 <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
                             </div>
                     )}
 
                 </div>
+>>>>>>> development
             </>
         )
     } else {

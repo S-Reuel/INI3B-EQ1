@@ -60,6 +60,8 @@ export default function Equipes() {
                         }}>...</div>
                     </div>
                 </>)
+            } else {
+                return (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)
             }
         })
     }

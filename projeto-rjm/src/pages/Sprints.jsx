@@ -51,9 +51,8 @@ export default function Sprints() {
         setIsOpen(false);
     }
 
-
-    function apr() {
-        return sprints.map(function (i, index) {
+    function apresentar() {
+        return sprints.map((i, index)=>{
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
             if (!(i.excluido)) {
@@ -128,7 +127,7 @@ export default function Sprints() {
                                         <th><div className={StylesSprint.tbBorder}>Término</div></th>
                                         <th><div className={StylesSprint.tbBorder}></div></th>
                                     </tr>
-                                    {apr()}
+                                    {apresentar()}
                                 </table>
                             </div>
                         </div>

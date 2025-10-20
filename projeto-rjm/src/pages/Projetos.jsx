@@ -58,9 +58,8 @@ export default function Projetos() {
         setIsOpen(false);
     }
 
-
     function apresentar() {
-        return projetos.map(function (i, index) {
+        return projetos.map((i, index) => {
             let dataUp = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
                 return (
@@ -130,7 +129,7 @@ export default function Projetos() {
                                 <img src={mmbros} className={StyleProj.ilustIcon} />
                                 Membros
                             </summary>
-                            <div membros="true" className={StyleProj.descConteudo}>{membros.map((i,index) => { return (<div key={index} teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
+                            <div membros="true" className={StyleProj.descConteudo}>{membros.map((i, index) => { return (<div key={index} teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
                             <br />
                         </details>
                     </div>
