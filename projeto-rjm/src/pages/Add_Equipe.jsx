@@ -69,23 +69,6 @@ export default function Add_Equipe({fecharModal}) {
                                 className={addEquipeStyle.input}
                             />
                         </label>
-                        <form >
-                            <label className={addEquipeStyle.lbl}>Adicionar membros: </label> <br /><br />
-                            <input
-                                type="text" id="addMembro"
-                                placeholder="Digite o nome do membro"
-                                onChange={handleChange}
-                                className={addEquipeStyle.input}
-                            />
-                            <button type="submit" onClick={pesquisar} className={addEquipeStyle.formButton}>Pesquisar</button>
-                            <br /><br /><label id="erro" />
-                        </form>
-                        <br />
-                        <textarea
-                            rows='6' cols='30'
-                            value={membros.map((i) => { return (` ${i.nome}`) })}
-                            className={addEquipeStyle.textAreo} disabled
-                        />
                         <br /> <br />
                         <button type="submit" onClick={onSave} className={addEquipeStyle.formButton} disabled={botaoDesativado}>Criar</button>
                     </form>
