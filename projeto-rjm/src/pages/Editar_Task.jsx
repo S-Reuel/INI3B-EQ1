@@ -23,7 +23,7 @@ export default function Editar_Task() {
         fetch()
     }, [])
 
-    const onSave = async (e) => {
+    async function onSave(e) {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();

@@ -133,15 +133,9 @@ async function addUserEquipe(membros, usuario_id, equipe_id) {
     try {
         if (usuario_id != 0) {
             await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "Admin" }).then(() => {
-                if (membros.length != 0) {
-                    membros.map((usuario) => {
-                        let usuario_id = usuario.ID
-                        let papel = usuario.papel
-                        URL.post('usuario_equipes', { usuario_id, equipe_id, papel })
-                    })
-                    location.reload()
-                }
-            })
+                location.reload()
+            }
+            )
         } else {
             if (membros.length != 0) {
                 membros.map((usuario) => {
@@ -182,9 +176,9 @@ export async function getEquipeByUser() {
 export async function updateEquipe(membros, id, params) {
     // Atualiza a equipe
     try {
-        if (params == '') {
-            addUserEquipe(membros, 0, id)
-        } else {
+        if(membros == 0){
+            await URL.patch(`equipes/${id}`, params).then(() => {location.reload()})
+        } else {            
             await URL.patch(`equipes/${id}`, params).then(() => {
                 addUserEquipe(membros, 0, id)
             })
@@ -197,7 +191,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        await URL.patch(`equipes/${id}`, { excluido: "true" })
+        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(()=>{voltar()})
     } catch {
         location.reload()
     }
@@ -252,7 +246,7 @@ export async function getProjetoId(id) {
 
 export async function updateProjeto(id, params) {
     try {
-        await URL.patch(`projetos/${id}`, params).then(()=>{return true})
+        await URL.patch(`projetos/${id}`, params).then(() => { return true })
     } catch {
         return false
     }

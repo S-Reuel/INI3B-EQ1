@@ -36,7 +36,6 @@ export default function Task() {
             document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
             :
             location.reload()
-
     }
 
     function apresentar() {
@@ -62,9 +61,7 @@ export default function Task() {
                                     return (
                                         <div className={taskStyle.commitTask}>
                                             <span className={taskStyle.tituloCommit}><b className={taskStyle.corDoCoiso}>{i.nome_repo} </b>/ Commit</span>
-
                                             <code className={taskStyle.msgTask}>{i.mensagem}</code>
-
                                             <div className={taskStyle.userDataTask}><b>{i.usuario_gh}</b> fez um <b>{i.evento_gh}</b> em <b>{isFormat(new Date(i.data))}</b></div>
                                         </div>
                                     )
@@ -93,9 +90,7 @@ export default function Task() {
                                             <a href={i} target="_blank" className={taskStyle.linklink}>
                                                 <img src={fileIcon} className={taskStyle.fileIMG} />
                                                 <div className={taskStyle.linklinklink}>{match[0]}</div>
-
                                             </a>
-
                                         </tr>
                                     )
                                 })}
@@ -155,7 +150,6 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
-
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
                             <p className={taskStyle.idDesc}>ID: {decript_id}</p>
@@ -167,7 +161,6 @@ export default function Task() {
                                 Descrição
                             </summary>
                             <div teste="true" className={taskStyle.descConteudo}>{task.descricao}</div>
-
                             <br />
                         </details>
                     </div>

@@ -51,7 +51,6 @@ export default function Sprints() {
         setIsOpen(false);
     }
 
-
     function apresentar() {
         return sprints.map((i, index)=>{
             let dataInicio = isFormat(new Date(i.data_inicio))
@@ -100,7 +99,6 @@ export default function Sprints() {
                 <div className={StylesSprint.paginaEquipes}>
                     <div className={StylesSprint.navEquipes}>
                         {/* <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: </div> <br /> */}
-
                         <details className={StyleProj.descEquipe} open='true'>
                             <summary>
                                 <img src={setaDetails} className={StyleProj.icon} />
@@ -111,20 +109,14 @@ export default function Sprints() {
                             <br />
                         </details>
                         <br />
-                        
-
-
-
                     </div>
                     <div>
                         <div className={StylesSprint.tituloFlex}>
                             <h1 className={StylesSprint.tituloPagina}>{projeto.nome}</h1>
-
                         </div>
                         <br />
                         <hr className={StylesSprint.hr1} color="#4a4a4a" />
                     </div>
-
                     {(sprints.length != 0) ? (
                         <div className={StylesSprint.equipeFlex}>
                             <div className={StylesSprint.sprintsDiv}>
@@ -140,7 +132,6 @@ export default function Sprints() {
                             </div>
                         </div>
                     ) : (<h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>)}
-
                     <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>

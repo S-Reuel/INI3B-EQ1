@@ -132,8 +132,6 @@ export default function Projetos() {
                             <div membros="true" className={StyleProj.descConteudo}>{membros.map((i, index) => { return (<div key={index} teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
                             <br />
                         </details>
-
-
                     </div>
                     <div>
                         <div className={StyleProj.tituloFlex}>

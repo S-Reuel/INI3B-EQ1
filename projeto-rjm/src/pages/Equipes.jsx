@@ -40,7 +40,6 @@ export default function Equipes() {
     // Função que fecha a modal
     async function fecharModal() {
         setIsOpen(false);
-        window.location.reload();
     }
 
     function apresentar() {
@@ -101,11 +100,7 @@ export default function Equipes() {
                     </div>
                     <div className={equipeStyle.equipesDivCenter}>
                         <div className={equipeStyle.equipeFlex}>
-                            {(eqs.length != 0) ? (
-                                apresentar()
-                            ) : (
-                                <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
-                            )}
+                            {(eqs.length != 0) ? (apresentar()) : (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)}
                         </div>
                     </div>
                 </div>
