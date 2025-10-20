@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
-import { deleteProjeto, getEquipeById, getMembros, getProjetosByEquipe } from "../data/services/API.jsx"
+import { getEquipeById, getMembros, getProjetosByEquipe } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import { isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
@@ -55,42 +55,36 @@ export default function Projetos() {
 
     // Função que fecha a modal
     function fecharModal() {
-
         setIsOpen(false);
-
     }
 
-
-    function apr() {
-        return projetos.map(function (i) {
+    function apresentar() {
+        return projetos.map((i, index) => {
             let dataUp = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
                 return (
-                    <>
-                        <div className={StyleProj.projeto} onClick={(e) => {
-                            e.stopPropagation()
-                            caminho(i.id, 'spr')
-                        }}>
-                            <div className={StyleProj.tituloProj}>
-                                {i.nome}
-                            </div>
-                            <div className={StyleProj.descricaoProj}>
-                                {i.descricao}
-                            </div>
-                            <div className={StyleProj.dataProj}>
-                                Atualizado em:
-                                <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
-                            </div>
-                            <button className={StyleProj.bttEditarProj} onClick={(e) => {
-                                e.stopPropagation()
-                                caminho(i.id, 'ed')
-                            }}>
-                                <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
-                            </button>
-                            <br />
+                    <div key={index} className={StyleProj.projeto} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'spr')
+                    }}>
+                        <div className={StyleProj.tituloProj}>
+                            {i.nome}
                         </div>
+                        <div className={StyleProj.descricaoProj}>
+                            {i.descricao}
+                        </div>
+                        <div className={StyleProj.dataProj}>
+                            Atualizado em:
+                            <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
+                        </div>
+                        <button className={StyleProj.bttEditarProj} onClick={(e) => {
+                            e.stopPropagation()
+                            caminho(i.id, 'ed')
+                        }}>
+                            <img src={imgEditarProj} className={StyleProj.imgEditarProj} />
+                        </button>
                         <br />
-                    </>
+                    </div>
                 )
             }
         })
@@ -135,7 +129,7 @@ export default function Projetos() {
                                 <img src={mmbros} className={StyleProj.ilustIcon} />
                                 Membros
                             </summary>
-                            <div membros="true" className={StyleProj.descConteudo}>{membros.map((i) => { return (<div teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
+                            <div membros="true" className={StyleProj.descConteudo}>{membros.map((i, index) => { return (<div key={index} teste="true" className={StyleProj.descEquipe2}><img src={holderUser} className={StyleProj.ilustIcon2} /> {i.usuario.nome} </div>) })}</div>
                             <br />
                         </details>
 
@@ -150,7 +144,7 @@ export default function Projetos() {
                     </div>
                     <center className={StyleProj.bodyProjs} semProjetos={projetos.length != 0 ? "true" : "false"}>
                         <br />
-                        {projetos.length != 0 ? apr() : <h4 className={StyleProj.semProjTexto}> Sem projetos! Crie projetos!</h4>}
+                        {projetos.length != 0 ? apresentar() : <h4 className={StyleProj.semProjTexto}> Sem projetos! Crie projetos!</h4>}
                     </center>
 
                 </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTaskByGitHub, updateTask } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
-import { isCripto, isDeCripto, isFormat } from "./util/functions";
+import { isCripto, isDeCripto, isFormat, voltar } from "./util/functions";
 import taskStyle from "../ui/styles/task/task.module.css";
 import fileIcon from '../ui/icons/fileIcon.png'
 import calendario from '../ui/icons/calendario.svg'
@@ -34,79 +34,79 @@ export default function Task() {
         }
         (await updateTask(decript_id, formData)) ?
             document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
-        :
+            :
             location.reload()
 
     }
 
-    function apr() {
+    function apresentar() {
         let arquivos = task.arquivos_urls
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
-        return (
-            <div className={taskStyle.divRetorno}>
+        if (!(task.excluido)) {
+            return (
+                <div className={taskStyle.divRetorno}>
+                    <div>
+                        <div className={taskStyle.datasDaTask}>
+                            <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
+                            <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
+                        </div>
+                        <br />
+                        <hr className={taskStyle.hr1} color="#4a4a4a" />
+                        <a href={tutorial} className={taskStyle.tititirial} download>
+                            <p className={taskStyle.tutorial}><b className={taskStyle.tutoriel}> ?</b> Commits</p>
+                        </a>
+                        <div className={taskStyle.divDaDivCommits}>
+                            <div className={taskStyle.divCommits}>
+                                {task.git_hubs.map((i) => {
+                                    return (
+                                        <div className={taskStyle.commitTask}>
+                                            <span className={taskStyle.tituloCommit}><b className={taskStyle.corDoCoiso}>{i.nome_repo} </b>/ Commit</span>
 
-                <div>
-                    <div className={taskStyle.datasDaTask}>
-                        <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
-                        <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
-                    </div>
-                    <br />
-                    <hr className={taskStyle.hr1} color="#4a4a4a" />
-                    <a href={tutorial} className={taskStyle.tititirial} download>
-                        <p className={taskStyle.tutorial}><b className={taskStyle.tutoriel}> ?</b> Commits</p>
-                    </a>
-                    
-                    <div className={taskStyle.divDaDivCommits}>
+                                            <code className={taskStyle.msgTask}>{i.mensagem}</code>
 
-                        <div className={taskStyle.divCommits}>
+                                            <div className={taskStyle.userDataTask}><b>{i.usuario_gh}</b> fez um <b>{i.evento_gh}</b> em <b>{isFormat(new Date(i.data))}</b></div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                        <br />
+                        <hr className={taskStyle.hr1} color="#4a4a4a" />
+                        <br />
+                        <center>
+                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
+                            <input id="fileUpload" type="file" onChange={handleFileChange} />
+                        </center>
+                        <center>
+                            <h3 className={taskStyle.responsee} id="response" />
+                        </center>
+                        <div className={taskStyle.divArquivos}>
+                            <table className={taskStyle.tableArquivos}>
+                                <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
+                                {arquivos.map((i) => {
+                                    const caminhoDoArquivo = i;
+                                    const regex = /[^/]*$/;
+                                    const match = caminhoDoArquivo.match(regex);
+                                    return (
+                                        <tr className={taskStyle.linkTask}>
+                                            <a href={i} target="_blank" className={taskStyle.linklink}>
+                                                <img src={fileIcon} className={taskStyle.fileIMG} />
+                                                <div className={taskStyle.linklinklink}>{match[0]}</div>
 
-                            {task.git_hubs.map((i) => {
-                                return (
-                                    <div className={taskStyle.commitTask}>
-                                        <span className={taskStyle.tituloCommit}><b className={taskStyle.corDoCoiso}>{i.nome_repo} </b>/ Commit</span>
+                                            </a>
 
-                                        <code className={taskStyle.msgTask}>{i.mensagem}</code>
-
-                                        <div className={taskStyle.userDataTask}><b>{i.usuario_gh}</b> fez um <b>{i.evento_gh}</b> em <b>{isFormat(new Date(i.data))}</b></div>
-                                    </div>
-                                )
-                            })}
+                                        </tr>
+                                    )
+                                })}
+                            </table>
                         </div>
                     </div>
-                    <br />
-                    <hr className={taskStyle.hr1} color="#4a4a4a" />
-                    <br />
-                    <center>
-                        <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
-                        <input id="fileUpload" type="file" onChange={handleFileChange} />
-                    </center>
-                    <center>
-                        <h3 className={taskStyle.responsee} id="response" />
-                    </center>
-                    <div className={taskStyle.divArquivos}>
-                        <table className={taskStyle.tableArquivos}>
-                            <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
-                            {arquivos.map((i) => {
-                                const caminhoDoArquivo = i;
-                                const regex = /[^/]*$/;
-                                const match = caminhoDoArquivo.match(regex);
-                                return (
-                                    <tr className={taskStyle.linkTask}>
-                                        <a href={i} target="_blank" className={taskStyle.linklink}>
-                                            <img src={fileIcon} className={taskStyle.fileIMG} />
-                                            <div className={taskStyle.linklinklink}>{match[0]}</div>
-
-                                        </a>
-
-                                    </tr>
-                                )
-                            })}
-                        </table>
-                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            voltar()
+        }
     }
 
     function statusDesc() {
@@ -155,16 +155,11 @@ export default function Task() {
                 <CabProj />
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
-                        
+
                         <div className={taskStyle.statusDescTask}>
                             {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
                             <p className={taskStyle.idDesc}>ID: {decript_id}</p>
                         </div>
-
-
-
-
-
                         <details className={taskStyle.descEquipe} open='true'>
                             <summary>
                                 <img src={setaDetails} className={taskStyle.icon} />
@@ -184,9 +179,8 @@ export default function Task() {
                             </h1>
                         </div>
                         <br />
-
                     </div>
-                    {(task.length != "") ? (apr()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                    {(task.length != 0) ? (apresentar()) : (<h4>Nenhuma informação encontrada!</h4>)}
                 </div>
             </>
         )

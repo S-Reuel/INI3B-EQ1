@@ -43,7 +43,7 @@ export default function Equipes() {
         window.location.reload();
     }
 
-    function apr() {
+    function apresentar() {
         return eqs.map((i, index) => {
             if (!(i.excluido)) {
                 return (<>
@@ -61,6 +61,8 @@ export default function Equipes() {
                         }}>...</div>
                     </div>
                 </>)
+            } else {
+                return (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)
             }
         })
     }
@@ -100,7 +102,7 @@ export default function Equipes() {
                     <div className={equipeStyle.equipesDivCenter}>
                         <div className={equipeStyle.equipeFlex}>
                             {(eqs.length != 0) ? (
-                                apr()
+                                apresentar()
                             ) : (
                                 <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
                             )}

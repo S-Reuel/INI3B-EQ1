@@ -53,7 +53,7 @@ export default function Editar_Equipe() {
         }
     }
 
-    const onSave = (e) => {
+    function onSave(e) {
         e.preventDefault()
         updateEquipe(addMembro, decript_id, { nome, descricao })
     }
@@ -125,7 +125,7 @@ export default function Editar_Equipe() {
                         <button type="button" className={editEquipeStyle.formButtonDelete} onClick={() => { deleteEquipe(decript_id); redirecionar("eq") }}>
                             <img src={trashIcon} className={editEquipeStyle.trashImg2} />
                             Excluir</button>
-                        <button className={editEquipeStyle.formButton} type="submit" onClick={() => {onSave;redirecionar('eq')}}>Salvar Alterações</button>
+                        <button className={editEquipeStyle.formButton} type="button" onClick={(e) => {onSave(e)}}>Salvar Alterações</button>
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>
                 </form>

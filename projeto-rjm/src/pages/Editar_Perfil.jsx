@@ -188,7 +188,7 @@ export default function EditUser() {
                                     }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
-                                <p>Alterar Senha?<a className={perfilStyle.link} linkDesativado={linkDesativado} onClick={(e) => {if(!linkDesativado) esqueci()}}> Vá para redefinir senha</a></p>
+                                <p>Alterar Senha?<a className={perfilStyle.link} linkDesativado={linkDesativado} onClick={() => {if(!linkDesativado) esqueci()}}> Vá para redefinir senha</a></p>
                                 <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={(e) => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>

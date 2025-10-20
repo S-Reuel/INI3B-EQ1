@@ -52,20 +52,19 @@ export default function Sprints() {
     }
 
 
-    function apr() {
-        return sprints.map(function (i) {
+    function apresentar() {
+        return sprints.map((i, index)=>{
             let dataInicio = isFormat(new Date(i.data_inicio))
             let dataFim = isFormat(new Date(i.data_fim))
             if (!(i.excluido)) {
                 return (
-                    <tr className={StylesSprint.sprint} onClick={(e) => {
+                    <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'task')
                     }}>
                         <td className={StylesSprint.sprintNome}>{i.nome}</td>
                         <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
                         <td className={StylesSprint.sprintDatas}>{dataFim}</td>
-
                         <td className={StylesSprint.botaoEditarTableTd} >
                             <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
                                 e.stopPropagation()
@@ -136,18 +135,11 @@ export default function Sprints() {
                                         <th><div className={StylesSprint.tbBorder}>Término</div></th>
                                         <th><div className={StylesSprint.tbBorder}></div></th>
                                     </tr>
-
-                                    {apr()}
+                                    {apresentar()}
                                 </table>
                             </div>
                         </div>
-                    ) : (
-                        <>
-
-                            <h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>
-
-                        </>
-                    )}
+                    ) : (<h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>)}
 
                     <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
