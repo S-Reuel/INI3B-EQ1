@@ -1,31 +1,12 @@
 import { useState } from "react"
-import { getUserByName, postEquipe } from "../data/services/API"
+import { postEquipe } from "../data/services/API"
 import { redirecionar } from "./util/functions"
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Add_Equipe({fecharModal}) {
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
-    const [pesquisa, setPesquisa] = useState('')
-    let [membros, setMembro] = useState([])
     const [botaoDesativado, setBotaoDesativado] = useState('')
-    function handleChange(event) {
-        setPesquisa(event.target.value)
-    }
-
-    async function pesquisar(e) {
-        e.preventDefault()
-        let res = await getUserByName(pesquisa)
-        document.getElementById("addMembro").value = ''
-        if (res.nome != undefined && res.excluido == false) {
-            document.getElementById("erro").innerHTML = ''
-            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "dev" }, ...membros]
-            setMembro(item)
-            setPesquisa('')
-        } else {
-            document.getElementById("erro").innerHTML = "Não encontrado! Por favor digite o nome novamente"
-        }
-    }
 
     const onSave = async (e) => {
         e.preventDefault()
@@ -36,7 +17,7 @@ export default function Add_Equipe({fecharModal}) {
         }
         else
         {
-            await postEquipe(membros, { nome, descricao })
+            await postEquipe({ nome, descricao })
             fecharModal();
         }
         setBotaoDesativado("")

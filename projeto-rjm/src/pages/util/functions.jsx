@@ -77,8 +77,8 @@ export function voltar() {
 
 export function isCripto(dado) {
     var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
-    var id = CryptoJS.AES.encrypt(`${dado}`, key).toString()
-    return encodeURIComponent(id)
+    var bytes = CryptoJS.AES.encrypt(`${dado}`, key).toString()
+    return encodeURIComponent(bytes)
 }
 
 export function isDeCripto(dado) {
