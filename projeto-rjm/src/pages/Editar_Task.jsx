@@ -66,7 +66,7 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Status da Task</label><br />
-                            <select className={editEquipeStyle.input} id='selectStatus'>
+                            <select className={editEquipeStyle.input} id='selectStatus' style={{ width:"auto" }}>
                                 <option value={stt}>{isFormatStatus(stt)}</option>
                                 <option value={'pendente'}>Pendente</option>
                                 <option value={'em_andamento'}>Em andamento</option>
@@ -78,13 +78,14 @@ export default function Editar_Task() {
                         <br /><br />
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
+                                e.preventDefault()
                                 e.stopPropagation()
                                 await deleteTask(decript_id)
                             }}>
                                 <img src={trashy} className={editEquipeStyle.trashImg2} />
                                 Excluir
                             </button>
-                            <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
+                            <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualizar sprint</button>
                             <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
                     </form>

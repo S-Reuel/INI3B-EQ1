@@ -40,6 +40,7 @@ export default function Equipes() {
     // Função que fecha a modal
     async function fecharModal() {
         setIsOpen(false);
+        window.location.reload();
     }
 
     function apr() {

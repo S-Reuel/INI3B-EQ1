@@ -50,6 +50,7 @@ export default function Add_Equipe({fecharModal}) {
                                 className={addEquipeStyle.input}
                             />
                         </label>
+                        <br /> <br />
                         <button type="submit" onClick={onSave} className={addEquipeStyle.formButton} disabled={botaoDesativado}>Criar</button>
                     </form>
                 </center>

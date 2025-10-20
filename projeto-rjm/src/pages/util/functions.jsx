@@ -72,6 +72,7 @@ export function redirecionar(caminho) {
 // Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
+    //location.replace(document.referrer); --Diego: se utilizar esta linha em vez de history.back(), a página anterior é automaticamente recarregada ao retornar à ela.
 }
 
 export function isCripto(dado) {
