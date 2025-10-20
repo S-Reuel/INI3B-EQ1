@@ -3,7 +3,7 @@ import { deleteProjeto, getProjetoId, updateProjeto } from "../data/services/API
 import { useEffect, useState } from "react";
 import editProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from "../ui/components/_cabecalho";
-import { isDeCripto } from "./util/functions";
+import { isDeCripto, voltar } from "./util/functions";
 import trashy from '../ui/icons/trash.png'
 
 
@@ -24,7 +24,12 @@ export default function Editar_Projeto() {
 
     const onSave = async (e) => {
         e.preventDefault()
-        updateProjeto(decript_id, { nome, descricao })
+        let res = updateProjeto(decript_id, { nome, descricao })
+        if (res) {
+            voltar()
+        } else {
+            document.getElementById("response").innerHTML = "Não foi possível atualizar o projeto!!"
+        }
     }
     if (localStorage.getItem('authToken')) {
         return (
@@ -32,7 +37,7 @@ export default function Editar_Projeto() {
                 <CabProj />
                 <center className={editProjStyle.center}>
                     <h1 className={editProjStyle.tituloPagina}>Editar Projeto</h1>
-
+                    <h3 id="response" />
                     <form className={editProjStyle.form}>
                         <label >
                             <p className={editProjStyle.inputTipo}>Nome do Projeto:</p>
@@ -55,10 +60,7 @@ export default function Editar_Projeto() {
                         </label>
                         <br /><br />
                         <div className={editProjStyle.divBotoes}>
-                            <button className={editProjStyle.formButtonDelete} onClick={async (e) => {
-                                e.stopPropagation()
-                                await deleteProjeto(decript_id)
-                            }}>
+                            <button type="button" className={editProjStyle.formButtonDelete} onClick={async () => { await deleteProjeto(decript_id) }}>
                                 <img src={trashy} className={editProjStyle.trashImg2} />
                                 Excluir</button>
                             <button className={editProjStyle.formButton} type="submit" onClick={onSave}>Salvar Alterações</button>
