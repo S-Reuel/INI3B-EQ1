@@ -39,31 +39,31 @@ export default function Tasks() {
     }
 
     function apresentar() {
-        return tasks.map(function (i, index) {
+        return tasks.map((i, index) => {
             let dataAtualizacao = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
                 return (
-                    <div key={index} className={TasksStyle.tasksCenter}>
-                        <div className={TasksStyle.equipeFlex}>
-                            <div className={TasksStyle.Task} onClick={(e) => {
+
+
+                    <div key={index} className={TasksStyle.Task} onClick={(e) => {
+                        e.stopPropagation()
+                        caminho(i.id, 'task')
+                    }}>
+                        <div className={TasksStyle.TaskInner}>
+                            <div className={TasksStyle.taskTitulo}>{i.titulo}</div>
+                            <div className={TasksStyle.botaoEditarTask} onClick={(e) => {
                                 e.stopPropagation()
-                                caminho(i.id, 'task')
-                            }}>
-                                <div className={TasksStyle.TaskInner}>
-                                    <div className={TasksStyle.taskTitulo}>{i.titulo}</div>
-                                    <div className={TasksStyle.botaoEditarTask} onClick={(e) => {
-                                        e.stopPropagation()
-                                        caminho(i.id, 'ed')
-                                    }}>...</div>
-                                    <div className={TasksStyle.taskData}>
-                                        <div className={TasksStyle.dataDiv}><img src={iconCalendario} className={TasksStyle.calendarioIMG}></img>{dataAtualizacao}</div>
-                                    </div>
-                                    <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
-                                    <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
-                                </div>
+                                caminho(i.id, 'ed')
+                            }}>...</div>
+                            <div className={TasksStyle.taskData}>
+                                <div className={TasksStyle.dataDiv}><img src={iconCalendario} className={TasksStyle.calendarioIMG}></img>{dataAtualizacao}</div>
                             </div>
+                            <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
+                            <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
                         </div>
                     </div>
+
+
                 )
             }
         })
@@ -148,12 +148,18 @@ export default function Tasks() {
                         <br />
                         <hr className={TasksStyle.hr1} color="#4a4a4a" />
                     </div>
-                    {(tasks.length != 0) ? (apresentar()) : (
-                        <div style={{ display: "inline-grid" }}>
-                            <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
-
+                    {(tasks.length != 0) ?
+                        <div className={TasksStyle.tasksCenter}>
+                            <div className={TasksStyle.equipeFlex}>
+                                {apresentar()}
+                            </div>
                         </div>
-                    )}
+                        : (
+                            <div style={{ display: "inline-grid" }}>
+                                <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
+
+                            </div>
+                        )}
                 </div >
             </>
         )

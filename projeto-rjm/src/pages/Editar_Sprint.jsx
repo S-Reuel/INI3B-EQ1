@@ -78,8 +78,8 @@ export default function Editar_Sprint() {
                                     document.getElementById("response").innerHTML = ""
                                     setDF(e.target.value)
                                 } else {
-                                    document.getElementById("response").innerHTML = "Data não aceita!"
                                     setDF('')
+                                    document.getElementById("response").innerHTML = "Data não aceita!"
                                 }
                             }} />
                         </label>

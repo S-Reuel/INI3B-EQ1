@@ -1,19 +1,16 @@
 .projeto {
     background-color: #212a36;
-
     border-radius: 15px;
     border: 1px solid #4D555E;
-
     width: 90%;
     height: 15vh;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
     padding: 10px;
-
     color: white;
     transition: 0.25s;
-
+    margin-bottom:10px
 }
 
 .conteudo>h1,

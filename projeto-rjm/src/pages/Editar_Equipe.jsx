@@ -53,11 +53,7 @@ export default function Editar_Equipe() {
         }
     }
 
-<<<<<<< HEAD
     function onSave(e) {
-=======
-    function onSave(e){
->>>>>>> development
         e.preventDefault()
         updateEquipe(0, decript_id, { nome, descricao })
     }
@@ -117,23 +113,18 @@ export default function Editar_Equipe() {
                         <input
                             type="text" id="addMembro"
                             placeholder="Digite o nome do membro"
-                            onChange={handleChange} className={editEquipeStyle.imputMembro}
+                            onChange={handleChange} className={editEquipeStyle.inputMembro}
                         />
                         <div type="submit" onClick={pesquisar} className={editEquipeStyle.btnAdicionarMembro}>Adicionar</div>
                         <br />
                         <label id="erro" />
                     </form>
                     <br />
-
                     <div className={editEquipeStyle.divBotoes}>
                         <button type="button" className={editEquipeStyle.formButtonDelete} onClick={() => { deleteEquipe(decript_id)}}>
                             <img src={trashIcon} className={editEquipeStyle.trashImg2} />
                             Excluir</button>
-<<<<<<< HEAD
                         <button className={editEquipeStyle.formButton} type="button" onClick={(e) => {onSave(e)}}>Salvar Alterações</button>
-=======
-                        <button className={editEquipeStyle.formButton} type="submit" onClick={(e) => {onSave(e)}}>Salvar Alterações</button>
->>>>>>> development
                         <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => redirecionar('eq')}>Cancelar</button>
                     </div>
                 </form>
