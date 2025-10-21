@@ -52,28 +52,40 @@ export default function Sprints() {
     }
 
     function apresentar() {
-        return sprints.map((i, index)=>{
-            let dataInicio = isFormat(new Date(i.data_inicio))
-            let dataFim = isFormat(new Date(i.data_fim))
-            if (!(i.excluido)) {
-                return (
-                    <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
-                        e.stopPropagation()
-                        caminho(i.id, 'task')
-                    }}>
-                        <td className={StylesSprint.sprintNome}>{i.nome}</td>
-                        <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
-                        <td className={StylesSprint.sprintDatas}>{dataFim}</td>
-                        <td className={StylesSprint.botaoEditarTableTd} >
-                            <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
-                                e.stopPropagation()
-                                caminho(i.id, 'ed')
-                            }}>...</div>
-                        </td>
+        return (
+            <div className={StylesSprint.sprintsDiv}>
+                <table className={StylesSprint.tableSprints}>
+                    <tr className={StylesSprint.tableTitulo}>
+                        <th><div className={StylesSprint.tbBorder}>Nome</div></th>
+                        <th><div className={StylesSprint.tbBorder}>Início</div></th>
+                        <th><div className={StylesSprint.tbBorder}>Término</div></th>
+                        <th><div className={StylesSprint.tbBorder}></div></th>
                     </tr>
-                )
-            }
-        })
+                    {sprints.map((i, index) => {
+                        let dataInicio = isFormat(new Date(i.data_inicio))
+                        let dataFim = isFormat(new Date(i.data_fim))
+                        if (!(i.excluido)) {
+                            return (
+                                <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
+                                    e.stopPropagation()
+                                    caminho(i.id, 'task')
+                                }}>
+                                    <td className={StylesSprint.sprintNome}>{i.nome}</td>
+                                    <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
+                                    <td className={StylesSprint.sprintDatas}>{dataFim}</td>
+                                    <td className={StylesSprint.botaoEditarTableTd} >
+                                        <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
+                                            e.stopPropagation()
+                                            caminho(i.id, 'ed')
+                                        }}>...</div>
+                                    </td>
+                                </tr>
+                            )
+                        }
+                    })}
+                </table>
+            </div>
+        )
     }
 
     if (localStorage.getItem('authToken')) {
@@ -89,11 +101,9 @@ export default function Sprints() {
                         content: {
                             border: '1px solid black',
                             background: '#151B23',
-
                         }
                     }}
                 >
-                    
                     <Add_Sprint />
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
@@ -119,18 +129,10 @@ export default function Sprints() {
                     </div>
                     {(sprints.length != 0) ? (
                         <div className={StylesSprint.equipeFlex}>
-                            <div className={StylesSprint.sprintsDiv}>
-                                <table className={StylesSprint.tableSprints}>
-                                    <tr className={StylesSprint.tableTitulo}>
-                                        <th><div className={StylesSprint.tbBorder}>Nome</div></th>
-                                        <th><div className={StylesSprint.tbBorder}>Início</div></th>
-                                        <th><div className={StylesSprint.tbBorder}>Término</div></th>
-                                        <th><div className={StylesSprint.tbBorder}></div></th>
-                                    </tr>
-                                    {apresentar()}
-                                </table>
-                            </div>
+
+                            {apresentar()}
                         </div>
+
                     ) : (<h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>)}
                     <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
