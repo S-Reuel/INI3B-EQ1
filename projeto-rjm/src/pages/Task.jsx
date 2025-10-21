@@ -33,9 +33,7 @@ export default function Task() {
             formData.append("task[arquivos][]", e.target.files[0]);
         }
         (await updateTask(decript_id, formData)) ?
-            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
-            :
-            location.reload()
+            document.getElementById("response").innerHTML = "Não foi possível adicionar!!" : location.reload()
     }
 
     function apresentar() {
