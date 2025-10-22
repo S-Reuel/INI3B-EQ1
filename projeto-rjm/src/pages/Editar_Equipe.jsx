@@ -46,16 +46,16 @@ export default function Editar_Equipe() {
         if (res.nome != undefined && res.excluido == false) {
             document.getElementById("erro").innerHTML = ''
             let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "Dev" }]
-            updateEquipe(item, decript_id, { nome, descricao })
+            await updateEquipe(item, decript_id, { nome, descricao })
             setPesquisa('')
         } else {
             document.getElementById("erro").innerHTML = "Não encontrado! Por favor digite o nome novamente"
         }
     }
 
-    function onSave(e) {
+    async function onSave(e) {
         e.preventDefault()
-        updateEquipe(0, decript_id, { nome, descricao })
+        await updateEquipe(0, decript_id, { nome, descricao })
     }
 
     if (localStorage.getItem('authToken')) {

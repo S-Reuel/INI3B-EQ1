@@ -24,7 +24,7 @@ export default function Editar_Projeto() {
 
     async function onSave(e) {
         e.preventDefault()
-        let res = updateProjeto(decript_id, { nome, descricao })
+        let res = await updateProjeto(decript_id, { nome, descricao })
         if (res) {
             voltar()
         } else {

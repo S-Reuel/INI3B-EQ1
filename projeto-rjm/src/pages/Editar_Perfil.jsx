@@ -115,7 +115,6 @@ export default function EditUser() {
                                                     background: '#151B23',
                                                     alignSelf: "center",
                                                     justifySelf: "center",
-
                                                 }
                                             }}
                                         ><center>
@@ -123,7 +122,7 @@ export default function EditUser() {
                                                     <label className={perfilStyle.lbl}>Foto atual</label> <br />
                                                     <br />
                                                     <label for="foto">
-                                                        <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal}/>
+                                                        <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
                                                     </label>
                                                     <input type="file" id="foto" name="foto" accept="image/png, image/jpeg" onChange={handleFileChange} />
                                                     <div className={perfilStyle.botoesModalImg}>
@@ -177,15 +176,17 @@ export default function EditUser() {
 
                                 <div className={perfilStyle.divBotoes}>
                                     <button className={perfilStyle.formButton} hack="true" onClick={async (e) => {
-                                        e.stopPropagation()
+                                        e.preventDefault()
                                         let erro = await deleteUser(id)
                                         if (erro == true)
                                             document.getElementById("erro").innerHTML = "Não foi possível excluir seu perfil!"
+                                        else
+                                            redirecionar('logout')
                                     }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
                                 <p>Alterar Senha?<a className={perfilStyle.link} linkDesativado={linkDesativado} onClick={() => { if (!linkDesativado) esqueci() }}> Vá para redefinir senha</a></p>
-                                <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={(e) => redirecionar('logout')}> Logout</a></p>
+                                <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={() => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>
                     </div>
