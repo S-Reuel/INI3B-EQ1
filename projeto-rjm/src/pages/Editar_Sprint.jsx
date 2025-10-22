@@ -30,7 +30,7 @@ export default function Editar_Sprint() {
         let horario = `${new Date().toISOString().split('T')[1]}`
         let data_inicio = `${dataI}T${horario}`
         let data_fim = `${dataF}T${horario}`
-        let res = updateSprint(decript_id, { nome, data_inicio, data_fim, projeto_id })
+        let res = await updateSprint(decript_id, { nome, data_inicio, data_fim, projeto_id })
         if (res) {
             voltar()
         } else {
@@ -78,7 +78,6 @@ export default function Editar_Sprint() {
                                     document.getElementById("response").innerHTML = ""
                                     setDF(e.target.value)
                                 } else {
-                                    setDF('')
                                     document.getElementById("response").innerHTML = "Data não aceita!"
                                 }
                             }} />

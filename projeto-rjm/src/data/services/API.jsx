@@ -100,12 +100,10 @@ export async function updateUser(id, params) {
 
 export async function deleteUser(id) {
     try {
-        await URL.patch(`usuarios/excluir/${id}`).then(() => {
-            redirecionar('logout')
-            return false
-        })
-    } catch (error) {
-        return (true)
+        await URL.patch(`usuarios/excluir/${id}`)
+        return false
+    } catch {
+        return true
     }
 }
 
@@ -176,9 +174,9 @@ export async function getEquipeByUser() {
 export async function updateEquipe(membros, id, params) {
     // Atualiza a equipe
     try {
-        if(membros == 0){
-            await URL.patch(`equipes/${id}`, params).then(() => {location.reload()})
-        } else {            
+        if (membros == 0) {
+            await URL.patch(`equipes/${id}`, params).then(() => { location.reload() })
+        } else {
             await URL.patch(`equipes/${id}`, params).then(() => {
                 addUserEquipe(membros, 0, id)
             })
@@ -191,7 +189,7 @@ export async function updateEquipe(membros, id, params) {
 export async function deleteEquipe(id) {
     // Deleta equipe
     try {
-        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(()=>{voltar()})
+        await URL.patch(`equipes/${id}`, { excluido: "true" }).then(() => { voltar() })
     } catch {
         location.reload()
     }
@@ -246,7 +244,8 @@ export async function getProjetoId(id) {
 
 export async function updateProjeto(id, params) {
     try {
-        await URL.patch(`projetos/${id}`, params).then(() => { return true })
+        await URL.patch(`projetos/${id}`, params) 
+        return true
     } catch {
         return false
     }

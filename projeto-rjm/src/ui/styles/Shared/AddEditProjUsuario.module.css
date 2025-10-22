@@ -114,11 +114,11 @@
 }
 
 .imgUsuarioModal {
-   height: 130px;
-   width: 130px;
+   width: 260px;
+   height: 260px;
+   align-self: center;
+   justify-self: center;
 }
-
-
 
 .modalUserImg {
    height: 100%;
