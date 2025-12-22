@@ -1,0 +1,44 @@
+ADICIONAR OS CAMPOS de excluido em todas as tabelas, exceto em Tasks e git_hubs
+
+ADICIONAR O CAMPO encerrado EM Sprint
+
+rails generate migration AddRemovidoToUsuarioEquipes removido:boolean
+
+REMOVER data DE git_hubs
+REMOVER data_criacao DE projetos
+REMOVER data_criacao e data_alteracao DE tasks
+
+
+Converti método GET para POST, funciona de forma perfeita!!!
+Front não está conseguindo consumir dados dele mesmo, o que é um problema.
+Realiza-se uma consulta que consegue o id de equipe, e envia isso para projeto, porém isso é feito através de um GET, deve ser trocado para POST, não acho que seja algo tão complexo, veremos...
+
+
+SEMPRE QUE INICIAR O SERVIDOR
+trocar o link do ngrok em "task_serializer.rb", "usuario_serializer" e $host em "tasks_controller.rb" para o nome_novo
+atualize as imagens
+
+!!!Quando for subir para o servidor real, reconfigurar a rota
+
+Excluir campo arquivos de Tasks
+Criar tabela arquivos
+
+**CÓDIGOS**
+
+!Renomear nome de arquivo (Rails)!
+
+>> File.rename(nome antigo, nome_novo)
+
+!Salvar arquivo em uma pasta!
+
+# 'public' é a pasta
+
+>> file_path = Rails.root.join('public', 'pasta', document.filename)
+
+# vê se a pasta existe
+>> FileUtils.mkdir_p(File.dirname(file_path))
+
+# Salva o arquivo
+>> File.open(file_path, 'wb') do |file|
+  >> file.write(document.read)
+>> end
