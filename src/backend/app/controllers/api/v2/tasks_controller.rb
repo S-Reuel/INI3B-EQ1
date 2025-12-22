@@ -2,7 +2,7 @@ class Api::V2::TasksController < ApplicationController
   before_action :set_task, only: %i[ show update destroy ]
 
 
-  $host = "http://eq1.ini3b.projetoscti.com.br"
+  $host = "http://localhost:3000"
   # GET /tasks
   def index
     @tasks = Task.where("excluido = ?", false)
@@ -17,7 +17,10 @@ class Api::V2::TasksController < ApplicationController
 
   # GET /task/githubdata
   def show_with_github_data
-  @tasks = Task.includes(:git_hubs, arquivos_attachments: :blob).all
+  @tasks = Task.includes(
+    :git_hubs,
+    task_attachments: { arquivo_attachment: :blob }
+  )
 
   render json: @tasks.map { |task|
     task.as_json(include: {
@@ -25,27 +28,52 @@ class Api::V2::TasksController < ApplicationController
         only: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :data, :mensagem ]
       }
     }).merge(
-      arquivos_urls: task.arquivos.map { |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
-     }
+      arquivos: task.task_attachments.map { |att|
+        {
+          id: att.id,
+          nome: att.arquivo.filename.to_s,
+          url: Rails.application.routes.url_helpers.rails_blob_url(
+            att.arquivo,
+            host: $host
+          ),
+          enviado_por: att.usuario.nome,
+          enviado_em: att.created_at
+        }
+      }
     )
   }
   end
 
-  # GET task/githubdataid/1
-  def show_with_github_data_by_id
-    @task = Task.includes(:git_hubs, arquivos_attachments: :blob).find(params[:id])
 
-    render json: @task.as_json(include: {
+# GET task/githubdataid/1
+def show_with_github_data_by_id
+  @task = Task.includes(
+    :git_hubs,
+    task_attachments: [ :usuario, arquivo_attachment: :blob ]
+  ).find(params[:id])
+
+  render json: @task.as_json(
+    include: {
       git_hubs: {
         only: [ :nome_repo, :usuario_gh, :evento_gh, :id_gh, :data, :mensagem ]
       }
-    }).merge(
-      arquivos_urls: @task.arquivos.map do |arquivo|
-        Rails.application.routes.url_helpers.rails_blob_url(arquivo, host: $host)
-      end
-    )
-  end
+    }
+  ).merge(
+    arquivos: @task.task_attachments.map do |att|
+      {
+        id: att.id,
+        nome: att.arquivo.filename.to_s,
+        url: Rails.application.routes.url_helpers.rails_blob_url(
+          att.arquivo,
+          host: $host
+        ),
+        enviado_por: att.usuario&.nome,
+        enviado_em: att.created_at
+      }
+    end
+  )
+end
+
 
   # POST /tasks
   def create
@@ -71,14 +99,17 @@ class Api::V2::TasksController < ApplicationController
   end
 
   def anexar_novos_arquivos(task, novos_arquivos)
-    novos_arquivos = Array.wrap(novos_arquivos)
+  novos_arquivos = Array.wrap(novos_arquivos)
 
-    novos_arquivos.each do |arquivo|
-    unless task.arquivos.any? { |a| a.blob.filename == arquivo.original_filename && a.blob.byte_size == arquivo.size }
-      task.arquivos.attach(arquivo)
-    end
+  novos_arquivos.each do |arquivo|
+    TaskAttachment.create!(
+      task: task,
+      usuario: current_user,
+      arquivo: arquivo
+    )
   end
   end
+
 
   # DELETE /tasks/1
   def destroy

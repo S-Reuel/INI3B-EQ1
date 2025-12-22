@@ -1,5 +1,5 @@
 class UsuarioTaskSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :usuario
-  has_one :task
+  belongs_to :usuario, serializer: UsuarioSerializer
+  belongs_to :task, serializer: TaskSerializer
 end

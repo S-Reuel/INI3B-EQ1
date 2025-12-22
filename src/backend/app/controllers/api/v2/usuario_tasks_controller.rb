@@ -5,13 +5,14 @@ class Api::V2::UsuarioTasksController < ApplicationController
   def index
     @usuario_tasks = UsuarioTask.all
 
-    render json: @usuario_tasks.as_json(only: [ :id, :usuario_id, :task_id ])
+    render json: @usuario_tasks
   end
 
   # GET /usuario_tasks/1
   def show
-    ut = UsuarioTask.find(params[:id])
-    render json: ut.as_json(only: [ :id, :usuario_id, :task_id ])
+    @task = Task.find(params[:id])
+    @usuarios_task = @task.usuario_tasks
+    render json: @usuarios_task
   end
 
   # POST /usuario_tasks
