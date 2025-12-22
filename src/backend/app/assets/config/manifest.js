@@ -1,1 +1,0 @@
-link_directory /app/assets/stylesheets .scss
