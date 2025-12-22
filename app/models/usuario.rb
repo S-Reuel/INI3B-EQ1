@@ -14,6 +14,9 @@ class Usuario < ApplicationRecord
   has_many :usuario_equipes
   has_many :equipes, through: :usuario_equipes
 
+  has_many :usuario_tasks
+  has_many :tasks, through: :usuario_tasks
+
   def gerar_jwt_redef_senha
     payload = {
       sub: self.id,

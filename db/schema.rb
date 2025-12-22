@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_16_164847) do
+ActiveRecord::Schema[8.0].define(version: 2025_12_15_173746) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -64,7 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_164847) do
     t.text "mensagem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "data"
+    t.datetime "data", precision: nil
   end
 
   create_table "git_hubs_tasks", id: false, force: :cascade do |t|
@@ -111,6 +114,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_164847) do
     t.index ["projeto_id"], name: "index_sprints_on_projeto_id"
   end
 
+  create_table "task_attachments", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "usuario_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_id"], name: "index_task_attachments_on_task_id"
+    t.index ["usuario_id"], name: "index_task_attachments_on_usuario_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "titulo"
     t.text "descricao"
@@ -131,8 +143,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_164847) do
   end
 
   create_table "usuario_tasks", force: :cascade do |t|
-    t.integer "usuario_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "usuario_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_usuario_tasks_on_task_id"
@@ -160,6 +172,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_164847) do
   add_foreign_key "sprint_tasks", "sprints"
   add_foreign_key "sprint_tasks", "tasks"
   add_foreign_key "sprints", "projetos"
+  add_foreign_key "task_attachments", "tasks"
+  add_foreign_key "task_attachments", "usuarios"
   add_foreign_key "usuario_equipes", "equipes"
   add_foreign_key "usuario_equipes", "usuarios"
   add_foreign_key "usuario_tasks", "tasks"

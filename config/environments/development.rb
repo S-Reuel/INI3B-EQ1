@@ -74,8 +74,8 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
-  host = "http://eq1.ini3b.projetoscti.com.br"
-  config.action_mailer.default_url_options = { host => "http://eq1.ini3b.projetoscti.com.br", protocol: "http" }
+  host = "http://localhost:3000"
+  config.action_mailer.default_url_options = { host => "http://localhost:3000", protocol: "http" }
 
   # Configurações SMTP para gmail
   config.action_mailer.smtp_settings = {
