@@ -46,7 +46,8 @@
 
 .input,
 .selectBox,
-.inputPaginaPropria {
+.inputPaginaPropria,
+.inputMembro {
    background-color: #212A36;
    border: 1px;
    border-color: #4D555E;
@@ -70,10 +71,13 @@
 
 .divBotoes {
    width: 100%;
+   max-width: 70vw;
    display: flex;
    flex-direction: row-reverse;
    gap: 20px;
-   transform: translate(50px);
+    @media (orientation: landscape) {
+      transform: translate(50px);
+   }
 }
 
 .selectBox * {
@@ -110,12 +114,11 @@
 }
 
 .imgUsuarioModal {
-   height: 130px;
-   width: 130px;
-
+   width: 260px;
+   height: 260px;
+   align-self: center;
+   justify-self: center;
 }
-
-
 
 .modalUserImg {
    height: 100%;
@@ -145,10 +148,7 @@
 
 
 .formButtonDelete {
-   position: absolute;
-   bottom: 0%;
-   left: 0%;
-   transform: translate(-50px);
+
    background-color: #4848B6;
    border-color: #4848B6;
    border-style: none;
@@ -161,6 +161,17 @@
    transition-timing-function: ease-in-out;
    display: flex;
    align-items: center;
+   @media (orientation: landscape) {
+      position: absolute;
+      bottom: 0%;
+      left: 0%;
+      transform: translate(-50px);
+   }
+   @media (orientation: portrait){
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom: 20px;
+   }
 }
 
 .formButtonDelete:hover {
@@ -179,6 +190,7 @@
    line-height: 25px;
    padding: 12px;
    text-align: center;
+
 }
 
 
@@ -193,6 +205,11 @@
    font-size: var(--input-font-size);
    padding: 1.5%;
    width: auto;
+   @media (orientation: portrait){
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom: 20px;
+   }
 }
 
 .botaoNovaEquipe {
@@ -256,10 +273,11 @@
 
 .membrosAtuaisDiv {
    background-color: #212a36;
-   padding: 4px;
    border-radius: 16px;
    border: 1px solid #4D555E;
    width: 100%;
+   max-width: 70vw;
+   padding: 17px 23px;
 
 }
 
@@ -367,21 +385,6 @@
    cursor: pointer;
 }
 
-.imputMembro {
-   background-color: #212A36;
-   border: 1px;
-   border-color: #4D555E;
-   border-style: solid;
-   border-radius: 16px;
-
-   color: #B6B8BB;
-   font-weight: 400;
-
-   margin-bottom: var(--input-margin-bottom);
-   padding: 17px 23px;
-
-   width: 100%;
-}
 
 .btnRemoverTodos {
    padding: 8px;
@@ -402,6 +405,10 @@
    width: min-content;
    transition: 0.25s;
    border: 1px solid #4D555E;
+   @media (orientation: portrait){
+      margin-left:5%;
+      margin-right:5%;
+   }
 }
 
 .btnAdicionarMembro:hover {
@@ -448,6 +455,7 @@
    .formButton {
       margin-left: 5%;
       margin-right: 5%;
+      margin-bottom: 20px;
    }
    .formButton[hack="true"]
    {
@@ -456,7 +464,9 @@
    
    .input,
    .selectBox,
-   .inputPaginaPropria {
+   .inputPaginaPropria,
+   .inputMembro,
+   .membrosAtuaisDiv {
       width: 80%;
       margin-left: 5%;
       margin-right: 5%;

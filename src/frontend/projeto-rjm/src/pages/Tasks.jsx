@@ -38,13 +38,14 @@ export default function Tasks() {
         }
     }
 
-    function apr() {
-        return tasks.map(function (i) {
+    function apresentar() {
+        return tasks.map((i, index) => {
             let dataAtualizacao = isFormat(new Date(i.updated_at))
-
             if (!(i.excluido)) {
                 return (
-                    <div className={TasksStyle.Task} onClick={(e) => {
+
+
+                    <div key={index} className={TasksStyle.Task} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'task')
                     }}>
@@ -59,10 +60,10 @@ export default function Tasks() {
                             </div>
                             <div className={TasksStyle.taskDescricao}>{i.descricao}</div>
                             <div className={TasksStyle.taskStatus}><div className={TasksStyle.statusDiv} style={corStatus(i.status)}>{textoStatus(i.status)}</div></div>
-
-
                         </div>
                     </div>
+
+
                 )
             }
         })
@@ -131,14 +132,13 @@ export default function Tasks() {
                         }
                     }}
                 >
-                    
                     <Add_Task />
                 </Modal>
                 <div className={TasksStyle.botaoNewTask} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={TasksStyle.imgEditarProj} /></div>
                 <div className={TasksStyle.paginaEquipes}>
                     <div className={TasksStyle.navEquipes}>
                         <div className={TasksStyle.descData} teste="true">Data de início da Sprint: <br />{isFormat(new Date(sprint.data_inicio))}</div>
-                        <br /> 
+                        <br />
                         <div className={TasksStyle.descData} teste="true">Data de término da Sprint: <br />{isFormat(new Date(sprint.data_fim))}</div>
                     </div>
                     <div>
@@ -148,27 +148,19 @@ export default function Tasks() {
                         <br />
                         <hr className={TasksStyle.hr1} color="#4a4a4a" />
                     </div>
-
-                    {(tasks.length != 0) ? (
+                    {(tasks.length != 0) ?
                         <div className={TasksStyle.tasksCenter}>
                             <div className={TasksStyle.equipeFlex}>
-                                {apr()}
+                                {apresentar()}
                             </div>
                         </div>
-
-                    ) : (
-                        <>
-                            <div style={{display:"inline-grid"}}>
+                        : (
+                            <div style={{ display: "inline-grid" }}>
                                 <h4 className={TasksStyle.semTask}>Sem Tasks! Crie uma Task!</h4>
 
                             </div>
-
-                        </>
-                    )}
-
-                </div>
-
-
+                        )}
+                </div >
             </>
         )
     } else {

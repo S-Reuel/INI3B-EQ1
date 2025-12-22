@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
 import { redirecionar } from "./util/functions.jsx";
-
 import eyeOFF from "../ui/icons/eyeOFF.svg";
 import eyeON from "../ui/icons/eyeON.svg";
 
@@ -89,7 +88,7 @@ export default function Login() {
                     </div>
                 </center>
             </div>
-        );
+        )
     } else {
         return (redirecionar("prin"))
     }

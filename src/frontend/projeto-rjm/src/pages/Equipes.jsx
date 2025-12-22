@@ -42,11 +42,11 @@ export default function Equipes() {
         setIsOpen(false);
     }
 
-    function apr() {
-        return eqs.map((i) => {
+    function apresentar() {
+        return eqs.map((i, index) => {
             if (!(i.excluido)) {
                 return (<>
-                    <div className={equipeStyle.equipeDiv} onClick={(e) => {
+                    <div key={index} className={equipeStyle.equipeDiv} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'pr')
                     }}>
@@ -60,7 +60,7 @@ export default function Equipes() {
                         }}>...</div>
                     </div>
                 </>)
-            }
+            } 
         })
     }
 
@@ -85,36 +85,22 @@ export default function Equipes() {
                         }
                     }}
                 >
-
-                    <Add_Equipe fecharModal={fecharModal}/>
+                    <Add_Equipe fecharModal={fecharModal} />
                 </Modal>
                 <div className={equipeStyle.bttCriarEquipe} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={equipeStyle.imgEditarProj} /></div>
                 <div className={equipeStyle.paginaEquipes}>
-
                     <div>
                         <div className={equipeStyle.tituloFlex}>
                             <h1 className={equipeStyle.tituloPagina}>Equipes</h1>
-
                         </div>
                         <br />
                         <hr className={equipeStyle.hr1} color="#4a4a4a" />
                     </div>
-                    {(eqs.length != 0) ? (
-                        <div className={equipeStyle.equipesDivCenter}>
-                            <div className={equipeStyle.equipeFlex}>
-                                {apr()}
-                            </div>
+                    <div className={equipeStyle.equipesDivCenter}>
+                        <div className={equipeStyle.equipeFlex}>
+                            {(eqs.length != 0) ? (apresentar()) : (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)}
                         </div>
-                    ) : (
-                        <>
-                            <div style={{display:"inline-grid"}}>
-                                <h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>
-
-                            </div>
-
-                        </>
-                    )}
-
+                    </div>
                 </div>
             </div>
         )

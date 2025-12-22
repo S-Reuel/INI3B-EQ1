@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isDeCripto, isFormatStatus, redirecionar } from "./util/functions"
+import { isDeCripto, isFormatStatus, redirecionar, voltar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import trashy from '../ui/icons/trash.png'
 
@@ -23,17 +23,16 @@ export default function Editar_Task() {
         fetch()
     }, [])
 
-    const onSave = async (e) => {
+    async function onSave(e) {
         e.preventDefault()
         let status = document.getElementById("selectStatus").options[document.getElementById("selectStatus").selectedIndex].value
         const formData = new FormData();
         formData.append("task[titulo]", titulo)
         formData.append("task[descricao]", descricao)
         formData.append("task[status]", status)
-            (await updateTask(decript_id, formData)) ?
-            document.getElementById("response").innerHTML = "Não foi possível adicionar!!"
-            :
-            location.reload()
+        let res = await updateTask(decript_id, formData)
+        console.log(res);
+        (res) ? document.getElementById("response").innerHTML = "Não foi possível adicionar!!" : voltar()
     }
 
     if (localStorage.getItem('authToken')) {
@@ -67,7 +66,7 @@ export default function Editar_Task() {
                         <br />
                         <label>
                             <label>Status da Task</label><br />
-                            <select className={editEquipeStyle.input} id='selectStatus'>
+                            <select className={editEquipeStyle.input} id='selectStatus' style={{ width:"auto" }}>
                                 <option value={stt}>{isFormatStatus(stt)}</option>
                                 <option value={'pendente'}>Pendente</option>
                                 <option value={'em_andamento'}>Em andamento</option>
@@ -79,14 +78,15 @@ export default function Editar_Task() {
                         <br /><br />
                         <div className={editEquipeStyle.divBotoes}>
                             <button className={editEquipeStyle.formButtonDelete} onClick={async (e) => {
+                                e.preventDefault()
                                 e.stopPropagation()
                                 await deleteTask(decript_id)
                             }}>
                                 <img src={trashy} className={editEquipeStyle.trashImg2} />
                                 Excluir
                             </button>
-                            <button className={editEquipeStyle.formButton} type="submit" onClick={onSave}>Atualiza sprint</button>
-                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={(e) => { history.back(); window.close(); }}>Cancelar</button>
+                            <button className={editEquipeStyle.formButton} type="button" onClick={(e) => onSave(e)}>Atualizar sprint</button>
+                            <button className={editEquipeStyle.buttonReturn} type="button" onClick={() => { history.back(); window.close(); }}>Cancelar</button>
                         </div>
                     </form>
                 </center>

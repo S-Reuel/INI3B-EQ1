@@ -72,12 +72,13 @@ export function redirecionar(caminho) {
 // Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
+    // location.replace(document.referrer); //--Diego: se utilizar esta linha em vez de history.back(), a página anterior é automaticamente recarregada ao retornar à ela.
 }
 
 export function isCripto(dado) {
     var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
-    var id = CryptoJS.AES.encrypt(`${dado}`, key).toString()
-    return encodeURIComponent(id)
+    var bytes = CryptoJS.AES.encrypt(`${dado}`, key).toString()
+    return encodeURIComponent(bytes)
 }
 
 export function isDeCripto(dado) {
