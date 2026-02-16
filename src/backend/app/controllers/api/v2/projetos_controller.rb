@@ -11,6 +11,7 @@ class Api::V2::ProjetosController < ApplicationController
   # GET /projetos/1
   def show
     @projeto = Projeto.find(params[:id])
+    authorize @projeto
     if @projeto
       render json: @projeto
     else
@@ -37,6 +38,7 @@ class Api::V2::ProjetosController < ApplicationController
 
   # POST /projetos
   def create
+    authorize Projeto
     @projeto = Projeto.new(projeto_params)
 
     if @projeto.save
@@ -48,6 +50,7 @@ class Api::V2::ProjetosController < ApplicationController
 
   # PATCH/PUT /projetos/1
   def update
+    authorize @projeto
     if @projeto.update(projeto_params)
       render json: @projeto
     else
@@ -57,6 +60,7 @@ class Api::V2::ProjetosController < ApplicationController
 
   # DELETE /projetos/1
   def destroy
+    authorize @projeto
     @projeto.destroy!
   end
 

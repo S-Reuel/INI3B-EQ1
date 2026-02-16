@@ -10,6 +10,8 @@ class Api::V2::EquipesController < ApplicationController
 
   # GET /equipes/1
   def show
+    authorize @equipe
+
     if !@equipe.excluido
       render json: @equipe
     else
@@ -30,6 +32,8 @@ class Api::V2::EquipesController < ApplicationController
 
   # PATCH/PUT /equipes/1
   def update
+    authorize @equipe
+
     if @equipe.update(equipe_params)
       render json: @equipe
     else
@@ -39,6 +43,7 @@ class Api::V2::EquipesController < ApplicationController
 
   # DELETE /equipes/1
   def destroy
+    authorize @equipe
     @equipe.destroy!
   end
 
