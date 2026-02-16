@@ -45,7 +45,7 @@ export default function Editar_Equipe() {
         document.getElementById("addMembro").value = ''
         if (res.nome != undefined && res.excluido == false) {
             document.getElementById("erro").innerHTML = ''
-            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "Dev" }]
+            let item = [{ 'ID': `${res.id}`, 'nome': `${res.nome}`, "papel": "dev" }]
             await updateEquipe(item, decript_id, { nome, descricao })
             setPesquisa('')
         } else {

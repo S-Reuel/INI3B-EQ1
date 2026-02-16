@@ -12,7 +12,7 @@ import tutorial from '../ui/file/tutorialCodra.txt'
 
 export default function Task() {
     const { task_id } = useParams()
-    const [task, setTask] = useState([])
+    const [task, setTask] = useState(null)
     let decript_id = isDeCripto(task_id)
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function Task() {
     }
 
     function apresentar() {
-        let arquivos = task.arquivos_urls
+        let arquivos = task.arquivos || []
         let dataCriacao = isFormat(new Date(task.created_at))
         let dataAtualizacao = isFormat(new Date(task.updated_at))
         if (!(task.excluido)) {
@@ -45,8 +45,8 @@ export default function Task() {
                 <div className={taskStyle.divRetorno}>
                     <div>
                         <div className={taskStyle.datasDaTask}>
-                            <div className={taskStyle.criacaoTask}><img src={calendario} /> Iniciado em: {dataCriacao}</div>
-                            <div className={taskStyle.atlzTask}><img src={calendario} /> Terminado em: {dataAtualizacao}</div>
+                            <div className={taskStyle.criacaoTask}><img src={calendario} /> Criado em: {dataCriacao}</div>
+                            <div className={taskStyle.atlzTask}><img src={calendario} /> Atualizado em: {dataAtualizacao}</div>
                         </div>
                         <br />
                         <hr className={taskStyle.hr1} color="#4a4a4a" />
@@ -55,7 +55,7 @@ export default function Task() {
                         </a>
                         <div className={taskStyle.divDaDivCommits}>
                             <div className={taskStyle.divCommits}>
-                                {task.git_hubs.map((i) => {
+                                {task.git_hubs?.map((i) => {
                                     return (
                                         <div className={taskStyle.commitTask}>
                                             <span className={taskStyle.tituloCommit}><b className={taskStyle.corDoCoiso}>{i.nome_repo} </b>/ Commit</span>
@@ -70,7 +70,7 @@ export default function Task() {
                         <hr className={taskStyle.hr1} color="#4a4a4a" />
                         <br />
                         <center>
-                            <label for="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
+                            <label htmlFor="fileUpload" className={taskStyle.fileUpload}>Adicione arquivos</label> <br />
                             <input id="fileUpload" type="file" onChange={handleFileChange} />
                         </center>
                         <center>
@@ -78,20 +78,33 @@ export default function Task() {
                         </center>
                         <div className={taskStyle.divArquivos}>
                             <table className={taskStyle.tableArquivos}>
-                                <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
-                                {arquivos.map((i) => {
-                                    const caminhoDoArquivo = i;
-                                    const regex = /[^/]*$/;
-                                    const match = caminhoDoArquivo.match(regex);
-                                    return (
-                                        <tr className={taskStyle.linkTask}>
-                                            <a href={i} target="_blank" className={taskStyle.linklink}>
-                                                <img src={fileIcon} className={taskStyle.fileIMG} />
-                                                <div className={taskStyle.linklinklink}>{match[0]}</div>
-                                            </a>
+                                <thead>
+                                    <tr>
+                                        <th className={taskStyle.tableCabeca}>Arquivos Anexados</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {arquivos.length === 0 && (
+                                        <tr>
+                                            <td colSpan={3}>Nenhum arquivo anexado</td>
                                         </tr>
-                                    )
-                                })}
+                                    )}
+                                    {arquivos.map((arquivo) => (
+                                        <tr key={arquivo.id}>
+                                            <td>
+                                                <a
+                                                    href={arquivo.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {arquivo.nome}
+                                                </a>
+                                            </td>
+                                            <td>{arquivo.enviado_por}</td>
+                                            <td>{isFormat(new Date(arquivo.enviado_em))}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -142,6 +155,10 @@ export default function Task() {
         }
     }
 
+    if (!task) {
+        return <h3>Carregando task...</h3>
+    }
+
     if (localStorage.getItem('authToken')) {
         return (
             <>
@@ -149,10 +166,10 @@ export default function Task() {
                 <div className={taskStyle.paginaEquipes}>
                     <div className={taskStyle.navEquipes}>
                         <div className={taskStyle.statusDescTask}>
-                            {(task.length != "") ? (statusDesc()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                            {statusDesc()}
                             <p className={taskStyle.idDesc}>ID: {decript_id}</p>
                         </div>
-                        <details className={taskStyle.descEquipe} open='true'>
+                        <details className={taskStyle.descEquipe} open>
                             <summary>
                                 <img src={setaDetails} className={taskStyle.icon} />
                                 <img src={clipbb} className={taskStyle.ilustIcon} />
@@ -166,12 +183,12 @@ export default function Task() {
                         <button className={taskStyle.editarPag} onClick={() => { location.href = `/../../../sprint/edit/task/${isCripto(decript_id)}` }}>...</button>
                         <div className={taskStyle.tituloFlex}>
                             <h1 className={taskStyle.tituloPagina}>
-                                Task {(task.length != "") ? `- ${task.titulo}` : ''}
+                                Task - {task.titulo}
                             </h1>
                         </div>
                         <br />
                     </div>
-                    {(task.length != 0) ? (apresentar()) : (<h4>Nenhuma informação encontrada!</h4>)}
+                    {apresentar()}
                 </div>
             </>
         )

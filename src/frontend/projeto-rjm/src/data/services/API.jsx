@@ -6,7 +6,7 @@ axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = true
 const URL = axios.create({
-    baseURL: 'http://eq1.ini3b.projetoscti.com.br/api/v2/' /* Servidor CTI */
+    baseURL: 'http://localhost:3000/api/v2/' /* Servidor CTI */
 })
 
 /* Função para tratar Promise */
@@ -130,7 +130,7 @@ async function addUserEquipe(membros, usuario_id, equipe_id) {
     // Função chamada para adicionar o usuário criador na nova equipe
     try {
         if (usuario_id != 0) {
-            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "Admin" }).then(() => {
+            await URL.post('usuario_equipes', { usuario_id, equipe_id, papel: "gestor" }).then(() => {
                 location.reload()
             }
             )
