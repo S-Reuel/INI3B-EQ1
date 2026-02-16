@@ -77,6 +77,7 @@ end
 
   # POST /tasks
   def create
+    authorize Task
     @task = Task.new(task_params)
 
     if @task.save
@@ -88,6 +89,7 @@ end
 
   # PATCH/PUT /tasks/1
   def update
+    authorize @task
     if @task.update(task_params)
       if params[:task][:arquivos].present?
         anexar_novos_arquivos(@task, params[:task][:arquivos]) if params[:task][:arquivos].present?

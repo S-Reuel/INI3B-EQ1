@@ -28,6 +28,7 @@ class Api::V2::SprintTasksController < ApplicationController
   # POST /sprint_tasks
   def create
     @sprint_task = SprintTask.new(sprint_task_params)
+    authorize @sprint_task
 
     if @sprint_task.save
       render json: @sprint_task, status: :created, location: api_v2_sprint_task_url(@sprint_task)
