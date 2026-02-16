@@ -20,6 +20,7 @@ class Api::V2::SprintsController < ApplicationController
 
   # POST /sprints
   def create
+    authorize Sprint
     @sprint = Sprint.new(sprint_params)
 
     if @sprint.save
@@ -31,6 +32,7 @@ class Api::V2::SprintsController < ApplicationController
 
   # PATCH/PUT /sprints/1
   def update
+    authorize @sprint
     if @sprint.update(sprint_params)
       render json: @sprint
     else

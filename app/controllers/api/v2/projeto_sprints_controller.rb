@@ -29,6 +29,7 @@ class  Api::V2::ProjetoSprintsController < ApplicationController
   # POST /projeto_sprints
   def create
     @projeto_sprint = ProjetoSprint.new(projeto_sprint_params)
+    authorize @projeto_sprint
 
     if @projeto_sprint.save
       render json: @projeto_sprint, status: :created, location: @projeto_sprint
