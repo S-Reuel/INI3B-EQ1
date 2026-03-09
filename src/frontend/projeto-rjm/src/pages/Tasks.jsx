@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
+import { isCripto, isDeCripto, isFormat, useRedirecionar } from "./util/functions"
 import { getSprintsId, getTaskBySprint } from "../data/services/API"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
 import Modal from 'react-modal'
 import Add_Task from "./Add_Task"
@@ -12,6 +12,8 @@ import imgMaisProjeto from '../ui/icons/mais.png'
 Modal.setAppElement('#root')
 
 export default function Tasks() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const { sprint_id } = useParams()
     const [tasks, setTasks] = useState([])
     const [sprint, setSprint] = useState([])
@@ -32,14 +34,14 @@ export default function Tasks() {
         // Criptografia do ID
         let id = isCripto(ID)
         if (tipo == 'task') {
-            location.href = `/projeto/sprint/task/${id}`
+            navigate(`/projeto/sprint/task/${id}`)
         } else if (tipo == 'ed') {
-            location.href = `/sprint/edit/task/${id}`
+            navigate(`/sprint/edit/task/${id}`)
         }
     }
 
     function apresentar() {
-        return tasks.map((i, index) => {
+        return tasks?.map((i, index) => {
             let dataAtualizacao = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
                 return (
@@ -80,7 +82,7 @@ export default function Tasks() {
             case "atrasado":
                 return "Atrasado";
             case "cancelado":
-                return "Encerrado"
+                return "Cancelado"
             default:
                 return "Erro";
         }

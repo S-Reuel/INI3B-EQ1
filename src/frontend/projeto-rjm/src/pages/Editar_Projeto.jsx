@@ -65,7 +65,7 @@ export default function Editar_Projeto() {
                                 <img src={trashy} className={editProjStyle.trashImg2} />
                                 Excluir</button>
                             <button className={editProjStyle.formButton} type="button" onClick={(e) => onSave(e)}>Salvar Alterações</button>
-                            <button className={editProjStyle.btnFechaModal} type="button" onClick={() => { location.replace(document.referrer); window.close(); }}>Cancelar</button>
+                            <button className={editProjStyle.btnFechaModal} type="button" onClick={() =>{ history.back(); window.close(); }}>Cancelar</button>
                         </div>
 
                     </form>

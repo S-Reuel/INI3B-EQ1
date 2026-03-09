@@ -10,6 +10,20 @@
     transition: 0.25s;
 
 }
+
+.botaoNewSprint_hide{
+    position: fixed;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+    z-index: 9;
+    transition: 0.25s;
+    visibility: hidden;
+}
+
 .botaoNewSprint:hover {
     cursor:pointer;
     scale: 105%;
@@ -214,6 +228,17 @@
     line-height: 30px;
     transition: 0.25s;
     border-radius: 10px;
+}
+
+.botaoEditarTable_hide{
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 30px;
+    transition: 0.25s;
+    border-radius: 10px;
+    visibility: hidden;
 }
 
 .botaoEditarTable:hover{

@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { obterValor, postUser } from '../data/services/API.jsx'
-import { redirecionar } from './util/functions.jsx'
+import { useRedirecionar } from './util/functions.jsx'
 import eyeOFF from "../ui/icons/eyeOFF.svg";
 import eyeON from "../ui/icons/eyeON.svg";
+import { Link } from 'react-router-dom';
 
 import registroStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Registro() {
+    const redirecionar = useRedirecionar()
     const [nome, setNome] = useState('')
     const [password, setSenha] = useState('')
     const [email, setEmail] = useState('')
@@ -103,7 +105,7 @@ export default function Registro() {
                     </form>
                     <div className={registroStyle.SignUpForgot}>
                         <p>
-                            Já tem uma conta?   <a href="/login" className={registroStyle.link}>Login</a>
+                            Já tem uma conta?   <Link to="/login" className={registroStyle.link}>Login</Link>
                         </p>
                     </div>
                 </center>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import appStyle from '../ui/styles/App/App.module.css'
 import featureIMG from '../ui/icons/featureIMG.png'
 import fundo from '../ui/icons/fundoWelcome.png'
@@ -38,7 +39,7 @@ export default function App() {
           </p><br />
           <div className={appStyle.divCadastro}>
             <p>Não fique de fora — use Codra e explore tudo.</p>
-            {(localStorage.getItem('authToken') == null) ? <a href='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></a> : <a href='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></a>}
+            {(localStorage.getItem('authToken') == null) ? <Link to='/add/usuario'><button className={appStyle.butCadastro}>Criar conta</button></Link> : <Link to='/equipes'><button className={appStyle.butCadastro}>Ver equipes</button></Link>}
           </div>
         </article>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
@@ -132,7 +133,7 @@ export default function App() {
           </div>
         </div>
         <br />
-        <p className={appStyle.contato}>Contato: codra.suporte@gmail.com</p>
+        <p className={appStyle.contato}>Contato: suportecodra@gmail.com</p>
         
         <br /><br /><br />
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getTaskByGitHub, updateTask } from "../data/services/API";
 import CabProj from "../ui/components/_cabecalho";
 import { isCripto, isDeCripto, isFormat, voltar } from "./util/functions";
@@ -11,6 +11,7 @@ import clipbb from '../ui/icons/clipboard.png'
 import tutorial from '../ui/file/tutorialCodra.txt'
 
 export default function Task() {
+    const navigate = useNavigate()
     const { task_id } = useParams()
     const [task, setTask] = useState(null)
     let decript_id = isDeCripto(task_id)
@@ -132,11 +133,15 @@ export default function Task() {
             case "atrasado":
                 return "Atrasado";
             case "cancelado":
-                return "Encerrado"
+                return "Cancelado"
             default:
                 return "Erro";
         }
     }
+
+    const handleClick = () => {
+        navigate(`/../../../sprint/edit/task/${isCripto(decript_id)}`);
+    };
 
     function corStatus(status) {
         switch (status.toLowerCase()) {
@@ -180,7 +185,7 @@ export default function Task() {
                         </details>
                     </div>
                     <div className={taskStyle.divTititulo}>
-                        <button className={taskStyle.editarPag} onClick={() => { location.href = `/../../../sprint/edit/task/${isCripto(decript_id)}` }}>...</button>
+                        <button className={taskStyle.editarPag} onClick={handleClick}>...</button>
                         <div className={taskStyle.tituloFlex}>
                             <h1 className={taskStyle.tituloPagina}>
                                 Task - {task.titulo}

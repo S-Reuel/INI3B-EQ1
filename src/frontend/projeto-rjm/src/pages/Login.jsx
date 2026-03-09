@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { postLogin } from "../data/services/API.jsx";
-import { redirecionar } from "./util/functions.jsx";
+import { useRedirecionar } from "./util/functions.jsx";
 import eyeOFF from "../ui/icons/eyeOFF.svg";
 import eyeON from "../ui/icons/eyeON.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 import loginStyle from '../ui/styles/Shared/FormConta.module.css'
 
 export default function Login() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [showPassword, setShowPassword] = useState('password')
@@ -17,17 +20,17 @@ export default function Login() {
         let mensagem = await postLogin({ email, password })
         if (mensagem != undefined) {
             document.getElementById("response").innerHTML = "Credenciais inválidas"
+        } else {
+            navigate('/equipes')
         }
     }
 
     const toggleShowPassword = () => {
-        if(showPassword === 'password')
-        {
-            setShowPassword("text") 
+        if (showPassword === 'password') {
+            setShowPassword("text")
             setEye(eyeOFF)
         }
-        else
-        {
+        else {
             setShowPassword("password")
             setEye(eyeON)
         }
@@ -53,22 +56,22 @@ export default function Login() {
                                 className={loginStyle.input}
                                 type="email" name="email"
                                 placeholder="Digite seu e-mail" required
-                                value={email} autoComplete='off'
+                                defaultValue={email} autoComplete='off'
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </label>
                         <label>
                             Senha<br />
                             <div>
-                                    <input
-                                        className={loginStyle.input}
-                                        type={showPassword} name="senha"
-                                        placeholder="Digite sua senha" required
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                    />
+                                <input
+                                    className={loginStyle.input}
+                                    type={showPassword} name="senha"
+                                    placeholder="Digite sua senha" required
+                                    defaultValue={password} autoComplete="off"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                                 <div className={loginStyle.ab}>
-                                    <img className={loginStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()}/>
+                                    <img className={loginStyle.passwordEye} src={eye} onClick={() => toggleShowPassword()} />
                                 </div>
                             </div>
                             <br />
@@ -78,11 +81,11 @@ export default function Login() {
                     </form>
                     <div className={loginStyle.SignUpForgot}>
 
-                         <p className={loginStyle.redirectMessage}>
-                            Esqueceu a senha?   <a href="/login/esqueciSenha" className={loginStyle.link}>Redefinir</a>
+                        <p className={loginStyle.redirectMessage}>
+                            Esqueceu a senha?   <Link to="/login/esqueciSenha" className={loginStyle.link}>Redefinir</Link>
                         </p>
                         <p className={loginStyle.redirectMessage}>
-                            Não tem uma conta?   <a href="/add/usuario" className={loginStyle.link}>Cadastre-se</a>
+                            Não tem uma conta?   <Link to="/add/usuario" className={loginStyle.link}>Cadastre-se</Link>
                         </p>
                         <br />
                     </div>

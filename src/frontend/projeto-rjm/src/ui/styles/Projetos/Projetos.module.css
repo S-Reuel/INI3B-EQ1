@@ -76,7 +76,22 @@
     font-size: 25px;
     align-content: center;
     text-align: center;
+}
 
+.bttEditarProj_hide {
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: inherit;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 25px;
+    align-content: center;
+    text-align: center;
+    visibility: hidden;
 }
 
 .bttEditarProj:hover {
@@ -152,7 +167,19 @@
     right: 5%;
     z-index: 9;
     transition: 0.25s;
+}
 
+.botaoNewProjeto_hide{
+    position: fixed;
+    border-radius: 25px;
+    background-color: purple;
+    height: 100px;
+    width: 100px;
+    bottom: 7%;
+    right: 5%;
+    z-index: 9;
+    transition: 0.25s;
+    visibility: hidden;
 }
 
 .botaoNewProjeto:hover {

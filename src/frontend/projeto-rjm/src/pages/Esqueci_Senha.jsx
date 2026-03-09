@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { esqueciSenha } from "../data/services/API";
 import esqueciStyle from '../ui/styles/Shared/FormConta.module.css'
-import { redirecionar } from "./util/functions";
+import { useRedirecionar } from "./util/functions";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function EsqueciSenha() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const [email, setEmail] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('') /*--TO DO-diego:com Regex, daria pra ativar o botao assim que um email valido fosse enviado */
 
@@ -13,7 +16,7 @@ export default function EsqueciSenha() {
         setBotaoDesativado("disabled")
         e.preventDefault() 
         if (await esqueciSenha(emailEnviado)) {
-            location.href = '/login/redefinirSenha'
+            navigate('/login/redefinirSenha')
         } else {
             setBotaoDesativado("")
             document.getElementById("response").innerHTML = "Email não encontrado!"
@@ -41,7 +44,7 @@ export default function EsqueciSenha() {
                                 className={esqueciStyle.input}
                                 type="email" name="email"
                                 placeholder="Digite seu e-mail" required
-                                value={email} autoComplete='off'
+                                defaultValue="" autoComplete='off'
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </label>
@@ -49,7 +52,7 @@ export default function EsqueciSenha() {
                     </form>
                     <div className={esqueciStyle.SignUpForgot}>
                         <p>
-                            Lembrou a sua senha?   <a href="/login" className={esqueciStyle.link}>Login</a>
+                            Lembrou a sua senha?   <Link to="/login" className={esqueciStyle.link}>Login</Link>
                         </p>
                     </div>
 

@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom"
+import { Navigate, useNavigate, useParams } from "react-router-dom"
 import CabProj from "../ui/components/_cabecalho"
 import React, { useEffect, useState } from "react"
 import { getProjetoId, getSprintsByProjeto } from "../data/services/API"
 import imgMaisProjeto from '../ui/icons/mais.png'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
 import StylesSprint from '../ui/styles/Sprints/Sprints.module.css'
-import { isCripto, isDeCripto, isFormat, redirecionar } from "./util/functions"
+import { hideButtonsByFuncao, isCripto, isDeCripto, isFormat, useRedirecionar } from "./util/functions"
 import Modal from 'react-modal';
 import Add_Sprint from "./Add_Sprint"
 import setaDetails from '../ui/icons/setaDetails.png'
@@ -13,6 +13,8 @@ import clipbb from '../ui/icons/clipboard.png'
 Modal.setAppElement('#root');
 
 export default function Sprints() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const { projeto_id } = useParams()
     const [sprints, setSprints] = useState([])
     const [projeto, setProj] = useState([])
@@ -33,9 +35,9 @@ export default function Sprints() {
         // Criptografia do ID
         let id = isCripto(ID)
         if (tipo == 'task') {
-            location.href = `/projeto/sprint/tasks/${id}`
+            navigate(`/projeto/sprint/tasks/${id}`)
         } else if (tipo == 'ed') {
-            location.href = `/projeto/edit/sprint/${id}`
+            navigate(`/projeto/edit/sprint/${id}`)
         }
     }
 
@@ -55,34 +57,38 @@ export default function Sprints() {
         return (
             <div className={StylesSprint.sprintsDiv}>
                 <table className={StylesSprint.tableSprints}>
-                    <tr className={StylesSprint.tableTitulo}>
-                        <th><div className={StylesSprint.tbBorder}>Nome</div></th>
-                        <th><div className={StylesSprint.tbBorder}>Início</div></th>
-                        <th><div className={StylesSprint.tbBorder}>Término</div></th>
-                        <th><div className={StylesSprint.tbBorder}></div></th>
-                    </tr>
-                    {sprints.map((i, index) => {
-                        let dataInicio = isFormat(new Date(i.data_inicio))
-                        let dataFim = isFormat(new Date(i.data_fim))
-                        if (!(i.excluido)) {
-                            return (
-                                <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
-                                    e.stopPropagation()
-                                    caminho(i.id, 'task')
-                                }}>
-                                    <td className={StylesSprint.sprintNome}>{i.nome}</td>
-                                    <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
-                                    <td className={StylesSprint.sprintDatas}>{dataFim}</td>
-                                    <td className={StylesSprint.botaoEditarTableTd} >
-                                        <div className={StylesSprint.botaoEditarTable} onClick={(e) => {
-                                            e.stopPropagation()
-                                            caminho(i.id, 'ed')
-                                        }}>...</div>
-                                    </td>
-                                </tr>
-                            )
-                        }
-                    })}
+                    <thead>
+                        <tr className={StylesSprint.tableTitulo}>
+                            <th><div className={StylesSprint.tbBorder}>Nome</div></th>
+                            <th><div className={StylesSprint.tbBorder}>Início</div></th>
+                            <th><div className={StylesSprint.tbBorder}>Término</div></th>
+                            <th><div className={StylesSprint.tbBorder}></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sprints?.map((i, index) => {
+                            let dataInicio = isFormat(new Date(i.data_inicio))
+                            let dataFim = isFormat(new Date(i.data_fim))
+                            if (!(i.excluido)) {
+                                return (
+                                    <tr key={index} className={StylesSprint.sprint} onClick={(e) => {
+                                        e.stopPropagation()
+                                        caminho(i.id, 'task')
+                                    }}>
+                                        <td className={StylesSprint.sprintNome}>{i.nome}</td>
+                                        <td className={StylesSprint.sprintDatas}>{dataInicio}</td>
+                                        <td className={StylesSprint.sprintDatas}>{dataFim}</td>
+                                        <td className={StylesSprint.botaoEditarTableTd} >
+                                            <div className={(hideButtonsByFuncao() == "dev") ? StylesSprint.botaoEditarTable_hide : StylesSprint.botaoEditarTable} onClick={(e) => {
+                                                e.stopPropagation()
+                                                caminho(i.id, 'ed')
+                                            }}>...</div>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        })}
+                    </tbody>
                 </table>
             </div>
         )
@@ -108,8 +114,7 @@ export default function Sprints() {
                 </Modal>
                 <div className={StylesSprint.paginaEquipes}>
                     <div className={StylesSprint.navEquipes}>
-                        {/* <div className={equipeStyle.descEquipe} teste="true">Descrição do Projeto: </div> <br /> */}
-                        <details className={StyleProj.descEquipe} open='true'>
+                        <details className={StyleProj.descEquipe} open={true}>
                             <summary>
                                 <img src={setaDetails} className={StyleProj.icon} />
                                 <img src={clipbb} className={StyleProj.ilustIcon} />
@@ -134,7 +139,7 @@ export default function Sprints() {
                         </div>
 
                     ) : (<h4 className={StylesSprint.semSprint}>Sem Sprints! Crie uma Sprint!</h4>)}
-                    <div className={StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                    <div className={(hideButtonsByFuncao() == "dev") ? StylesSprint.botaoNewSprint_hide : StylesSprint.botaoNewSprint} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 </div>
             </div>
         )

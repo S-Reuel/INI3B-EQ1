@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { postEquipe } from "../data/services/API"
-import { redirecionar } from "./util/functions"
+import { useRedirecionar } from "./util/functions"
 import addEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 
 export default function Add_Equipe({fecharModal}) {
+    const redirecionar = useRedirecionar()
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')
     const [botaoDesativado, setBotaoDesativado] = useState('')

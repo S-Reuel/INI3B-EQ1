@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { postSprint } from "../data/services/API"
-import { isDeCripto, isFormatDate, redirecionar } from "./util/functions"
+import { isDeCripto, isFormatDate, useRedirecionar } from "./util/functions"
 import addSprintStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 export default function Add_Sprint() {
+    const redirecionar = useRedirecionar()
     const {projeto_id} = useParams()
     const [nome, setNome] = useState('')
     const [dataI, setDI] = useState()
