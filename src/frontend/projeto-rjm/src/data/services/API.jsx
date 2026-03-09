@@ -1,6 +1,7 @@
 import axios from "axios"
 import CryptoJS from "crypto-js"
-import { redirecionar, voltar } from "../../pages/util/functions"
+import { voltar } from "../../pages/util/functions"
+import { useNavigate } from "react-router-dom"
 
 axios.defaults.headers.common['Authorization'] = localStorage.getItem('authToken')
 axios.defaults.headers.common['ngrok-skip-browser-warning'] = true
@@ -9,13 +10,21 @@ const URL = axios.create({
     baseURL: 'http://localhost:3000/api/v2/' /* Servidor CTI */
 })
 
+URL.interceptors.request.use((config) => {
+    const token = localStorage.getItem('authToken')
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+    }
+    return config
+})
+
 /* Função para tratar Promise */
 export async function obterValor(valor) {
     // pega o valor enviado e o conver em dado
     return await valor
 }
 
-function onSession(key, dd) {
+export function onSession(key, dd) {
     localStorage.setItem(key, dd)
 }
 
@@ -63,7 +72,7 @@ export async function getUserByEmail() {
     try {
         // Descriptografia
         var result = localStorage.getItem('authEmail')
-        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR" //Não pode estar Hard Coded
         var bytes = CryptoJS.AES.decrypt(result, key)
         var dadosDescriptografados = bytes.toString(CryptoJS.enc.Utf8)
         // Consulta
@@ -201,6 +210,15 @@ export async function deleteUserByEquipe(id) {
         return false
     } catch {
         return true
+    }
+}
+
+export async function changePapel(params){
+    try {
+        // await URL.patch('usuario_equipes')
+        console.log(params)
+    } catch (error) {
+        
     }
 }
 
@@ -380,11 +398,12 @@ export async function postLogin(params) {
             if (t != '') {
                 onSession('authToken', t)
                 onSession('authEmail', dadosCriptografados)
-                location.href = '/equipes'
+                return true
             }
+            return false
         })
     } catch (error) {
-        return (error);
+        return false;
     }
 }
 

@@ -4,9 +4,10 @@ import CryptoJS from "crypto-js"
 import eyeOFF from "../ui/icons/eyeOFF.svg";
 import eyeON from "../ui/icons/eyeON.svg";
 import redefinirStyle from '../ui/styles/Shared/FormConta.module.css'
-import { redirecionar } from "./util/functions";
+import { useRedirecionar } from "./util/functions";
 
 export default function RedefinirSenha() {
+    const redirecionar = useRedirecionar()
     const [token, setToken] = useState('')
     const [password1, setPassword1] = useState('')
     const [password2, setPassword2] = useState('')

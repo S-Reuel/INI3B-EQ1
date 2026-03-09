@@ -2,17 +2,21 @@ import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
 import { getEquipeByUser } from "../data/services/API"
-import { isCripto, redirecionar } from "./util/functions"
+import { isCripto, useRedirecionar } from "./util/functions"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import Add_Equipe from "./Add_Equipe.jsx"
 import equipeStyle from '../ui/styles/Equipes/Equipes.module.css'
 import imgMaisProjeto from '../ui/icons/mais.png'
+import { useNavigate } from 'react-router-dom'
 Modal.setAppElement('#root');
 
 export default function Equipes() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const [eqs, setEqs] = useState([])
     useEffect(() => {
         async function fetch() {
+            localStorage.setItem("authFunc", "")
             const res = await getEquipeByUser() // Filtrar equipes pelo usuário
             setEqs(res.equipes)
         }
@@ -24,9 +28,9 @@ export default function Equipes() {
         // Criptografia do ID
         let id = isCripto(ID)
         if (tipo == 'pr') {
-            location.href = `/projetos/${id}`
+            navigate(`/projetos/${id}`)
         } else if (tipo == 'ed') {
-            location.href = `/edit/equipe/${id}`
+            navigate(`/edit/equipe/${id}`)
         }
     }
 
@@ -43,9 +47,9 @@ export default function Equipes() {
     }
 
     function apresentar() {
-        return eqs.map((i, index) => {
+        return eqs?.map((i, index) => {
             if (!(i.excluido)) {
-                return (<>
+                return (
                     <div key={index} className={equipeStyle.equipeDiv} onClick={(e) => {
                         e.stopPropagation()
                         caminho(i.id, 'pr')
@@ -59,7 +63,7 @@ export default function Equipes() {
                             caminho(i.id, 'ed')
                         }}>...</div>
                     </div>
-                </>)
+                )
             } 
         })
     }
@@ -98,7 +102,7 @@ export default function Equipes() {
                     </div>
                     <div className={equipeStyle.equipesDivCenter}>
                         <div className={equipeStyle.equipeFlex}>
-                            {(eqs.length != 0) ? (apresentar()) : (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)}
+                            {(eqs?.length != 0) ? (apresentar()) : (<h4 className={equipeStyle.semEquipe}>Sem Equipes! Crie uma equipe!</h4>)}
                         </div>
                     </div>
                 </div>

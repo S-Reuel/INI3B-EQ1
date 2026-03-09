@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { deleteUser, esqueciSenha, getUserByEmail, updateUser } from '../data/services/API.jsx'
 import iconeUser from "../ui/icons/user.png"
-import { redirecionar } from './util/functions.jsx'
+import { useRedirecionar } from './util/functions.jsx'
 import Modal from 'react-modal'
 import perfilStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import CabProj from '../ui/components/_cabecalho.jsx'
 import cabProjetoStyle from '../ui/styles/cabProjeto.module.css'
 import camera from "../ui/icons/camera.svg"
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 Modal.setAppElement('#root');
 
 export default function EditUser() {
+    const navigate = useNavigate()
+    const redirecionar = useRedirecionar()
     const [id, setId] = useState('')
     const [nome, setNome] = useState('')
     const [email, setEmail] = useState('')
@@ -54,10 +58,9 @@ export default function EditUser() {
         document.body.style.cursor = 'wait';
         setLinkDesativado("true")
         if (await esqueciSenha(email)) {
-            location.href = '/login/redefinirSenha'
+            navigate('/login/redefinirSenha')
         }
         setLinkDesativado("false")
-
     }
 
     function atualizarAvatar() {
@@ -121,10 +124,11 @@ export default function EditUser() {
                                                 <div className={perfilStyle.modalUserImg}>
                                                     <label className={perfilStyle.lbl}>Foto atual</label> <br />
                                                     <br />
-                                                    <label for="foto">
+                                                    <label htmlFor="foto">
                                                         <img src={(localStorage.getItem('avatar') != "null") ? localStorage.getItem('avatar') : iconeUser} className={perfilStyle.imgUsuarioModal} />
                                                     </label>
                                                     <input type="file" id="foto" name="foto" accept="image/png, image/jpeg" onChange={handleFileChange} />
+                                                    <label>Atenção! Salve a alteração para trocar a imagem</label>
                                                     <div className={perfilStyle.botoesModalImg}>
                                                         <div className={perfilStyle.btnCancelarFoto} id='btnFecharModal' onClick={fecharModal}>Cancelar</div>
                                                         <div onClick={atualizarAvatar} className={perfilStyle.salvarImgBtn}>Salvar</div>
@@ -185,7 +189,7 @@ export default function EditUser() {
                                     }}>Excluir conta</button>
                                     <button type="submit" onClick={onSave} disabled={botaoDesativado} className={perfilStyle.formButton}>Salvar alterações</button>
                                 </div>
-                                <p>Alterar Senha?<a className={perfilStyle.link} linkDesativado={linkDesativado} onClick={() => { if (!linkDesativado) esqueci() }}> Vá para redefinir senha</a></p>
+                                <p>Alterar Senha?<Link className={perfilStyle.link} link_desativado={linkDesativado} onClick={() => { if (!linkDesativado) esqueci() }}> Vá para redefinir senha</Link></p>
                                 <p>Deseja sair?<a type='button' className={perfilStyle.link} onClick={() => redirecionar('logout')}> Logout</a></p>
                             </form>
                         </center>

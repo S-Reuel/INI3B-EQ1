@@ -22,20 +22,20 @@ export default function Routers() {
         <Router>
             <Routes>
                 {/* Usuário  */}
-                <Route exact path="/" element={<App />}/>
+                <Route path="/" element={<App />}/>
                 {/* <Route path="/usuarios" element={<Usuarios />} /> */}
                 <Route path="/edit/usuarios/" element={<EditUser />} />
                 <Route path="/add/usuario" element={<Registro />} />
                 {/*  Login */}
                 <Route path="/login" element={<Login />} />
-                <Route path="login/esqueciSenha" element={<EsqueciSenha />} />
-                <Route path="login/redefinirSenha" element={<RedefinirSenha />} />
+                <Route path="/login/esqueciSenha" element={<EsqueciSenha />} />
+                <Route path="/login/redefinirSenha" element={<RedefinirSenha />} />
                 {/* Equipes  */}
                 <Route path="/equipes" element={<Equipes />} />
-                <Route path="edit/equipe/:id_equipe" element={<Editar_Equipe />} />
+                <Route path="/edit/equipe/:id_equipe" element={<Editar_Equipe />} />
                 {/* Projetos  */}
                 <Route path="/projetos/:equipe_id" element={<Projetos />} />
-                <Route path="edit/projeto/:id_projeto" element={<Editar_Projeto />} />
+                <Route path="/edit/projeto/:id_projeto" element={<Editar_Projeto />} />
                 {/*  Sprints */}
                 <Route path="/projeto/sprints/:projeto_id" element={<Sprints />} />
                 <Route path="/projeto/edit/sprint/:id_sprint" element={<Editar_Sprint />} />

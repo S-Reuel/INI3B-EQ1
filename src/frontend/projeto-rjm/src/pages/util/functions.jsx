@@ -1,5 +1,6 @@
-import { offSession } from "../../data/services/API"
+import { Navigate, useNavigate } from "react-router-dom"
 import CryptoJS from "crypto-js"
+import { offSession } from "../../data/services/API"
 // Formatação da data para ser apresentada na tela
 export function isFormat(data) {
     let mesFormat = {
@@ -34,41 +35,58 @@ export function isFormatStatus(stt) {
     return status[stt]
 }
 
-export function redirecionar(caminho) {
-    switch (caminho) {
-        case 'logout':
-            offSession()
-            redirecionar('login')
-            break
-        case 'prin':
-            location.href = '/'
-            break
-        case 'user':
-            location.href = '/usuarios'
-            break
-        case 'addUser':
-            location.href = '/add/usuario'
-            break
-        case 'edUser':
-            location.href = '/edit/usuarios/'
-            break
-        case 'login':
-            location.href = '/login'
-            break
-        case 'esqSenha':
-            location.href = '/login/esqueciSenha'
-            break
-        case 'redSenha':
-            location.href = '/login/redefinirSenha'
-            break
-        case 'eq':
-            location.href = '/equipes'
-            break
-        case 'perfil':
-            location.href = '/perfil'
-            break
+export function useRedirecionar(caminho) {
+    const navigate = useNavigate()
+    return (caminho) => {
+        switch (caminho) {
+            case 'logout':
+                offSession()
+                navigate('/login')
+                break
+            case 'prin':
+                navigate('/')
+                break
+            case 'user':
+                navigate('/usuarios')
+                break
+            case 'addUser':
+                navigate('/add/usuario')
+                break
+            case 'edUser':
+                navigate('/edit/usuarios/')
+                break
+            case 'login':
+                navigate('/login')
+                break
+            case 'esqSenha':
+                navigate('/login/esqueciSenha')
+                break
+            case 'redSenha':
+                navigate('/login/redefinirSenha')
+                break
+            case 'eq':
+                navigate('/equipes')
+                break
+            case 'perfil':
+                navigate('/perfil')
+                break
+            default:
+                break
+        }
     }
 }
+// Utilizado para voltar as páginas 
+export function voltar() {
+    history.back();
+    // location.replace(document.referrer); //--Diego: se utilizar esta linha em vez de history.back(), a página anterior é automaticamente recarregada ao retornar à ela.
+}
+
+export function useVoltar() {
+    const navigate = useNavigate();
+
+    return () => navigate(-1);
+}
+
 // Utilizado para voltar as páginas 
 export function voltar() {
     history.back();
@@ -82,7 +100,31 @@ export function isCripto(dado) {
 }
 
 export function isDeCripto(dado) {
-    var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
-    var bytes = CryptoJS.AES.decrypt(dado, key)
-    return bytes.toString(CryptoJS.enc.Utf8)
+    try {
+        if (!dado) return null
+        var key = "lnOywPDcNeNyh&7c97ixysnXTtR"
+        const decoded = decodeURIComponent(dado)
+
+        var bytes = CryptoJS.AES.decrypt(decoded, key)
+        var resultado = bytes.toString(CryptoJS.enc.Utf8)
+
+        if (!resultado) return null
+
+        return resultado
+    } catch (error) {
+        console.error("Erro ao descriptografar:", error);
+        return null
+    }
+
+}
+
+export function hideButtonsByFuncao() {
+    switch (isDeCripto(localStorage.getItem("authFunc"))) {
+        case "dev":
+            return "dev"
+        case "lider":
+            return "lider"
+        default:
+            return "gestor"
+    }
 }

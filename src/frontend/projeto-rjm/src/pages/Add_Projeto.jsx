@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { postProjeto } from "../data/services/API"
-import { isDeCripto, redirecionar } from "./util/functions"
+import { isDeCripto, useRedirecionar } from "./util/functions"
 import addProjStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import { useParams } from 'react-router-dom'
 
 export default function Add_Projeto(props) {
+    const redirecionar = useRedirecionar()
     const {equipe_id} = useParams();
     const [nome, setNome] = useState('')
     const [descricao, setDesc] = useState('')

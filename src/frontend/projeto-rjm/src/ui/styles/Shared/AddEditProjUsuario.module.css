@@ -139,6 +139,21 @@
    transition: 300ms;
    transition-timing-function: ease-in-out;
 }
+
+.formButton_hide {
+   background-color: #4848B6;
+   border-color: #4848B6;
+   border-style: none;
+   border-radius: 15px;
+   color: white;
+   font-size: var(--input-font-size);
+   font-weight: 400;
+   padding: 17px 23px;
+   transition: 300ms;
+   transition-timing-function: ease-in-out;
+   visibility: hidden;
+}
+
 .formButton:disabled{
    background-color: #9696D5;
 }
@@ -148,7 +163,6 @@
 
 
 .formButtonDelete {
-
    background-color: #4848B6;
    border-color: #4848B6;
    border-style: none;
@@ -161,6 +175,33 @@
    transition-timing-function: ease-in-out;
    display: flex;
    align-items: center;
+   @media (orientation: landscape) {
+      position: absolute;
+      bottom: 0%;
+      left: 0%;
+      transform: translate(-50px);
+   }
+   @media (orientation: portrait){
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom: 20px;
+   }
+}
+
+.formButtonDelete_hide {
+   background-color: #4848B6;
+   border-color: #4848B6;
+   border-style: none;
+   border-radius: 15px;
+   color: white;
+   font-size: var(--input-font-size);
+   font-weight: 400;
+   padding: 17px 23px;
+   transition: 300ms;
+   transition-timing-function: ease-in-out;
+   display: flex;
+   align-items: center;
+   visibility: hidden;
    @media (orientation: landscape) {
       position: absolute;
       bottom: 0%;
@@ -205,6 +246,20 @@
    font-size: var(--input-font-size);
    padding: 1.5%;
    width: auto;
+   @media (orientation: portrait){
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom: 20px;
+   }
+}
+
+.buttonReturn_hide {
+   background-color: transparent;
+   border-style: none;
+   font-size: var(--input-font-size);
+   padding: 1.5%;
+   width: auto;
+   visibility: hidden;
    @media (orientation: portrait){
       margin-left:5%;
       margin-right:5%;
@@ -380,6 +435,16 @@
    border-radius: 8px;
 }
 
+.remvBtn_hide {
+   background-color: transparent;
+   margin-right: 16px;
+   height: 24px;
+   width: 24px;
+   padding: 4px;
+   border-radius: 8px;
+   visibility: hidden;
+}
+
 .remvBtn:hover {
    background-color: #1e2731;
    cursor: pointer;
@@ -397,6 +462,14 @@
 .btnRemoverTodos:hover {
    background-color: #1e2731;
    cursor: pointer;
+}
+
+.addMembro{
+   visibility: visible;
+}
+
+.addMembro_hide{
+   visibility: hidden;
 }
 
 .btnAdicionarMembro {

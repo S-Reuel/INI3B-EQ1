@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import { deleteTask, getTaskId, updateTask } from "../data/services/API"
 import CabProj from "../ui/components/_cabecalho"
 import { useParams } from "react-router-dom"
-import { isDeCripto, isFormatStatus, redirecionar, voltar } from "./util/functions"
+import { isDeCripto, isFormatStatus, useRedirecionar, voltar } from "./util/functions"
 import editEquipeStyle from "../ui/styles/Shared/AddEditProjUsuario.module.css"
 import trashy from '../ui/icons/trash.png'
 
 export default function Editar_Task() {
+    const redirecionar = useRedirecionar()
     const { task_id } = useParams()
     const [titulo, setTitulo] = useState()
     const [descricao, setDesc] = useState()
@@ -50,7 +51,7 @@ export default function Editar_Task() {
                             <label className={editEquipeStyle.inputTipo}>Título da Task</label><br />
                             <input
                                 className={editEquipeStyle.input}
-                                type="text" name="nome" value={titulo} required
+                                type="text" name="nome" defaultValue={titulo} required
                                 onChange={(e) => setTitulo(e.target.value)}
                             />
                         </label>
@@ -59,7 +60,7 @@ export default function Editar_Task() {
                             <label className={editEquipeStyle.inputTipo}>Descrição da Task</label><br />
                             <input
                                 className={editEquipeStyle.input}
-                                type="text" name="nome" value={descricao} required
+                                type="text" name="nome" defaultValue={descricao} required
                                 onChange={(e) => setDesc(e.target.value)}
                             />
                         </label>

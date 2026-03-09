@@ -1,13 +1,13 @@
 import React from 'react'
 import { useEffect, useState } from "react"
 import Modal from 'react-modal'
-import { getEquipeById, getMembros, getProjetosByEquipe } from "../data/services/API.jsx"
+import { getEquipeById, getMembros, getProjetosByEquipe, getUserByEmail, onSession } from "../data/services/API.jsx"
 import CabProj from '../ui/components/_cabecalho.jsx'
-import { isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
+import { hideButtonsByFuncao, isCripto, isDeCripto, isFormat } from "./util/functions.jsx"
 import iconCalendario from '../ui/icons/calendario.svg'
 import imgEditarProj from '../ui/icons/editar-projeto.svg'
 import StyleProj from '../ui/styles/Projetos/Projetos.module.css'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Add_Projeto from './Add_Projeto.jsx'
 import imgMaisProjeto from '../ui/icons/mais.png'
 import setaDetails from '../ui/icons/setaDetails.png'
@@ -17,6 +17,7 @@ import holderUser from '../ui/icons/userHolderSla.png'
 
 Modal.setAppElement('#root');
 export default function Projetos() {
+    const navigate = useNavigate()
     const { equipe_id } = useParams()
     const [projetos, setProj] = useState([])
     const [equipe, setEquipe] = useState([])
@@ -24,6 +25,7 @@ export default function Projetos() {
 
     useEffect(() => {
         async function fetch() {
+            let getUser = await getUserByEmail()
             let decript_id = isDeCripto(equipe_id)
             let res = await getProjetosByEquipe(decript_id)
             let r = await getEquipeById(decript_id)
@@ -31,6 +33,11 @@ export default function Projetos() {
             setProj(res.projetos)
             setEquipe(r)
             setMembro(me)
+            me.forEach(e => {
+                if (e.usuario.id == getUser.id) {
+                    localStorage.setItem('authFunc', isCripto(e.papel))
+                }
+            });
         }
         fetch()
     }, [])
@@ -40,9 +47,9 @@ export default function Projetos() {
         // Criptografia do ID
         let id = isCripto(ID)
         if (tipo == 'spr') {
-            location.href = `/projeto/sprints/${id}`
+            navigate(`/projeto/sprints/${id}`)
         } else if (tipo == 'ed') {
-            location.href = `/edit/projeto/${id}`
+            navigate(`/edit/projeto/${id}`)
         }
     }
 
@@ -59,7 +66,7 @@ export default function Projetos() {
     }
 
     function apresentar() {
-        return projetos.map((i, index) => {
+        return projetos?.map((i, index) => {
             let dataUp = isFormat(new Date(i.updated_at))
             if (!(i.excluido)) {
                 return (
@@ -77,7 +84,7 @@ export default function Projetos() {
                             Atualizado em:
                             <img src={iconCalendario} className={StyleProj.calendarioIMG}></img>{dataUp}
                         </div>
-                        <button className={StyleProj.bttEditarProj} onClick={(e) => {
+                        <button className={(hideButtonsByFuncao()=="gestor")?StyleProj.bttEditarProj:StyleProj.bttEditarProj_hide} onClick={(e) => {
                             e.stopPropagation()
                             caminho(i.id, 'ed')
                         }}>
@@ -110,10 +117,10 @@ export default function Projetos() {
                 >
                     <Add_Projeto onClose={fecharModal} />
                 </Modal>
-                <div className={StyleProj.botaoNewProjeto} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
+                <div className={(hideButtonsByFuncao()=="gestor")?StyleProj.botaoNewProjeto:StyleProj.botaoNewProjeto_hide} onClick={abrirModal} hidden={modalIsOpen}><img src={imgMaisProjeto} className={StyleProj.imgEditarProj} /></div>
                 <div className={StyleProj.paginaEquipes}>
                     <div className={StyleProj.navEquipes}>
-                        <details className={StyleProj.descEquipe} open='true'>
+                        <details className={StyleProj.descEquipe} open={true}>
                             <summary>
                                 <img src={setaDetails} className={StyleProj.icon} />
                                 <img src={clipbb} className={StyleProj.ilustIcon} />
@@ -123,7 +130,7 @@ export default function Projetos() {
                             <br />
                         </details>
                         <br />
-                        <details className={StyleProj.descEquipe} open='true'>
+                        <details className={StyleProj.descEquipe} open={true}>
                             <summary>
                                 <img src={setaDetails} className={StyleProj.icon} />
                                 <img src={mmbros} className={StyleProj.ilustIcon} />
@@ -140,7 +147,7 @@ export default function Projetos() {
                         <br />
                         <hr className={StyleProj.hr1} color="#4a4a4a" />
                     </div>
-                    <center className={StyleProj.bodyProjs} semProjetos={projetos.length != 0 ? "true" : "false"}>
+                    <center className={StyleProj.bodyProjs} sem_projetos={projetos.length != 0 ? "true" : "false"}>
                         <br />
                         {projetos.length != 0 ? apresentar() : <h4 className={StyleProj.semProjTexto}> Sem projetos! Crie projetos!</h4>}
                     </center>
@@ -149,6 +156,6 @@ export default function Projetos() {
             </>
         )
     } else {
-        return (location.href = "/login")
+        return (navigate("/login"))
     }
 }
